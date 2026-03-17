@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Plus, ExternalLink, Trash2, Globe, Code2, Calculator, FlaskConical, X, Search } from 'lucide-react';
+import { Plus, ExternalLink, Trash2, Globe, X, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface WebApp {
@@ -76,30 +76,13 @@ export default function App() {
     <div className="min-h-screen p-6 md:p-12 font-sans">
       {/* Header */}
       <header className="max-w-7xl mx-auto mb-10 flex flex-col items-center text-center pt-4 pb-8 border-b border-slate-800/50">
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="inline-flex items-center justify-center p-4 bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 rounded-3xl mb-6 border border-cyan-500/20 shadow-2xl shadow-cyan-500/10"
-        >
-          <Code2 className="w-10 h-10 text-cyan-400" />
-        </motion.div>
         <motion.h1 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className="text-4xl md:text-5xl lg:text-6xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 mb-4"
         >
-          Aplicaciones Web
+          Aplicaciones Web Prof Naomi
         </motion.h1>
-        <motion.p 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="text-slate-400 font-mono text-lg md:text-xl flex items-center justify-center gap-3"
-        >
-          <Calculator className="w-5 h-5 text-emerald-500/70" /> 
-          Prof. Naomi 
-          <FlaskConical className="w-5 h-5 text-cyan-500/70" />
-        </motion.p>
       </header>
 
       {/* Toolbar */}
@@ -159,16 +142,22 @@ export default function App() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-cyan-500/50 transition-colors flex flex-col shadow-xl"
                 >
-                  {/* Preview Image (using a free screenshot service) */}
+                  {/* Preview Image (using iframe for live rendering) */}
                   <div className="relative h-40 bg-slate-950 border-b border-slate-800 overflow-hidden">
-                    <img
-                      src={`https://image.thum.io/get/width/600/crop/800/${app.url}`}
-                      alt={`Vista previa de ${app.name}`}
-                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                    <div 
+                      className="absolute top-0 left-0 w-[400%] h-[400%] opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      style={{ transform: 'scale(0.25)', transformOrigin: 'top left' }}
+                    >
+                      <iframe
+                        src={app.url}
+                        title={`Vista previa de ${app.name}`}
+                        className="w-full h-full border-0 bg-white"
+                        sandbox="allow-scripts allow-same-origin"
+                        tabIndex={-1}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 pointer-events-none"></div>
                     <button
                       onClick={() => handleDeleteApp(app.id)}
                       className="absolute top-2 right-2 p-2 bg-red-500/80 hover:bg-red-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all"
@@ -183,9 +172,13 @@ export default function App() {
                     <h3 className="font-display font-bold text-lg text-slate-100 mb-2 line-clamp-1" title={app.name}>
                       {app.name}
                     </h3>
-                    <p className="text-slate-400 text-sm mb-4 line-clamp-2 flex-grow" title={app.description}>
-                      {app.description || 'Sin descripción'}
-                    </p>
+                    {app.description ? (
+                      <p className="text-slate-400 text-sm mb-4 line-clamp-3 flex-grow" title={app.description}>
+                        {app.description}
+                      </p>
+                    ) : (
+                      <div className="mb-4 flex-grow"></div>
+                    )}
                     <a
                       href={app.url}
                       target="_blank"
