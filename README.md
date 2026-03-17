@@ -1,20 +1,36 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 📦 Almacén de Páginas Web - Prof. Naomi
 
-# Run and deploy your AI Studio app
+Este repositorio es el centro de recursos de la Prof. Naomi, diseñado como un punto de encuentro para todas las aplicaciones web educativas creadas para sus estudiantes.
 
-This contains everything you need to run your app locally.
+## 🚀 Características
 
-View your app in AI Studio: https://ai.studio/apps/8f8383d9-64f9-4a40-8093-3716cb3f90b2
+-   **Dashboard Centralizado**: Acceso rápido a todas las herramientas interactivas.
+-   **Vistas Previas Automáticas**: Generación de capturas de pantalla de los sitios.
+-   **Gestión de Recursos**: Posibilidad de añadir, buscar y organizar aplicaciones por tema.
+-   **Diseño Moderno**: Interfaz premium con modo oscuro, animaciones suaves y glassmorphism.
 
-## Run Locally
+## 🛠️ Tecnologías
 
-**Prerequisites:**  Node.js
+-   [React 19](https://react.dev/)
+-   [Vite](https://vitejs.dev/)
+-   [Tailwind CSS 4.0](https://tailwindcss.com/)
+-   [Framer Motion](https://www.framer.com/motion/)
+-   [Lucide React Icons](https://lucide.dev/)
 
+## 💻 Desarrollo Local
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+**Requisitos:** Node.js instalado.
+
+1.  Clona este repositorio.
+2.  Instala las dependencias:
+    ```bash
+    npm install
+    ```
+3.  Inicia el servidor de desarrollo:
+    ```bash
+    npm run dev
+    ```
+
+## 🌐 Despliegue
+
+Este proyecto está preparado para ser desplegado en [Vercel](https://vercel.com). Basta con conectar el repositorio de GitHub a un nuevo proyecto en Vercel.
