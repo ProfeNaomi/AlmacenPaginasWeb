@@ -3,12 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Plus, ExternalLink, Trash2, Globe, X, Search, LogIn, LogOut, Loader2, Link as LinkIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   collection, 
-  onSnapshot, 
+  getDocs,
   addDoc, 
   deleteDoc, 
   doc, 
@@ -33,7 +33,8 @@ interface WebApp {
 
 export default function App() {
   const [apps, setApps] = useState<WebApp[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [dataLoading, setDataLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [newApp, setNewApp] = useState({ name: '', description: '', url: '' });
@@ -49,24 +50,34 @@ export default function App() {
   const ADMIN_EMAIL = 'naomi.urrea94@gmail.com'; 
   const isAdmin = user && user.email === ADMIN_EMAIL;
 
-  // Monitor Auth
+  // Función para cargar los datos desde Firestore (sin listener en tiempo real)
+  const loadApps = useCallback(async () => {
+    setDataLoading(true);
+    try {
+      const q = query(collection(db, 'web-apps'), orderBy('createdAt', 'desc'));
+      const snapshot = await getDocs(q);
+      const appData: WebApp[] = [];
+      snapshot.forEach((docSnap) => {
+        appData.push({ id: docSnap.id, ...docSnap.data() } as WebApp);
+      });
+      setApps(appData);
+    } catch (err) {
+      console.error('Error al cargar las páginas:', err);
+    } finally {
+      setDataLoading(false);
+    }
+  }, []);
+
+  // Cargar datos al montar el componente (una sola vez)
+  useEffect(() => {
+    loadApps();
+  }, [loadApps]);
+
+  // Monitor Auth (independiente de los datos)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  // Monitor Firestore
-  useEffect(() => {
-    const q = query(collection(db, 'web-apps'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const appData: WebApp[] = [];
-      snapshot.forEach((doc) => {
-        appData.push({ id: doc.id, ...doc.data() } as WebApp);
-      });
-      setApps(appData);
+      setAuthLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -110,6 +121,7 @@ export default function App() {
       });
       setNewApp({ name: '', description: '', url: '' });
       setIsModalOpen(false);
+      await loadApps(); // Recargar la lista actualizada
     } catch (err) {
       console.error("Error adding document: ", err);
       alert("Error al guardar la página. Verifica tus permisos.");
@@ -121,6 +133,7 @@ export default function App() {
     if (window.confirm('¿Estás segura de que deseas eliminar esta aplicación?')) {
       try {
         await deleteDoc(doc(db, 'web-apps', id));
+        await loadApps(); // Recargar la lista actualizada
       } catch (err) {
         console.error("Error deleting document: ", err);
         alert("No tienes permisos para eliminar esta página.");
@@ -155,7 +168,11 @@ export default function App() {
         </div>
 
         <div className="flex gap-3">
-          {user ? (
+          {authLoading ? (
+            <div className="flex items-center gap-2 px-4 py-2.5">
+              <Loader2 className="w-4 h-4 text-slate-600 animate-spin" />
+            </div>
+          ) : user ? (
             <div className="flex items-center gap-4">
               <span className="hidden sm:inline-block text-xs font-mono text-slate-500 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
                 {user.email}
@@ -206,7 +223,7 @@ export default function App() {
 
       {/* Grid */}
       <main className="max-w-7xl mx-auto">
-        {loading ? (
+        {dataLoading ? (
           <div className="flex flex-col items-center justify-center py-32 space-y-4">
             <Loader2 className="w-10 h-10 text-cyan-500 animate-spin" />
             <p className="text-slate-500 animate-pulse">Cargando aplicaciones...</p>
