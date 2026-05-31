@@ -35,21 +35,23 @@ export default function Login() {
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('/login_naomi.png')` }}
       >
-        {/* Un pequeño overlay oscuro para asegurar que el texto sea legible si la imagen es muy clara */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Quitamos el overlay oscuro para que la imagen se vea perfecta */}
       </div>
 
       {/* Contenedor principal */}
-      <div className="relative z-10 w-full flex">
+      <div className="relative z-10 w-full flex min-h-screen">
         
-        {/* Left Side - Login Form and Welcome Text */}
-        <div className="w-full lg:w-1/3 min-w-[320px] max-w-[450px] bg-slate-950/80 backdrop-blur-xl border-r border-slate-800/50 flex flex-col items-center justify-center p-8 sm:p-10">
+        {/* Left Side - Container for the floating card */}
+        <div className="w-full lg:w-5/12 xl:w-1/3 flex items-center justify-center p-4 sm:p-8">
           
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="w-full"
-          >
+          {/* The Login Card */}
+          <div className="w-full max-w-[420px] bg-slate-950/80 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-8 sm:p-10 shadow-2xl">
+          
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="w-full"
+            >
             <div className="text-center mb-8">
               <h2 className="text-3xl font-display font-bold text-white mb-2">Acceder</h2>
               <p className="text-slate-400">Introduce tus credenciales para continuar</p>
@@ -116,19 +118,23 @@ export default function Login() {
                 </Link>
               </p>
               
-              {/* Texto de bienvenida movido debajo del login */}
+              {/* Texto de bienvenida movido debajo del login con toque filosófico */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-cyan-950/30 p-4 rounded-2xl border border-cyan-900/30"
+                className="bg-cyan-950/30 p-5 rounded-2xl border border-cyan-900/30 shadow-inner"
               >
-                <p className="text-cyan-100 text-sm leading-relaxed font-medium">
-                  Te damos la bienvenida al <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Espacio Virtual de Naomi</span>
+                <p className="text-cyan-100 text-sm leading-relaxed font-medium italic">
+                  "El aprendizaje es el único tesoro que te acompañará siempre."
+                </p>
+                <p className="text-cyan-400 font-bold mt-2 text-xs uppercase tracking-widest">
+                  Te damos la bienvenida al Espacio Virtual de Naomi
                 </p>
               </motion.div>
             </div>
           </motion.div>
+          </div>
         </div>
 
         {/* Right Side - Empty space to show the background image */}

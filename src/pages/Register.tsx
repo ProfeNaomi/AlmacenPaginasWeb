@@ -72,17 +72,19 @@ export default function Register() {
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('/login_naomi.png')` }}
       >
-        <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      <div className="relative z-10 w-full flex">
-        {/* Left Side - Register Form */}
-        <div className="w-full lg:w-[450px] bg-slate-950/80 backdrop-blur-xl border-r border-slate-800/50 flex flex-col items-center justify-center p-8 sm:p-10 h-screen overflow-y-auto">
+      <div className="relative z-10 w-full flex min-h-screen">
+        {/* Left Side - Container for floating card */}
+        <div className="w-full lg:w-5/12 xl:w-1/3 flex items-center justify-center p-4 sm:p-8">
+          
+          {/* The Register Card */}
+          <div className="w-full max-w-[420px] bg-slate-950/80 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-8 sm:p-10 shadow-2xl overflow-y-auto max-h-[90vh]">
           
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="w-full max-w-sm my-auto"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-full my-auto"
           >
             <div className="text-center mb-6">
               <h2 className="text-3xl font-display font-bold text-white mb-2">Registro</h2>
@@ -189,6 +191,7 @@ export default function Register() {
               </p>
             </div>
           </motion.div>
+          </div>
         </div>
 
         {/* Right Side - Empty space for background */}
