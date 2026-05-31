@@ -31,7 +31,7 @@ export default function MainLayout() {
 
   const navItems = [
     { name: 'Página Principal', path: '/dashboard', icon: LayoutDashboard },
-    { name: 'Mis Cursos', path: '#', icon: BookOpen }, // Por ahora un placeholder
+    { name: 'Mis Cursos', path: '/dashboard', icon: BookOpen }, // Por ahora un placeholder
   ];
 
   return (

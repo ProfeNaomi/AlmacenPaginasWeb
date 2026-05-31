@@ -1,301 +1,112 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Plus, ExternalLink, Trash2, Globe, Search, Loader2, Link as LinkIcon, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
-import { collection, getDocs, addDoc, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
-import { db } from '../lib/firebase';
+import React from 'react';
 import { useAuth } from '../context/AuthContext';
-
-interface WebApp {
-  id: string;
-  name: string;
-  description: string;
-  url: string;
-  createdAt: number;
-}
+import { BookOpen, GraduationCap } from 'lucide-react';
+import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
-  const { profile } = useAuth();
-  const isAdmin = profile?.role === 'admin';
+  const { user, profile } = useAuth();
+  const navigate = useNavigate();
 
-  const [apps, setApps] = useState<WebApp[]>([]);
-  const [dataLoading, setDataLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newApp, setNewApp] = useState({ name: '', description: '', url: '' });
-  const [searchQuery, setSearchQuery] = useState('');
+  // Verificamos si el usuario actual es la administradora
+  const isAdmin = user?.email === 'naomi.urrea94@gmail.com';
 
-  const loadApps = useCallback(async () => {
-    setDataLoading(true);
-    try {
-      const q = query(collection(db, 'web-apps'), orderBy('createdAt', 'desc'));
-      const snapshot = await getDocs(q);
-      const appData: WebApp[] = [];
-      snapshot.forEach((docSnap) => {
-        appData.push({ id: docSnap.id, ...docSnap.data() } as WebApp);
-      });
-      setApps(appData);
-    } catch (err) {
-      console.error('Error al cargar las páginas:', err);
-    } finally {
-      setDataLoading(false);
+  const categories = [
+    {
+      id: 'escolar',
+      title: 'Matemática Escolar',
+      description: 'Números, Álgebra, Geometría y Estadística',
+      icon: BookOpen,
+      color: 'from-blue-500 to-cyan-500',
+      image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?q=80&w=600&auto=format&fit=crop'
+    },
+    {
+      id: 'universitaria',
+      title: 'Matemática Universitaria',
+      description: 'Cálculo, Álgebra Lineal, Probabilidad y Estadística, Geometría',
+      icon: GraduationCap,
+      color: 'from-emerald-500 to-teal-600',
+      image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600&auto=format&fit=crop'
     }
-  }, []);
-
-  useEffect(() => {
-    loadApps();
-  }, [loadApps]);
-
-  const handleAddApp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isAdmin) return;
-    if (!newApp.name || !newApp.url) return;
-
-    let finalUrl = newApp.url;
-    if (!/^https?:\/\//i.test(finalUrl)) {
-      finalUrl = 'https://' + finalUrl;
-    }
-
-    try {
-      await addDoc(collection(db, 'web-apps'), {
-        name: newApp.name,
-        description: newApp.description,
-        url: finalUrl,
-        createdAt: Date.now(),
-      });
-      setNewApp({ name: '', description: '', url: '' });
-      setIsModalOpen(false);
-      await loadApps();
-    } catch (err) {
-      console.error("Error adding document: ", err);
-      alert("Error al guardar la página. Verifica tus permisos.");
-    }
-  };
-
-  const handleDeleteApp = async (id: string) => {
-    if (!isAdmin) return;
-    if (window.confirm('¿Estás segura de que deseas eliminar esta aplicación?')) {
-      try {
-        await deleteDoc(doc(db, 'web-apps', id));
-        await loadApps();
-      } catch (err) {
-        console.error("Error deleting document: ", err);
-        alert("No tienes permisos para eliminar esta página.");
-      }
-    }
-  };
-
-  const filteredApps = apps.filter(app => 
-    app.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    app.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  ];
 
   return (
-    <div className="p-6 md:p-12">
-      {/* Background decoration */}
-      <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-900/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-900/10 blur-[120px] rounded-full" />
-      </div>
-
-      <div className="max-w-7xl mx-auto mb-10 flex flex-col md:flex-row items-center justify-between gap-6 pt-4 pb-8 border-b border-slate-800/50">
-        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <motion.h1 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 mb-2"
-          >
-            Bienvenid@, {profile?.name || 'Estudiante'}
-          </motion.h1>
-          <p className="text-slate-400 font-medium">Recursos Educativos & Herramientas Web</p>
+    <div className="max-w-6xl mx-auto space-y-8">
+      {/* Mensaje de Bienvenida Filosófico */}
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-slate-900/50 border border-slate-800/50 rounded-3xl p-8 sm:p-10 relative overflow-hidden"
+      >
+        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-400 to-emerald-400"></div>
+        <h1 className="text-3xl font-display font-bold text-white mb-6">
+          Bienvenidos a mi Aula Virtual
+        </h1>
+        <div className="space-y-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+          <p>
+            He creado este espacio con un objetivo claro: que tengas acceso a todo el conocimiento necesario para tu formación, desde la preparación PAES hasta cursos avanzados de Cálculo.
+          </p>
+          <p>
+            Aquí no solo venimos a memorizar fórmulas, venimos a entender. Mi meta es que, a través de la disciplina y la reflexión, le agarres el gusto a la matemática y descubras que la lógica es mucho más sencilla de lo que parece.
+          </p>
+          <p>
+            Este sitio es tu herramienta. Úsala para practicar, para equivocarte y para aprender, pero sobre todo, para que te des cuenta de que eres totalmente capaz de lograr tus objetivos académicos.
+          </p>
+          <p className="font-bold text-cyan-400 text-lg mt-4">
+            ¡Explora los cursos y comencemos a estudiar!
+          </p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto mb-8 flex flex-col sm:flex-row gap-4 justify-between items-center">
-        <div className="relative w-full sm:max-w-md group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-cyan-400 transition-colors" />
-          <input
-            type="text"
-            placeholder="Buscar por nombre o tema..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-900/40 backdrop-blur-xl border border-slate-800/50 rounded-2xl pl-12 pr-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all shadow-xl"
-          />
-        </div>
+      {/* Título de la sección */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-display font-bold text-white">Cursos Disponibles</h2>
         
-        {isAdmin && (
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-6 py-3.5 rounded-2xl font-medium transition-all shadow-lg shadow-cyan-900/40 hover:shadow-cyan-500/40 hover:-translate-y-1"
-          >
-            <Plus className="w-5 h-5" />
-            Nueva Página
-          </button>
-        )}
+        {/* Aquí podríamos poner un botón global en el futuro si lo requiere el admin */}
       </div>
 
-      <div className="max-w-7xl mx-auto pb-12">
-        {dataLoading ? (
-          <div className="flex flex-col items-center justify-center py-32 space-y-4">
-            <Loader2 className="w-10 h-10 text-cyan-500 animate-spin" />
-            <p className="text-slate-500 animate-pulse">Cargando aplicaciones...</p>
-          </div>
-        ) : apps.length === 0 ? (
-          <motion.div 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            className="text-center py-24 border-2 border-dashed border-slate-800/60 rounded-3xl bg-slate-900/20 backdrop-blur-sm"
+      {/* Tarjetas de Categorías */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {categories.map((cat, i) => (
+          <motion.div
+            key={cat.id}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: i * 0.1 }}
+            onClick={() => navigate(`/category/${cat.id}`)}
+            className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer shadow-xl border border-slate-800 hover:border-slate-600 transition-all"
           >
-            <Globe className="w-16 h-16 mx-auto text-slate-700 mb-5" />
-            <h2 className="text-2xl font-display text-slate-300 mb-3">Aún no hay cursos o páginas</h2>
-            <p className="text-slate-500 max-w-md mx-auto text-lg px-6">
-              Esta es la galería principal gestionada por la Profe Naomi. Pronto habrán novedades.
-            </p>
-          </motion.div>
-        ) : filteredApps.length === 0 ? (
-          <motion.div 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            className="text-center py-24 border-2 border-dashed border-slate-800/60 rounded-3xl bg-slate-900/20 backdrop-blur-sm"
-          >
-            <Search className="w-16 h-16 mx-auto text-slate-700 mb-5" />
-            <h2 className="text-2xl font-display text-slate-300 mb-3">No se encontraron resultados</h2>
-            <p className="text-slate-500 max-w-md mx-auto text-lg px-6">
-              No hay aplicaciones que coincidan con "{searchQuery}".
-            </p>
-          </motion.div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-            <AnimatePresence mode="popLayout">
-              {filteredApps.map((app) => (
-                <motion.div
-                  layout
-                  key={app.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="group bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-all flex flex-col shadow-xl hover:shadow-cyan-900/10"
-                >
-                  <div className="relative h-40 bg-slate-950 border-b border-slate-800 overflow-hidden">
-                    <div 
-                      className="absolute top-0 left-0 w-[400%] h-[400%] opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                      style={{ transform: 'scale(0.25)', transformOrigin: 'top left' }}
-                    >
-                      <iframe
-                        src={app.url}
-                        title={`Vista previa de ${app.name}`}
-                        className="w-full h-full border-0 bg-white"
-                        sandbox="allow-scripts allow-same-origin"
-                        tabIndex={-1}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent opacity-80 pointer-events-none"></div>
-                    
-                    {isAdmin && (
-                      <button
-                        onClick={() => handleDeleteApp(app.id)}
-                        className="absolute top-2 right-2 p-2 bg-rose-500/80 hover:bg-rose-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-lg"
-                        title="Eliminar"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    )}
-                    
-                    <div className="absolute bottom-3 left-4 flex items-center gap-2 text-cyan-400 text-[10px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-                      <LinkIcon className="w-3 h-3" />
-                      {new URL(app.url).hostname}
-                    </div>
-                  </div>
-
-                  <div className="p-5 flex flex-col flex-grow">
-                    <h3 className="font-display font-bold text-lg text-slate-100 mb-2 line-clamp-1 group-hover:text-cyan-400 transition-colors" title={app.name}>
-                      {app.name}
-                    </h3>
-                    {app.description ? (
-                      <p className="text-slate-500 text-sm mb-4 line-clamp-3 flex-grow leading-relaxed" title={app.description}>
-                        {app.description}
-                      </p>
-                    ) : (
-                      <div className="mb-4 flex-grow"></div>
-                    )}
-                    <a
-                      href={app.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 w-full bg-slate-800/50 hover:bg-cyan-500 hover:text-white border border-slate-700/50 hover:border-cyan-500 text-cyan-400 px-4 py-2.5 rounded-xl font-medium text-xs transition-all duration-300"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Visitar Página
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        )}
-      </div>
-
-      <AnimatePresence>
-        {isModalOpen && isAdmin && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
-              onClick={() => setIsModalOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              className="relative bg-slate-900 border border-slate-700/50 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
-            >
-              <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
-                <h2 className="text-xl font-display font-bold text-white flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-                    <Plus className="w-5 h-5 text-cyan-400" />
-                  </div>
-                  Nueva Página
-                </h2>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="p-2 text-slate-500 hover:text-white transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
+            {/* Imagen de fondo */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+              style={{ backgroundImage: `url(${cat.image})` }}
+            ></div>
+            
+            {/* Overlay oscuro y gradiente */}
+            <div className="absolute inset-0 bg-slate-950/60 group-hover:bg-slate-950/40 transition-colors duration-500"></div>
+            <div className={`absolute inset-0 opacity-40 bg-gradient-to-tr ${cat.color} mix-blend-overlay`}></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent"></div>
+            
+            {/* Contenido */}
+            <div className="absolute inset-0 p-8 flex flex-col justify-end">
+              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center mb-6 shadow-lg transform group-hover:-translate-y-2 transition-transform duration-300`}>
+                <cat.icon className="w-7 h-7 text-white" />
               </div>
+              <h3 className="text-3xl font-display font-bold text-white mb-3">
+                {cat.title}
+              </h3>
+              <p className="text-slate-300 text-sm md:text-base font-medium">
+                {cat.description}
+              </p>
               
-              <form onSubmit={handleAddApp} className="p-6 space-y-5">
-                <div className="space-y-1.5">
-                  <label htmlFor="name" className="text-xs font-bold text-slate-500 uppercase tracking-widest px-1">Título</label>
-                  <input
-                    id="name" type="text" required
-                    value={newApp.name} onChange={(e) => setNewApp({ ...newApp, name: e.target.value })}
-                    className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 transition-all"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label htmlFor="url" className="text-xs font-bold text-slate-500 uppercase tracking-widest px-1">URL de la página</label>
-                  <input
-                    id="url" type="url" required
-                    value={newApp.url} onChange={(e) => setNewApp({ ...newApp, url: e.target.value })}
-                    className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-cyan-500/50 transition-all shadow-inner"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label htmlFor="description" className="text-xs font-bold text-slate-500 uppercase tracking-widest px-1">Descripción</label>
-                  <textarea
-                    id="description" value={newApp.description} onChange={(e) => setNewApp({ ...newApp, description: e.target.value })}
-                    className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 transition-all resize-none h-24"
-                  />
-                </div>
-                <div className="pt-2 flex gap-3">
-                  <button type="button" onClick={() => setIsModalOpen(false)} className="flex-1 px-4 py-3.5 rounded-2xl font-semibold text-slate-400 bg-slate-800/50 hover:bg-slate-800 transition-all">Cerrar</button>
-                  <button type="submit" className="flex-1 px-4 py-3.5 rounded-2xl font-semibold text-white bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 transition-all shadow-lg active:scale-95">Publicar</button>
-                </div>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+              {/* Fake button for UX */}
+              <div className="mt-6 flex items-center text-cyan-400 text-sm font-bold opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                Explorar categoría <span className="ml-2">→</span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -9,6 +9,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import CategoryView from './pages/CategoryView';
+import CourseView from './pages/CourseView';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -59,6 +61,8 @@ function AppRoutes() {
       {/* Rutas Protegidas con el Layout Principal (Estilo Moodle) */}
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/category/:categoryId" element={<CategoryView />} />
+        <Route path="/course/:courseId" element={<CourseView />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
 
