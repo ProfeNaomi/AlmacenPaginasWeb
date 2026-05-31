@@ -176,8 +176,14 @@ export default function ContentMaker() {
           <button onClick={() => navigate(-1)} className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <div>
-            <h1 className="text-2xl font-bold text-white">Maker: {resource?.title}</h1>
+          <div className="flex-1">
+            <input 
+              type="text" 
+              value={resource?.title || ''} 
+              onChange={(e) => setResource(resource ? { ...resource, title: e.target.value } : null)}
+              className="text-2xl font-bold text-white bg-transparent border-b border-transparent hover:border-slate-700 focus:border-cyan-500 focus:outline-none transition-colors w-full sm:w-auto"
+              placeholder="Título de la clase..."
+            />
             <p className="text-sm text-slate-400">Edición de Clase Interactiva</p>
           </div>
         </div>

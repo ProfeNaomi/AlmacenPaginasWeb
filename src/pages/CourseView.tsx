@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getCourseById, updateCourse, Course, CourseModule, Resource } from '../lib/courses';
-import { Loader2, Plus, ChevronDown, ChevronRight, FileText, Link as LinkIcon, Video, AlignLeft, Layout, Settings, Trash2, X, BookOpen } from 'lucide-react';
+import { Loader2, Plus, ChevronDown, ChevronRight, FileText, Link as LinkIcon, Video, AlignLeft, Layout, Settings, Trash2, X, BookOpen, Edit2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function CourseView() {
@@ -21,7 +21,7 @@ export default function CourseView() {
 
   // Form states
   const [newModuleTitle, setNewModuleTitle] = useState('');
-  const [newResource, setNewResource] = useState<Partial<Resource>>({ type: 'pdf', title: '', url: '' });
+  const [newResourceTitle, setNewResourceTitle] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isAdmin = user?.email === 'naomi.urrea94@gmail.com';
@@ -81,15 +81,14 @@ export default function CourseView() {
 
   const handleAddResource = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!course || !courseId || !activeModuleId || !newResource.title) return;
+    if (!course || !courseId || !activeModuleId || !newResourceTitle) return;
     
     setIsSubmitting(true);
     const resource: Resource = {
       id: Date.now().toString(),
-      title: newResource.title,
-      type: newResource.type as any,
-      url: newResource.url,
-      content: newResource.content
+      title: newResourceTitle,
+      type: 'lesson',
+      pages: [{ id: Date.now().toString(), title: 'Página 1', elements: [] }]
     };
     
     const updatedModules = course.modules.map(m => {
@@ -103,7 +102,7 @@ export default function CourseView() {
       await updateCourse(courseId, { modules: updatedModules });
       setCourse({ ...course, modules: updatedModules });
       setIsResourceModalOpen(false);
-      setNewResource({ type: 'pdf', title: '', url: '' });
+      setNewResourceTitle('');
       setActiveModuleId(null);
     } catch (error) {
       console.error(error);
@@ -112,7 +111,87 @@ export default function CourseView() {
     }
   };
 
-    const getResourceIcon = (type: string) => {
+  const handleDeleteResource = async (e: React.MouseEvent, moduleId: string, resourceId: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!confirm('¿Estás seguro de eliminar este contenido?')) return;
+    
+    const updatedModules = course!.modules.map(m => {
+      if (m.id === moduleId) {
+        return { ...m, resources: m.resources.filter(r => r.id !== resourceId) };
+      }
+      return m;
+    });
+    
+    try {
+      await updateCourse(courseId!, { modules: updatedModules });
+      setCourse({ ...course!, modules: updatedModules });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDeleteModule = async (e: React.MouseEvent, moduleId: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!confirm('¿Estás seguro de eliminar esta sección entera?')) return;
+    
+    const updatedModules = course!.modules.filter(m => m.id !== moduleId);
+    
+    try {
+      await updateCourse(courseId!, { modules: updatedModules });
+      setCourse({ ...course!, modules: updatedModules });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEditModule = async (e: React.MouseEvent, moduleId: string, currentTitle: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const newTitle = prompt('Editar título de la sección:', currentTitle);
+    if (!newTitle || newTitle === currentTitle) return;
+    
+    const updatedModules = course!.modules.map(m => {
+      if (m.id === moduleId) {
+        return { ...m, title: newTitle };
+      }
+      return m;
+    });
+    
+    try {
+      await updateCourse(courseId!, { modules: updatedModules });
+      setCourse({ ...course!, modules: updatedModules });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEditResource = async (e: React.MouseEvent, moduleId: string, resourceId: string, currentTitle: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const newTitle = prompt('Editar título de la clase:', currentTitle);
+    if (!newTitle || newTitle === currentTitle) return;
+    
+    const updatedModules = course!.modules.map(m => {
+      if (m.id === moduleId) {
+        return { 
+          ...m, 
+          resources: m.resources.map(r => r.id === resourceId ? { ...r, title: newTitle } : r)
+        };
+      }
+      return m;
+    });
+    
+    try {
+      await updateCourse(courseId!, { modules: updatedModules });
+      setCourse({ ...course!, modules: updatedModules });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getResourceIcon = (type: string) => {
     switch (type) {
       case 'pdf': return <FileText className="w-5 h-5 text-red-400" />;
       case 'video': return <Video className="w-5 h-5 text-purple-400" />;
@@ -190,16 +269,30 @@ export default function CourseView() {
                 </div>
                 
                 {isAdmin && (
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveModuleId(module.id);
-                      setIsResourceModalOpen(true);
-                    }}
-                    className="flex items-center gap-1 text-xs bg-slate-800 hover:bg-cyan-900 text-cyan-400 hover:text-cyan-300 px-3 py-1.5 rounded-lg transition-colors border border-slate-700 hover:border-cyan-800"
-                  >
-                    <Plus className="w-3 h-3" /> Crear contenido
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveModuleId(module.id);
+                        setIsResourceModalOpen(true);
+                      }}
+                      className="flex items-center gap-1 text-xs bg-slate-800 hover:bg-cyan-900 text-cyan-400 hover:text-cyan-300 px-3 py-1.5 rounded-lg transition-colors border border-slate-700 hover:border-cyan-800"
+                    >
+                      <Plus className="w-3 h-3" /> Crear contenido
+                    </button>
+                    <button 
+                      onClick={(e) => handleEditModule(e, module.id, module.title)}
+                      className="p-1.5 text-slate-400 hover:text-cyan-400 bg-slate-800 rounded-lg hover:bg-cyan-950/30 transition-colors"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
+                    <button 
+                      onClick={(e) => handleDeleteModule(e, module.id)}
+                      className="p-1.5 text-slate-500 hover:text-red-400 bg-slate-800 rounded-lg hover:bg-red-950/30 transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 )}
               </div>
 
@@ -238,16 +331,35 @@ export default function CourseView() {
                               target={resource.url && !isLesson ? "_blank" : "_self"}
                               rel="noreferrer"
                               onClick={handleClick}
-                              className="flex items-center gap-3 px-4 py-3 hover:bg-slate-800/50 rounded-xl transition-colors group cursor-pointer"
+                              className="flex items-center justify-between px-4 py-3 hover:bg-slate-800/50 rounded-xl transition-colors group cursor-pointer"
                             >
-                              <div className="w-8 h-8 rounded-lg bg-slate-950 flex items-center justify-center border border-slate-800 group-hover:border-slate-700 transition-colors">
-                                {getResourceIcon(resource.type)}
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-lg bg-slate-950 flex items-center justify-center border border-slate-800 group-hover:border-slate-700 transition-colors">
+                                  {getResourceIcon(resource.type)}
+                                </div>
+                                <span className="text-slate-300 font-medium group-hover:text-cyan-400 transition-colors">
+                                  {resource.title}
+                                </span>
+                                {resource.type === 'pdf' && <span className="text-[10px] text-slate-500 ml-2 border border-slate-700 px-1.5 py-0.5 rounded">PDF</span>}
+                                {resource.type === 'lesson' && <span className="text-[10px] text-amber-500 ml-2 border border-amber-700/50 px-1.5 py-0.5 rounded bg-amber-950/30">Clase Interactiva</span>}
                               </div>
-                              <span className="text-slate-300 font-medium group-hover:text-cyan-400 transition-colors">
-                                {resource.title}
-                              </span>
-                              {resource.type === 'pdf' && <span className="text-[10px] text-slate-500 ml-2 border border-slate-700 px-1.5 py-0.5 rounded">PDF</span>}
-                              {resource.type === 'lesson' && <span className="text-[10px] text-amber-500 ml-2 border border-amber-700/50 px-1.5 py-0.5 rounded bg-amber-950/30">Clase Interactiva</span>}
+
+                              {isAdmin && (
+                                <div className="opacity-0 group-hover:opacity-100 flex items-center gap-1">
+                                  <button
+                                    onClick={(e) => handleEditResource(e, module.id, resource.id, resource.title)}
+                                    className="p-1.5 text-slate-400 hover:text-cyan-400 bg-slate-900 hover:bg-cyan-950/30 rounded-lg transition-all"
+                                  >
+                                    <Edit2 className="w-4 h-4" />
+                                  </button>
+                                  <button
+                                    onClick={(e) => handleDeleteResource(e, module.id, resource.id)}
+                                    className="p-1.5 text-slate-500 hover:text-red-400 bg-slate-900 hover:bg-red-950/30 rounded-lg transition-all"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              )}
                             </a>
                           );
                         })
@@ -320,46 +432,19 @@ export default function CourseView() {
               </div>
               <form onSubmit={handleAddResource} className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">Tipo de recurso</label>
-                  <select
-                    value={newResource.type}
-                    onChange={(e) => setNewResource({...newResource, type: e.target.value as any})}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 text-sm appearance-none"
-                  >
-                    <option value="lesson">Clase Interactiva (Maker)</option>
-                    <option value="pdf">Documento PDF</option>
-                    <option value="link">Enlace web</option>
-                    <option value="video">Video</option>
-                    <option value="app">Aplicación Interactiva (Ej. Pitágoras)</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">Título</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">Título de la clase</label>
                   <input
-                    type="text" required
-                    value={newResource.title}
-                    onChange={(e) => setNewResource({...newResource, title: e.target.value})}
+                    type="text" required autoFocus
+                    value={newResourceTitle}
+                    onChange={(e) => setNewResourceTitle(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 text-sm"
-                    placeholder="Ej. Guía de ejercicios 1"
+                    placeholder="Ej. Introducción a Funciones"
                   />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">URL / Enlace</label>
-                  <input
-                    type="url" required={newResource.type !== 'lesson'}
-                    value={newResource.url || ''}
-                    onChange={(e) => setNewResource({...newResource, url: e.target.value})}
-                    disabled={newResource.type === 'lesson'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 text-sm disabled:opacity-50"
-                    placeholder="https://..."
-                  />
-                  <p className="text-[10px] text-slate-500 px-1 mt-1">Pega el link de Google Drive, YouTube o página web. No requerido para Clase Interactiva.</p>
+                  <p className="text-[10px] text-slate-500 px-1 mt-1">Esto abrirá el Maker donde podrás agregar páginas, videos y pruebas.</p>
                 </div>
 
                 <button
-                  type="submit" disabled={isSubmitting || !newResource.title || (newResource.type !== 'lesson' && !newResource.url)}
+                  type="submit" disabled={isSubmitting || !newResourceTitle}
                   className="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-3 rounded-xl font-bold transition-colors disabled:opacity-50 mt-2"
                 >
                   {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : 'Crear Contenido'}
