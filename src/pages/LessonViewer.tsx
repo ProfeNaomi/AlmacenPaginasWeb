@@ -147,41 +147,55 @@ export default function LessonViewer() {
           
           <div className="space-y-8">
             {pages[currentPageIndex].elements.map(el => {
-              if (el.type === 'text') {
-                return <div key={el.id} className="text-slate-300 leading-relaxed whitespace-pre-wrap">{el.content}</div>;
-              }
-              if (el.type === 'image') {
-                return <img key={el.id} src={el.content} alt="" className="rounded-xl w-full max-w-2xl mx-auto shadow-lg" />;
-              }
-              if (el.type === 'video' || el.type === 'app') {
-                return (
-                  <div key={el.id} className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg border border-slate-800 bg-black">
-                    <iframe 
-                      src={getEmbedUrl(el.content)} 
-                      className="w-full h-full" 
-                      allowFullScreen 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  </div>
-                );
-              }
-              if (el.type === 'gadget') {
-                if (el.content === 'calculator') {
+              const renderElement = (element: any) => {
+                if (element.type === 'row') {
                   return (
-                    <div key={el.id} className="bg-slate-800 p-6 rounded-2xl max-w-xs mx-auto text-center border border-slate-700">
-                      <p className="text-slate-400 mb-2 font-bold text-sm">Calculadora Básica</p>
-                      {/* Simple placeholder for calculator. Real implementation can be a full React component */}
-                      <div className="bg-slate-900 p-4 rounded-xl text-right text-2xl font-mono text-white mb-4">0</div>
-                      <div className="grid grid-cols-4 gap-2">
-                        {['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+'].map(btn => (
-                          <button key={btn} className="bg-slate-700 hover:bg-slate-600 text-white p-3 rounded-lg font-bold">{btn}</button>
-                        ))}
-                      </div>
+                    <div key={element.id} className="flex flex-col md:flex-row gap-6 w-full">
+                      {element.columns?.map((col: any) => (
+                        <div key={col.id} className="flex-1 space-y-6">
+                          {col.elements.map((subEl: any) => renderElement(subEl))}
+                        </div>
+                      ))}
                     </div>
                   );
                 }
-              }
-              return null;
+                if (element.type === 'text') {
+                  return <div key={element.id} className="text-slate-300 leading-relaxed whitespace-pre-wrap">{element.content}</div>;
+                }
+                if (element.type === 'image') {
+                  return <img key={element.id} src={element.content} alt="" className="rounded-xl w-full max-w-2xl mx-auto shadow-lg" />;
+                }
+                if (element.type === 'video' || element.type === 'app') {
+                  return (
+                    <div key={element.id} className="aspect-video w-full mx-auto rounded-xl overflow-hidden shadow-lg border border-slate-800 bg-black">
+                      <iframe 
+                        src={getEmbedUrl(element.content)} 
+                        className="w-full h-full" 
+                        allowFullScreen 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      ></iframe>
+                    </div>
+                  );
+                }
+                if (element.type === 'gadget') {
+                  if (element.content === 'calculator') {
+                    return (
+                      <div key={element.id} className="bg-slate-800 p-6 rounded-2xl max-w-xs mx-auto text-center border border-slate-700">
+                        <p className="text-slate-400 mb-2 font-bold text-sm">Calculadora Básica</p>
+                        <div className="bg-slate-900 p-4 rounded-xl text-right text-2xl font-mono text-white mb-4">0</div>
+                        <div className="grid grid-cols-4 gap-2">
+                          {['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+'].map(btn => (
+                            <button key={btn} className="bg-slate-700 hover:bg-slate-600 text-white p-3 rounded-lg font-bold">{btn}</button>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+                }
+                return null;
+              };
+              
+              return renderElement(el);
             })}
           </div>
         </div>

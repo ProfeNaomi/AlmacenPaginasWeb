@@ -3,8 +3,12 @@ import { db } from './firebase';
 
 export interface LessonElement {
   id: string;
-  type: 'text' | 'video' | 'image' | 'app' | 'gadget';
+  type: 'text' | 'video' | 'image' | 'app' | 'gadget' | 'row';
   content: string; // Text content, URL for video/image/app, or gadget type
+  columns?: {
+    id: string;
+    elements: Omit<LessonElement, 'columns'>[];
+  }[];
 }
 
 export interface LessonPage {
