@@ -76,7 +76,7 @@ export default function Register() {
 
       <div className="relative z-10 w-full flex min-h-screen">
         {/* Left Side - Container for floating card */}
-        <div className="w-full lg:w-5/12 xl:w-1/3 flex items-center justify-center p-4 sm:p-8">
+        <div className="w-full lg:w-[45%] xl:w-[40%] flex items-center justify-center p-4 sm:p-8 lg:pl-12">
           
           {/* The Register Card */}
           <div className="w-full max-w-[420px] bg-slate-950/80 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-8 sm:p-10 shadow-2xl overflow-y-auto max-h-[90vh]">

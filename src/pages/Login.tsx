@@ -42,7 +42,7 @@ export default function Login() {
       <div className="relative z-10 w-full flex min-h-screen">
         
         {/* Left Side - Container for the floating card */}
-        <div className="w-full lg:w-5/12 xl:w-1/3 flex items-center justify-center p-4 sm:p-8">
+        <div className="w-full lg:w-[45%] xl:w-[40%] flex items-center justify-center p-4 sm:p-8 lg:pl-12">
           
           {/* The Login Card */}
           <div className="w-full max-w-[420px] bg-slate-950/80 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-8 sm:p-10 shadow-2xl">
@@ -126,7 +126,7 @@ export default function Login() {
                 className="bg-cyan-950/30 p-5 rounded-2xl border border-cyan-900/30 shadow-inner"
               >
                 <p className="text-cyan-100 text-sm leading-relaxed font-medium italic">
-                  "El aprendizaje es el único tesoro que te acompañará siempre."
+                  "Plataforma exclusiva con todo el amor para mis estudiantes, para que puedan apreciar lo hermoso que es el mundo al igual que yo."
                 </p>
                 <p className="text-cyan-400 font-bold mt-2 text-xs uppercase tracking-widest">
                   Te damos la bienvenida al Espacio Virtual de Naomi
