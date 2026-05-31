@@ -1,12 +1,39 @@
 import { collection, doc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, query, where, addDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
+export interface LessonElement {
+  id: string;
+  type: 'text' | 'video' | 'image' | 'app' | 'gadget';
+  content: string; // Text content, URL for video/image/app, or gadget type
+}
+
+export interface LessonPage {
+  id: string;
+  title: string;
+  elements: LessonElement[];
+}
+
+export interface QuizQuestion {
+  id: string;
+  type: 'math' | 'knowledge' | 'paes';
+  text: string;
+  options: string[];
+  correctOptionIndex: number;
+}
+
+export interface Quiz {
+  questions: QuizQuestion[];
+  passingScore: number;
+}
+
 export interface Resource {
   id: string;
   title: string;
-  type: 'pdf' | 'link' | 'video' | 'app' | 'text';
+  type: 'pdf' | 'link' | 'video' | 'app' | 'text' | 'lesson';
   url?: string;
   content?: string;
+  pages?: LessonPage[];
+  quiz?: Quiz;
 }
 
 export interface CourseModule {

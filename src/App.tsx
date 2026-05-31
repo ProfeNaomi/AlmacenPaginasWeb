@@ -11,6 +11,8 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import CategoryView from './pages/CategoryView';
 import CourseView from './pages/CourseView';
+import ContentMaker from './pages/ContentMaker';
+import LessonViewer from './pages/LessonViewer';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -63,6 +65,8 @@ function AppRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/category/:categoryId" element={<CategoryView />} />
         <Route path="/course/:courseId" element={<CourseView />} />
+        <Route path="/course/:courseId/maker/:moduleId/:resourceId" element={<ContentMaker />} />
+        <Route path="/course/:courseId/lesson/:moduleId/:resourceId" element={<LessonViewer />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
 

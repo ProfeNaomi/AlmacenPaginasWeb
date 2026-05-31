@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getCourseById, updateCourse, Course, CourseModule, Resource } from '../lib/courses';
-import { Loader2, Plus, ChevronDown, ChevronRight, FileText, Link as LinkIcon, Video, AlignLeft, Layout, Settings, Trash2, X } from 'lucide-react';
+import { Loader2, Plus, ChevronDown, ChevronRight, FileText, Link as LinkIcon, Video, AlignLeft, Layout, Settings, Trash2, X, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function CourseView() {
@@ -112,12 +112,13 @@ export default function CourseView() {
     }
   };
 
-  const getResourceIcon = (type: string) => {
+    const getResourceIcon = (type: string) => {
     switch (type) {
       case 'pdf': return <FileText className="w-5 h-5 text-red-400" />;
       case 'video': return <Video className="w-5 h-5 text-purple-400" />;
       case 'link': return <LinkIcon className="w-5 h-5 text-blue-400" />;
       case 'app': return <Layout className="w-5 h-5 text-emerald-400" />;
+      case 'lesson': return <BookOpen className="w-5 h-5 text-amber-400" />;
       default: return <AlignLeft className="w-5 h-5 text-slate-400" />;
     }
   };
@@ -197,7 +198,7 @@ export default function CourseView() {
                     }}
                     className="flex items-center gap-1 text-xs bg-slate-800 hover:bg-cyan-900 text-cyan-400 hover:text-cyan-300 px-3 py-1.5 rounded-lg transition-colors border border-slate-700 hover:border-cyan-800"
                   >
-                    <Plus className="w-3 h-3" /> Añadir recurso
+                    <Plus className="w-3 h-3" /> Crear contenido
                   </button>
                 )}
               </div>
@@ -217,23 +218,39 @@ export default function CourseView() {
                           Sección vacía
                         </div>
                       ) : (
-                        module.resources.map((resource) => (
-                          <a 
-                            key={resource.id}
-                            href={resource.url || '#'}
-                            target={resource.url ? "_blank" : "_self"}
-                            rel="noreferrer"
-                            className="flex items-center gap-3 px-4 py-3 hover:bg-slate-800/50 rounded-xl transition-colors group"
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-slate-950 flex items-center justify-center border border-slate-800 group-hover:border-slate-700 transition-colors">
-                              {getResourceIcon(resource.type)}
-                            </div>
-                            <span className="text-slate-300 font-medium group-hover:text-cyan-400 transition-colors">
-                              {resource.title}
-                            </span>
-                            {resource.type === 'pdf' && <span className="text-[10px] text-slate-500 ml-2 border border-slate-700 px-1.5 py-0.5 rounded">PDF</span>}
-                          </a>
-                        ))
+                        module.resources.map((resource) => {
+                          const isLesson = resource.type === 'lesson';
+                          const handleClick = (e: React.MouseEvent) => {
+                            if (isLesson) {
+                              e.preventDefault();
+                              if (isAdmin) {
+                                navigate(`/course/${courseId}/maker/${module.id}/${resource.id}`);
+                              } else {
+                                navigate(`/course/${courseId}/lesson/${module.id}/${resource.id}`);
+                              }
+                            }
+                          };
+
+                          return (
+                            <a 
+                              key={resource.id}
+                              href={isLesson ? '#' : resource.url || '#'}
+                              target={resource.url && !isLesson ? "_blank" : "_self"}
+                              rel="noreferrer"
+                              onClick={handleClick}
+                              className="flex items-center gap-3 px-4 py-3 hover:bg-slate-800/50 rounded-xl transition-colors group cursor-pointer"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-slate-950 flex items-center justify-center border border-slate-800 group-hover:border-slate-700 transition-colors">
+                                {getResourceIcon(resource.type)}
+                              </div>
+                              <span className="text-slate-300 font-medium group-hover:text-cyan-400 transition-colors">
+                                {resource.title}
+                              </span>
+                              {resource.type === 'pdf' && <span className="text-[10px] text-slate-500 ml-2 border border-slate-700 px-1.5 py-0.5 rounded">PDF</span>}
+                              {resource.type === 'lesson' && <span className="text-[10px] text-amber-500 ml-2 border border-amber-700/50 px-1.5 py-0.5 rounded bg-amber-950/30">Clase Interactiva</span>}
+                            </a>
+                          );
+                        })
                       )}
                     </div>
                   </motion.div>
@@ -309,6 +326,7 @@ export default function CourseView() {
                     onChange={(e) => setNewResource({...newResource, type: e.target.value as any})}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 text-sm appearance-none"
                   >
+                    <option value="lesson">Clase Interactiva (Maker)</option>
                     <option value="pdf">Documento PDF</option>
                     <option value="link">Enlace web</option>
                     <option value="video">Video</option>
@@ -330,20 +348,21 @@ export default function CourseView() {
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">URL / Enlace</label>
                   <input
-                    type="url" required
-                    value={newResource.url}
+                    type="url" required={newResource.type !== 'lesson'}
+                    value={newResource.url || ''}
                     onChange={(e) => setNewResource({...newResource, url: e.target.value})}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 text-sm"
+                    disabled={newResource.type === 'lesson'}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 text-sm disabled:opacity-50"
                     placeholder="https://..."
                   />
-                  <p className="text-[10px] text-slate-500 px-1 mt-1">Pega el link de Google Drive, YouTube o página web.</p>
+                  <p className="text-[10px] text-slate-500 px-1 mt-1">Pega el link de Google Drive, YouTube o página web. No requerido para Clase Interactiva.</p>
                 </div>
 
                 <button
-                  type="submit" disabled={isSubmitting || !newResource.title || !newResource.url}
+                  type="submit" disabled={isSubmitting || !newResource.title || (newResource.type !== 'lesson' && !newResource.url)}
                   className="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-3 rounded-xl font-bold transition-colors disabled:opacity-50 mt-2"
                 >
-                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : 'Agregar Recurso'}
+                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : 'Crear Contenido'}
                 </button>
               </form>
             </motion.div>
