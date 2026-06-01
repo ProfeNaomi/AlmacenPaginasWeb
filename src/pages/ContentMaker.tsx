@@ -307,30 +307,7 @@ export default function ContentMaker() {
     </div>
   );
 
-  const renderAddElementBar = (rowId?: string, columnId?: string) => (
-    <div className={`grid ${rowId ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-6'} gap-2 pt-4`}>
-      <button onClick={() => addElement('text', columnId, rowId)} className="flex flex-col items-center justify-center p-3 border border-slate-700 border-dashed rounded-xl text-slate-400 hover:text-cyan-400 hover:border-cyan-500 hover:bg-cyan-950/20 transition-all text-xs font-bold gap-2">
-        <AlignLeft className="w-5 h-5" /> Texto
-      </button>
-      <button onClick={() => addElement('video', columnId, rowId)} className="flex flex-col items-center justify-center p-3 border border-slate-700 border-dashed rounded-xl text-slate-400 hover:text-red-400 hover:border-red-500 hover:bg-red-950/20 transition-all text-xs font-bold gap-2">
-        <Video className="w-5 h-5" /> Video
-      </button>
-      <button onClick={() => addElement('image', columnId, rowId)} className="flex flex-col items-center justify-center p-3 border border-slate-700 border-dashed rounded-xl text-slate-400 hover:text-blue-400 hover:border-blue-500 hover:bg-blue-950/20 transition-all text-xs font-bold gap-2">
-        <ImageIcon className="w-5 h-5" /> Imagen
-      </button>
-      <button onClick={() => addElement('app', columnId, rowId)} className="flex flex-col items-center justify-center p-3 border border-slate-700 border-dashed rounded-xl text-slate-400 hover:text-emerald-400 hover:border-emerald-500 hover:bg-emerald-950/20 transition-all text-xs font-bold gap-2">
-        <Layout className="w-5 h-5" /> App / Iframe
-      </button>
-      <button onClick={() => addElement('gadget', columnId, rowId)} className="flex flex-col items-center justify-center p-3 border border-slate-700 border-dashed rounded-xl text-slate-400 hover:text-amber-400 hover:border-amber-500 hover:bg-amber-950/20 transition-all text-xs font-bold gap-2">
-        <Settings className="w-5 h-5" /> Gadget
-      </button>
-      {!rowId && (
-        <button onClick={() => addElement('row')} className="flex flex-col items-center justify-center p-3 border border-slate-700 border-dashed rounded-xl text-slate-400 hover:text-purple-400 hover:border-purple-500 hover:bg-purple-950/20 transition-all text-xs font-bold gap-2">
-          <Columns className="w-5 h-5" /> Fila
-        </button>
-      )}
-    </div>
-  );
+  // Removed renderAddElementBar as we are using drag and drop now.
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-10 h-10 animate-spin text-cyan-500" /></div>;
@@ -386,24 +363,51 @@ export default function ContentMaker() {
           </div>
 
           {activeTab === 'pages' && (
-            <div className="pt-4 border-t border-slate-800">
-              <h3 className="text-xs font-bold text-slate-500 uppercase mb-3">Secuencia de Páginas</h3>
-              <div className="space-y-2">
-                {pages.map((p, idx) => (
-                  <div key={p.id} className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors ${activePageIndex === idx ? 'bg-slate-800 border border-slate-700' : 'hover:bg-slate-800/50'}`} onClick={() => setActivePageIndex(idx)}>
-                    <span className="text-sm text-slate-300 truncate">{p.title || `Página ${idx + 1}`}</span>
-                    {pages.length > 1 && (
-                      <button onClick={(e) => { e.stopPropagation(); removePage(idx); }} className="text-slate-500 hover:text-red-400 p-1">
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    )}
+            <>
+              <div className="pt-4 border-t border-slate-800">
+                <h3 className="text-xs font-bold text-slate-500 uppercase mb-3">Herramientas</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'text')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-cyan-400 hover:border-cyan-500 transition-all text-xs font-bold gap-2">
+                    <AlignLeft className="w-5 h-5" /> Texto
                   </div>
-                ))}
-                <button onClick={addPage} className="w-full flex items-center justify-center gap-2 py-2 mt-2 border border-dashed border-slate-700 rounded-lg text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-colors text-sm">
-                  <Plus className="w-4 h-4" /> Nueva Página
-                </button>
+                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'video')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-red-400 hover:border-red-500 transition-all text-xs font-bold gap-2">
+                    <Video className="w-5 h-5" /> Video
+                  </div>
+                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'image')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-blue-400 hover:border-blue-500 transition-all text-xs font-bold gap-2">
+                    <ImageIcon className="w-5 h-5" /> Imagen
+                  </div>
+                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'app')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-emerald-400 hover:border-emerald-500 transition-all text-xs font-bold gap-2">
+                    <Layout className="w-5 h-5" /> App/Iframe
+                  </div>
+                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'gadget')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-amber-400 hover:border-amber-500 transition-all text-xs font-bold gap-2">
+                    <Settings className="w-5 h-5" /> Gadget
+                  </div>
+                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'row')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-purple-400 hover:border-purple-500 transition-all text-xs font-bold gap-2">
+                    <Columns className="w-5 h-5" /> Fila
+                  </div>
+                </div>
+                <p className="text-[10px] text-slate-500 text-center mt-3">Arrastra las herramientas hacia el lienzo</p>
               </div>
-            </div>
+
+              <div className="pt-4 border-t border-slate-800">
+                <h3 className="text-xs font-bold text-slate-500 uppercase mb-3">Páginas</h3>
+                <div className="space-y-2">
+                  {pages.map((p, idx) => (
+                    <div key={p.id} className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors ${activePageIndex === idx ? 'bg-slate-800 border border-slate-700' : 'hover:bg-slate-800/50'}`} onClick={() => setActivePageIndex(idx)}>
+                      <span className="text-sm text-slate-300 truncate">{p.title || `Página ${idx + 1}`}</span>
+                      {pages.length > 1 && (
+                        <button onClick={(e) => { e.stopPropagation(); removePage(idx); }} className="text-slate-500 hover:text-red-400 p-1">
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <button onClick={addPage} className="w-full flex items-center justify-center gap-2 py-2 mt-2 border border-dashed border-slate-700 rounded-lg text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-colors text-sm">
+                    <Plus className="w-4 h-4" /> Nueva Página
+                  </button>
+                </div>
+              </div>
+            </>
           )}
         </div>
 
@@ -421,7 +425,23 @@ export default function ContentMaker() {
                 />
               </div>
 
-              <div className="space-y-4">
+              <div 
+                className="space-y-4 min-h-[500px] border-2 border-dashed border-slate-700 rounded-2xl p-6 bg-slate-950 relative"
+                onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const type = e.dataTransfer.getData('elementType') as LessonElement['type'];
+                  if (type) addElement(type);
+                }}
+              >
+                {pages[activePageIndex].elements.length === 0 && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 pointer-events-none">
+                    <Layout className="w-12 h-12 mb-2 opacity-50" />
+                    <p className="font-bold">El lienzo está vacío</p>
+                    <p className="text-sm">Arrastra herramientas aquí para construir</p>
+                  </div>
+                )}
+
                 {pages[activePageIndex].elements.map((el) => {
                   if (el.type === 'row') {
                     return (
@@ -444,7 +464,20 @@ export default function ContentMaker() {
                         </div>
                         <div className="flex flex-col md:flex-row gap-4">
                           {el.columns?.map(col => (
-                            <div key={col.id} className="flex-1 bg-slate-900 border border-slate-800 rounded-lg p-3 min-w-[200px]">
+                            <div 
+                              key={col.id} 
+                              className="flex-1 bg-slate-900 border-2 border-dashed border-slate-700 hover:border-cyan-500/50 rounded-lg p-3 min-w-[200px] min-h-[150px] transition-colors flex flex-col"
+                              onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); e.dataTransfer.dropEffect = 'copy'; }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                const type = e.dataTransfer.getData('elementType') as LessonElement['type'];
+                                if (type) {
+                                  if (type === 'row') alert("No puedes agregar una fila dentro de otra fila.");
+                                  else addElement(type, col.id, el.id);
+                                }
+                              }}
+                            >
                               <div className="flex justify-end mb-2">
                                 {el.columns!.length > 1 && (
                                   <button onClick={() => removeColumnFromRow(el.id, col.id)} className="text-slate-500 hover:text-red-400 p-1">
@@ -452,9 +485,13 @@ export default function ContentMaker() {
                                   </button>
                                 )}
                               </div>
-                              <div className="space-y-3">
+                              <div className="space-y-3 flex-1">
                                 {col.elements.map(subEl => renderElementEditor(subEl, el.id, col.id))}
-                                {renderAddElementBar(el.id, col.id)}
+                                {col.elements.length === 0 && (
+                                  <div className="h-full flex items-center justify-center text-slate-600 text-xs font-bold text-center pointer-events-none pb-4">
+                                    Arrastra elemento aquí
+                                  </div>
+                                )}
                               </div>
                             </div>
                           ))}
@@ -465,8 +502,6 @@ export default function ContentMaker() {
                   
                   return renderElementEditor(el);
                 })}
-
-                {renderAddElementBar()}
               </div>
             </div>
           )}
