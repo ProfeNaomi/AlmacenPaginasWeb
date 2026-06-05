@@ -19,12 +19,22 @@ export interface LessonPage {
 
 export interface Block {
   id: string;
-  type: 'text' | 'image' | 'video' | 'app' | 'row' | 'box' | 'page-break';
-  content?: string; // For text and box
+  type: 'text' | 'image' | 'video' | 'app' | 'row' | 'box' | 'page-break' | 'challenge' | 'tabs' | 'accordion' | 'inline-quiz';
+  content?: string; // For text, box, challenge problem statement
   url?: string; // For image, video, app
   zoom?: boolean; // For image
   title?: string; // For box header
-  theme?: 'history' | 'situation' | 'formula' | 'exercise' | 'warning'; // For box
+  theme?: 'history' | 'situation' | 'formula' | 'exercise' | 'warning' | 'theorem' | 'alert'; // For box
+  // Visual props
+  height?: number; // For app
+  rounded?: boolean; // For app
+  shadow?: boolean; // For app
+  caption?: string; // For video
+  // New specific properties
+  solution?: string; // For challenge
+  tabsContent?: { id: string; title: string; content: string }[]; // For tabs
+  accordionItems?: { id: string; title: string; content: string }[]; // For accordion
+  quizData?: { question: string; options: string[]; correctIndex: number }; // For inline-quiz
   columns?: {
     id: string;
     blocks: Omit<Block, 'columns'>[];

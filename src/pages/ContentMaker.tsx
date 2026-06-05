@@ -7,10 +7,11 @@ import {
   AlignLeft, Layout, FileQuestion, ArrowUp, ArrowDown, Bold, List, 
   Type, Columns, Underline, AlignCenter, AlignRight, AlignJustify, 
   Sigma, Scaling, CaseUpper, CaseLower, Space, MessageSquare,
-  ListOrdered, Indent, Outdent, Palette, FileText
+  ListOrdered, Indent, Outdent, Palette, FileText, ChevronDown, CheckCircle, FolderTree, GripVertical
 } from 'lucide-react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+import EquationEditorModal from '../components/EquationEditorModal';
 
 const cleanForFirestore = (obj: any): any => {
   if (obj === undefined) return undefined;
@@ -51,12 +52,29 @@ const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val
     handleInput();
   };
 
-  const insertLatex = (e: React.MouseEvent) => {
+  const [showEquationEditor, setShowEquationEditor] = useState(false);
+  const [savedRange, setSavedRange] = useState<Range | null>(null);
+
+  const openEquationEditor = (e: React.MouseEvent) => {
     e.preventDefault();
-    const tex = prompt("Introduce tu fórmula en LaTeX (ej: \\frac{1}{2}):");
-    if (tex) {
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount > 0) {
+      setSavedRange(sel.getRangeAt(0));
+    }
+    setShowEquationEditor(true);
+  };
+
+  const handleInsertEquation = (tex: string) => {
+    setShowEquationEditor(false);
+    if (editorRef.current) {
+      editorRef.current.focus();
+      if (savedRange) {
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(savedRange);
+      }
       try {
-        const html = katex.renderToString(tex, { throwOnError: false });
+        const html = katex.renderToString(tex, { throwOnError: false, displayMode: false });
         const span = `<span class="math-tex inline-block mx-1 align-middle" contenteditable="false">${html}</span>&nbsp;`;
         document.execCommand('insertHTML', false, span);
         handleInput();
@@ -127,7 +145,7 @@ const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val
         <button onMouseDown={toggleSpacing} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Interlineado"><Space className="w-4 h-4" /></button>
         <div className="w-px h-4 bg-slate-600 mx-1"></div>
 
-        <button onMouseDown={insertLatex} className="p-1.5 hover:bg-emerald-600/50 bg-emerald-900/30 text-emerald-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Ecuación (LaTeX)">
+        <button onMouseDown={openEquationEditor} className="p-1.5 hover:bg-emerald-600/50 bg-emerald-900/30 text-emerald-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Ecuación (LaTeX)">
           <Sigma className="w-4 h-4" /> LaTeX
         </button>
       </div>
@@ -140,6 +158,12 @@ const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val
         onInput={handleInput}
         onBlur={handleInput}
       />
+      {showEquationEditor && (
+        <EquationEditorModal 
+          onInsert={handleInsertEquation} 
+          onClose={() => setShowEquationEditor(false)} 
+        />
+      )}
     </div>
   );
 };
@@ -252,19 +276,29 @@ export default function ContentMaker() {
   // Block management
   const generateId = () => Date.now().toString() + Math.random().toString(36).substring(2, 6);
 
-  const addBlock = (type: Block['type'], targetArray: Block[], setArray: (arr: Block[]) => void) => {
+  const addBlock = (type: Block['type'], targetArray: Block[], setArray: (arr: Block[]) => void, theme?: Block['theme']) => {
     const newBlock: Block = {
       id: generateId(),
       type,
-      content: type === 'text' || type === 'box' ? '' : undefined,
-      url: type !== 'text' && type !== 'row' && type !== 'box' && type !== 'page-break' ? '' : undefined,
+      content: type === 'text' || type === 'box' || type === 'challenge' ? '' : undefined,
+      url: ['image', 'video', 'app'].includes(type) ? '' : undefined,
       zoom: type === 'image' ? false : undefined,
-      title: type === 'box' ? 'Nuevo Recuadro' : undefined,
-      theme: type === 'box' ? 'history' : undefined,
+      title: type === 'box' ? (theme === 'theorem' ? 'Teorema / Definición' : theme === 'alert' ? 'Alerta' : 'Nuevo Recuadro') : undefined,
+      theme: type === 'box' ? (theme || 'history') : undefined,
       columns: type === 'row' ? [
         { id: generateId(), blocks: [] },
         { id: generateId(), blocks: [] }
-      ] : undefined
+      ] : undefined,
+      // Default props for new blocks
+      solution: type === 'challenge' ? '' : undefined,
+      tabsContent: type === 'tabs' ? [{ id: generateId(), title: 'Pestaña 1', content: '' }, { id: generateId(), title: 'Pestaña 2', content: '' }] : undefined,
+      accordionItems: type === 'accordion' ? [{ id: generateId(), title: 'Elemento 1', content: '' }] : undefined,
+      quizData: type === 'inline-quiz' ? { question: '', options: ['', ''], correctIndex: 0 } : undefined,
+      // Default props for app and video
+      height: type === 'app' ? 500 : undefined,
+      rounded: type === 'app' ? true : undefined,
+      shadow: type === 'app' ? true : undefined,
+      caption: type === 'video' ? '' : undefined,
     };
     setArray([...targetArray, newBlock]);
   };
@@ -495,6 +529,8 @@ export default function ContentMaker() {
                 <option value="formula">Fórmula (Morado)</option>
                 <option value="exercise">Ejercitación (Verde Oscuro)</option>
                 <option value="warning">Cuidado (Rojo)</option>
+                <option value="theorem">Teorema/Definición (Azul/Verde)</option>
+                <option value="alert">Alerta/Error (Naranja)</option>
               </select>
             </div>
             <RichTextEditor 
@@ -529,24 +565,249 @@ export default function ContentMaker() {
           </div>
         )}
 
-        {(block.type === 'video' || block.type === 'app') && (
+        {block.type === 'video' && (
           <div className="space-y-4">
             <input 
               type="url"
               value={block.url || ''}
               onChange={(e) => updateBlock(block.id, { url: e.target.value }, blocksArray, setBlocksArray)}
               className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
-              placeholder={block.type === 'video' ? "URL del video (YouTube)" : "URL de tu simulador interactivo"}
+              placeholder="URL del video (YouTube)"
+            />
+            <input
+              type="text"
+              value={block.caption || ''}
+              onChange={(e) => updateBlock(block.id, { caption: e.target.value }, blocksArray, setBlocksArray)}
+              className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
+              placeholder="Leyenda inferior (opcional)"
             />
             {block.url && (
               <div className="aspect-video w-full rounded-lg overflow-hidden border border-slate-800 bg-black">
                 <iframe 
                   src={getEmbedUrl(block.url)} 
-                  className="w-full h-full pointer-events-none" // pointer-events-none to avoid trapping scroll in editor
+                  className="w-full h-full pointer-events-none"
                   allowFullScreen 
                 ></iframe>
               </div>
             )}
+          </div>
+        )}
+
+        {block.type === 'app' && (
+          <div className="space-y-4">
+            <input 
+              type="url"
+              value={block.url || ''}
+              onChange={(e) => updateBlock(block.id, { url: e.target.value }, blocksArray, setBlocksArray)}
+              className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+              placeholder="URL de tu simulador interactivo"
+            />
+            
+            <div className="flex flex-wrap items-center gap-4 bg-slate-950 p-4 rounded-lg border border-slate-800">
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-bold text-slate-400">Alto (px)</label>
+                <input 
+                  type="number"
+                  value={block.height || 500}
+                  onChange={(e) => updateBlock(block.id, { height: Number(e.target.value) }, blocksArray, setBlocksArray)}
+                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white w-24 focus:outline-none focus:border-cyan-500"
+                />
+              </div>
+              
+              <div className="flex items-center gap-2 mt-4">
+                <input 
+                  type="checkbox" 
+                  id={`rounded-${block.id}`}
+                  checked={block.rounded ?? true}
+                  onChange={(e) => updateBlock(block.id, { rounded: e.target.checked }, blocksArray, setBlocksArray)}
+                  className="w-4 h-4 rounded bg-slate-900 border-slate-700 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-slate-950"
+                />
+                <label htmlFor={`rounded-${block.id}`} className="text-sm text-slate-300">Bordes redondeados</label>
+              </div>
+
+              <div className="flex items-center gap-2 mt-4">
+                <input 
+                  type="checkbox" 
+                  id={`shadow-${block.id}`}
+                  checked={block.shadow ?? true}
+                  onChange={(e) => updateBlock(block.id, { shadow: e.target.checked }, blocksArray, setBlocksArray)}
+                  className="w-4 h-4 rounded bg-slate-900 border-slate-700 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-slate-950"
+                />
+                <label htmlFor={`shadow-${block.id}`} className="text-sm text-slate-300">Sombra decorativa</label>
+              </div>
+            </div>
+
+            {block.url && (
+              <div className={`w-full bg-black border border-slate-800 ${block.rounded !== false ? 'rounded-2xl' : ''} ${block.shadow !== false ? 'shadow-2xl shadow-emerald-900/20' : ''} overflow-hidden`} style={{ height: `${block.height || 500}px` }}>
+                <iframe 
+                  src={block.url} 
+                  className="w-full h-full pointer-events-none"
+                  allowFullScreen 
+                ></iframe>
+              </div>
+            )}
+          </div>
+        )}
+
+        {block.type === 'challenge' && (
+          <div className="space-y-4">
+            <h4 className="text-emerald-400 font-bold mb-2">Enunciado (Siempre visible)</h4>
+            <RichTextEditor 
+              content={block.content || ''} 
+              onChange={(val) => updateBlock(block.id, { content: val }, blocksArray, setBlocksArray)} 
+            />
+            <h4 className="text-emerald-400 font-bold mb-2 mt-4">Desarrollo (Oculto)</h4>
+            <RichTextEditor 
+              content={block.solution || ''} 
+              onChange={(val) => updateBlock(block.id, { solution: val }, blocksArray, setBlocksArray)} 
+            />
+          </div>
+        )}
+
+        {block.type === 'tabs' && (
+          <div className="space-y-4">
+            <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+              {block.tabsContent?.map((tab, tIdx) => (
+                <div key={tab.id} className="flex flex-col gap-2 min-w-[200px] flex-1">
+                  <div className="flex items-center gap-2">
+                    <input 
+                      type="text" 
+                      value={tab.title} 
+                      onChange={(e) => {
+                        const newTabs = [...block.tabsContent!];
+                        newTabs[tIdx].title = e.target.value;
+                        updateBlock(block.id, { tabsContent: newTabs }, blocksArray, setBlocksArray);
+                      }}
+                      className="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-white flex-1 focus:outline-none focus:border-cyan-500"
+                    />
+                    {block.tabsContent!.length > 1 && (
+                      <button onClick={() => {
+                        const newTabs = block.tabsContent!.filter((_, i) => i !== tIdx);
+                        updateBlock(block.id, { tabsContent: newTabs }, blocksArray, setBlocksArray);
+                      }} className="text-slate-500 hover:text-red-400"><Trash2 className="w-4 h-4"/></button>
+                    )}
+                  </div>
+                  <RichTextEditor 
+                    content={tab.content} 
+                    onChange={(val) => {
+                      const newTabs = [...block.tabsContent!];
+                      newTabs[tIdx].content = val;
+                      updateBlock(block.id, { tabsContent: newTabs }, blocksArray, setBlocksArray);
+                    }} 
+                  />
+                </div>
+              ))}
+              <button 
+                onClick={() => {
+                  const newTabs = [...(block.tabsContent || []), { id: Date.now().toString(), title: `Pestaña ${(block.tabsContent?.length || 0) + 1}`, content: '' }];
+                  updateBlock(block.id, { tabsContent: newTabs }, blocksArray, setBlocksArray);
+                }}
+                className="h-10 px-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold flex-shrink-0"
+              >
+                + Añadir Pestaña
+              </button>
+            </div>
+          </div>
+        )}
+
+        {block.type === 'accordion' && (
+          <div className="space-y-4">
+            {block.accordionItems?.map((item, iIdx) => (
+              <div key={item.id} className="border border-slate-700 rounded-xl p-4 bg-slate-950 space-y-3">
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="text" 
+                    value={item.title} 
+                    onChange={(e) => {
+                      const newItems = [...block.accordionItems!];
+                      newItems[iIdx].title = e.target.value;
+                      updateBlock(block.id, { accordionItems: newItems }, blocksArray, setBlocksArray);
+                    }}
+                    className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white font-bold focus:outline-none focus:border-cyan-500"
+                    placeholder="Pregunta o Título..."
+                  />
+                  {block.accordionItems!.length > 1 && (
+                    <button onClick={() => {
+                      const newItems = block.accordionItems!.filter((_, i) => i !== iIdx);
+                      updateBlock(block.id, { accordionItems: newItems }, blocksArray, setBlocksArray);
+                    }} className="text-red-400 p-2 hover:bg-red-400/10 rounded-lg"><Trash2 className="w-5 h-5"/></button>
+                  )}
+                </div>
+                <RichTextEditor 
+                  content={item.content} 
+                  onChange={(val) => {
+                    const newItems = [...block.accordionItems!];
+                    newItems[iIdx].content = val;
+                    updateBlock(block.id, { accordionItems: newItems }, blocksArray, setBlocksArray);
+                  }} 
+                />
+              </div>
+            ))}
+            <button 
+              onClick={() => {
+                const newItems = [...(block.accordionItems || []), { id: Date.now().toString(), title: `Elemento ${(block.accordionItems?.length || 0) + 1}`, content: '' }];
+                updateBlock(block.id, { accordionItems: newItems }, blocksArray, setBlocksArray);
+              }}
+              className="w-full py-3 rounded-lg border-2 border-dashed border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-300 font-bold transition-colors"
+            >
+              + Añadir Elemento Desplegable
+            </button>
+          </div>
+        )}
+
+        {block.type === 'inline-quiz' && block.quizData && (
+          <div className="space-y-4 bg-slate-950 p-4 border border-slate-800 rounded-xl">
+            <div>
+              <label className="text-sm font-bold text-slate-400">Pregunta (Mini-Quiz)</label>
+              <input 
+                type="text" 
+                value={block.quizData.question} 
+                onChange={(e) => updateBlock(block.id, { quizData: { ...block.quizData!, question: e.target.value } }, blocksArray, setBlocksArray)}
+                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white mt-2 focus:outline-none focus:border-cyan-500"
+                placeholder="Ej: ¿Cuál es el resultado de 2 + 2?"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-slate-400 mb-2 block">Opciones (marca el círculo de la correcta)</label>
+              {block.quizData.options.map((opt, oIdx) => (
+                <div key={oIdx} className="flex items-center gap-3">
+                  <input 
+                    type="radio" 
+                    name={`correct-${block.id}`} 
+                    checked={block.quizData?.correctIndex === oIdx} 
+                    onChange={() => updateBlock(block.id, { quizData: { ...block.quizData!, correctIndex: oIdx } }, blocksArray, setBlocksArray)}
+                    className="w-5 h-5 accent-cyan-500"
+                  />
+                  <input 
+                    type="text" 
+                    value={opt} 
+                    onChange={(e) => {
+                      const newOptions = [...block.quizData!.options];
+                      newOptions[oIdx] = e.target.value;
+                      updateBlock(block.id, { quizData: { ...block.quizData!, options: newOptions } }, blocksArray, setBlocksArray);
+                    }}
+                    className={`flex-1 bg-slate-900 border rounded-lg px-4 py-2 text-white focus:outline-none transition-all ${block.quizData?.correctIndex === oIdx ? 'border-cyan-500 ring-1 ring-cyan-500' : 'border-slate-700'}`}
+                    placeholder={`Opción ${oIdx + 1}`}
+                  />
+                  {block.quizData!.options.length > 2 && (
+                    <button onClick={() => {
+                      const newOptions = block.quizData!.options.filter((_, i) => i !== oIdx);
+                      let newCorrect = block.quizData!.correctIndex;
+                      if (newCorrect === oIdx) newCorrect = 0;
+                      else if (newCorrect > oIdx) newCorrect--;
+                      updateBlock(block.id, { quizData: { ...block.quizData!, options: newOptions, correctIndex: newCorrect } }, blocksArray, setBlocksArray);
+                    }} className="text-slate-500 hover:text-red-400 p-2"><Trash2 className="w-4 h-4"/></button>
+                  )}
+                </div>
+              ))}
+              {block.quizData.options.length < 5 && (
+                <button onClick={() => {
+                  updateBlock(block.id, { quizData: { ...block.quizData!, options: [...block.quizData!.options, ''] } }, blocksArray, setBlocksArray);
+                }} className="text-cyan-400 text-sm font-bold mt-2 hover:underline inline-block">
+                  + Añadir Opción
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -607,34 +868,64 @@ export default function ContentMaker() {
           </div>
 
           {activeTab === 'content' && (
-            <div className="flex items-center gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 overflow-x-auto">
-              <button onClick={() => addBlock('text', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition-colors whitespace-nowrap">
-                <Type className="w-4 h-4" /> Texto
-              </button>
-              <div className="w-px h-6 bg-slate-700"></div>
-              <button onClick={() => addBlock('image', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-blue-400 transition-colors whitespace-nowrap">
-                <ImageIcon className="w-4 h-4" /> Imagen
-              </button>
-              <div className="w-px h-6 bg-slate-700"></div>
-              <button onClick={() => addBlock('video', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-red-400 transition-colors whitespace-nowrap">
-                <Video className="w-4 h-4" /> Video
-              </button>
-              <div className="w-px h-6 bg-slate-700"></div>
-              <button onClick={() => addBlock('app', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-emerald-400 transition-colors whitespace-nowrap">
-                <Layout className="w-4 h-4" /> App
-              </button>
-              <div className="w-px h-6 bg-slate-700"></div>
-              <button onClick={() => addBlock('box', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-amber-400 transition-colors whitespace-nowrap">
-                <MessageSquare className="w-4 h-4" /> Recuadro
-              </button>
-              <div className="w-px h-6 bg-slate-700"></div>
-              <button onClick={() => addBlock('row', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-purple-400 transition-colors whitespace-nowrap">
-                <Columns className="w-4 h-4" /> Fila
-              </button>
-              <div className="w-px h-6 bg-slate-700"></div>
-              <button onClick={() => addBlock('page-break', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap bg-slate-800 border border-slate-700 ml-1">
-                <FileText className="w-4 h-4" /> Añadir Página
-              </button>
+            <div className="flex items-center gap-2 sm:gap-4 bg-slate-900 p-1.5 rounded-xl border border-slate-800 overflow-visible">
+              
+              {/* Básicos */}
+              <div className="relative group">
+                <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  <Type className="w-4 h-4" /> Básicos <ChevronDown className="w-3 h-3" />
+                </button>
+                <div className="absolute top-full left-0 mt-1 w-48 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col py-1">
+                  <button onClick={() => addBlock('text', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><Type className="w-4 h-4 text-cyan-400"/> Texto Simple</button>
+                  <button onClick={() => addBlock('image', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><ImageIcon className="w-4 h-4 text-blue-400"/> Imagen</button>
+                  <button onClick={() => addBlock('page-break', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><FileText className="w-4 h-4 text-white"/> Salto de Página</button>
+                </div>
+              </div>
+
+              <div className="hidden sm:block w-px h-6 bg-slate-700"></div>
+
+              {/* Pedagógicos */}
+              <div className="relative group">
+                <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  <MessageSquare className="w-4 h-4" /> Pedagógicos <ChevronDown className="w-3 h-3" />
+                </button>
+                <div className="absolute top-full left-0 mt-1 w-64 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col py-1">
+                  <button onClick={() => addBlock('box', blocks, setBlocks, 'theorem')} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><MessageSquare className="w-4 h-4 text-blue-400"/> Teorema / Definición</button>
+                  <button onClick={() => addBlock('box', blocks, setBlocks, 'alert')} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><MessageSquare className="w-4 h-4 text-orange-400"/> Alerta / Error Común</button>
+                  <button onClick={() => addBlock('box', blocks, setBlocks, 'history')} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><MessageSquare className="w-4 h-4 text-purple-400"/> Recuadro (Dato Curioso)</button>
+                  <button onClick={() => addBlock('box', blocks, setBlocks, 'formula')} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><MessageSquare className="w-4 h-4 text-green-400"/> Recuadro (Fórmula)</button>
+                  <button onClick={() => addBlock('challenge', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-400"/> Desafío Matemático</button>
+                </div>
+              </div>
+
+              <div className="hidden sm:block w-px h-6 bg-slate-700"></div>
+
+              {/* Estructura */}
+              <div className="relative group">
+                <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  <Columns className="w-4 h-4" /> Estructura <ChevronDown className="w-3 h-3" />
+                </button>
+                <div className="absolute top-full left-0 mt-1 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col py-1">
+                  <button onClick={() => addBlock('row', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><Columns className="w-4 h-4 text-purple-400"/> Columnas Flexibles</button>
+                  <button onClick={() => addBlock('tabs', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><FolderTree className="w-4 h-4 text-pink-400"/> Pestañas (Tabs)</button>
+                  <button onClick={() => addBlock('accordion', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><GripVertical className="w-4 h-4 text-indigo-400"/> Acordeón Desplegable</button>
+                </div>
+              </div>
+
+              <div className="hidden sm:block w-px h-6 bg-slate-700"></div>
+
+              {/* Interactivos */}
+              <div className="relative group">
+                <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  <Layout className="w-4 h-4" /> Interactivos <ChevronDown className="w-3 h-3" />
+                </button>
+                <div className="absolute top-full right-0 sm:left-0 mt-1 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col py-1">
+                  <button onClick={() => addBlock('app', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><Layout className="w-4 h-4 text-emerald-400"/> App / Simulador Pro</button>
+                  <button onClick={() => addBlock('video', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><Video className="w-4 h-4 text-red-400"/> Contenedor de Video</button>
+                  <button onClick={() => addBlock('inline-quiz', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><FileQuestion className="w-4 h-4 text-yellow-400"/> Mini-Quiz Formativo</button>
+                </div>
+              </div>
+
             </div>
           )}
         </div>
