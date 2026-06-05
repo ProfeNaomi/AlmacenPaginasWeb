@@ -613,6 +613,30 @@ export default function ContentMaker() {
                   className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white w-24 focus:outline-none focus:border-cyan-500"
                 />
               </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-bold text-slate-400">Ancho (px o %)</label>
+                <input 
+                  type="text"
+                  value={block.width || '100%'}
+                  onChange={(e) => updateBlock(block.id, { width: e.target.value }, blocksArray, setBlocksArray)}
+                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white w-28 focus:outline-none focus:border-cyan-500"
+                  placeholder="100%"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-bold text-slate-400">Alineación</label>
+                <select
+                  value={block.align || 'center'}
+                  onChange={(e) => updateBlock(block.id, { align: e.target.value as any }, blocksArray, setBlocksArray)}
+                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-cyan-500"
+                >
+                  <option value="left">Izquierda</option>
+                  <option value="center">Centro</option>
+                  <option value="right">Derecha</option>
+                </select>
+              </div>
               
               <div className="flex items-center gap-2 mt-4">
                 <input 
@@ -638,12 +662,14 @@ export default function ContentMaker() {
             </div>
 
             {block.url && (
-              <div className={`w-full bg-black border border-slate-800 ${block.rounded !== false ? 'rounded-2xl' : ''} ${block.shadow !== false ? 'shadow-2xl shadow-emerald-900/20' : ''} overflow-hidden`} style={{ height: `${block.height || 500}px` }}>
-                <iframe 
-                  src={block.url} 
-                  className="w-full h-full pointer-events-none"
-                  allowFullScreen 
-                ></iframe>
+              <div className={`w-full flex ${block.align === 'left' ? 'justify-start' : block.align === 'right' ? 'justify-end' : 'justify-center'}`}>
+                <div className={`bg-black border border-slate-800 ${block.rounded !== false ? 'rounded-2xl' : ''} ${block.shadow !== false ? 'shadow-2xl shadow-emerald-900/20' : ''} overflow-hidden`} style={{ height: `${block.height || 500}px`, width: block.width || '100%', maxWidth: '100%' }}>
+                  <iframe 
+                    src={block.url} 
+                    className="w-full h-full pointer-events-none"
+                    allowFullScreen 
+                  ></iframe>
+                </div>
               </div>
             )}
           </div>

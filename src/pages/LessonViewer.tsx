@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getCourseById, Course, Resource, Block, LessonPage } from '../lib/courses';
 import { getUserProgress, recordLessonResult, UserProgress } from '../lib/progress';
-import { Loader2, ArrowLeft, ArrowRight, CheckCircle2, XCircle, X, Maximize2, ChevronDown, FileQuestion } from 'lucide-react';
+import { Loader2, ArrowLeft, ArrowRight, CheckCircle2, XCircle, X, Maximize2, ChevronDown, FileQuestion, ChevronLeft, Menu, ArrowUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import 'katex/dist/katex.min.css';
 
 const ZoomModal = ({ url, onClose }: { url: string, onClose: () => void }) => {
@@ -176,6 +177,16 @@ export default function LessonViewer() {
   const [showQuiz, setShowQuiz] = useState(false);
   const [zoomImage, setZoomImage] = useState<string | null>(null);
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [isCourseSidebarOpen, setIsCourseSidebarOpen] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   // Quiz state
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -378,10 +389,10 @@ export default function LessonViewer() {
     
     if (block.type === 'app') {
       return (
-        <div key={block.id} className="my-8 w-full mx-auto max-w-5xl">
+        <div key={block.id} className={`my-8 w-full flex ${block.align === 'left' ? 'justify-start' : block.align === 'right' ? 'justify-end' : 'justify-center'}`}>
           <div 
-            className={`w-full bg-black border border-slate-800 ${block.rounded !== false ? 'rounded-2xl' : ''} ${block.shadow !== false ? 'shadow-2xl shadow-emerald-900/20' : ''} overflow-hidden`}
-            style={{ height: `${block.height || 500}px` }}
+            className={`bg-black border border-slate-800 ${block.rounded !== false ? 'rounded-2xl' : ''} ${block.shadow !== false ? 'shadow-2xl shadow-emerald-900/20' : ''} overflow-hidden`}
+            style={{ height: `${block.height || 500}px`, width: block.width || '100%', maxWidth: '100%' }}
           >
             <iframe 
               src={block.url || ''} 
@@ -424,21 +435,74 @@ export default function LessonViewer() {
   const currentBlocksToShow = pages[currentPageIndex] || [];
 
   return (
-    <div className="w-full px-4 sm:px-8 mx-auto pb-24">
-      {zoomImage && <ZoomModal url={zoomImage} onClose={() => setZoomImage(null)} />}
+    <div className="flex w-full relative">
+      {/* Course Sidebar Widget */}
+      <AnimatePresence>
+        {isCourseSidebarOpen && course && (
+          <motion.div
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: 280, opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
+            className="hidden lg:block shrink-0 bg-slate-900 border-r border-slate-800 sticky top-0 h-screen overflow-y-auto"
+          >
+            <div className="p-4 border-b border-slate-800 flex justify-between items-center sticky top-0 bg-slate-900 z-10">
+              <h3 className="font-bold text-slate-200 truncate">Índice del Curso</h3>
+              <button onClick={() => setIsCourseSidebarOpen(false)} className="text-slate-400 hover:text-white transition-colors" title="Cerrar índice">
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 space-y-6">
+              {course.modules.map(module => (
+                <div key={module.id} className="space-y-2">
+                  <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">{module.title}</h4>
+                  <div className="space-y-1">
+                    {module.resources.map(res => (
+                      <button
+                        key={res.id}
+                        onClick={() => {
+                          navigate(`/course/${courseId}/lesson/${module.id}/${res.id}`);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${res.id === resourceId ? 'bg-cyan-900/30 text-cyan-400 font-bold border border-cyan-800/50' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'}`}
+                      >
+                        {res.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Top Bar */}
-      <div className="flex items-center justify-between mb-8 bg-slate-900 p-4 rounded-2xl border border-slate-800 shadow-lg sticky top-4 z-40">
-        <button onClick={() => navigate(`/course/${courseId}`)} className="text-slate-400 hover:text-white flex items-center gap-2 text-sm font-bold transition-colors">
-          <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Volver al curso</span>
-        </button>
-        <div className="text-center flex-1 px-4">
-          <h1 className="text-lg sm:text-xl font-bold text-white truncate">{resource.title}</h1>
+      {/* Main Content Area */}
+      <div className="flex-1 w-full px-4 sm:px-8 mx-auto pb-24 max-w-5xl overflow-hidden">
+        {zoomImage && <ZoomModal url={zoomImage} onClose={() => setZoomImage(null)} />}
+
+        {/* Top Bar */}
+        <div className="flex items-center justify-between mb-8 bg-slate-900 p-4 rounded-2xl border border-slate-800 shadow-lg sticky top-4 z-40 mt-4">
+          <div className="flex items-center gap-3">
+            {!isCourseSidebarOpen && course && (
+              <button 
+                onClick={() => setIsCourseSidebarOpen(true)} 
+                className="hidden lg:flex p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors border border-slate-700" 
+                title="Ver Índice"
+              >
+                <Menu className="w-4 h-4" />
+              </button>
+            )}
+            <button onClick={() => navigate(`/course/${courseId}`)} className="text-slate-400 hover:text-white flex items-center gap-2 text-sm font-bold transition-colors">
+              <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Volver</span>
+            </button>
+          </div>
+          <div className="text-center flex-1 px-4">
+            <h1 className="text-lg sm:text-xl font-bold text-white truncate">{resource.title}</h1>
+          </div>
+          <div className="w-24 text-right">
+            {isCompleted && <span className="text-xs font-bold text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 rounded">Nivel Aprobado</span>}
+          </div>
         </div>
-        <div className="w-24 text-right">
-          {isCompleted && <span className="text-xs font-bold text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 rounded">Nivel Aprobado</span>}
-        </div>
-      </div>
 
       {/* Content Area */}
       {!showQuiz ? (
@@ -562,6 +626,22 @@ export default function LessonViewer() {
           </div>
         </div>
       )}
+
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button 
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-24 right-8 bg-cyan-600 hover:bg-cyan-500 text-white p-3 rounded-full shadow-xl shadow-cyan-900/30 transition-colors z-40 hidden lg:flex items-center justify-center group"
+            title="Volver Arriba"
+          >
+            <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+      </div>
     </div>
   );
 }

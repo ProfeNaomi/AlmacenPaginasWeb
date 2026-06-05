@@ -10,7 +10,9 @@ import {
   X,
   Bell,
   MessageCircle,
-  ChevronDown
+  ChevronDown,
+  ArrowLeft,
+  ArrowRight
 } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
@@ -21,7 +23,7 @@ export default function MainLayout() {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -51,15 +53,15 @@ export default function MainLayout() {
 
       {/* Sidebar */}
       <motion.aside
-        className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-slate-900 border-r border-slate-800 flex flex-col z-50 transition-transform duration-300 ease-in-out ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        className={`fixed lg:sticky top-0 left-0 h-screen bg-slate-900 border-r border-slate-800 flex flex-col z-50 transition-all duration-300 ease-in-out shrink-0 overflow-hidden ${
+          isSidebarOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full lg:translate-x-0 lg:w-0'
         }`}
       >
-        <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800">
+        <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800 lg:hidden">
           <span className="text-xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
-            Espacio Virtual
+            Menú
           </span>
-          <button className="lg:hidden text-slate-400 hover:text-white" onClick={() => setIsSidebarOpen(false)}>
+          <button className="text-slate-400 hover:text-white" onClick={() => setIsSidebarOpen(false)}>
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -104,12 +106,21 @@ export default function MainLayout() {
         <header className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 flex items-center justify-between px-4 sm:px-8 sticky top-0 z-30">
           <div className="flex items-center gap-4">
             <button 
-              className="lg:hidden text-slate-400 hover:text-white"
-              onClick={() => setIsSidebarOpen(true)}
+              className="text-slate-400 hover:text-white transition-colors"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              title="Alternar Menú Lateral"
             >
               <Menu className="w-6 h-6" />
             </button>
-            <div className="hidden sm:block text-white text-sm font-medium">
+            <div className="flex items-center gap-1 bg-slate-800/50 rounded-lg p-1 border border-slate-700">
+              <button onClick={() => navigate(-1)} className="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors" title="Atrás">
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <button onClick={() => navigate(1)} className="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors" title="Adelante">
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="hidden sm:block text-sm font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent uppercase tracking-widest">
               Espacio Virtual
             </div>
           </div>

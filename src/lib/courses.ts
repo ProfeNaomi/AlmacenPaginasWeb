@@ -27,6 +27,8 @@ export interface Block {
   theme?: 'history' | 'situation' | 'formula' | 'exercise' | 'warning' | 'theorem' | 'alert'; // For box
   // Visual props
   height?: number; // For app
+  width?: string; // For app
+  align?: 'left' | 'center' | 'right'; // For app
   rounded?: boolean; // For app
   shadow?: boolean; // For app
   caption?: string; // For video
