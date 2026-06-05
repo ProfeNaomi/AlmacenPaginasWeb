@@ -1,8 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getCourseById, updateCourse, Course, Resource, LessonPage, LessonElement, Quiz } from '../lib/courses';
-import { Loader2, Plus, Save, Trash2, ArrowLeft, Video, Image as ImageIcon, AlignLeft, Layout, Settings, FileQuestion, Columns, X } from 'lucide-react';
+import { getCourseById, updateCourse, Course, Resource, Block, Quiz, LessonPage } from '../lib/courses';
+import { Loader2, Plus, Save, Trash2, ArrowLeft, Video, Image as ImageIcon, AlignLeft, Layout, FileQuestion, ArrowUp, ArrowDown, Bold, List, Type } from 'lucide-react';
+
+const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val: string) => void }) => {
+  const editorRef = useRef<HTMLDivElement>(null);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (editorRef.current && !isReady) {
+      editorRef.current.innerHTML = content || '';
+      setIsReady(true);
+    }
+  }, [content, isReady]);
+
+  const handleInput = () => {
+    if (editorRef.current) {
+      onChange(editorRef.current.innerHTML);
+    }
+  };
+
+  const format = (e: React.MouseEvent, command: string, value?: string) => {
+    e.preventDefault();
+    document.execCommand(command, false, value);
+    handleInput();
+  };
+
+  return (
+    <div className="border border-slate-700 rounded-lg overflow-hidden bg-slate-900 focus-within:border-cyan-500 transition-colors">
+      <div className="flex items-center gap-1 p-2 bg-slate-800 border-b border-slate-700">
+        <button onMouseDown={(e) => format(e, 'formatBlock', 'H1')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 text-xs font-bold transition-colors">H1</button>
+        <button onMouseDown={(e) => format(e, 'formatBlock', 'H2')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 text-xs font-bold transition-colors">H2</button>
+        <button onMouseDown={(e) => format(e, 'formatBlock', 'H3')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 text-xs font-bold transition-colors">H3</button>
+        <div className="w-px h-4 bg-slate-600 mx-1"></div>
+        <button onMouseDown={(e) => format(e, 'bold')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><Bold className="w-4 h-4" /></button>
+        <button onMouseDown={(e) => format(e, 'insertUnorderedList')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><List className="w-4 h-4" /></button>
+      </div>
+      <div 
+        ref={editorRef}
+        className="p-4 min-h-[120px] text-slate-300 outline-none prose prose-invert max-w-none"
+        contentEditable
+        onInput={handleInput}
+        onBlur={handleInput}
+      />
+    </div>
+  );
+};
 
 export default function ContentMaker() {
   const { courseId, moduleId, resourceId } = useParams();
@@ -15,10 +59,9 @@ export default function ContentMaker() {
   const [saving, setSaving] = useState(false);
 
   // Local state for editing
-  const [pages, setPages] = useState<LessonPage[]>([]);
+  const [blocks, setBlocks] = useState<Block[]>([]);
   const [quiz, setQuiz] = useState<Quiz | undefined>(undefined);
-  const [activeTab, setActiveTab] = useState<'pages' | 'quiz'>('pages');
-  const [activePageIndex, setActivePageIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<'content' | 'quiz'>('content');
 
   const isAdmin = user?.email === 'naomi.urrea94@gmail.com';
 
@@ -38,7 +81,25 @@ export default function ContentMaker() {
           const r = m?.resources.find(res => res.id === resourceId);
           if (r && r.type === 'lesson') {
             setResource(r);
-            setPages(r.pages || [{ id: Date.now().toString(), title: 'Página 1', elements: [] }]);
+            
+            // Migrate from pages to blocks if necessary
+            if (r.blocks) {
+              setBlocks(r.blocks);
+            } else if (r.pages && r.pages.length > 0) {
+              const migratedBlocks: Block[] = [];
+              r.pages.forEach((p: LessonPage) => {
+                p.elements.forEach(el => {
+                  if (el.type === 'text') migratedBlocks.push({ id: el.id, type: 'text', content: el.content });
+                  else if (el.type === 'image') migratedBlocks.push({ id: el.id, type: 'image', url: el.content, zoom: false });
+                  else if (el.type === 'video') migratedBlocks.push({ id: el.id, type: 'video', url: el.content });
+                  else if (el.type === 'app') migratedBlocks.push({ id: el.id, type: 'app', url: el.content });
+                });
+              });
+              setBlocks(migratedBlocks);
+            } else {
+              setBlocks([]);
+            }
+            
             setQuiz(r.quiz);
           } else {
             navigate(-1); // Not a lesson or not found
@@ -59,7 +120,7 @@ export default function ContentMaker() {
     try {
       const updatedResource: Resource = {
         ...resource,
-        pages,
+        blocks,
         quiz
       };
 
@@ -83,154 +144,39 @@ export default function ContentMaker() {
     }
   };
 
-  const addPage = () => {
-    setPages([...pages, { id: Date.now().toString(), title: `Página ${pages.length + 1}`, elements: [] }]);
-    setActivePageIndex(pages.length);
+  const addBlock = (type: Block['type']) => {
+    const newBlock: Block = {
+      id: Date.now().toString() + Math.random().toString(36).substring(2, 6),
+      type,
+      content: type === 'text' ? '' : undefined,
+      url: type !== 'text' ? '' : undefined,
+      zoom: type === 'image' ? false : undefined
+    };
+    setBlocks([...blocks, newBlock]);
   };
 
-  const removePage = (index: number) => {
-    const newPages = [...pages];
-    newPages.splice(index, 1);
-    setPages(newPages);
-    if (activePageIndex >= newPages.length) {
-      setActivePageIndex(Math.max(0, newPages.length - 1));
-    }
+  const updateBlock = (id: string, updates: Partial<Block>) => {
+    setBlocks(blocks.map(b => b.id === id ? { ...b, ...updates } : b));
   };
 
-  const updatePageTitle = (title: string) => {
-    const newPages = [...pages];
-    newPages[activePageIndex].title = title;
-    setPages(newPages);
+  const removeBlock = (id: string) => {
+    setBlocks(blocks.filter(b => b.id !== id));
   };
 
-  const addElement = (type: LessonElement['type'], columnId?: string, rowId?: string) => {
-    setPages(prevPages => prevPages.map((page, index) => {
-      if (index !== activePageIndex) return page;
-      
-      const newElements = [...(page.elements || [])];
-      const newElement: LessonElement = {
-        id: Date.now().toString() + Math.random().toString(36).substring(2, 6),
-        type,
-        content: type === 'gadget' ? 'calculator' : '',
-        columns: type === 'row' ? [
-          { id: Date.now().toString() + '1', elements: [] },
-          { id: Date.now().toString() + '2', elements: [] }
-        ] : undefined
-      };
+  const moveBlock = (index: number, direction: 'up' | 'down') => {
+    if (direction === 'up' && index === 0) return;
+    if (direction === 'down' && index === blocks.length - 1) return;
 
-      if (rowId && columnId) {
-        const rowIndex = newElements.findIndex(e => e.id === rowId);
-        if (rowIndex > -1) {
-          const row = { ...newElements[rowIndex] };
-          if (row.columns) {
-            row.columns = row.columns.map(col => {
-              if (col.id === columnId) {
-                return { ...col, elements: [...col.elements, newElement] };
-              }
-              return col;
-            });
-            newElements[rowIndex] = row;
-          }
-        }
-      } else {
-        newElements.push(newElement);
-      }
-      return { ...page, elements: newElements };
-    }));
-  };
-
-  const updateElement = (elementId: string, content: string, rowId?: string, columnId?: string) => {
-    setPages(prevPages => prevPages.map((page, index) => {
-      if (index !== activePageIndex) return page;
-      const newElements = [...(page.elements || [])];
-
-      if (rowId && columnId) {
-        const rowIndex = newElements.findIndex(e => e.id === rowId);
-        if (rowIndex > -1) {
-          const row = { ...newElements[rowIndex] };
-          if (row.columns) {
-            row.columns = row.columns.map(col => {
-              if (col.id === columnId) {
-                return { ...col, elements: col.elements.map(e => e.id === elementId ? { ...e, content } : e) };
-              }
-              return col;
-            });
-            newElements[rowIndex] = row;
-          }
-        }
-      } else {
-        const elementIndex = newElements.findIndex(e => e.id === elementId);
-        if (elementIndex > -1) {
-          newElements[elementIndex] = { ...newElements[elementIndex], content };
-        }
-      }
-      return { ...page, elements: newElements };
-    }));
-  };
-
-  const removeElement = (elementId: string, rowId?: string, columnId?: string) => {
-    setPages(prevPages => prevPages.map((page, index) => {
-      if (index !== activePageIndex) return page;
-      let newElements = [...(page.elements || [])];
-
-      if (rowId && columnId) {
-        const rowIndex = newElements.findIndex(e => e.id === rowId);
-        if (rowIndex > -1) {
-          const row = { ...newElements[rowIndex] };
-          if (row.columns) {
-            row.columns = row.columns.map(col => {
-              if (col.id === columnId) {
-                return { ...col, elements: col.elements.filter(e => e.id !== elementId) };
-              }
-              return col;
-            });
-            newElements[rowIndex] = row;
-          }
-        }
-      } else {
-        newElements = newElements.filter(e => e.id !== elementId);
-      }
-      return { ...page, elements: newElements };
-    }));
-  };
-
-  const addColumnToRow = (rowId: string) => {
-    setPages(prevPages => prevPages.map((page, index) => {
-      if (index !== activePageIndex) return page;
-      const newElements = [...(page.elements || [])];
-      const rowIndex = newElements.findIndex(e => e.id === rowId);
-      if (rowIndex > -1) {
-        const row = { ...newElements[rowIndex] };
-        if (row.columns && row.columns.length < 4) {
-          row.columns = [...row.columns, { id: Date.now().toString() + Math.random().toString(36).substring(2, 6), elements: [] }];
-          newElements[rowIndex] = row;
-        }
-      }
-      return { ...page, elements: newElements };
-    }));
-  };
-
-  const removeColumnFromRow = (rowId: string, columnId: string) => {
-    setPages(prevPages => prevPages.map((page, index) => {
-      if (index !== activePageIndex) return page;
-      const newElements = [...(page.elements || [])];
-      const rowIndex = newElements.findIndex(e => e.id === rowId);
-      if (rowIndex > -1) {
-        const row = { ...newElements[rowIndex] };
-        if (row.columns && row.columns.length > 1) {
-          row.columns = row.columns.filter(c => c.id !== columnId);
-          newElements[rowIndex] = row;
-        }
-      }
-      return { ...page, elements: newElements };
-    }));
+    const newBlocks = [...blocks];
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    
+    // Swap
+    [newBlocks[index], newBlocks[targetIndex]] = [newBlocks[targetIndex], newBlocks[index]];
+    setBlocks(newBlocks);
   };
 
   // Quiz functions
-  const initializeQuiz = () => {
-    setQuiz({ passingScore: 60, questions: [] });
-  };
-
+  const initializeQuiz = () => setQuiz({ passingScore: 60, questions: [] });
   const addQuestion = () => {
     if (!quiz) return;
     setQuiz({
@@ -241,82 +187,32 @@ export default function ContentMaker() {
       ]
     });
   };
-
   const updateQuestion = (qId: string, field: string, value: any) => {
     if (!quiz) return;
-    const qs = [...quiz.questions];
-    const qIndex = qs.findIndex(q => q.id === qId);
-    if (qIndex > -1) {
-      (qs[qIndex] as any)[field] = value;
-      setQuiz({ ...quiz, questions: qs });
-    }
+    const qs = quiz.questions.map(q => q.id === qId ? { ...q, [field]: value } : q);
+    setQuiz({ ...quiz, questions: qs });
   };
-
   const updateOption = (qId: string, optIndex: number, value: string) => {
     if (!quiz) return;
-    const qs = [...quiz.questions];
-    const q = qs.find(q => q.id === qId);
-    if (q) {
-      q.options[optIndex] = value;
-      setQuiz({ ...quiz, questions: qs });
-    }
+    const qs = quiz.questions.map(q => {
+      if (q.id === qId) {
+        const newOptions = [...q.options];
+        newOptions[optIndex] = value;
+        return { ...q, options: newOptions };
+      }
+      return q;
+    });
+    setQuiz({ ...quiz, questions: qs });
   };
-
-  const renderElementEditor = (el: LessonElement, rowId?: string, columnId?: string) => (
-    <div key={el.id} className="relative group bg-slate-950 border border-slate-800 rounded-xl p-4">
-      <button 
-        onClick={() => removeElement(el.id, rowId, columnId)}
-        className="absolute -top-3 -right-3 bg-red-500 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 z-10"
-      >
-        <X className="w-4 h-4" />
-      </button>
-      
-      <div className="text-xs font-bold text-slate-500 uppercase mb-2 flex items-center gap-2">
-        {el.type === 'text' && <><AlignLeft className="w-3 h-3" /> Texto</>}
-        {el.type === 'video' && <><Video className="w-3 h-3" /> Video YouTube (URL)</>}
-        {el.type === 'image' && <><ImageIcon className="w-3 h-3" /> Imagen (URL)</>}
-        {el.type === 'app' && <><Layout className="w-3 h-3" /> App/Iframe Externa (URL)</>}
-        {el.type === 'gadget' && <><Settings className="w-3 h-3" /> Herramienta Interactiva</>}
-      </div>
-
-      {el.type === 'text' ? (
-        <textarea 
-          value={el.content}
-          onChange={(e) => updateElement(el.id, e.target.value, rowId, columnId)}
-          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 min-h-[120px]"
-          placeholder="Escribe el contenido aquí... (Soporta Markdown simple o HTML básico si lo implementas)"
-        />
-      ) : el.type === 'gadget' ? (
-        <select 
-          value={el.content}
-          onChange={(e) => updateElement(el.id, e.target.value, rowId, columnId)}
-          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none"
-        >
-          <option value="calculator">Calculadora Estándar</option>
-          <option value="timer">Cronómetro / Temporizador</option>
-        </select>
-      ) : (
-        <input 
-          type="url"
-          value={el.content}
-          onChange={(e) => updateElement(el.id, e.target.value, rowId, columnId)}
-          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500"
-          placeholder="https://..."
-        />
-      )}
-    </div>
-  );
-
-  // Removed renderAddElementBar as we are using drag and drop now.
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-10 h-10 animate-spin text-cyan-500" /></div>;
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6 pb-20">
+    <div className="max-w-5xl mx-auto space-y-6 pb-20">
       {/* Header */}
-      <div className="flex items-center justify-between bg-slate-900 p-6 rounded-2xl border border-slate-800">
+      <div className="flex items-center justify-between bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
         <div className="flex items-center gap-4">
           <button onClick={() => navigate(-1)} className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
             <ArrowLeft className="w-5 h-5" />
@@ -327,189 +223,172 @@ export default function ContentMaker() {
               value={resource?.title || ''} 
               onChange={(e) => setResource(resource ? { ...resource, title: e.target.value } : null)}
               className="text-2xl font-bold text-white bg-transparent border-b border-transparent hover:border-slate-700 focus:border-cyan-500 focus:outline-none transition-colors w-full sm:w-auto"
-              placeholder="Título de la clase..."
+              placeholder="Nombre de la Clase..."
             />
-            <p className="text-sm text-slate-400">Edición de Clase Interactiva</p>
+            <p className="text-sm text-cyan-400 font-medium">Visual Page Maker</p>
           </div>
         </div>
         <button 
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg"
+          className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg"
         >
           {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-          Guardar Cambios
+          Guardar Clase
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Sidebar */}
-        <div className="bg-slate-900 p-4 rounded-2xl border border-slate-800 space-y-4 h-fit">
-          <div className="flex flex-col gap-2">
+      {/* Main Container */}
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl min-h-[70vh] flex flex-col">
+        
+        {/* Fixed Toolbar */}
+        <div className="bg-slate-950 border-b border-slate-800 p-4 sticky top-0 z-40 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button 
-              onClick={() => setActiveTab('pages')}
-              className={`text-left px-4 py-2.5 rounded-xl text-sm font-bold transition-colors ${activeTab === 'pages' ? 'bg-cyan-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
+              onClick={() => setActiveTab('content')}
+              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${activeTab === 'content' ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-900/50' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
             >
-              <AlignLeft className="w-4 h-4 inline-block mr-2" />
-              Páginas de Contenido
+              <Layout className="w-4 h-4 inline-block mr-2" />
+              Lienzo de Contenido
             </button>
             <button 
               onClick={() => setActiveTab('quiz')}
-              className={`text-left px-4 py-2.5 rounded-xl text-sm font-bold transition-colors ${activeTab === 'quiz' ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
+              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${activeTab === 'quiz' ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/50' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
             >
               <FileQuestion className="w-4 h-4 inline-block mr-2" />
               Test de Nivel
             </button>
           </div>
 
-          {activeTab === 'pages' && (
-            <>
-              <div className="pt-4 border-t border-slate-800">
-                <h3 className="text-xs font-bold text-slate-500 uppercase mb-3">Herramientas</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'text')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-cyan-400 hover:border-cyan-500 transition-all text-xs font-bold gap-2">
-                    <AlignLeft className="w-5 h-5" /> Texto
-                  </div>
-                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'video')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-red-400 hover:border-red-500 transition-all text-xs font-bold gap-2">
-                    <Video className="w-5 h-5" /> Video
-                  </div>
-                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'image')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-blue-400 hover:border-blue-500 transition-all text-xs font-bold gap-2">
-                    <ImageIcon className="w-5 h-5" /> Imagen
-                  </div>
-                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'app')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-emerald-400 hover:border-emerald-500 transition-all text-xs font-bold gap-2">
-                    <Layout className="w-5 h-5" /> App/Iframe
-                  </div>
-                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'gadget')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-amber-400 hover:border-amber-500 transition-all text-xs font-bold gap-2">
-                    <Settings className="w-5 h-5" /> Gadget
-                  </div>
-                  <div draggable onDragStart={(e) => e.dataTransfer.setData('elementType', 'row')} className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-3 border border-slate-700 bg-slate-800 rounded-xl text-slate-400 hover:text-purple-400 hover:border-purple-500 transition-all text-xs font-bold gap-2">
-                    <Columns className="w-5 h-5" /> Fila
-                  </div>
-                </div>
-                <p className="text-[10px] text-slate-500 text-center mt-3">Arrastra las herramientas hacia el lienzo</p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-800">
-                <h3 className="text-xs font-bold text-slate-500 uppercase mb-3">Páginas</h3>
-                <div className="space-y-2">
-                  {pages.map((p, idx) => (
-                    <div key={p.id} className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors ${activePageIndex === idx ? 'bg-slate-800 border border-slate-700' : 'hover:bg-slate-800/50'}`} onClick={() => setActivePageIndex(idx)}>
-                      <span className="text-sm text-slate-300 truncate">{p.title || `Página ${idx + 1}`}</span>
-                      {pages.length > 1 && (
-                        <button onClick={(e) => { e.stopPropagation(); removePage(idx); }} className="text-slate-500 hover:text-red-400 p-1">
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button onClick={addPage} className="w-full flex items-center justify-center gap-2 py-2 mt-2 border border-dashed border-slate-700 rounded-lg text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-colors text-sm">
-                    <Plus className="w-4 h-4" /> Nueva Página
-                  </button>
-                </div>
-              </div>
-            </>
+          {activeTab === 'content' && (
+            <div className="flex items-center gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800">
+              <button onClick={() => addBlock('text')} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition-colors">
+                <Type className="w-4 h-4" /> Texto
+              </button>
+              <div className="w-px h-6 bg-slate-700"></div>
+              <button onClick={() => addBlock('image')} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-blue-400 transition-colors">
+                <ImageIcon className="w-4 h-4" /> Imagen
+              </button>
+              <div className="w-px h-6 bg-slate-700"></div>
+              <button onClick={() => addBlock('video')} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-red-400 transition-colors">
+                <Video className="w-4 h-4" /> Video
+              </button>
+              <div className="w-px h-6 bg-slate-700"></div>
+              <button onClick={() => addBlock('app')} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-emerald-400 transition-colors">
+                <Layout className="w-4 h-4" /> App
+              </button>
+            </div>
           )}
         </div>
 
-        {/* Editor Area */}
-        <div className="md:col-span-3 bg-slate-900 p-6 rounded-2xl border border-slate-800 min-h-[500px]">
-          {activeTab === 'pages' && pages[activePageIndex] && (
-            <div className="space-y-6">
-              <div>
-                <label className="text-xs font-bold text-slate-400 uppercase">Título de la Página</label>
-                <input 
-                  type="text" 
-                  value={pages[activePageIndex].title} 
-                  onChange={(e) => updatePageTitle(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 mt-1"
-                />
-              </div>
+        {/* Editor Content Area */}
+        <div className="p-8 flex-1 bg-[#0a0f1c]">
+          {activeTab === 'content' && (
+            <div className="max-w-3xl mx-auto space-y-6">
+              {blocks.length === 0 && (
+                <div className="text-center py-20 border-2 border-dashed border-slate-800 rounded-2xl">
+                  <Layout className="w-16 h-16 text-slate-700 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">El lienzo está vacío</h3>
+                  <p className="text-slate-400">Utiliza la barra de herramientas superior para añadir bloques de contenido.</p>
+                </div>
+              )}
 
-              <div 
-                className="space-y-4 min-h-[500px] border-2 border-dashed border-slate-700 rounded-2xl p-6 bg-slate-950 relative"
-                onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; }}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  const type = e.dataTransfer.getData('elementType') as LessonElement['type'];
-                  if (type) addElement(type);
-                }}
-              >
-                {pages[activePageIndex].elements.length === 0 && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 pointer-events-none">
-                    <Layout className="w-12 h-12 mb-2 opacity-50" />
-                    <p className="font-bold">El lienzo está vacío</p>
-                    <p className="text-sm">Arrastra herramientas aquí para construir</p>
-                  </div>
-                )}
-
-                {pages[activePageIndex].elements.map((el) => {
-                  if (el.type === 'row') {
-                    return (
-                      <div key={el.id} className="relative group bg-slate-800/50 border border-slate-700 rounded-xl p-4">
-                        <button 
-                          onClick={() => removeElement(el.id)}
-                          className="absolute -top-3 -right-3 bg-red-500 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 z-10"
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="text-xs font-bold text-slate-400 uppercase flex items-center gap-2">
-                            <Columns className="w-4 h-4" /> Fila (Cuadrícula)
-                          </div>
-                          {el.columns && el.columns.length < 4 && (
-                            <button onClick={() => addColumnToRow(el.id)} className="text-xs text-cyan-400 hover:text-cyan-300 font-bold bg-cyan-950/30 px-3 py-1.5 rounded-md border border-cyan-800">
-                              + Agregar Columna
-                            </button>
-                          )}
-                        </div>
-                        <div className="flex flex-col md:flex-row gap-4">
-                          {el.columns?.map(col => (
-                            <div 
-                              key={col.id} 
-                              className="flex-1 bg-slate-900 border-2 border-dashed border-slate-700 hover:border-cyan-500/50 rounded-lg p-3 min-w-[200px] min-h-[150px] transition-colors flex flex-col"
-                              onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); e.dataTransfer.dropEffect = 'copy'; }}
-                              onDrop={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                const type = e.dataTransfer.getData('elementType') as LessonElement['type'];
-                                if (type) {
-                                  if (type === 'row') alert("No puedes agregar una fila dentro de otra fila.");
-                                  else addElement(type, col.id, el.id);
-                                }
-                              }}
-                            >
-                              <div className="flex justify-end mb-2">
-                                {el.columns!.length > 1 && (
-                                  <button onClick={() => removeColumnFromRow(el.id, col.id)} className="text-slate-500 hover:text-red-400 p-1">
-                                    <Trash2 className="w-3 h-3" />
-                                  </button>
-                                )}
-                              </div>
-                              <div className="space-y-3 flex-1">
-                                {col.elements.map(subEl => renderElementEditor(subEl, el.id, col.id))}
-                                {col.elements.length === 0 && (
-                                  <div className="h-full flex items-center justify-center text-slate-600 text-xs font-bold text-center pointer-events-none pb-4">
-                                    Arrastra elemento aquí
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  }
+              {blocks.map((block, index) => (
+                <div key={block.id} className="group relative bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-600 transition-colors">
                   
-                  return renderElementEditor(el);
-                })}
-              </div>
+                  {/* Block Controls */}
+                  <div className="absolute -left-12 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button onClick={() => moveBlock(index, 'up')} disabled={index === 0} className="p-1.5 bg-slate-800 text-slate-400 hover:text-white rounded-lg disabled:opacity-30">
+                      <ArrowUp className="w-4 h-4" />
+                    </button>
+                    <button onClick={() => moveBlock(index, 'down')} disabled={index === blocks.length - 1} className="p-1.5 bg-slate-800 text-slate-400 hover:text-white rounded-lg disabled:opacity-30">
+                      <ArrowDown className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <button 
+                    onClick={() => removeBlock(block.id)}
+                    className="absolute -top-3 -right-3 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 hover:scale-110 shadow-lg z-10"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="p-1.5 bg-slate-800 rounded-lg">
+                      {block.type === 'text' && <Type className="w-4 h-4 text-cyan-400" />}
+                      {block.type === 'image' && <ImageIcon className="w-4 h-4 text-blue-400" />}
+                      {block.type === 'video' && <Video className="w-4 h-4 text-red-400" />}
+                      {block.type === 'app' && <Layout className="w-4 h-4 text-emerald-400" />}
+                    </div>
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                      Bloque de {block.type}
+                    </span>
+                    
+                    {/* Zoom Toggle for Images */}
+                    {block.type === 'image' && (
+                      <div className="ml-auto flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+                        <span className="text-xs font-bold text-slate-400">Modo Zoom Educativo</span>
+                        <label className="relative inline-flex items-center cursor-pointer">
+                          <input type="checkbox" className="sr-only peer" checked={block.zoom || false} onChange={(e) => updateBlock(block.id, { zoom: e.target.checked })} />
+                          <div className="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-cyan-500"></div>
+                        </label>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Block Inputs */}
+                  {block.type === 'text' && (
+                    <RichTextEditor 
+                      content={block.content || ''} 
+                      onChange={(val) => updateBlock(block.id, { content: val })} 
+                    />
+                  )}
+
+                  {block.type === 'image' && (
+                    <input 
+                      type="url"
+                      value={block.url || ''}
+                      onChange={(e) => updateBlock(block.id, { url: e.target.value })}
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                      placeholder="URL de la imagen (ej: https://raw.githubusercontent.com/...)"
+                    />
+                  )}
+
+                  {block.type === 'video' && (
+                    <input 
+                      type="url"
+                      value={block.url || ''}
+                      onChange={(e) => updateBlock(block.id, { url: e.target.value })}
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                      placeholder="URL del video de YouTube o Manim"
+                    />
+                  )}
+
+                  {block.type === 'app' && (
+                    <input 
+                      type="url"
+                      value={block.url || ''}
+                      onChange={(e) => updateBlock(block.id, { url: e.target.value })}
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                      placeholder="URL de tu simulador o app interactiva"
+                    />
+                  )}
+                </div>
+              ))}
+
+              {blocks.length > 0 && (
+                <div className="flex justify-center pt-8 pb-4">
+                  <p className="text-slate-500 text-sm font-medium">Fin de la clase</p>
+                </div>
+              )}
             </div>
           )}
 
           {activeTab === 'quiz' && (
-            <div className="space-y-6">
+            <div className="max-w-3xl mx-auto space-y-6">
+              {/* Quiz section remains mostly unchanged but styled to fit */}
               {!quiz ? (
-                <div className="text-center py-20">
+                <div className="text-center py-20 border-2 border-dashed border-slate-800 rounded-2xl">
                   <FileQuestion className="w-16 h-16 text-slate-700 mx-auto mb-4" />
                   <h3 className="text-xl font-bold text-white mb-2">Evalúa el aprendizaje</h3>
                   <p className="text-slate-400 max-w-md mx-auto mb-6">Agrega un test final para que los estudiantes validen lo aprendido antes de avanzar.</p>
@@ -527,33 +406,30 @@ export default function ContentMaker() {
                         type="number" min="1" max="100" 
                         value={quiz.passingScore}
                         onChange={(e) => setQuiz({...quiz, passingScore: Number(e.target.value)})}
-                        className="w-20 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-white focus:border-cyan-500"
+                        className="w-20 bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-cyan-500 text-center"
                       />
-                      <span className="text-slate-400">%</span>
+                      <span className="text-slate-400 font-bold">%</span>
                     </div>
                   </div>
 
                   <div className="space-y-6">
                     {quiz.questions.map((q, i) => (
-                      <div key={q.id} className="bg-slate-950 border border-slate-800 rounded-xl p-5 relative">
+                      <div key={q.id} className="bg-slate-950 border border-slate-800 rounded-xl p-6 relative group">
                         <button 
-                          onClick={() => {
-                            const qs = quiz.questions.filter(qu => qu.id !== q.id);
-                            setQuiz({...quiz, questions: qs});
-                          }}
-                          className="absolute top-4 right-4 text-slate-500 hover:text-red-400"
+                          onClick={() => setQuiz({...quiz, questions: quiz.questions.filter(qu => qu.id !== q.id)})}
+                          className="absolute -top-3 -right-3 bg-slate-800 text-slate-400 hover:text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-500 shadow-lg"
                         >
-                          <Trash2 className="w-5 h-5" />
+                          <Trash2 className="w-4 h-4" />
                         </button>
                         
                         <div className="flex gap-4 mb-4">
-                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-950 text-emerald-400 font-bold">{i + 1}</span>
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-950 text-emerald-400 font-bold shrink-0">{i + 1}</span>
                           <div className="flex-1 space-y-4">
                             <textarea 
                               value={q.text}
                               onChange={(e) => updateQuestion(q.id, 'text', e.target.value)}
                               className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:border-emerald-500 focus:outline-none min-h-[80px]"
-                              placeholder="Pregunta..."
+                              placeholder="Escribe la pregunta aquí..."
                             />
                             
                             <div className="space-y-2">
@@ -564,13 +440,13 @@ export default function ContentMaker() {
                                     name={`correct_${q.id}`}
                                     checked={q.correctOptionIndex === optIdx}
                                     onChange={() => updateQuestion(q.id, 'correctOptionIndex', optIdx)}
-                                    className="w-4 h-4 accent-emerald-500"
+                                    className="w-4 h-4 accent-emerald-500 cursor-pointer"
                                   />
                                   <input 
                                     type="text"
                                     value={opt}
                                     onChange={(e) => updateOption(q.id, optIdx, e.target.value)}
-                                    className={`flex-1 bg-slate-900 border rounded-lg px-4 py-2 text-sm text-white focus:outline-none ${q.correctOptionIndex === optIdx ? 'border-emerald-500/50' : 'border-slate-800 focus:border-cyan-500/50'}`}
+                                    className={`flex-1 bg-slate-900 border rounded-lg px-4 py-2 text-sm text-white focus:outline-none transition-colors ${q.correctOptionIndex === optIdx ? 'border-emerald-500/50' : 'border-slate-800 focus:border-cyan-500/50'}`}
                                   />
                                 </div>
                               ))}
@@ -580,7 +456,7 @@ export default function ContentMaker() {
                               <select 
                                 value={q.type}
                                 onChange={(e) => updateQuestion(q.id, 'type', e.target.value)}
-                                className="bg-slate-900 border border-slate-800 text-slate-400 text-xs rounded-lg px-3 py-1.5 focus:outline-none"
+                                className="bg-slate-900 border border-slate-800 text-slate-300 text-xs font-bold rounded-lg px-3 py-2 focus:outline-none focus:border-emerald-500"
                               >
                                 <option value="math">Matemática</option>
                                 <option value="knowledge">Conocimiento</option>

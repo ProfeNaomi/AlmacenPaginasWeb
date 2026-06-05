@@ -17,6 +17,14 @@ export interface LessonPage {
   elements: LessonElement[];
 }
 
+export interface Block {
+  id: string;
+  type: 'text' | 'image' | 'video' | 'app';
+  content?: string; // For text
+  url?: string; // For image, video, app
+  zoom?: boolean; // For image
+}
+
 export interface QuizQuestion {
   id: string;
   type: 'math' | 'knowledge' | 'paes';
@@ -36,7 +44,8 @@ export interface Resource {
   type: 'pdf' | 'link' | 'video' | 'app' | 'text' | 'lesson';
   url?: string;
   content?: string;
-  pages?: LessonPage[];
+  pages?: LessonPage[]; // Deprecated for lessons, kept for backwards compatibility
+  blocks?: Block[]; // New Notion-like sequential blocks
   quiz?: Quiz;
 }
 

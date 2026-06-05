@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getCourseById, Course, Resource } from '../lib/courses';
+import { getCourseById, Course, Resource, Block, LessonPage } from '../lib/courses';
 import { getUserProgress, recordLessonResult, UserProgress } from '../lib/progress';
-import { Loader2, ArrowLeft, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
+import { Loader2, ArrowLeft, ArrowRight, CheckCircle2, XCircle, X, Maximize2 } from 'lucide-react';
+
+const ZoomModal = ({ url, onClose }: { url: string, onClose: () => void }) => {
+  return (
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-in fade-in duration-200" 
+      onClick={onClose}
+    >
+      <button 
+        className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800/50 hover:bg-red-500/80 p-2 rounded-full transition-all"
+        onClick={onClose}
+      >
+        <X className="w-6 h-6" />
+      </button>
+      <img 
+        src={url} 
+        alt="Zoom" 
+        className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl" 
+        onClick={(e) => e.stopPropagation()} 
+      />
+    </div>
+  );
+};
 
 export default function LessonViewer() {
   const { courseId, moduleId, resourceId } = useParams();
@@ -15,8 +37,9 @@ export default function LessonViewer() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [blocks, setBlocks] = useState<Block[]>([]);
   const [showQuiz, setShowQuiz] = useState(false);
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
   
   // Quiz state
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -34,6 +57,21 @@ export default function LessonViewer() {
           const r = m?.resources.find(res => res.id === resourceId);
           if (r && r.type === 'lesson') {
             setResource(r);
+            // Setup blocks (from new blocks array, or fallback/migrate from old pages)
+            if (r.blocks && r.blocks.length > 0) {
+              setBlocks(r.blocks);
+            } else if (r.pages && r.pages.length > 0) {
+              const migratedBlocks: Block[] = [];
+              r.pages.forEach((p: LessonPage) => {
+                p.elements.forEach(el => {
+                  if (el.type === 'text') migratedBlocks.push({ id: el.id, type: 'text', content: el.content });
+                  else if (el.type === 'image') migratedBlocks.push({ id: el.id, type: 'image', url: el.content, zoom: false });
+                  else if (el.type === 'video') migratedBlocks.push({ id: el.id, type: 'video', url: el.content });
+                  else if (el.type === 'app') migratedBlocks.push({ id: el.id, type: 'app', url: el.content });
+                });
+              });
+              setBlocks(migratedBlocks);
+            }
           } else {
             navigate(-1);
           }
@@ -49,14 +87,11 @@ export default function LessonViewer() {
     loadData();
   }, [courseId, moduleId, resourceId, user, navigate]);
 
-  const handleNextPage = () => {
-    if (!resource || !resource.pages) return;
-    if (currentPageIndex < resource.pages.length - 1) {
-      setCurrentPageIndex(currentPageIndex + 1);
-    } else if (resource.quiz && resource.quiz.questions.length > 0) {
+  const handleFinishClass = () => {
+    if (resource?.quiz && resource.quiz.questions.length > 0) {
       setShowQuiz(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // No quiz, mark as read/done if needed
       navigate(`/course/${courseId}`);
     }
   };
@@ -64,8 +99,6 @@ export default function LessonViewer() {
   const handlePrevPage = () => {
     if (showQuiz) {
       setShowQuiz(false);
-    } else if (currentPageIndex > 0) {
-      setCurrentPageIndex(currentPageIndex - 1);
     } else {
       navigate(`/course/${courseId}`);
     }
@@ -91,17 +124,18 @@ export default function LessonViewer() {
 
     try {
       await recordLessonResult(user.uid, resource.id, score, passed);
-      // Refresh progress
       const p = await getUserProgress(user.uid);
       setProgress(p);
     } catch (error) {
       console.error(error);
     } finally {
       setIsSubmitting(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const getEmbedUrl = (url: string) => {
+    if (!url) return '';
     if (url.includes('youtube.com/watch?v=')) {
       return url.replace('watch?v=', 'embed/');
     }
@@ -115,25 +149,23 @@ export default function LessonViewer() {
     return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-10 h-10 animate-spin text-cyan-500" /></div>;
   }
 
-  if (!resource || !resource.pages) return null;
+  if (!resource) return null;
 
-  const pages = resource.pages;
   const quiz = resource.quiz;
   const isCompleted = progress?.completedLessons.includes(resource.id);
   const bestScore = progress?.lessonScores[resource.id];
 
   return (
     <div className="max-w-4xl mx-auto pb-24">
+      {zoomImage && <ZoomModal url={zoomImage} onClose={() => setZoomImage(null)} />}
+
       {/* Top Bar */}
-      <div className="flex items-center justify-between mb-8 bg-slate-900 p-4 rounded-2xl border border-slate-800">
-        <button onClick={() => navigate(`/course/${courseId}`)} className="text-slate-400 hover:text-white flex items-center gap-2 text-sm font-bold">
-          <ArrowLeft className="w-4 h-4" /> Volver al curso
+      <div className="flex items-center justify-between mb-8 bg-slate-900 p-4 rounded-2xl border border-slate-800 shadow-lg sticky top-4 z-40">
+        <button onClick={() => navigate(`/course/${courseId}`)} className="text-slate-400 hover:text-white flex items-center gap-2 text-sm font-bold transition-colors">
+          <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Volver al curso</span>
         </button>
-        <div className="text-center flex-1">
-          <h1 className="text-lg font-bold text-white">{resource.title}</h1>
-          <p className="text-xs text-slate-500">
-            {showQuiz ? 'Test de Nivel' : `Página ${currentPageIndex + 1} de ${pages.length}`}
-          </p>
+        <div className="text-center flex-1 px-4">
+          <h1 className="text-lg sm:text-xl font-bold text-white truncate">{resource.title}</h1>
         </div>
         <div className="w-24 text-right">
           {isCompleted && <span className="text-xs font-bold text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 rounded">Nivel Aprobado</span>}
@@ -142,65 +174,58 @@ export default function LessonViewer() {
 
       {/* Content Area */}
       {!showQuiz ? (
-        <div className="bg-slate-900 p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl min-h-[60vh]">
-          <h2 className="text-3xl font-display font-bold text-white mb-8 text-center">{pages[currentPageIndex].title}</h2>
+        <div className="bg-slate-900/50 p-6 sm:p-12 rounded-3xl border border-slate-800/50 shadow-2xl min-h-[60vh]">
           
-          <div className="space-y-8">
-            {pages[currentPageIndex].elements.map(el => {
-              const renderElement = (element: any) => {
-                if (element.type === 'row') {
-                  return (
-                    <div key={element.id} className="flex flex-col md:flex-row gap-6 w-full">
-                      {element.columns?.map((col: any) => (
-                        <div key={col.id} className="flex-1 space-y-6">
-                          {col.elements.map((subEl: any) => renderElement(subEl))}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                }
-                if (element.type === 'text') {
-                  return <div key={element.id} className="text-slate-300 leading-relaxed whitespace-pre-wrap">{element.content}</div>;
-                }
-                if (element.type === 'image') {
-                  return <img key={element.id} src={element.content} alt="" className="rounded-xl w-full max-w-2xl mx-auto shadow-lg" />;
-                }
-                if (element.type === 'video' || element.type === 'app') {
-                  return (
-                    <div key={element.id} className="aspect-video w-full mx-auto rounded-xl overflow-hidden shadow-lg border border-slate-800 bg-black">
-                      <iframe 
-                        src={getEmbedUrl(element.content)} 
-                        className="w-full h-full" 
-                        allowFullScreen 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      ></iframe>
-                    </div>
-                  );
-                }
-                if (element.type === 'gadget') {
-                  if (element.content === 'calculator') {
-                    return (
-                      <div key={element.id} className="bg-slate-800 p-6 rounded-2xl max-w-xs mx-auto text-center border border-slate-700">
-                        <p className="text-slate-400 mb-2 font-bold text-sm">Calculadora Básica</p>
-                        <div className="bg-slate-900 p-4 rounded-xl text-right text-2xl font-mono text-white mb-4">0</div>
-                        <div className="grid grid-cols-4 gap-2">
-                          {['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+'].map(btn => (
-                            <button key={btn} className="bg-slate-700 hover:bg-slate-600 text-white p-3 rounded-lg font-bold">{btn}</button>
-                          ))}
-                        </div>
+          <div className="space-y-12">
+            {blocks.map(block => {
+              if (block.type === 'text') {
+                return (
+                  <div 
+                    key={block.id} 
+                    className="prose prose-invert prose-cyan max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-slate-300 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: block.content || '' }}
+                  />
+                );
+              }
+              if (block.type === 'image') {
+                return (
+                  <div key={block.id} className="relative group max-w-3xl mx-auto">
+                    <img 
+                      src={block.url} 
+                      alt="" 
+                      className={`rounded-2xl w-full shadow-lg border border-slate-800 ${block.zoom ? 'cursor-zoom-in' : ''}`} 
+                      onClick={() => block.zoom && setZoomImage(block.url || '')}
+                    />
+                    {block.zoom && (
+                      <div className="absolute top-4 right-4 bg-black/60 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        <Maximize2 className="w-5 h-5" />
                       </div>
-                    );
-                  }
-                }
-                return null;
-              };
-              
-              return renderElement(el);
+                    )}
+                  </div>
+                );
+              }
+              if (block.type === 'video' || block.type === 'app') {
+                return (
+                  <div key={block.id} className="aspect-video w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-black">
+                    <iframe 
+                      src={getEmbedUrl(block.url || '')} 
+                      className="w-full h-full" 
+                      allowFullScreen 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                  </div>
+                );
+              }
+              return null;
             })}
+
+            {blocks.length === 0 && (
+              <div className="text-center py-20 text-slate-500">Esta clase no tiene contenido.</div>
+            )}
           </div>
         </div>
       ) : (
-        <div className="bg-slate-900 p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl">
+        <div className="bg-slate-900 p-6 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl animate-in slide-in-from-bottom-8 duration-500">
           {!quizResult ? (
             <div className="space-y-10">
               <div className="text-center">
@@ -213,14 +238,14 @@ export default function LessonViewer() {
 
               <div className="space-y-8">
                 {quiz?.questions.map((q, i) => (
-                  <div key={q.id} className="bg-slate-950 p-6 rounded-2xl border border-slate-800">
-                    <div className="flex gap-4">
+                  <div key={q.id} className="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-inner">
+                    <div className="flex flex-col sm:flex-row gap-4">
                       <span className="w-8 h-8 rounded-full bg-cyan-900/50 text-cyan-400 flex items-center justify-center font-bold shrink-0">{i + 1}</span>
                       <div className="space-y-4 w-full">
                         <p className="text-white font-medium text-lg leading-relaxed">{q.text}</p>
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                           {q.options.map((opt, optIdx) => (
-                            <label key={optIdx} className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${answers[q.id] === optIdx ? 'bg-cyan-900/20 border-cyan-500/50' : 'bg-slate-900 border-slate-800 hover:border-slate-700'}`}>
+                            <label key={optIdx} className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${answers[q.id] === optIdx ? 'bg-cyan-900/20 border-cyan-500/50 shadow-lg shadow-cyan-900/20' : 'bg-slate-900 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50'}`}>
                               <input 
                                 type="radio" 
                                 name={`q_${q.id}`} 
@@ -228,7 +253,7 @@ export default function LessonViewer() {
                                 onChange={() => setAnswers({...answers, [q.id]: optIdx})}
                                 className="w-5 h-5 accent-cyan-500"
                               />
-                              <span className="text-slate-300">{opt}</span>
+                              <span className="text-slate-300 font-medium">{opt}</span>
                             </label>
                           ))}
                         </div>
@@ -242,7 +267,7 @@ export default function LessonViewer() {
                 <button 
                   onClick={handleSubmitQuiz}
                   disabled={isSubmitting || Object.keys(answers).length !== quiz?.questions.length}
-                  className="bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all disabled:opacity-50 shadow-xl shadow-cyan-900/20 flex items-center gap-2"
+                  className="bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all disabled:opacity-50 shadow-xl shadow-cyan-900/20 flex items-center gap-2 w-full sm:w-auto justify-center"
                 >
                   {isSubmitting && <Loader2 className="w-5 h-5 animate-spin" />}
                   Entregar y Ver Resultados
@@ -250,13 +275,13 @@ export default function LessonViewer() {
               </div>
             </div>
           ) : (
-            <div className="text-center py-10 space-y-6">
+            <div className="text-center py-10 space-y-6 animate-in zoom-in duration-500">
               {quizResult.passed ? (
-                <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(16,185,129,0.2)]">
                   <CheckCircle2 className="w-12 h-12 text-emerald-400" />
                 </div>
               ) : (
-                <div className="w-24 h-24 bg-red-500/20 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-24 h-24 bg-red-500/20 rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(239,68,68,0.2)]">
                   <XCircle className="w-12 h-12 text-red-400" />
                 </div>
               )}
@@ -270,15 +295,15 @@ export default function LessonViewer() {
 
               <div className="pt-8">
                 {quizResult.passed ? (
-                  <button onClick={() => navigate(`/course/${courseId}`)} className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-xl font-bold transition-all">
+                  <button onClick={() => navigate(`/course/${courseId}`)} className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-emerald-900/20 w-full sm:w-auto">
                     Continuar al siguiente contenido
                   </button>
                 ) : (
-                  <div className="space-x-4">
-                    <button onClick={() => { setQuizResult(null); setAnswers({}); }} className="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-xl font-bold transition-all">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onClick={() => { setQuizResult(null); setAnswers({}); }} className="bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-cyan-900/20">
                       Reintentar Test
                     </button>
-                    <button onClick={() => { setShowQuiz(false); setQuizResult(null); setCurrentPageIndex(0); }} className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-bold transition-all">
+                    <button onClick={() => { setShowQuiz(false); setQuizResult(null); }} className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold transition-all border border-slate-700">
                       Repasar Contenido
                     </button>
                   </div>
@@ -291,21 +316,21 @@ export default function LessonViewer() {
 
       {/* Navigation Controls */}
       {!quizResult && (
-        <div className="fixed bottom-0 left-0 right-0 bg-slate-950/80 backdrop-blur-md border-t border-slate-800 p-4 z-40">
+        <div className="fixed bottom-0 left-0 right-0 bg-slate-950/90 backdrop-blur-md border-t border-slate-800 p-4 z-40">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
             <button 
               onClick={handlePrevPage}
-              className="flex items-center gap-2 text-slate-400 hover:text-white font-bold px-4 py-2"
+              className="flex items-center gap-2 text-slate-400 hover:text-white font-bold px-4 py-2 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" /> Anterior
             </button>
             
-            {!showQuiz && (
+            {!showQuiz && blocks.length > 0 && (
               <button 
-                onClick={handleNextPage}
-                className="flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition-all"
+                onClick={handleFinishClass}
+                className="flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-cyan-900/30 transition-all"
               >
-                {currentPageIndex === pages.length - 1 && resource.quiz && resource.quiz.questions.length > 0 ? 'Ir al Test de Nivel' : 'Siguiente Página'} <ArrowRight className="w-5 h-5" />
+                {resource.quiz && resource.quiz.questions.length > 0 ? 'Ir al Test de Nivel' : 'Finalizar Clase'} <ArrowRight className="w-5 h-5" />
               </button>
             )}
           </div>
