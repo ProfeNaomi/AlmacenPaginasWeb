@@ -92,8 +92,6 @@ export default function QuestionBank() {
       imageUrl,
       options,
       correctAnswer,
-      options,
-      correctAnswer,
       solution,
       level,
       axis,
