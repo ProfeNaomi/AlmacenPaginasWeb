@@ -6,16 +6,21 @@ import {
   Loader2, Plus, Save, Trash2, ArrowLeft, Video, Image as ImageIcon, 
   AlignLeft, Layout, FileQuestion, ArrowUp, ArrowDown, Bold, List, 
   Type, Columns, Underline, AlignCenter, AlignRight, AlignJustify, 
-  Sigma, Scaling, CaseUpper, CaseLower, Space, MessageSquare
+  Sigma, Scaling, CaseUpper, CaseLower, Space, MessageSquare,
+  ListOrdered, Indent, Outdent, Palette, FileText
 } from 'lucide-react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
 const cleanForFirestore = (obj: any): any => {
+  if (obj === undefined) return undefined;
+  if (obj === null) return null;
+  if (obj instanceof Date) return obj;
   if (Array.isArray(obj)) return obj.map(cleanForFirestore).filter(item => item !== undefined);
-  if (obj !== null && typeof obj === 'object') {
+  if (typeof obj === 'object') {
     return Object.keys(obj).reduce((acc, key) => {
-      if (obj[key] !== undefined) acc[key] = cleanForFirestore(obj[key]);
+      const val = cleanForFirestore(obj[key]);
+      if (val !== undefined) acc[key] = val;
       return acc;
     }, {} as any);
   }
@@ -106,6 +111,19 @@ const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val
         <div className="w-px h-4 bg-slate-600 mx-1"></div>
 
         <button onMouseDown={(e) => format(e, 'insertUnorderedList')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Lista Viñetas"><List className="w-4 h-4" /></button>
+        <button onMouseDown={(e) => format(e, 'insertOrderedList')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Lista Numerada"><ListOrdered className="w-4 h-4" /></button>
+        <div className="w-px h-4 bg-slate-600 mx-1"></div>
+
+        <button onMouseDown={(e) => format(e, 'indent')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Aumentar Sangría"><Indent className="w-4 h-4" /></button>
+        <button onMouseDown={(e) => format(e, 'outdent')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Reducir Sangría"><Outdent className="w-4 h-4" /></button>
+        <div className="w-px h-4 bg-slate-600 mx-1"></div>
+
+        <div className="relative group">
+          <button className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors flex items-center" title="Color de Texto"><Palette className="w-4 h-4" /></button>
+          <input type="color" onInput={(e) => { document.execCommand('foreColor', false, (e.target as HTMLInputElement).value); handleInput(); }} className="absolute top-0 left-0 w-8 h-8 opacity-0 cursor-pointer" />
+        </div>
+        <div className="w-px h-4 bg-slate-600 mx-1"></div>
+
         <button onMouseDown={toggleSpacing} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Interlineado"><Space className="w-4 h-4" /></button>
         <div className="w-px h-4 bg-slate-600 mx-1"></div>
 
@@ -115,7 +133,7 @@ const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val
       </div>
       <div 
         ref={editorRef}
-        className={`p-4 min-h-[120px] text-slate-300 outline-none prose prose-invert max-w-none 
+        className={`p-4 min-h-[120px] text-slate-300 outline-none prose prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-4xl sm:prose-h1:text-5xl prose-h2:text-3xl sm:prose-h2:text-4xl prose-h3:text-2xl sm:prose-h3:text-3xl
           ${lineSpacing === 'relaxed' ? 'leading-relaxed' : lineSpacing === 'loose' ? 'leading-loose' : 'leading-normal'}
         `}
         contentEditable
@@ -212,9 +230,9 @@ export default function ContentMaker() {
 
       await updateCourse(courseId, { modules: cleanForFirestore(updatedModules) });
       alert("Contenido guardado exitosamente");
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Error al guardar");
+      alert("Error al guardar: " + error.message);
     } finally {
       setSaving(false);
     }
@@ -239,7 +257,7 @@ export default function ContentMaker() {
       id: generateId(),
       type,
       content: type === 'text' || type === 'box' ? '' : undefined,
-      url: type !== 'text' && type !== 'row' && type !== 'box' ? '' : undefined,
+      url: type !== 'text' && type !== 'row' && type !== 'box' && type !== 'page-break' ? '' : undefined,
       zoom: type === 'image' ? false : undefined,
       title: type === 'box' ? 'Nuevo Recuadro' : undefined,
       theme: type === 'box' ? 'history' : undefined,
@@ -318,6 +336,28 @@ export default function ContentMaker() {
   };
 
   const renderBlockEditor = (block: Block, index: number, blocksArray: Block[], setBlocksArray: (arr: Block[]) => void) => {
+    if (block.type === 'page-break') {
+      return (
+        <div key={block.id} className="group relative w-full h-12 bg-slate-800 flex items-center justify-center rounded-lg border-2 border-dashed border-slate-600 text-slate-400 font-bold uppercase tracking-widest my-8 hover:border-slate-500 transition-colors">
+          <div className="absolute -left-12 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+            <button onClick={() => moveBlock(index, 'up', blocksArray, setBlocksArray)} disabled={index === 0} className="p-1.5 bg-slate-800 text-slate-400 hover:text-white rounded-lg disabled:opacity-30">
+              <ArrowUp className="w-4 h-4" />
+            </button>
+            <button onClick={() => moveBlock(index, 'down', blocksArray, setBlocksArray)} disabled={index === blocksArray.length - 1} className="p-1.5 bg-slate-800 text-slate-400 hover:text-white rounded-lg disabled:opacity-30">
+              <ArrowDown className="w-4 h-4" />
+            </button>
+          </div>
+          <button 
+            onClick={() => removeBlock(block.id, blocksArray, setBlocksArray)}
+            className="absolute -top-3 -right-3 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 hover:scale-110 shadow-lg z-20"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+          --- Salto de Página ---
+        </div>
+      );
+    }
+
     if (block.type === 'row') {
       return (
         <div key={block.id} className="group relative bg-slate-800/40 border-2 border-dashed border-slate-700 rounded-2xl p-6 hover:border-cyan-500/50 transition-colors">
@@ -516,7 +556,7 @@ export default function ContentMaker() {
   if (loading) return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-10 h-10 animate-spin text-cyan-500" /></div>;
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6 pb-20">
+    <div className="w-full px-4 sm:px-8 mx-auto space-y-6 pb-20">
       {/* Header */}
       <div className="flex items-center justify-between bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
         <div className="flex items-center gap-4">
@@ -591,6 +631,10 @@ export default function ContentMaker() {
               <button onClick={() => addBlock('row', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-purple-400 transition-colors whitespace-nowrap">
                 <Columns className="w-4 h-4" /> Fila
               </button>
+              <div className="w-px h-6 bg-slate-700"></div>
+              <button onClick={() => addBlock('page-break', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors whitespace-nowrap bg-slate-800 border border-slate-700 ml-1">
+                <FileText className="w-4 h-4" /> Añadir Página
+              </button>
             </div>
           )}
         </div>
@@ -598,7 +642,7 @@ export default function ContentMaker() {
         {/* Editor Content Area */}
         <div className="p-4 sm:p-8 flex-1 bg-[#0a0f1c]">
           {activeTab === 'content' && (
-            <div className="max-w-4xl mx-auto space-y-6">
+            <div className="w-full mx-auto space-y-6">
               {blocks.length === 0 && (
                 <div className="text-center py-20 border-2 border-dashed border-slate-800 rounded-2xl">
                   <Layout className="w-16 h-16 text-slate-700 mx-auto mb-4" />

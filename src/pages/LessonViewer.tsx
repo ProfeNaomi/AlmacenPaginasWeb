@@ -41,6 +41,7 @@ export default function LessonViewer() {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [showQuiz, setShowQuiz] = useState(false);
   const [zoomImage, setZoomImage] = useState<string | null>(null);
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
   
   // Quiz state
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -100,8 +101,20 @@ export default function LessonViewer() {
   const handlePrevPage = () => {
     if (showQuiz) {
       setShowQuiz(false);
+    } else if (currentPageIndex > 0) {
+      setCurrentPageIndex(currentPageIndex - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       navigate(`/course/${courseId}`);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPageIndex < pages.length - 1) {
+      setCurrentPageIndex(currentPageIndex + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      handleFinishClass();
     }
   };
 
@@ -177,7 +190,7 @@ export default function LessonViewer() {
             </div>
           )}
           <div 
-            className="p-6 prose max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg"
+            className="p-6 prose max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-4xl sm:prose-h1:text-5xl prose-h2:text-3xl sm:prose-h2:text-4xl prose-h3:text-2xl sm:prose-h3:text-3xl"
             dangerouslySetInnerHTML={{ __html: block.content || '' }}
           />
         </div>
@@ -187,7 +200,7 @@ export default function LessonViewer() {
       return (
         <div 
           key={block.id} 
-          className="prose prose-invert prose-cyan max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-slate-300 my-4"
+          className="prose prose-invert prose-cyan max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-4xl sm:prose-h1:text-5xl prose-h2:text-3xl sm:prose-h2:text-4xl prose-h3:text-2xl sm:prose-h3:text-3xl text-slate-300 my-4"
           dangerouslySetInnerHTML={{ __html: block.content || '' }}
         />
       );
@@ -234,8 +247,21 @@ export default function LessonViewer() {
   const isCompleted = progress?.completedLessons.includes(resource.id);
   const bestScore = progress?.lessonScores[resource.id];
 
+  const pages: Block[][] = [];
+  let currentBlocks: Block[] = [];
+  for (const block of blocks) {
+    if (block.type === 'page-break') {
+      pages.push(currentBlocks);
+      currentBlocks = [];
+    } else {
+      currentBlocks.push(block);
+    }
+  }
+  pages.push(currentBlocks);
+  const currentBlocksToShow = pages[currentPageIndex] || [];
+
   return (
-    <div className="max-w-5xl mx-auto pb-24">
+    <div className="w-full px-4 sm:px-8 mx-auto pb-24">
       {zoomImage && <ZoomModal url={zoomImage} onClose={() => setZoomImage(null)} />}
 
       {/* Top Bar */}
@@ -255,8 +281,8 @@ export default function LessonViewer() {
       {!showQuiz ? (
         <div className="bg-slate-900/50 p-6 sm:p-12 rounded-3xl border border-slate-800/50 shadow-2xl min-h-[60vh]">
           <div className="space-y-4">
-            {blocks.map(block => renderBlock(block))}
-            {blocks.length === 0 && (
+            {currentBlocksToShow.map(block => renderBlock(block))}
+            {currentBlocksToShow.length === 0 && blocks.length === 0 && (
               <div className="text-center py-20 text-slate-500">Esta clase no tiene contenido.</div>
             )}
           </div>
@@ -354,7 +380,7 @@ export default function LessonViewer() {
       {/* Navigation Controls */}
       {!quizResult && (
         <div className="fixed bottom-0 left-0 right-0 bg-slate-950/90 backdrop-blur-md border-t border-slate-800 p-4 z-40">
-          <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <div className="w-full px-4 sm:px-8 mx-auto flex items-center justify-between">
             <button 
               onClick={handlePrevPage}
               className="flex items-center gap-2 text-slate-400 hover:text-white font-bold px-4 py-2 transition-colors"
@@ -364,10 +390,10 @@ export default function LessonViewer() {
             
             {!showQuiz && blocks.length > 0 && (
               <button 
-                onClick={handleFinishClass}
+                onClick={handleNextPage}
                 className="flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-cyan-900/30 transition-all"
               >
-                {resource.quiz && resource.quiz.questions.length > 0 ? 'Ir al Test de Nivel' : 'Finalizar Clase'} <ArrowRight className="w-5 h-5" />
+                {currentPageIndex < pages.length - 1 ? 'Siguiente Página' : (resource.quiz && resource.quiz.questions.length > 0 ? 'Ir al Test de Nivel' : 'Finalizar Clase')} <ArrowRight className="w-5 h-5" />
               </button>
             )}
           </div>

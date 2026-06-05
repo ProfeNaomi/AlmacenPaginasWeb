@@ -19,7 +19,7 @@ export interface LessonPage {
 
 export interface Block {
   id: string;
-  type: 'text' | 'image' | 'video' | 'app' | 'row' | 'box';
+  type: 'text' | 'image' | 'video' | 'app' | 'row' | 'box' | 'page-break';
   content?: string; // For text and box
   url?: string; // For image, video, app
   zoom?: boolean; // For image
