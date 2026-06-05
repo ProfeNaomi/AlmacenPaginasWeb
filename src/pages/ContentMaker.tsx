@@ -210,7 +210,7 @@ export default function ContentMaker() {
         return m;
       });
 
-      await updateCourse(courseId, { modules: updatedModules });
+      await updateCourse(courseId, { modules: cleanForFirestore(updatedModules) });
       alert("Contenido guardado exitosamente");
     } catch (error) {
       console.error(error);
