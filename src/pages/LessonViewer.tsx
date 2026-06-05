@@ -158,6 +158,31 @@ export default function LessonViewer() {
         </div>
       );
     }
+    if (block.type === 'box') {
+      const themes = {
+        history: { header: 'bg-[#784d2f] text-white', body: 'bg-[#fbf4ea] border-[#784d2f] text-slate-900' },
+        situation: { header: 'bg-[#1b7330] text-white', body: 'bg-[#f0f8f2] border-[#1b7330] text-slate-900' },
+        formula: { header: 'bg-purple-700 text-white', body: 'bg-purple-50 border-purple-700 text-slate-900' },
+        exercise: { header: 'bg-teal-800 text-white', body: 'bg-teal-50 border-teal-800 text-slate-900' },
+        warning: { header: 'bg-red-700 text-white', body: 'bg-red-50 border-red-700 text-slate-900' }
+      };
+      // I'll adapt them to match the images explicitly where body is very light and text is dark
+      // Note: we're using a light body here, so we must not use prose-invert inside the box, we use dark prose
+      const theme = themes[block.theme || 'history'];
+      return (
+        <div key={block.id} className={`my-6 rounded-2xl overflow-hidden border-2 ${theme.body} shadow-lg`}>
+          {block.title && (
+            <div className={`${theme.header} px-6 py-3 font-display font-bold text-lg`}>
+              {block.title}
+            </div>
+          )}
+          <div 
+            className="p-6 prose max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg"
+            dangerouslySetInnerHTML={{ __html: block.content || '' }}
+          />
+        </div>
+      );
+    }
     if (block.type === 'text') {
       return (
         <div 

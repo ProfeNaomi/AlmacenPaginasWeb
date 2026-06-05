@@ -6,10 +6,21 @@ import {
   Loader2, Plus, Save, Trash2, ArrowLeft, Video, Image as ImageIcon, 
   AlignLeft, Layout, FileQuestion, ArrowUp, ArrowDown, Bold, List, 
   Type, Columns, Underline, AlignCenter, AlignRight, AlignJustify, 
-  Sigma, Scaling, CaseUpper, CaseLower, Space
+  Sigma, Scaling, CaseUpper, CaseLower, Space, MessageSquare
 } from 'lucide-react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+
+const cleanForFirestore = (obj: any): any => {
+  if (Array.isArray(obj)) return obj.map(cleanForFirestore).filter(item => item !== undefined);
+  if (obj !== null && typeof obj === 'object') {
+    return Object.keys(obj).reduce((acc, key) => {
+      if (obj[key] !== undefined) acc[key] = cleanForFirestore(obj[key]);
+      return acc;
+    }, {} as any);
+  }
+  return obj;
+};
 
 const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val: string) => void }) => {
   const editorRef = useRef<HTMLDivElement>(null);
@@ -185,8 +196,8 @@ export default function ContentMaker() {
     try {
       const updatedResource: Resource = {
         ...resource,
-        blocks,
-        quiz
+        blocks: cleanForFirestore(blocks),
+        quiz: cleanForFirestore(quiz)
       };
 
       const updatedModules = course.modules.map(m => {
@@ -227,9 +238,11 @@ export default function ContentMaker() {
     const newBlock: Block = {
       id: generateId(),
       type,
-      content: type === 'text' ? '' : undefined,
-      url: type !== 'text' && type !== 'row' ? '' : undefined,
+      content: type === 'text' || type === 'box' ? '' : undefined,
+      url: type !== 'text' && type !== 'row' && type !== 'box' ? '' : undefined,
       zoom: type === 'image' ? false : undefined,
+      title: type === 'box' ? 'Nuevo Recuadro' : undefined,
+      theme: type === 'box' ? 'history' : undefined,
       columns: type === 'row' ? [
         { id: generateId(), blocks: [] },
         { id: generateId(), blocks: [] }
@@ -369,6 +382,7 @@ export default function ContentMaker() {
                     <button onClick={() => addBlock('image', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-blue-400 rounded-lg" title="Añadir Imagen"><ImageIcon className="w-4 h-4"/></button>
                     <button onClick={() => addBlock('video', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-red-400 rounded-lg" title="Añadir Video"><Video className="w-4 h-4"/></button>
                     <button onClick={() => addBlock('app', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-emerald-400 rounded-lg" title="Añadir App"><Layout className="w-4 h-4"/></button>
+                    <button onClick={() => addBlock('box', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-amber-400 rounded-lg" title="Añadir Recuadro"><MessageSquare className="w-4 h-4"/></button>
                   </div>
                 </div>
               );
@@ -403,6 +417,7 @@ export default function ContentMaker() {
             {block.type === 'image' && <ImageIcon className="w-4 h-4 text-blue-400" />}
             {block.type === 'video' && <Video className="w-4 h-4 text-red-400" />}
             {block.type === 'app' && <Layout className="w-4 h-4 text-emerald-400" />}
+            {block.type === 'box' && <MessageSquare className="w-4 h-4 text-amber-400" />}
           </div>
           <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
             Bloque de {block.type}
@@ -420,6 +435,35 @@ export default function ContentMaker() {
         </div>
 
         {/* Inputs */}
+        {block.type === 'box' && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <input 
+                type="text"
+                value={block.title || ''}
+                onChange={(e) => updateBlock(block.id, { title: e.target.value }, blocksArray, setBlocksArray)}
+                className="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-white font-bold focus:outline-none focus:border-cyan-500"
+                placeholder="Título del recuadro..."
+              />
+              <select 
+                value={block.theme || 'history'}
+                onChange={(e) => updateBlock(block.id, { theme: e.target.value as any }, blocksArray, setBlocksArray)}
+                className="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-500"
+              >
+                <option value="history">Contexto Histórico (Café)</option>
+                <option value="situation">Situación (Verde)</option>
+                <option value="formula">Fórmula (Morado)</option>
+                <option value="exercise">Ejercitación (Verde Oscuro)</option>
+                <option value="warning">Cuidado (Rojo)</option>
+              </select>
+            </div>
+            <RichTextEditor 
+              content={block.content || ''} 
+              onChange={(val) => updateBlock(block.id, { content: val }, blocksArray, setBlocksArray)} 
+            />
+          </div>
+        )}
+
         {block.type === 'text' && (
           <RichTextEditor 
             content={block.content || ''} 
@@ -538,6 +582,10 @@ export default function ContentMaker() {
               <div className="w-px h-6 bg-slate-700"></div>
               <button onClick={() => addBlock('app', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-emerald-400 transition-colors whitespace-nowrap">
                 <Layout className="w-4 h-4" /> App
+              </button>
+              <div className="w-px h-6 bg-slate-700"></div>
+              <button onClick={() => addBlock('box', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-amber-400 transition-colors whitespace-nowrap">
+                <MessageSquare className="w-4 h-4" /> Recuadro
               </button>
               <div className="w-px h-6 bg-slate-700"></div>
               <button onClick={() => addBlock('row', blocks, setBlocks)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-purple-400 transition-colors whitespace-nowrap">

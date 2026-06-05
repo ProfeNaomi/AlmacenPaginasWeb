@@ -19,10 +19,12 @@ export interface LessonPage {
 
 export interface Block {
   id: string;
-  type: 'text' | 'image' | 'video' | 'app' | 'row';
-  content?: string; // For text
+  type: 'text' | 'image' | 'video' | 'app' | 'row' | 'box';
+  content?: string; // For text and box
   url?: string; // For image, video, app
   zoom?: boolean; // For image
+  title?: string; // For box header
+  theme?: 'history' | 'situation' | 'formula' | 'exercise' | 'warning'; // For box
   columns?: {
     id: string;
     blocks: Omit<Block, 'columns'>[];
