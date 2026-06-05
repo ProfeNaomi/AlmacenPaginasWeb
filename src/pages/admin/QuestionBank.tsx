@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Search, Filter, Bot, Save, Trash2, Image as ImageIcon, Loader2 } from 'lucide-react';
-import { Question, getQuestions, createQuestion, updateQuestion, deleteQuestion, QuestionAxis, QuestionSource } from '../../lib/paes';
+import { Question, getQuestions, createQuestion, updateQuestion, deleteQuestion, QuestionAxis, QuestionSource, QuestionLevel } from '../../lib/paes';
 import { generateMathSolution, hasAIConfigured } from '../../lib/ai';
 import RichTextEditor from '../../components/ui/RichTextEditor';
 
@@ -18,10 +18,26 @@ export default function QuestionBank() {
   const [options, setOptions] = useState<string[]>(['', '', '', '']);
   const [correctAnswer, setCorrectAnswer] = useState<number>(0);
   const [solution, setSolution] = useState('');
+  const [level, setLevel] = useState<QuestionLevel>('Secundaria');
   const [axis, setAxis] = useState<QuestionAxis>('Números');
   const [source, setSource] = useState<QuestionSource>('Propio');
   const [topic, setTopic] = useState('');
   const [skill, setSkill] = useState('Resolver problemas');
+  
+  const AXIS_BY_LEVEL: Record<QuestionLevel, QuestionAxis[]> = {
+    'Secundaria': ['Números', 'Álgebra y Funciones', 'Geometría', 'Probabilidad y Estadística'],
+    'Universitario': ['Cálculo', 'Álgebra', 'Lógica', 'Geometría', 'Probabilidad y Estadística']
+  };
+
+  const TOPICS_BY_AXIS: Record<string, string[]> = {
+    'Números': ['Conjuntos Numéricos', 'Porcentajes', 'Potencias', 'Raíces', 'Logaritmos'],
+    'Álgebra y Funciones': ['Expresiones Algebraicas', 'Ecuaciones', 'Inecuaciones', 'Sistemas de Ecuaciones', 'Funciones (Lineal y Afín)', 'Función Cuadrática'],
+    'Geometría': ['Figuras Geométricas', 'Transformaciones Isométricas', 'Semejanza y Proporcionalidad', 'Teorema de Pitágoras', 'Cuerpos Geométricos', 'Geometría Analítica', 'Cálculo Vectorial'],
+    'Probabilidad y Estadística': ['Estadística Descriptiva', 'Técnicas de Conteo', 'Probabilidades', 'Inferencia Estadística', 'Distribuciones de Probabilidad'],
+    'Cálculo': ['Límites', 'Derivadas', 'Integrales', 'Ecuaciones Diferenciales', 'Series'],
+    'Álgebra': ['Álgebra Lineal', 'Matrices', 'Espacios Vectoriales', 'Polinomios'],
+    'Lógica': ['Lógica Proposicional', 'Teoría de Conjuntos'],
+  };
   
   const [generating, setGenerating] = useState(false);
 
@@ -42,9 +58,10 @@ export default function QuestionBank() {
     setOptions(['', '', '', '']);
     setCorrectAnswer(0);
     setSolution('');
+    setLevel('Secundaria');
     setAxis('Números');
     setSource('Propio');
-    setTopic('');
+    setTopic(TOPICS_BY_AXIS['Números'][0] || '');
     setSkill('Resolver problemas');
     setEditingId(null);
   };
@@ -60,6 +77,7 @@ export default function QuestionBank() {
     setOptions(q.options);
     setCorrectAnswer(q.correctAnswer);
     setSolution(q.solution);
+    setLevel(q.level || 'Secundaria');
     setAxis(q.axis);
     setSource(q.source);
     setTopic(q.topic);
@@ -74,7 +92,10 @@ export default function QuestionBank() {
       imageUrl,
       options,
       correctAnswer,
+      options,
+      correctAnswer,
       solution,
+      level,
       axis,
       source,
       topic,
@@ -149,9 +170,10 @@ export default function QuestionBank() {
               </div>
 
               <div className="flex flex-wrap gap-2 mb-4 pr-20">
+                <span className={`text-xs font-bold px-2 py-1 rounded border ${q.level === 'Universitario' ? 'bg-indigo-900/30 text-indigo-400 border-indigo-800' : 'bg-pink-900/30 text-pink-400 border-pink-800'}`}>{q.level || 'Secundaria'}</span>
                 <span className="text-xs font-bold bg-cyan-900/30 text-cyan-400 px-2 py-1 rounded border border-cyan-800">{q.axis}</span>
                 <span className="text-xs font-bold bg-purple-900/30 text-purple-400 px-2 py-1 rounded border border-purple-800">{q.source}</span>
-                <span className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded">{q.topic}</span>
+                <span className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">{q.topic}</span>
               </div>
               
               <div 
@@ -177,14 +199,51 @@ export default function QuestionBank() {
             </div>
 
             <div className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Nivel</label>
+                  <select 
+                    value={level} 
+                    onChange={e => {
+                      const newLevel = e.target.value as QuestionLevel;
+                      setLevel(newLevel);
+                      const newAxis = AXIS_BY_LEVEL[newLevel][0];
+                      setAxis(newAxis);
+                      setTopic(TOPICS_BY_AXIS[newAxis][0] || '');
+                    }} 
+                    className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
+                  >
+                    <option value="Secundaria">Secundaria (M1/M2)</option>
+                    <option value="Universitario">Universitario</option>
+                  </select>
+                </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Eje Temático</label>
-                  <select value={axis} onChange={e => setAxis(e.target.value as any)} className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm">
-                    <option value="Números">Números</option>
-                    <option value="Álgebra y Funciones">Álgebra y Funciones</option>
-                    <option value="Geometría">Geometría</option>
-                    <option value="Probabilidad y Estadística">Probabilidad y Estadística</option>
+                  <select 
+                    value={axis} 
+                    onChange={e => {
+                      const newAxis = e.target.value as QuestionAxis;
+                      setAxis(newAxis);
+                      setTopic(TOPICS_BY_AXIS[newAxis]?.[0] || '');
+                    }} 
+                    className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
+                  >
+                    {AXIS_BY_LEVEL[level].map(a => (
+                      <option key={a} value={a}>{a}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Tema Específico</label>
+                  <select 
+                    value={topic} 
+                    onChange={e => setTopic(e.target.value)} 
+                    className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
+                  >
+                    {(TOPICS_BY_AXIS[axis] || []).map(t => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                    <option value="Otro">Otro Tema</option>
                   </select>
                 </div>
                 <div>
@@ -192,12 +251,9 @@ export default function QuestionBank() {
                   <select value={source} onChange={e => setSource(e.target.value as any)} className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm">
                     <option value="DEMRE">Oficial DEMRE</option>
                     <option value="Propio">Creación Propia</option>
+                    <option value="Universidades">Universidades</option>
                     <option value="Otro">Otro Ensayo</option>
                   </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Tema Específico</label>
-                  <input type="text" value={topic} onChange={e => setTopic(e.target.value)} placeholder="Ej. Logaritmos" className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Habilidad</label>

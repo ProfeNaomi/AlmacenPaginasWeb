@@ -1,11 +1,18 @@
 import { collection, doc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, query, where, orderBy, addDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
-export type QuestionAxis = 'Números' | 'Álgebra y Funciones' | 'Geometría' | 'Probabilidad y Estadística';
-export type QuestionSource = 'DEMRE' | 'Propio' | 'Otro';
+export type QuestionLevel = 'Secundaria' | 'Universitario';
+export type QuestionAxis = 
+  // Secundaria
+  | 'Números' | 'Álgebra y Funciones' | 'Geometría' | 'Probabilidad y Estadística'
+  // Universitario
+  | 'Cálculo' | 'Álgebra' | 'Lógica';
+
+export type QuestionSource = 'DEMRE' | 'Propio' | 'Universidades' | 'Otro';
 
 export interface Question {
   id: string;
+  level: QuestionLevel;
   text: string; // Rich text
   imageUrl?: string;
   options: string[]; // Usually 4 or 5 options
@@ -58,12 +65,15 @@ export const deleteQuestion = async (id: string): Promise<void> => {
 
 // Exams CRUD
 export const getExams = async (publishedOnly = false): Promise<PaesExam[]> => {
-  let q = query(collection(db, 'exams'), orderBy('createdAt', 'desc'));
-  if (publishedOnly) {
-    q = query(collection(db, 'exams'), where('isPublished', '==', true), orderBy('createdAt', 'desc'));
-  }
+  // To avoid composite index errors, we'll fetch all and filter locally if needed
+  const q = query(collection(db, 'exams'), orderBy('createdAt', 'desc'));
   const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as PaesExam));
+  const allExams = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as PaesExam));
+  
+  if (publishedOnly) {
+    return allExams.filter(exam => exam.isPublished);
+  }
+  return allExams;
 };
 
 export const getExamById = async (id: string): Promise<PaesExam | null> => {

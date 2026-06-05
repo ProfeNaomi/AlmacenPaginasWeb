@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getQuestions, getExams, createExam, updateExam, deleteExam, Question, PaesExam } from '../../lib/paes';
-import { Plus, Save, Trash2, Edit, ChevronDown, CheckSquare, Square, X, AlertCircle } from 'lucide-react';
+import { Plus, Save, Trash2, Edit, ChevronDown, ChevronRight, CheckSquare, Square, X, AlertCircle, Folder } from 'lucide-react';
 
 export default function ExamBuilder() {
   const [exams, setExams] = useState<PaesExam[]>([]);
@@ -16,6 +16,7 @@ export default function ExamBuilder() {
   const [durationMinutes, setDurationMinutes] = useState(140);
   const [isPublished, setIsPublished] = useState(false);
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
+  const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
 
   useEffect(() => {
     loadData();
@@ -82,6 +83,17 @@ export default function ExamBuilder() {
       setSelectedQuestions([...selectedQuestions, qId]);
     }
   };
+
+  const toggleGroup = (group: string) => {
+    setExpandedGroups(prev => prev.includes(group) ? prev.filter(g => g !== group) : [...prev, group]);
+  };
+
+  const groupedQuestions = questions.reduce((acc, q) => {
+    const groupName = `${q.level || 'Secundaria'} > ${q.axis}`;
+    if (!acc[groupName]) acc[groupName] = [];
+    acc[groupName].push(q);
+    return acc;
+  }, {} as Record<string, Question[]>);
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 sm:p-8">
@@ -175,29 +187,57 @@ export default function ExamBuilder() {
                     <AlertCircle className="w-5 h-5" /> No tienes preguntas en tu banco. Ve a "Banco de Preguntas" para crear algunas.
                   </div>
                 ) : (
-                  <div className="space-y-3">
-                    {questions.map(q => (
-                      <div 
-                        key={q.id} 
-                        onClick={() => toggleQuestion(q.id)}
-                        className={`p-4 rounded-xl border cursor-pointer flex gap-4 transition-colors ${
-                          selectedQuestions.includes(q.id) 
-                            ? 'bg-cyan-900/20 border-cyan-500/50' 
-                            : 'bg-slate-950 border-slate-800 hover:border-slate-700'
-                        }`}
-                      >
-                        <div className="mt-1">
-                          {selectedQuestions.includes(q.id) ? <CheckSquare className="w-5 h-5 text-cyan-400" /> : <Square className="w-5 h-5 text-slate-600" />}
+                  <div className="space-y-4">
+                    {Object.entries(groupedQuestions).sort().map(([groupName, groupQs]) => {
+                      const isExpanded = expandedGroups.includes(groupName);
+                      const selectedInGroup = groupQs.filter(q => selectedQuestions.includes(q.id)).length;
+                      
+                      return (
+                        <div key={groupName} className="border border-slate-800 rounded-xl overflow-hidden bg-slate-900">
+                          <button 
+                            onClick={() => toggleGroup(groupName)}
+                            className="w-full flex items-center justify-between p-4 bg-slate-800/50 hover:bg-slate-800 transition-colors"
+                          >
+                            <div className="flex items-center gap-3">
+                              {isExpanded ? <ChevronDown className="w-5 h-5 text-slate-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
+                              <Folder className="w-5 h-5 text-cyan-500" />
+                              <span className="font-bold text-slate-200 text-sm">{groupName}</span>
+                            </div>
+                            <div className="flex items-center gap-4 text-xs font-bold">
+                              <span className="text-slate-500">{groupQs.length} items</span>
+                              {selectedInGroup > 0 && <span className="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full">{selectedInGroup} seleccionadas</span>}
+                            </div>
+                          </button>
+                          
+                          {isExpanded && (
+                            <div className="p-3 bg-slate-950 space-y-2">
+                              {groupQs.map(q => (
+                                <div 
+                                  key={q.id} 
+                                  onClick={() => toggleQuestion(q.id)}
+                                  className={`p-3 rounded-xl border cursor-pointer flex gap-4 transition-colors ${
+                                    selectedQuestions.includes(q.id) 
+                                      ? 'bg-cyan-900/20 border-cyan-500/50' 
+                                      : 'bg-slate-900 border-slate-800 hover:border-slate-700'
+                                  }`}
+                                >
+                                  <div className="mt-1">
+                                    {selectedQuestions.includes(q.id) ? <CheckSquare className="w-5 h-5 text-cyan-400" /> : <Square className="w-5 h-5 text-slate-600" />}
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="flex gap-2 mb-2">
+                                      <span className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-0.5 rounded">{q.topic}</span>
+                                      <span className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-0.5 rounded">{q.source}</span>
+                                    </div>
+                                    <div className="text-sm text-slate-300 line-clamp-2 prose prose-invert prose-sm max-w-none" dangerouslySetInnerHTML={{__html: q.text}} />
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                        <div className="flex-1">
-                          <div className="flex gap-2 mb-2">
-                            <span className="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded">{q.axis}</span>
-                            <span className="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded">{q.topic}</span>
-                          </div>
-                          <div className="text-sm text-slate-300 line-clamp-2 prose prose-invert prose-sm max-w-none" dangerouslySetInnerHTML={{__html: q.text}} />
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
