@@ -23,8 +23,6 @@ export const generateMathSolution = async (questionText: string, options: string
     throw new Error('La clave de API de Gemini no está configurada. Por favor, configúrala en Ajustes.');
   }
 
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
   const prompt = `
   Eres un profesor experto en matemáticas y en la prueba PAES de Chile.
   Te entregaré una pregunta de matemática con sus alternativas.
@@ -40,12 +38,25 @@ export const generateMathSolution = async (questionText: string, options: string
   ${questionText}
   
   Alternativas:
-  ${options.map((opt, i) => `${i + 1}) ${opt}`).join('\n')}
+  ${options.map((opt, i) => `${i + 1}) ${opt}`).join('\\n')}
   
   ${imageUrl ? `(La pregunta incluye una imagen de referencia en la URL: ${imageUrl})` : ''}
   `;
 
-  const result = await model.generateContent(prompt);
+  let result;
+  try {
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    result = await model.generateContent(prompt);
+  } catch (error: any) {
+    if (error.message?.includes('not found') || error.status === 404) {
+      // Fallback a gemini-pro
+      const fallbackModel = genAI.getGenerativeModel({ model: 'gemini-pro' });
+      result = await fallbackModel.generateContent(prompt);
+    } else {
+      throw error;
+    }
+  }
+
   const response = await result.response;
   return response.text();
 };
