@@ -19,10 +19,14 @@ export interface LessonPage {
 
 export interface Block {
   id: string;
-  type: 'text' | 'image' | 'video' | 'app';
+  type: 'text' | 'image' | 'video' | 'app' | 'row';
   content?: string; // For text
   url?: string; // For image, video, app
   zoom?: boolean; // For image
+  columns?: {
+    id: string;
+    blocks: Omit<Block, 'columns'>[];
+  }[];
 }
 
 export interface QuizQuestion {

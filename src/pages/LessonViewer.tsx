@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { getCourseById, Course, Resource, Block, LessonPage } from '../lib/courses';
 import { getUserProgress, recordLessonResult, UserProgress } from '../lib/progress';
 import { Loader2, ArrowLeft, ArrowRight, CheckCircle2, XCircle, X, Maximize2 } from 'lucide-react';
+import 'katex/dist/katex.min.css';
 
 const ZoomModal = ({ url, onClose }: { url: string, onClose: () => void }) => {
   return (
@@ -57,7 +58,6 @@ export default function LessonViewer() {
           const r = m?.resources.find(res => res.id === resourceId);
           if (r && r.type === 'lesson') {
             setResource(r);
-            // Setup blocks (from new blocks array, or fallback/migrate from old pages)
             if (r.blocks && r.blocks.length > 0) {
               setBlocks(r.blocks);
             } else if (r.pages && r.pages.length > 0) {
@@ -68,6 +68,7 @@ export default function LessonViewer() {
                   else if (el.type === 'image') migratedBlocks.push({ id: el.id, type: 'image', url: el.content, zoom: false });
                   else if (el.type === 'video') migratedBlocks.push({ id: el.id, type: 'video', url: el.content });
                   else if (el.type === 'app') migratedBlocks.push({ id: el.id, type: 'app', url: el.content });
+                  else if (el.type === 'row') migratedBlocks.push({ id: el.id, type: 'row', columns: el.columns?.map(c => ({ id: c.id, blocks: c.elements.map(e => ({ id: e.id, type: e.type as any, content: e.content, url: e.content })) })) });
                 });
               });
               setBlocks(migratedBlocks);
@@ -145,6 +146,59 @@ export default function LessonViewer() {
     return url;
   };
 
+  const renderBlock = (block: Block) => {
+    if (block.type === 'row') {
+      return (
+        <div key={block.id} className="flex flex-col md:flex-row gap-6 w-full my-6">
+          {block.columns?.map(col => (
+            <div key={col.id} className="flex-1 space-y-6">
+              {col.blocks.map(subBlock => renderBlock(subBlock as Block))}
+            </div>
+          ))}
+        </div>
+      );
+    }
+    if (block.type === 'text') {
+      return (
+        <div 
+          key={block.id} 
+          className="prose prose-invert prose-cyan max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-slate-300 my-4"
+          dangerouslySetInnerHTML={{ __html: block.content || '' }}
+        />
+      );
+    }
+    if (block.type === 'image') {
+      return (
+        <div key={block.id} className="relative group mx-auto my-4 w-full">
+          <img 
+            src={block.url} 
+            alt="" 
+            className={`rounded-2xl w-full shadow-lg border border-slate-800 ${block.zoom ? 'cursor-zoom-in hover:border-cyan-500/50 transition-colors' : ''}`} 
+            onClick={() => block.zoom && setZoomImage(block.url || '')}
+          />
+          {block.zoom && (
+            <div className="absolute top-4 right-4 bg-black/60 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <Maximize2 className="w-5 h-5" />
+            </div>
+          )}
+        </div>
+      );
+    }
+    if (block.type === 'video' || block.type === 'app') {
+      return (
+        <div key={block.id} className="aspect-video w-full mx-auto rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-black my-4">
+          <iframe 
+            src={getEmbedUrl(block.url || '')} 
+            className="w-full h-full" 
+            allowFullScreen 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
+      );
+    }
+    return null;
+  };
+
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-10 h-10 animate-spin text-cyan-500" /></div>;
   }
@@ -156,7 +210,7 @@ export default function LessonViewer() {
   const bestScore = progress?.lessonScores[resource.id];
 
   return (
-    <div className="max-w-4xl mx-auto pb-24">
+    <div className="max-w-5xl mx-auto pb-24">
       {zoomImage && <ZoomModal url={zoomImage} onClose={() => setZoomImage(null)} />}
 
       {/* Top Bar */}
@@ -175,57 +229,15 @@ export default function LessonViewer() {
       {/* Content Area */}
       {!showQuiz ? (
         <div className="bg-slate-900/50 p-6 sm:p-12 rounded-3xl border border-slate-800/50 shadow-2xl min-h-[60vh]">
-          
-          <div className="space-y-12">
-            {blocks.map(block => {
-              if (block.type === 'text') {
-                return (
-                  <div 
-                    key={block.id} 
-                    className="prose prose-invert prose-cyan max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-slate-300 leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: block.content || '' }}
-                  />
-                );
-              }
-              if (block.type === 'image') {
-                return (
-                  <div key={block.id} className="relative group max-w-3xl mx-auto">
-                    <img 
-                      src={block.url} 
-                      alt="" 
-                      className={`rounded-2xl w-full shadow-lg border border-slate-800 ${block.zoom ? 'cursor-zoom-in' : ''}`} 
-                      onClick={() => block.zoom && setZoomImage(block.url || '')}
-                    />
-                    {block.zoom && (
-                      <div className="absolute top-4 right-4 bg-black/60 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                        <Maximize2 className="w-5 h-5" />
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-              if (block.type === 'video' || block.type === 'app') {
-                return (
-                  <div key={block.id} className="aspect-video w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-black">
-                    <iframe 
-                      src={getEmbedUrl(block.url || '')} 
-                      className="w-full h-full" 
-                      allowFullScreen 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  </div>
-                );
-              }
-              return null;
-            })}
-
+          <div className="space-y-4">
+            {blocks.map(block => renderBlock(block))}
             {blocks.length === 0 && (
               <div className="text-center py-20 text-slate-500">Esta clase no tiene contenido.</div>
             )}
           </div>
         </div>
       ) : (
-        <div className="bg-slate-900 p-6 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl animate-in slide-in-from-bottom-8 duration-500">
+        <div className="bg-slate-900 p-6 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl animate-in slide-in-from-bottom-8 duration-500 max-w-3xl mx-auto">
           {!quizResult ? (
             <div className="space-y-10">
               <div className="text-center">
