@@ -12,7 +12,10 @@ import {
   MessageCircle,
   ChevronDown,
   ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  FileText,
+  Database,
+  PenTool
 } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
@@ -34,6 +37,13 @@ export default function MainLayout() {
   const navItems = [
     { name: 'Página Principal', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Mis Cursos', path: '/dashboard', icon: BookOpen }, // Por ahora un placeholder
+    { name: 'Ensayos PAES', path: '/ensayos', icon: FileText },
+  ];
+
+  const adminItems = [
+    { name: 'Banco de Preguntas', path: '/admin/question-bank', icon: Database },
+    { name: 'Creador de Ensayos', path: '/admin/exam-builder', icon: PenTool },
+    { name: 'Ajustes IA', path: '/admin/settings', icon: Settings },
   ];
 
   return (
@@ -68,7 +78,7 @@ export default function MainLayout() {
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.path;
+            const isActive = location.pathname.startsWith(item.path) && item.path !== '/dashboard' || location.pathname === item.path;
             const Icon = item.icon;
             return (
               <Link
@@ -85,6 +95,30 @@ export default function MainLayout() {
               </Link>
             );
           })}
+          
+          {(profile?.role === 'admin' || profile?.role === 'teacher') && (
+            <div className="pt-6 mt-6 border-t border-slate-800">
+              <span className="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Administración</span>
+              {adminItems.map((item) => {
+                const isActive = location.pathname === item.path;
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${
+                      isActive 
+                        ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' 
+                        : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
+                    }`}
+                  >
+                    <Icon className={`w-5 h-5 ${isActive ? 'text-purple-400' : 'text-slate-500'}`} />
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </nav>
         
         <div className="p-4 border-t border-slate-800">

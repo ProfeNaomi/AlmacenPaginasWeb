@@ -13,6 +13,11 @@ import CategoryView from './pages/CategoryView';
 import CourseView from './pages/CourseView';
 import ContentMaker from './pages/ContentMaker';
 import LessonViewer from './pages/LessonViewer';
+import AdminSettings from './pages/admin/AdminSettings';
+import QuestionBank from './pages/admin/QuestionBank';
+import ExamBuilder from './pages/admin/ExamBuilder';
+import PaesExams from './pages/PaesExams';
+import ExamViewer from './pages/ExamViewer';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -68,6 +73,15 @@ function AppRoutes() {
         <Route path="/course/:courseId/maker/:moduleId/:resourceId" element={<ContentMaker />} />
         <Route path="/course/:courseId/lesson/:moduleId/:resourceId" element={<LessonViewer />} />
         <Route path="/profile" element={<Profile />} />
+        
+        {/* Rutas PAES */}
+        <Route path="/ensayos" element={<PaesExams />} />
+        <Route path="/ensayos/:id" element={<ExamViewer />} />
+        
+        {/* Rutas Admin */}
+        <Route path="/admin/settings" element={<AdminSettings />} />
+        <Route path="/admin/question-bank" element={<QuestionBank />} />
+        <Route path="/admin/exam-builder" element={<ExamBuilder />} />
       </Route>
 
       {/* Catch all */}
