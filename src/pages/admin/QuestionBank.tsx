@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Plus, Search, Filter, Bot, Save, Trash2, Image as ImageIcon, Loader2 } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Plus, Search, Filter, Bot, Save, Trash2, Image as ImageIcon, Loader2, UploadCloud } from 'lucide-react';
 import { Question, getQuestions, createQuestion, updateQuestion, deleteQuestion, QuestionAxis, QuestionSource, QuestionLevel } from '../../lib/paes';
 import { generateMathSolution, hasAIConfigured } from '../../lib/ai';
 import RichTextEditor from '../../components/ui/RichTextEditor';
@@ -40,6 +40,54 @@ export default function QuestionBank() {
   };
   
   const [generating, setGenerating] = useState(false);
+  const [importingBatch, setImportingBatch] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImportBatch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const content = e.target?.result as string;
+        const data = JSON.parse(content);
+        
+        if (Array.isArray(data)) {
+          setImportingBatch(true);
+          let successCount = 0;
+          for (const item of data) {
+            if (item.text && item.options && item.correctAnswer !== undefined) {
+              await createQuestion({
+                text: item.text,
+                imageUrl: item.imageUrl || '',
+                options: item.options,
+                correctAnswer: item.correctAnswer,
+                solution: item.solution || '',
+                level: item.level || 'Secundaria',
+                axis: item.axis || 'Números',
+                source: item.source || 'Propio',
+                topic: item.topic || 'Otro',
+                skill: item.skill || 'Resolver problemas'
+              });
+              successCount++;
+            }
+          }
+          alert(`¡Lote importado exitosamente! Se agregaron ${successCount} preguntas.`);
+          loadQuestions();
+        } else {
+          alert("Error: El archivo debe contener un arreglo de preguntas.");
+        }
+      } catch (error) {
+        console.error("Error al parsear el JSON:", error);
+        alert("Error: El archivo no tiene un formato válido.");
+      } finally {
+        setImportingBatch(false);
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  };
 
   useEffect(() => {
     loadQuestions();
@@ -144,12 +192,30 @@ export default function QuestionBank() {
           <h1 className="text-3xl font-display font-bold text-white mb-2">Banco de Preguntas PAES</h1>
           <p className="text-slate-400">Gestiona tus ejercicios y solucionarios con Inteligencia Artificial.</p>
         </div>
-        <button 
-          onClick={openNew}
-          className="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-lg shadow-cyan-900/20"
-        >
-          <Plus className="w-5 h-5" /> Nueva Pregunta
-        </button>
+        <div className="flex gap-3">
+          <input 
+            type="file" 
+            ref={fileInputRef} 
+            onChange={handleImportBatch} 
+            accept=".json" 
+            className="hidden" 
+          />
+          <button 
+            onClick={() => fileInputRef.current?.click()}
+            disabled={importingBatch}
+            className="bg-purple-600/20 hover:bg-purple-600/40 text-purple-400 border border-purple-500/30 px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-lg shadow-purple-900/20 disabled:opacity-50"
+            title="Importar preguntas masivamente desde JSON generado por IA"
+          >
+            {importingBatch ? <Loader2 className="w-5 h-5 animate-spin" /> : <UploadCloud className="w-5 h-5" />}
+            {importingBatch ? 'Importando...' : 'Importar Lote IA'}
+          </button>
+          <button 
+            onClick={openNew}
+            className="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-lg shadow-cyan-900/20"
+          >
+            <Plus className="w-5 h-5" /> Nueva Pregunta
+          </button>
+        </div>
       </div>
 
       {loading ? (
