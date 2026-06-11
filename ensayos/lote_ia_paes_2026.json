@@ -1,0 +1,50 @@
+[
+  {
+    "text": "<p>¿Cuál es el valor de <b>1 − (−3)(−2 − 6)</b>?</p>",
+    "options": [
+      "−32",
+      "−23",
+      "−16",
+      "−4"
+    ],
+    "correctAnswer": 1,
+    "solution": "<p>Primero resolvemos el paréntesis: (−2 − 6) = −8</p><p>Luego la multiplicación: (−3)(−8) = 24</p><p>Finalmente la resta: 1 − 24 = <b>−23</b></p>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Conjuntos Numéricos",
+    "skill": "Resolver problemas"
+  },
+  {
+    "text": "<p>Consuelo y dos amigas comieron en un restaurante. A continuación se presenta la boleta de todo lo consumido por las tres amigas.</p><ul><li>1 Jugo: $1600</li><li>3 Sándwich: $18000</li><li>1 Promoción sopaipillas: $4800</li><li>2 Bebidas: $2600</li></ul><p>Acordaron que cada una de ellas pagará lo que consumió y, además, la promoción de sopaipillas la dividirán en tres partes iguales y cada una pagará una de esas tres partes.</p><p><b>Si Consuelo consumió un sándwich y una bebida, ¿cuánto tiene que pagar?</b></p>",
+    "options": [
+      "$8900",
+      "$9000",
+      "$12 000",
+      "$22 200"
+    ],
+    "correctAnswer": 0,
+    "solution": "<p>Calculamos el precio unitario de lo que consumió Consuelo:</p><ul><li>1 sándwich = $18000 / 3 = <b>$6000</b></li><li>1 bebida = $2600 / 2 = <b>$1300</b></li><li>1/3 de sopaipillas = $4800 / 3 = <b>$1600</b></li></ul><p>Total = $6000 + $1300 + $1600 = <b>$8900</b></p>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Conjuntos Numéricos",
+    "skill": "Modelar"
+  },
+  {
+    "text": "<p>Para calcular el valor de la expresión <b>( −2(4 · 5) − (30 − 2 · 3) ) / 12</b>, se realizan los siguientes pasos, cometiéndose un error.</p><p><b>Paso 1:</b> se reescribe −2(4 · 5) como (−8) · (−10), obteniéndose ( (−8) · (−10) − (30 − 2 · 3) ) / 12.</p><p><b>Paso 2:</b> se resuelve (30 − 2 · 3), obteniéndose ( (−8) · (−10) − 24 ) / 12.</p><p><b>Paso 3:</b> se resuelve el numerador, obteniéndose 56 / 12.</p><p><b>Paso 4:</b> se simplifica la fracción del paso anterior, obteniéndose 14 / 3.</p><p><b>¿En cuál de los pasos se cometió el error?</b></p>",
+    "options": [
+      "En el Paso 1",
+      "En el Paso 2",
+      "En el Paso 3",
+      "En el Paso 4"
+    ],
+    "correctAnswer": 0,
+    "solution": "<p>El error está en el <b>Paso 1</b>. La expresión −2(4 · 5) equivale a −2(20) = −40. Sin embargo, al reescribir como (−8) · (−10) el resultado es +80, lo cual altera el valor real de la expresión matemática original.</p>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Conjuntos Numéricos",
+    "skill": "Argumentar"
+  }
+]

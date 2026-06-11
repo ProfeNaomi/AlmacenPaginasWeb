@@ -3,6 +3,7 @@ import { Plus, Search, Filter, Bot, Save, Trash2, Image as ImageIcon, Loader2, U
 import { Question, getQuestions, createQuestion, updateQuestion, deleteQuestion, QuestionAxis, QuestionSource, QuestionLevel } from '../../lib/paes';
 import { generateMathSolution, hasAIConfigured } from '../../lib/ai';
 import RichTextEditor from '../../components/ui/RichTextEditor';
+import PaesQuestionPreview from '../../components/ui/PaesQuestionPreview';
 
 export default function QuestionBank() {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -240,13 +241,8 @@ export default function QuestionBank() {
                 <span className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">{q.topic}</span>
               </div>
               
-              <div 
-                className="text-slate-200 text-sm line-clamp-3 mb-4 prose prose-invert prose-sm"
-                dangerouslySetInnerHTML={{ __html: q.text }}
-              />
-              
-              <div className="text-xs text-emerald-400 font-bold border-t border-slate-800 pt-4 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4" /> Alternativa Correcta: {String.fromCharCode(65 + q.correctAnswer)}
+              <div className="mt-4 overflow-hidden rounded-xl">
+                <PaesQuestionPreview question={q} />
               </div>
             </div>
           ))}

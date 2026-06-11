@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Bold, List, CaseUpper, CaseLower, Space, ListOrdered, Indent, Outdent, Palette, Underline, AlignCenter, AlignRight, AlignJustify, AlignLeft, Sigma
+  Bold, List, CaseUpper, CaseLower, Space, ListOrdered, Indent, Outdent, Palette, Underline, AlignCenter, AlignRight, AlignJustify, AlignLeft, Sigma, Image as ImageIcon
 } from 'lucide-react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
@@ -59,6 +59,15 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
       } catch (err) {
         alert("Error en el formato LaTeX");
       }
+    }
+  };
+
+  const insertImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const url = prompt("Ingresa la ruta de la imagen (ej: /paes_2026/p2.png) o una URL externa:");
+    if (url) {
+      document.execCommand('insertImage', false, url);
+      handleInput();
     }
   };
 
@@ -122,6 +131,9 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
         <button type="button" onMouseDown={toggleSpacing} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Interlineado"><Space className="w-4 h-4" /></button>
         <div className="w-px h-4 bg-slate-600 mx-1"></div>
 
+        <button type="button" onMouseDown={insertImage} className="p-1.5 hover:bg-blue-600/50 bg-blue-900/30 text-blue-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Imagen desde URL o carpeta public">
+          <ImageIcon className="w-4 h-4" /> Img
+        </button>
         <button type="button" onMouseDown={openEquationEditor} className="p-1.5 hover:bg-emerald-600/50 bg-emerald-900/30 text-emerald-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Ecuación (LaTeX)">
           <Sigma className="w-4 h-4" /> LaTeX
         </button>
