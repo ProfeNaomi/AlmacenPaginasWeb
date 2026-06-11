@@ -1,0 +1,17 @@
+{
+  "blocks": [
+    {
+      "id": "ia_block_1",
+      "type": "box",
+      "theme": "theorem",
+      "title": "Concepto Clave: Fracciones",
+      "content": "<p>Una fracción representa una parte de un todo. Se compone de un numerador (partes que tomamos) y un denominador (total de partes iguales).</p>"
+    },
+    {
+      "id": "ia_block_2",
+      "type": "challenge",
+      "content": "<p>Si una pizza se divide en 8 porciones y te comes 3, ¿qué fracción de la pizza queda?</p>",
+      "solution": "<p>Quedan 5 porciones de un total de 8. Por lo tanto, la fracción es <b>5/8</b>.</p>"
+    }
+  ]
+}

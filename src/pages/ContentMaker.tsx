@@ -7,7 +7,7 @@ import {
   AlignLeft, Layout, FileQuestion, ArrowUp, ArrowDown, Bold, List, 
   Type, Columns, Underline, AlignCenter, AlignRight, AlignJustify, 
   Sigma, Scaling, CaseUpper, CaseLower, Space, MessageSquare,
-  ListOrdered, Indent, Outdent, Palette, FileText, ChevronDown, CheckCircle, FolderTree, GripVertical
+  ListOrdered, Indent, Outdent, Palette, FileText, ChevronDown, CheckCircle, FolderTree, GripVertical, UploadCloud
 } from 'lucide-react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
@@ -44,6 +44,32 @@ export default function ContentMaker() {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [quiz, setQuiz] = useState<Quiz | undefined>(undefined);
   const [activeTab, setActiveTab] = useState<'content' | 'quiz'>('content');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImportIA = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const content = e.target?.result as string;
+        const data = JSON.parse(content);
+        if (data.blocks && Array.isArray(data.blocks)) {
+          setBlocks(data.blocks);
+        }
+        if (data.quiz) {
+          setQuiz(data.quiz);
+        }
+        alert("¡Clase base de IA importada exitosamente!");
+      } catch (error) {
+        console.error("Error al parsear el JSON de IA:", error);
+        alert("Error: El archivo no tiene un formato válido de clase IA.");
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  };
 
   const isAdmin = user?.email === 'naomi.urrea94@gmail.com';
 
@@ -813,6 +839,25 @@ export default function ContentMaker() {
                   <button onClick={() => addBlock('inline-quiz', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><FileQuestion className="w-4 h-4 text-yellow-400"/> Mini-Quiz Formativo</button>
                 </div>
               </div>
+
+              <div className="hidden sm:block w-px h-6 bg-slate-700"></div>
+
+              {/* Botón Magia IA */}
+              <button 
+                onClick={() => fileInputRef.current?.click()}
+                className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold bg-purple-600/20 text-purple-400 hover:bg-purple-600/40 hover:text-white border border-purple-500/30 transition-all ml-auto shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+                title="Cargar estructura base generada por IA"
+              >
+                <UploadCloud className="w-4 h-4" /> Importar IA
+              </button>
+              
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                onChange={handleImportIA} 
+                accept=".json" 
+                className="hidden" 
+              />
 
             </div>
           )}
