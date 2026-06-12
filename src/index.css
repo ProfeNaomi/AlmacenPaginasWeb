@@ -18,7 +18,7 @@ body {
 
 @media print {
   @page {
-    margin: 0; /* Removes default browser headers/footers completely */
+    margin: 1.5cm; /* Restaura el margen para que las páginas 2 en adelante no queden pegadas al borde superior */
   }
 
   aside, header {

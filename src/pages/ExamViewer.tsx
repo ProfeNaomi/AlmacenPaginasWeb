@@ -105,7 +105,7 @@ export default function ExamViewer() {
         </button>
 
         {/* Cover Page */}
-        <div className="p-8 print:p-16 max-w-4xl mx-auto break-after-page pt-20 print:pt-32 flex flex-col min-h-[80vh] justify-center">
+        <div className="p-8 max-w-4xl mx-auto break-after-page pt-20 flex flex-col min-h-[80vh] justify-center">
           <div className="text-center mb-16 border-b-4 border-black pb-12">
             <h1 className="text-5xl font-black mb-6 uppercase tracking-tighter leading-tight text-black">{exam.title}</h1>
             <p className="text-2xl uppercase tracking-widest font-bold text-black">{exam.type}</p>
@@ -131,7 +131,7 @@ export default function ExamViewer() {
         </div>
 
         {/* Questions Pages */}
-        <div className="max-w-4xl mx-auto p-8 print:p-12 print:pt-16">
+        <div className="max-w-4xl mx-auto p-8 print:p-0">
           {questions.map((q, i) => (
             <div key={q.id} className="mb-8 print:mb-6 break-inside-avoid relative" style={{ pageBreakInside: 'avoid' }}>
               <div className="flex gap-4">
@@ -142,7 +142,7 @@ export default function ExamViewer() {
                 
                 {/* Question Content */}
                 <div className="flex-1">
-                  <div className="prose prose-slate prose-img:max-w-full prose-p:my-0.5 prose-strong:font-bold text-[15px] print:text-[14px] mb-3 text-black leading-snug" dangerouslySetInnerHTML={{__html: q.text}} />
+                  <div className="prose prose-slate prose-img:max-w-full prose-p:my-0.5 prose-strong:font-bold text-[15px] print:text-[14px] mb-3 text-black leading-snug text-justify" dangerouslySetInnerHTML={{__html: q.text}} />
                   
                   {q.imageUrl && (
                     <div className="mb-4 mt-2 flex justify-center">
