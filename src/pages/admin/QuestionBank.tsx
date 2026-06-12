@@ -157,9 +157,9 @@ export default function QuestionBank() {
         } else {
           alert("Error: El archivo debe contener un arreglo de preguntas.");
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error al parsear el JSON:", error);
-        alert("Error: El archivo no tiene un formato válido.");
+        alert("Error de formato JSON: " + error.message + "\n\nAsegúrate de que el archivo contiene un arreglo JSON válido.");
       } finally {
         setImportingBatch(false);
       }
