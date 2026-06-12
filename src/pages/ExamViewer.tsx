@@ -111,8 +111,12 @@ export default function ExamViewer() {
           <Printer className="w-6 h-6" /> Imprimir / PDF
         </button>
 
-        {/* Cover Page */}
-        {cover?.frontContent ? (
+        {/* Cover Page(s) */}
+        {cover?.frontPages && cover.frontPages.length > 0 ? (
+          cover.frontPages.map((page, idx) => (
+            <div key={`front-${idx}`} className="w-full min-h-[100vh] break-after-page print-cover" dangerouslySetInnerHTML={{__html: page}} />
+          ))
+        ) : cover?.frontContent ? (
           <div className="w-full min-h-[100vh] break-after-page print-cover" dangerouslySetInnerHTML={{__html: cover.frontContent}} />
         ) : (
           <div className="p-8 max-w-4xl mx-auto break-after-page pt-20 flex flex-col min-h-[80vh] justify-center">
@@ -212,10 +216,14 @@ export default function ExamViewer() {
           </table>
         </div>
 
-        {/* Back Cover Page */}
-        {cover?.backContent && (
+        {/* Back Cover Pages */}
+        {cover?.backPages && cover.backPages.length > 0 ? (
+          cover.backPages.map((page, idx) => (
+            <div key={`back-${idx}`} className="w-full min-h-[100vh] print-cover break-after-page" dangerouslySetInnerHTML={{__html: page}} />
+          ))
+        ) : cover?.backContent ? (
           <div className="w-full min-h-[100vh] print-cover" dangerouslySetInnerHTML={{__html: cover.backContent}} />
-        )}
+        ) : null}
       </div>
     );
   }

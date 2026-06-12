@@ -4,8 +4,10 @@ import { db } from './firebase';
 export interface Cover {
   id: string;
   name: string;
-  frontContent: string;
-  backContent: string;
+  frontContent?: string; // Legacy
+  backContent?: string; // Legacy
+  frontPages?: string[];
+  backPages?: string[];
   createdAt: number;
 }
 

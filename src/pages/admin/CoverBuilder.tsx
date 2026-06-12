@@ -9,8 +9,8 @@ export default function CoverBuilder() {
   
   const [editingId, setEditingId] = useState<string | null>(null);
   const [name, setName] = useState('');
-  const [frontContent, setFrontContent] = useState('');
-  const [backContent, setBackContent] = useState('');
+  const [frontPages, setFrontPages] = useState<string[]>([]);
+  const [backPages, setBackPages] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -27,16 +27,31 @@ export default function CoverBuilder() {
   const openNew = () => {
     setEditingId(null);
     setName('');
-    // Plantilla por defecto para facilitar el inicio
-    setFrontContent('<div style="text-align: center; padding-top: 50px;"><h1 style="font-size: 3rem; margin-bottom: 20px;">Mi Colegio</h1><h2>Ensayo PAES</h2><br/><p><b>Código:</b> [CÓDIGO AQUÍ]</p></div>');
-    setBackContent('<div style="text-align: center; padding-top: 50px;"><h3>Fin del Ensayo</h3><p>Revisa tus respuestas antes de entregar.</p></div>');
+    // Plantilla por defecto
+    setFrontPages(['<div style="text-align: center; padding-top: 50px;"><h1 style="font-size: 3rem; margin-bottom: 20px;">Mi Colegio</h1><h2>Ensayo PAES</h2><br/><p><b>Código:</b> [CÓDIGO AQUÍ]</p></div>']);
+    setBackPages(['<div style="text-align: center; padding-top: 50px;"><h3>Fin del Ensayo</h3><p>Revisa tus respuestas antes de entregar.</p></div>']);
   };
 
   const openEdit = (cover: Cover) => {
     setEditingId(cover.id);
     setName(cover.name);
-    setFrontContent(cover.frontContent || '');
-    setBackContent(cover.backContent || '');
+    
+    // Migrate legacy fields if needed
+    if (cover.frontPages && cover.frontPages.length > 0) {
+      setFrontPages(cover.frontPages);
+    } else if (cover.frontContent) {
+      setFrontPages([cover.frontContent]);
+    } else {
+      setFrontPages([]);
+    }
+
+    if (cover.backPages && cover.backPages.length > 0) {
+      setBackPages(cover.backPages);
+    } else if (cover.backContent) {
+      setBackPages([cover.backContent]);
+    } else {
+      setBackPages([]);
+    }
   };
 
   const handleSave = async () => {
@@ -47,14 +62,17 @@ export default function CoverBuilder() {
     setSaving(true);
     const data = {
       name,
-      frontContent,
-      backContent
+      frontPages,
+      backPages,
+      // Clear legacy fields to save space
+      frontContent: '',
+      backContent: ''
     };
 
     if (editingId) {
-      await updateCover(editingId, data);
+      await updateCover(editingId, data as any);
     } else {
-      await createCover(data);
+      await createCover(data as any);
     }
     
     setSaving(false);
@@ -118,7 +136,7 @@ export default function CoverBuilder() {
 
       {/* Right Column: Editor */}
       <div className="w-full lg:w-2/3">
-        {editingId !== null || name !== '' || frontContent !== '' ? (
+        {editingId !== null || name !== '' || frontPages.length > 0 ? (
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
             <div className="flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
               <h2 className="text-xl font-bold text-white">
@@ -146,21 +164,74 @@ export default function CoverBuilder() {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-bold text-white mb-2 flex items-center gap-2">
-                  <ImageIcon className="w-4 h-4 text-purple-400"/> Portada Frontal (Página 1)
-                </label>
-                <p className="text-xs text-slate-400 mb-2">Diseña aquí la página principal. Puedes insertar imágenes (Ej. exportadas desde Canva) o escribir texto. En el PDF ocupará la hoja completa.</p>
-                <RichTextEditor content={frontContent} onChange={setFrontContent} />
+              {/* Front Pages */}
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <div>
+                    <label className="block text-lg font-bold text-white flex items-center gap-2">
+                      <ImageIcon className="w-5 h-5 text-purple-400"/> Páginas Frontales (Inicio del Ensayo)
+                    </label>
+                    <p className="text-sm text-slate-400">Cada editor corresponde a una hoja completa en el PDF.</p>
+                  </div>
+                  <button onClick={() => setFrontPages([...frontPages, ''])} className="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors">
+                    <Plus className="w-4 h-4" /> Agregar Página
+                  </button>
+                </div>
+                
+                {frontPages.map((page, idx) => (
+                  <div key={`front-${idx}`} className="bg-slate-950 p-4 rounded-xl border border-slate-800 relative group">
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Página {idx + 1}</span>
+                      <button onClick={() => setFrontPages(frontPages.filter((_, i) => i !== idx))} className="text-slate-500 hover:text-red-400 p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <RichTextEditor content={page} onChange={(c) => {
+                      const newPages = [...frontPages];
+                      newPages[idx] = c;
+                      setFrontPages(newPages);
+                    }} />
+                  </div>
+                ))}
+                {frontPages.length === 0 && (
+                  <div className="text-center py-4 text-slate-500 italic border border-dashed border-slate-800 rounded-xl">Sin páginas frontales.</div>
+                )}
               </div>
 
-              <div>
-                <label className="block text-sm font-bold text-white mb-2 flex items-center gap-2">
-                  <ImageIcon className="w-4 h-4 text-purple-400"/> Hoja de Cierre / Contraportada (Última Página)
-                </label>
-                <p className="text-xs text-slate-400 mb-2">Se imprimirá al final de todo el ensayo, después de la tabla de respuestas correctas.</p>
-                <RichTextEditor content={backContent} onChange={setBackContent} />
+              {/* Back Pages */}
+              <div className="space-y-6 pt-4 border-t border-slate-800">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <div>
+                    <label className="block text-lg font-bold text-white flex items-center gap-2">
+                      <ImageIcon className="w-5 h-5 text-purple-400"/> Hojas de Cierre (Final del Ensayo)
+                    </label>
+                    <p className="text-sm text-slate-400">Se imprimirán al final de todo el ensayo, después de las claves.</p>
+                  </div>
+                  <button onClick={() => setBackPages([...backPages, ''])} className="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors">
+                    <Plus className="w-4 h-4" /> Agregar Página
+                  </button>
+                </div>
+                
+                {backPages.map((page, idx) => (
+                  <div key={`back-${idx}`} className="bg-slate-950 p-4 rounded-xl border border-slate-800 relative group">
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Página de Cierre {idx + 1}</span>
+                      <button onClick={() => setBackPages(backPages.filter((_, i) => i !== idx))} className="text-slate-500 hover:text-red-400 p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <RichTextEditor content={page} onChange={(c) => {
+                      const newPages = [...backPages];
+                      newPages[idx] = c;
+                      setBackPages(newPages);
+                    }} />
+                  </div>
+                ))}
+                {backPages.length === 0 && (
+                  <div className="text-center py-4 text-slate-500 italic border border-dashed border-slate-800 rounded-xl">Sin hojas de cierre.</div>
+                )}
               </div>
+
             </div>
           </div>
         ) : (
