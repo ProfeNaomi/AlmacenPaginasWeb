@@ -17,6 +17,10 @@ body {
 }
 
 @media print {
+  @page {
+    margin: 1cm; /* Removes default browser headers/footers in many browsers */
+  }
+
   aside, header {
     display: none !important;
   }
@@ -27,5 +31,8 @@ body {
   }
   body {
     background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }

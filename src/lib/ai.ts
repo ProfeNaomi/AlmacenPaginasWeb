@@ -49,8 +49,8 @@ export const generateMathSolution = async (questionText: string, options: string
     result = await model.generateContent(prompt);
   } catch (error: any) {
     if (error.message?.includes('not found') || error.status === 404) {
-      // Fallback
-      const fallbackModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-8b' });
+      // Fallback a modelo antiguo si la cuenta no tiene acceso a la versión 1.5
+      const fallbackModel = genAI.getGenerativeModel({ model: 'gemini-pro' });
       result = await fallbackModel.generateContent(prompt);
     } else {
       throw error;
