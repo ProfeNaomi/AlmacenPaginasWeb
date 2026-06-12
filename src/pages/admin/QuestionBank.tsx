@@ -10,15 +10,7 @@ const AXIS_BY_LEVEL: Record<QuestionLevel, QuestionAxis[]> = {
   'Universitario': ['Cálculo', 'Álgebra', 'Lógica', 'Geometría', 'Probabilidad y Estadística']
 };
 
-const INITIAL_TOPICS_BY_AXIS: Record<string, string[]> = {
-  'Números': ['Conjuntos Numéricos', 'Porcentajes', 'Potencias', 'Raíces', 'Logaritmos'],
-  'Álgebra y Funciones': ['Expresiones Algebraicas', 'Ecuaciones', 'Inecuaciones', 'Sistemas de Ecuaciones', 'Funciones (Lineal y Afín)', 'Función Cuadrática'],
-  'Geometría': ['Figuras Geométricas', 'Transformaciones Isométricas', 'Semejanza y Proporcionalidad', 'Teorema de Pitágoras', 'Cuerpos Geométricos', 'Geometría Analítica', 'Cálculo Vectorial'],
-  'Probabilidad y Estadística': ['Estadística Descriptiva', 'Técnicas de Conteo', 'Probabilidades', 'Inferencia Estadística', 'Distribuciones de Probabilidad'],
-  'Cálculo': ['Límites', 'Derivadas', 'Integrales', 'Ecuaciones Diferenciales', 'Series'],
-  'Álgebra': ['Álgebra Lineal', 'Matrices', 'Espacios Vectoriales', 'Polinomios'],
-  'Lógica': ['Lógica Proposicional', 'Teoría de Conjuntos'],
-};
+// INITIAL_TOPICS removed so topics are strictly derived from the DB
 
 export default function QuestionBank() {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -50,21 +42,20 @@ export default function QuestionBank() {
   const [importingBatch, setImportingBatch] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Derive dynamic topics from initial + questions in DB
+  // Derive dynamic topics from questions in DB ONLY
   const globalTopicsByAxis = React.useMemo(() => {
     const topics: Record<string, Set<string>> = {};
-    Object.entries(INITIAL_TOPICS_BY_AXIS).forEach(([a, tList]) => {
-      if (!topics[a]) topics[a] = new Set();
-      tList.forEach(t => topics[a].add(t));
-    });
+    
     questions.forEach(q => {
       if (!topics[q.axis]) topics[q.axis] = new Set();
       if (q.topic) topics[q.axis].add(q.topic);
     });
+    
     const result: Record<string, string[]> = {};
-    Object.keys(topics).forEach(a => {
-      result[a] = Array.from(topics[a]).sort();
+    Object.values(AXIS_BY_LEVEL).flat().forEach(axis => {
+      result[axis] = topics[axis] && topics[axis].size > 0 ? Array.from(topics[axis]).sort() : ['Otro'];
     });
+    
     return result;
   }, [questions]);
 
@@ -539,7 +530,9 @@ export default function QuestionBank() {
                             <option value="Representar">Representar</option>
                             <option value="Modelar">Modelar</option>
                             <option value="Argumentar">Argumentar</option>
-                            <option value={q.skill}>{q.skill}</option> {/* fallback for custom skills */}
+                            {q.skill && !['Resolver problemas', 'Representar', 'Modelar', 'Argumentar'].includes(q.skill) && (
+                              <option value={q.skill}>{q.skill}</option>
+                            )}
                           </select>
                         </div>
                         
@@ -650,7 +643,9 @@ export default function QuestionBank() {
                     <option value="Representar">Representar</option>
                     <option value="Modelar">Modelar</option>
                     <option value="Argumentar">Argumentar</option>
-                    <option value={skill}>{skill}</option> {/* fallback for custom skills */}
+                    {skill && !['Resolver problemas', 'Representar', 'Modelar', 'Argumentar'].includes(skill) && (
+                      <option value={skill}>{skill}</option>
+                    )}
                   </select>
                 </div>
               </div>

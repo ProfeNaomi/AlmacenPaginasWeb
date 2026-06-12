@@ -104,6 +104,15 @@ export default function ExamBuilder() {
     return acc;
   }, {} as Record<string, Question[]>);
 
+  // Sort inside each group by questionNumber
+  Object.keys(groupedQuestions).forEach(k => {
+    groupedQuestions[k].sort((a, b) => {
+      const numA = parseInt(a.questionNumber || '99999') || 99999;
+      const numB = parseInt(b.questionNumber || '99999') || 99999;
+      return numA - numB;
+    });
+  });
+
   const printExam = (id: string) => {
     window.open(`/exam/${id}?print=true`, '_blank');
   };
