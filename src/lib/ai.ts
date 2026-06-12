@@ -48,12 +48,13 @@ export const generateMathSolution = async (questionText: string, options: string
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     result = await model.generateContent(prompt);
   } catch (error: any) {
-    if (error.message?.includes('not found') || error.status === 404) {
-      // Fallback a modelo antiguo si la cuenta no tiene acceso a la versión 1.5
-      const fallbackModel = genAI.getGenerativeModel({ model: 'gemini-pro' });
-      result = await fallbackModel.generateContent(prompt);
+    const errorMsg = error.message?.toLowerCase() || '';
+    if (errorMsg.includes('expired') || errorMsg.includes('invalid') || errorMsg.includes('api_key_invalid')) {
+      throw new Error('Tu Clave API de Google es inválida o ha caducado. Por favor, genera una NUEVA clave en aistudio.google.com/app/apikey y actualízala en Ajustes.');
+    } else if (errorMsg.includes('not found') || error.status === 404) {
+      throw new Error('Tu Clave API no tiene permisos para usar la IA. Por favor, genera una NUEVA clave desde cero en aistudio.google.com/app/apikey y actualízala en Ajustes.');
     } else {
-      throw error;
+      throw new Error(`Ocurrió un error con la IA: ${error.message}`);
     }
   }
 
