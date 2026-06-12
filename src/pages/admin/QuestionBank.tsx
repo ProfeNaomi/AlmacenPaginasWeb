@@ -115,7 +115,16 @@ export default function QuestionBank() {
     const reader = new FileReader();
     reader.onload = async (e) => {
       try {
-        const content = e.target?.result as string;
+        let content = (e.target?.result as string) || '';
+        
+        // Limpiar bloques de código markdown si el usuario los copió y pegó por accidente
+        content = content.trim();
+        if (content.startsWith('```json')) {
+          content = content.replace(/^```json\n?/, '').replace(/\n?```$/, '');
+        } else if (content.startsWith('```')) {
+          content = content.replace(/^```\n?/, '').replace(/\n?```$/, '');
+        }
+        
         const data = JSON.parse(content);
         
         if (Array.isArray(data)) {
