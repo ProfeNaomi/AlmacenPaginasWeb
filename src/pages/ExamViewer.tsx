@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { getExamById, getQuestionById, PaesExam, Question } from '../lib/paes';
+import { useAuth } from '../context/AuthContext';
 import { ArrowLeft, Clock, ArrowRight, CheckCircle2, XCircle, Bot, Trophy, Printer } from 'lucide-react';
 import 'katex/dist/katex.min.css';
 
@@ -9,6 +10,7 @@ export default function ExamViewer() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const isPrintMode = searchParams.get('print') === 'true';
+  const { profile } = useAuth();
 
   const [exam, setExam] = useState<PaesExam | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -182,9 +184,11 @@ export default function ExamViewer() {
         </button>
         <div className="flex items-center justify-center gap-4 mb-4">
           <span className="text-cyan-400 font-bold bg-cyan-900/30 px-3 py-1 rounded-full text-sm border border-cyan-800">{exam.type}</span>
-          <button onClick={() => window.open(`/exam/${id}?print=true`, '_blank')} className="text-slate-400 hover:text-emerald-400 font-bold flex items-center gap-1 transition-colors text-sm border border-slate-700 px-3 py-1 rounded-full hover:border-emerald-500/50">
-            <Printer className="w-4 h-4" /> Exportar PDF
-          </button>
+          {profile?.role === 'admin' && (
+            <button onClick={() => window.open(`/ensayos/${id}?print=true`, '_blank')} className="text-slate-400 hover:text-emerald-400 font-bold flex items-center gap-1 transition-colors text-sm border border-slate-700 px-3 py-1 rounded-full hover:border-emerald-500/50">
+              <Printer className="w-4 h-4" /> Exportar PDF
+            </button>
+          )}
         </div>
         <h1 className="text-4xl font-display font-bold text-white mb-4">{exam.title}</h1>
         <p className="text-xl text-slate-400 mb-8">{exam.description}</p>
