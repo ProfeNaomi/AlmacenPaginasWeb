@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { getExamById, getQuestionById, PaesExam, Question } from '../lib/paes';
-import { ArrowLeft, Clock, ArrowRight, CheckCircle2, XCircle, Bot, Trophy } from 'lucide-react';
+import { ArrowLeft, Clock, ArrowRight, CheckCircle2, XCircle, Bot, Trophy, Printer } from 'lucide-react';
 import 'katex/dist/katex.min.css';
 
 export default function ExamViewer() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const isPrintMode = searchParams.get('print') === 'true';
+
   const [exam, setExam] = useState<PaesExam | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,13 +27,23 @@ export default function ExamViewer() {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (started && !finished && timeLeft > 0) {
+    if (started && !finished && timeLeft > 0 && !isPrintMode) {
       timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
-    } else if (timeLeft === 0 && started && !finished) {
+    } else if (timeLeft === 0 && started && !finished && !isPrintMode) {
       finishExam();
     }
     return () => clearInterval(timer);
-  }, [started, finished, timeLeft]);
+  }, [started, finished, timeLeft, isPrintMode]);
+
+  useEffect(() => {
+    if (isPrintMode && !loading && questions.length > 0) {
+      // Small delay to allow images and styles to load before print dialog
+      const timer = setTimeout(() => {
+        window.print();
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isPrintMode, loading, questions]);
 
   const loadExam = async (examId: string) => {
     setLoading(true);
@@ -41,7 +54,14 @@ export default function ExamViewer() {
       
       const qPromises = eData.questions.map(qId => getQuestionById(qId));
       const qResults = await Promise.all(qPromises);
-      setQuestions(qResults.filter(q => q !== null) as Question[]);
+      // Sort questions if they have a questionNumber
+      const fetchedQuestions = qResults.filter(q => q !== null) as Question[];
+      fetchedQuestions.sort((a, b) => {
+        const numA = parseInt(a.questionNumber || '999') || 999;
+        const numB = parseInt(b.questionNumber || '999') || 999;
+        return numA - numB;
+      });
+      setQuestions(fetchedQuestions);
     }
     setLoading(false);
   };
@@ -69,6 +89,90 @@ export default function ExamViewer() {
   if (loading) return <div className="flex justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500"></div></div>;
   if (!exam) return <div className="text-center text-white py-20">Ensayo no encontrado</div>;
 
+  // --- Print Mode Screen (PDF Export) ---
+  if (isPrintMode) {
+    return (
+      <div className="bg-white min-h-screen text-black font-sans print:m-0 print:p-0" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+        
+        {/* Floating Print Button (hidden in print) */}
+        <button 
+          onClick={() => window.print()}
+          className="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:bg-blue-700 transition-colors z-50 print:hidden flex items-center gap-2 font-bold"
+        >
+          <Printer className="w-6 h-6" /> Imprimir / PDF
+        </button>
+
+        {/* Cover Page */}
+        <div className="p-8 max-w-4xl mx-auto break-after-page pt-20 print:pt-8 flex flex-col min-h-[80vh] justify-center">
+          <div className="text-center mb-16 border-b-4 border-black pb-12">
+            <h1 className="text-5xl font-black mb-6 uppercase tracking-tighter leading-tight">{exam.title}</h1>
+            <p className="text-2xl text-gray-700 uppercase tracking-widest font-bold">{exam.type}</p>
+          </div>
+          <div className="space-y-6 text-xl border-4 border-black p-12 rounded-2xl font-medium max-w-2xl mx-auto w-full bg-slate-50">
+            <div className="flex justify-between border-b-2 border-gray-300 pb-4">
+              <strong>TIEMPO ASIGNADO:</strong> 
+              <span>{exam.durationMinutes} minutos</span>
+            </div>
+            <div className="flex justify-between border-b-2 border-gray-300 pb-4">
+              <strong>CANTIDAD DE PREGUNTAS:</strong> 
+              <span>{questions.length}</span>
+            </div>
+            {exam.description && (
+              <p className="mt-8 text-base text-gray-600 italic text-center leading-relaxed">
+                {exam.description}
+              </p>
+            )}
+          </div>
+          <div className="mt-32 text-center text-sm font-bold text-gray-400 uppercase tracking-widest">
+            Generado automáticamente por Plataforma PAES
+          </div>
+        </div>
+
+        {/* Questions Pages */}
+        <div className="max-w-4xl mx-auto p-8 bg-white">
+          {questions.map((q, i) => (
+            <div key={q.id} className="mb-14 break-inside-avoid relative" style={{ pageBreakInside: 'avoid' }}>
+              <div className="flex gap-5">
+                {/* Question Number */}
+                <div className="font-black text-2xl min-w-[2.5rem] mt-0.5">
+                  {q.questionNumber || (i + 1)}.
+                </div>
+                
+                {/* Question Content */}
+                <div className="flex-1">
+                  <div className="prose prose-slate prose-img:max-w-full prose-p:my-1 prose-strong:font-bold text-[17px] mb-5 text-black leading-relaxed" dangerouslySetInnerHTML={{__html: q.text}} />
+                  
+                  {q.imageUrl && (
+                    <div className="mb-8 mt-4 flex justify-center">
+                      <img src={q.imageUrl} alt="Apoyo" className="max-w-[80%] border border-gray-300 rounded" />
+                    </div>
+                  )}
+                  
+                  {/* Options List */}
+                  <div className="space-y-4 mt-6 ml-2">
+                    {q.options.map((opt, idx) => (
+                      <div key={idx} className="flex gap-4 text-[17px] items-start">
+                        <span className="font-bold mt-0.5">{String.fromCharCode(65 + idx)})</span>
+                        <div dangerouslySetInnerHTML={{__html: opt}} className="flex-1 prose prose-slate prose-p:m-0" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Separator line for print clarity */}
+              <div className="w-16 h-0.5 bg-gray-200 mt-12 mx-auto"></div>
+            </div>
+          ))}
+          
+          <div className="text-center font-bold text-gray-400 tracking-widest mt-20 pb-20">
+            FIN DEL ENSAYO
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // --- Start Screen ---
   if (!started) {
     return (
@@ -76,8 +180,13 @@ export default function ExamViewer() {
         <button onClick={() => navigate('/ensayos')} className="text-slate-400 hover:text-white flex items-center gap-2 mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4" /> Volver a Ensayos
         </button>
-        <span className="text-cyan-400 font-bold bg-cyan-900/30 px-3 py-1 rounded-full text-sm border border-cyan-800">{exam.type}</span>
-        <h1 className="text-4xl font-display font-bold text-white mt-4 mb-4">{exam.title}</h1>
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <span className="text-cyan-400 font-bold bg-cyan-900/30 px-3 py-1 rounded-full text-sm border border-cyan-800">{exam.type}</span>
+          <button onClick={() => window.open(`/exam/${id}?print=true`, '_blank')} className="text-slate-400 hover:text-emerald-400 font-bold flex items-center gap-1 transition-colors text-sm border border-slate-700 px-3 py-1 rounded-full hover:border-emerald-500/50">
+            <Printer className="w-4 h-4" /> Exportar PDF
+          </button>
+        </div>
+        <h1 className="text-4xl font-display font-bold text-white mb-4">{exam.title}</h1>
         <p className="text-xl text-slate-400 mb-8">{exam.description}</p>
         
         <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-12">
@@ -142,7 +251,7 @@ export default function ExamViewer() {
                 <div className={`px-6 py-3 flex justify-between items-center ${isCorrect ? 'bg-emerald-900/20' : 'bg-red-900/20'}`}>
                   <h4 className="font-bold text-white flex items-center gap-2">
                     {isCorrect ? <CheckCircle2 className="w-5 h-5 text-emerald-400"/> : <XCircle className="w-5 h-5 text-red-400"/>}
-                    Pregunta {i + 1}
+                    Pregunta {q.questionNumber || (i + 1)}
                   </h4>
                   <span className="text-sm font-bold text-slate-400">{q.axis} - {q.topic}</span>
                 </div>
@@ -163,7 +272,7 @@ export default function ExamViewer() {
                       return (
                         <div key={idx} className={`p-4 rounded-xl border flex gap-3 ${optClass}`}>
                           <span className="font-bold">{String.fromCharCode(65 + idx)})</span>
-                          <span>{opt}</span>
+                          <span dangerouslySetInnerHTML={{__html: opt}} />
                           {isActuallyCorrect && <CheckCircle2 className="w-5 h-5 ml-auto text-emerald-500" />}
                           {isSelected && !isActuallyCorrect && <XCircle className="w-5 h-5 ml-auto text-red-500" />}
                         </div>
@@ -200,7 +309,7 @@ export default function ExamViewer() {
         <div className="flex items-center gap-4">
           <span className="text-xl font-bold text-white hidden sm:block">{exam.title}</span>
           <span className="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-sm font-bold border border-slate-700">
-            Pregunta {currentIndex + 1} de {questions.length}
+            Pregunta {q.questionNumber || (currentIndex + 1)} de {questions.length}
           </span>
         </div>
         <div className="flex items-center gap-6">
@@ -228,7 +337,7 @@ export default function ExamViewer() {
             <div className="prose prose-slate prose-img:mx-auto prose-img:max-w-full prose-p:leading-relaxed prose-p:my-2 prose-a:text-blue-600 prose-strong:font-bold text-[15px] mb-8" dangerouslySetInnerHTML={{__html: q.text}} />
             
             {q.imageUrl && (
-              <div className="mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200 inline-block">
+              <div className="mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200 inline-block flex justify-center w-full">
                 <img src={q.imageUrl} alt="Material de apoyo" className="max-w-full rounded-lg max-h-[400px]" />
               </div>
             )}
@@ -254,7 +363,7 @@ export default function ExamViewer() {
                   <span className={`font-bold mt-0.5 ${selected ? 'text-cyan-600' : 'text-slate-400'}`}>
                     {String.fromCharCode(65 + idx)})
                   </span>
-                  <div className="flex-1" dangerouslySetInnerHTML={{__html: opt}} />
+                  <div className="flex-1 prose prose-p:m-0" dangerouslySetInnerHTML={{__html: opt}} />
                 </button>
               );
             })}

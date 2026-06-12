@@ -5,9 +5,27 @@ import { generateMathSolution, hasAIConfigured } from '../../lib/ai';
 import RichTextEditor from '../../components/ui/RichTextEditor';
 import PaesQuestionPreview from '../../components/ui/PaesQuestionPreview';
 
+const AXIS_BY_LEVEL: Record<QuestionLevel, QuestionAxis[]> = {
+  'Secundaria': ['Números', 'Álgebra y Funciones', 'Geometría', 'Probabilidad y Estadística'],
+  'Universitario': ['Cálculo', 'Álgebra', 'Lógica', 'Geometría', 'Probabilidad y Estadística']
+};
+
+const INITIAL_TOPICS_BY_AXIS: Record<string, string[]> = {
+  'Números': ['Conjuntos Numéricos', 'Porcentajes', 'Potencias', 'Raíces', 'Logaritmos'],
+  'Álgebra y Funciones': ['Expresiones Algebraicas', 'Ecuaciones', 'Inecuaciones', 'Sistemas de Ecuaciones', 'Funciones (Lineal y Afín)', 'Función Cuadrática'],
+  'Geometría': ['Figuras Geométricas', 'Transformaciones Isométricas', 'Semejanza y Proporcionalidad', 'Teorema de Pitágoras', 'Cuerpos Geométricos', 'Geometría Analítica', 'Cálculo Vectorial'],
+  'Probabilidad y Estadística': ['Estadística Descriptiva', 'Técnicas de Conteo', 'Probabilidades', 'Inferencia Estadística', 'Distribuciones de Probabilidad'],
+  'Cálculo': ['Límites', 'Derivadas', 'Integrales', 'Ecuaciones Diferenciales', 'Series'],
+  'Álgebra': ['Álgebra Lineal', 'Matrices', 'Espacios Vectoriales', 'Polinomios'],
+  'Lógica': ['Lógica Proposicional', 'Teoría de Conjuntos'],
+};
+
 export default function QuestionBank() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  // Filter state
+  const [examFilter, setExamFilter] = useState<string>('Todos');
   
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,25 +42,51 @@ export default function QuestionBank() {
   const [source, setSource] = useState<QuestionSource>('Propio');
   const [topic, setTopic] = useState('');
   const [skill, setSkill] = useState('Resolver problemas');
-  
-  const AXIS_BY_LEVEL: Record<QuestionLevel, QuestionAxis[]> = {
-    'Secundaria': ['Números', 'Álgebra y Funciones', 'Geometría', 'Probabilidad y Estadística'],
-    'Universitario': ['Cálculo', 'Álgebra', 'Lógica', 'Geometría', 'Probabilidad y Estadística']
-  };
-
-  const TOPICS_BY_AXIS: Record<string, string[]> = {
-    'Números': ['Conjuntos Numéricos', 'Porcentajes', 'Potencias', 'Raíces', 'Logaritmos'],
-    'Álgebra y Funciones': ['Expresiones Algebraicas', 'Ecuaciones', 'Inecuaciones', 'Sistemas de Ecuaciones', 'Funciones (Lineal y Afín)', 'Función Cuadrática'],
-    'Geometría': ['Figuras Geométricas', 'Transformaciones Isométricas', 'Semejanza y Proporcionalidad', 'Teorema de Pitágoras', 'Cuerpos Geométricos', 'Geometría Analítica', 'Cálculo Vectorial'],
-    'Probabilidad y Estadística': ['Estadística Descriptiva', 'Técnicas de Conteo', 'Probabilidades', 'Inferencia Estadística', 'Distribuciones de Probabilidad'],
-    'Cálculo': ['Límites', 'Derivadas', 'Integrales', 'Ecuaciones Diferenciales', 'Series'],
-    'Álgebra': ['Álgebra Lineal', 'Matrices', 'Espacios Vectoriales', 'Polinomios'],
-    'Lógica': ['Lógica Proposicional', 'Teoría de Conjuntos'],
-  };
+  const [examReference, setExamReference] = useState('');
+  const [questionNumber, setQuestionNumber] = useState('');
   
   const [generating, setGenerating] = useState(false);
   const [importingBatch, setImportingBatch] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Derive dynamic topics from initial + questions in DB
+  const globalTopicsByAxis = React.useMemo(() => {
+    const topics: Record<string, Set<string>> = {};
+    Object.entries(INITIAL_TOPICS_BY_AXIS).forEach(([a, tList]) => {
+      if (!topics[a]) topics[a] = new Set();
+      tList.forEach(t => topics[a].add(t));
+    });
+    questions.forEach(q => {
+      if (!topics[q.axis]) topics[q.axis] = new Set();
+      if (q.topic) topics[q.axis].add(q.topic);
+    });
+    const result: Record<string, string[]> = {};
+    Object.keys(topics).forEach(a => {
+      result[a] = Array.from(topics[a]).sort();
+    });
+    return result;
+  }, [questions]);
+
+  // Derive unique exams for the filter dropdown
+  const uniqueExams = React.useMemo(() => {
+    const set = new Set<string>();
+    questions.forEach(q => { if (q.examReference) set.add(q.examReference) });
+    return Array.from(set).sort();
+  }, [questions]);
+
+  const filteredQuestions = React.useMemo(() => {
+    let filtered = questions;
+    if (examFilter !== 'Todos') {
+      filtered = questions.filter(q => q.examReference === examFilter);
+    }
+    // Sort by questionNumber
+    filtered.sort((a, b) => {
+      const numA = parseInt(a.questionNumber || '999') || 999;
+      const numB = parseInt(b.questionNumber || '999') || 999;
+      return numA - numB;
+    });
+    return filtered;
+  }, [questions, examFilter]);
 
   const handleImportBatch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -55,6 +99,9 @@ export default function QuestionBank() {
         const data = JSON.parse(content);
         
         if (Array.isArray(data)) {
+          const examRefPrompt = prompt("¿A qué ensayo pertenecen estas preguntas? (Ej. 'PAES Invierno 2026' o déjalo en blanco)");
+          const batchExamRef = examRefPrompt ? examRefPrompt.trim() : undefined;
+          
           setImportingBatch(true);
           let successCount = 0;
           for (const item of data) {
@@ -69,7 +116,9 @@ export default function QuestionBank() {
                 axis: item.axis || 'Números',
                 source: item.source || 'Propio',
                 topic: item.topic || 'Otro',
-                skill: item.skill || 'Resolver problemas'
+                skill: item.skill || 'Resolver problemas',
+                examReference: item.examReference || batchExamRef,
+                questionNumber: item.questionNumber || undefined
               });
               successCount++;
             }
@@ -101,7 +150,7 @@ export default function QuestionBank() {
     setLoading(false);
   };
 
-  const resetForm = () => {
+  const openNew = () => {
     setText('');
     setImageUrl('');
     setOptions(['', '', '', '']);
@@ -110,13 +159,11 @@ export default function QuestionBank() {
     setLevel('Secundaria');
     setAxis('Números');
     setSource('Propio');
-    setTopic(TOPICS_BY_AXIS['Números'][0] || '');
+    setTopic(globalTopicsByAxis['Números']?.[0] || 'Otro');
     setSkill('Resolver problemas');
+    setExamReference('');
+    setQuestionNumber('');
     setEditingId(null);
-  };
-
-  const openNew = () => {
-    resetForm();
     setIsModalOpen(true);
   };
 
@@ -126,16 +173,23 @@ export default function QuestionBank() {
     setOptions(q.options);
     setCorrectAnswer(q.correctAnswer);
     setSolution(q.solution);
-    setLevel(q.level || 'Secundaria');
+    setLevel(q.level);
     setAxis(q.axis);
     setSource(q.source);
     setTopic(q.topic);
     setSkill(q.skill);
+    setExamReference(q.examReference || '');
+    setQuestionNumber(q.questionNumber || '');
     setEditingId(q.id);
     setIsModalOpen(true);
   };
 
   const handleSave = async () => {
+    if (!text || options.filter(o => o.trim() !== '').length < 2) {
+      alert("La pregunta debe tener texto y al menos 2 alternativas.");
+      return;
+    }
+
     const data = {
       text,
       imageUrl,
@@ -146,7 +200,9 @@ export default function QuestionBank() {
       axis,
       source,
       topic,
-      skill
+      skill,
+      examReference,
+      questionNumber
     };
 
     if (editingId) {
@@ -192,9 +248,6 @@ export default function QuestionBank() {
       const newTopic = prompt("Ingresa el nuevo tema:");
       if (!newTopic || newTopic.trim() === '') return;
       finalValue = newTopic;
-      // Añadirlo a la lista local para no perderlo
-      if (!TOPICS_BY_AXIS['Otro']) TOPICS_BY_AXIS['Otro'] = [];
-      TOPICS_BY_AXIS['Otro'].push(finalValue);
     }
     
     // Optimistic UI update
@@ -206,7 +259,7 @@ export default function QuestionBank() {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 sm:p-8">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
         <div>
           <h1 className="text-3xl font-display font-bold text-white mb-2">Banco de Preguntas PAES</h1>
           <p className="text-slate-400">Gestiona tus ejercicios y solucionarios con Inteligencia Artificial.</p>
@@ -236,12 +289,28 @@ export default function QuestionBank() {
           </button>
         </div>
       </div>
+      
+      {/* Filtro de Ensayo */}
+      <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 flex items-center gap-4 mb-8">
+        <Filter className="w-5 h-5 text-cyan-500" />
+        <span className="font-bold text-slate-300">Clasificar por Ensayo:</span>
+        <select 
+          value={examFilter} 
+          onChange={e => setExamFilter(e.target.value)}
+          className="bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-2 outline-none focus:border-cyan-500"
+        >
+          <option value="Todos">Mostrar todas las preguntas</option>
+          {uniqueExams.map(ex => (
+            <option key={ex} value={ex}>{ex}</option>
+          ))}
+        </select>
+      </div>
 
       {loading ? (
         <div className="flex justify-center py-20"><Loader2 className="w-10 h-10 animate-spin text-cyan-500" /></div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {questions.map(q => (
+        <div className="flex flex-col gap-6">
+          {filteredQuestions.map(q => (
             <div key={q.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition-all shadow-xl group relative">
               <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button onClick={() => openEdit(q)} className="p-2 bg-slate-800 hover:bg-cyan-600 rounded-lg text-slate-300 hover:text-white transition-colors">
@@ -252,7 +321,29 @@ export default function QuestionBank() {
                 </button>
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-4 pr-20 items-center">
+              <div className="flex flex-wrap gap-2 mb-4 pr-20 items-center bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
+                <input 
+                  type="text"
+                  defaultValue={q.questionNumber || ''}
+                  onBlur={(e) => {
+                    if(e.target.value !== q.questionNumber) handleInlineUpdate(q.id, 'questionNumber', e.target.value);
+                  }}
+                  className="w-16 text-center text-xs font-bold bg-white/10 text-white px-2 py-1 rounded border border-white/20 focus:outline-none focus:border-cyan-500"
+                  placeholder="Nº"
+                  title="Número de Pregunta (ej. 1, 2, Sin número)"
+                />
+                
+                <input 
+                  type="text"
+                  defaultValue={q.examReference || ''}
+                  onBlur={(e) => {
+                    if(e.target.value !== q.examReference) handleInlineUpdate(q.id, 'examReference', e.target.value);
+                  }}
+                  className="w-32 text-xs font-bold bg-amber-900/30 text-amber-400 px-2 py-1 rounded border border-amber-800 focus:outline-none focus:border-amber-500"
+                  placeholder="Ensayo de Origen"
+                  title="Referencia de Ensayo"
+                />
+
                 <span className={`text-xs font-bold px-2 py-1 rounded border ${q.level === 'Universitario' ? 'bg-indigo-900/30 text-indigo-400 border-indigo-800' : 'bg-pink-900/30 text-pink-400 border-pink-800'}`}>{q.level || 'Secundaria'}</span>
                 
                 <select 
@@ -266,10 +357,10 @@ export default function QuestionBank() {
                 <select 
                   value={q.topic} 
                   onChange={(e) => handleInlineUpdate(q.id, 'topic', e.target.value)}
-                  className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 focus:outline-none cursor-pointer hover:bg-slate-700 transition-colors max-w-[150px] truncate"
+                  className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 focus:outline-none cursor-pointer hover:bg-slate-700 transition-colors max-w-[200px] truncate"
                 >
                   <option value={q.topic}>{q.topic}</option>
-                  {(TOPICS_BY_AXIS[q.axis] || []).filter(t => t !== q.topic).map(t => (
+                  {(globalTopicsByAxis[q.axis] || []).filter(t => t !== q.topic).map(t => (
                     <option key={t} value={t}>{t}</option>
                   ))}
                   <option disabled>-----------</option>
@@ -292,25 +383,41 @@ export default function QuestionBank() {
                 )}
               </div>
               
-              <div className="mt-4 overflow-hidden rounded-xl">
+              <div className="overflow-hidden rounded-xl">
                 <PaesQuestionPreview question={q} />
               </div>
             </div>
           ))}
+          {filteredQuestions.length === 0 && (
+            <div className="text-center py-20 bg-slate-900 rounded-2xl border border-slate-800">
+              <p className="text-slate-400 mb-4">No hay preguntas que coincidan con este filtro.</p>
+            </div>
+          )}
         </div>
       )}
 
       {/* Editor Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl shadow-2xl my-8">
-            <div className="p-6 border-b border-slate-800 flex justify-between items-center sticky top-0 bg-slate-900 z-10 rounded-t-2xl">
-              <h2 className="text-xl font-bold text-white">{editingId ? 'Editar Pregunta' : 'Nueva Pregunta PAES'}</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-white"><X className="w-6 h-6" /></button>
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl relative my-8">
+            <div className="flex items-center justify-between p-6 border-b border-slate-800 sticky top-0 bg-slate-900/90 backdrop-blur-md rounded-t-2xl z-10">
+              <h2 className="text-2xl font-display font-bold text-white">{editingId ? 'Editar Pregunta' : 'Nueva Pregunta'}</h2>
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-white transition-colors bg-slate-800 p-2 rounded-full"><X className="w-5 h-5"/></button>
             </div>
 
-            <div className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="p-6 space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-slate-800/50 p-4 rounded-xl">
+                <div>
+                  <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Número</label>
+                  <input type="text" value={questionNumber} onChange={e => setQuestionNumber(e.target.value)} placeholder="Ej. 1, 2, Sin número" className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm" />
+                </div>
+                <div className="md:col-span-3">
+                  <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Ensayo de Origen</label>
+                  <input type="text" value={examReference} onChange={e => setExamReference(e.target.value)} placeholder="Ej. PAES Invierno 2026" className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Nivel</label>
                   <select 
@@ -320,7 +427,7 @@ export default function QuestionBank() {
                       setLevel(newLevel);
                       const newAxis = AXIS_BY_LEVEL[newLevel][0];
                       setAxis(newAxis);
-                      setTopic(TOPICS_BY_AXIS[newAxis][0] || '');
+                      setTopic(globalTopicsByAxis[newAxis]?.[0] || '');
                     }} 
                     className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
                   >
@@ -335,7 +442,7 @@ export default function QuestionBank() {
                     onChange={e => {
                       const newAxis = e.target.value as QuestionAxis;
                       setAxis(newAxis);
-                      setTopic(TOPICS_BY_AXIS[newAxis]?.[0] || '');
+                      setTopic(globalTopicsByAxis[newAxis]?.[0] || '');
                     }} 
                     className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
                   >
@@ -351,7 +458,7 @@ export default function QuestionBank() {
                     onChange={e => setTopic(e.target.value)} 
                     className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
                   >
-                    {(TOPICS_BY_AXIS[axis] || []).map(t => (
+                    {(globalTopicsByAxis[axis] || []).map(t => (
                       <option key={t} value={t}>{t}</option>
                     ))}
                     <option value="Otro">Otro Tema</option>
@@ -449,5 +556,4 @@ export default function QuestionBank() {
   );
 }
 
-// Missing icon imports fix: CheckCircle2, X
-import { CheckCircle2, X } from 'lucide-react';
+import { X as CloseIcon } from 'lucide-react';

@@ -22,6 +22,8 @@ export interface Question {
   axis: QuestionAxis;
   topic: string; // e.g. "Teorema de Pitágoras"
   skill: string; // e.g. "Resolver problemas"
+  examReference?: string; // e.g. "PAES Invierno 2026"
+  questionNumber?: string; // e.g. "1" or "Sin número"
   createdAt: number;
 }
 

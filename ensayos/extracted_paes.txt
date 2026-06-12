@@ -1,0 +1,1011 @@
+COMPETENCIA
+MATEMÁTICA 1
+Prueba de Acceso a la Educación Superior (PAES)
+  1. Esta prueba contiene 65 preguntas, 60 de las cuales serán consideradas para el cálculo del puntaje final de la 
+prueba. Las preguntas tienen 4 opciones de respuesta (A, B, C y D), donde solo una de ellas es correcta.
+  2. Comprueba que la forma que aparece en tu hoja de respuestas sea la misma de tu folleto . Completa todos los 
+datos solicitados, de acuerdo con las instrucciones contenidas en esa hoja, porque estos son de tu exclusiva 
+responsabilidad. Cualquier omisión o error en ellos impedirá que se entreguen tus resultados. Se te dará tiempo 
+para completar esos datos antes de comenzar la prueba.
+  3. Dispones de 2 horas y 20 minutos para responder las 65 preguntas. Este tiempo comienza después de la lectura de 
+las instrucciones, una vez contestadas las dudas y completados los datos de la hoja de respuestas.
+  4. Las respuestas a las preguntas se marcan en la hoja de respuestas que se te entregó. Marca tu respuesta en la 
+fila de celdillas que corresponda al número de la pregunta que estás contestando . Ennegrece completamente la 
+celdilla, tratando de no salirte de sus márgenes. Hazlo exclusivamente con lápiz de grafito Nº 2 o portaminas HB.
+  5. No se descuenta puntaje por respuestas erradas.
+  6. Contesta directamente en la hoja de respuestas. Puedes usar este folleto como borrador, pero deberás traspasar 
+tus respuestas a la hoja de respuestas. Ten presente que para la evaluación se considerarán exclusivamente las 
+respuestas marcadas en dicha hoja.
+  7. Cuida la hoja de respuestas. No la dobles. No la manipules innecesariamente. Escribe en ella solo los datos pedidos 
+y las respuestas. Evita borrar para no deteriorarla. Si lo haces, límpiala de los residuos de goma.
+  8. El número de serie del folleto no tiene relación  con el número del código de barra que aparece en la hoja de 
+respuestas. Por lo tanto, pueden ser iguales o distintos.
+  9. Es obligatorio devolver íntegramente este folleto y la hoja de respuestas antes de abandonar la sala.
+10. Recuerda que está prohibido  copiar, fotografiar, publicar, compartir en redes sociales y reproducir total o 
+parcialmente, por cualquier medio, las preguntas de esta prueba.
+11. Tampoco se permite el uso de teléfono celular, calculadora o cualquier otro dispositivo electrónico durante la 
+rendición de la prueba.
+12. Finalmente, anota tu número de Cédula de Identidad (o Pasaporte) en los casilleros que se encuentran en la parte 
+inferior de este folleto, lee y firma la declaración correspondiente.
+DECLARACIÓN: declaro conocer y aceptar la normativa que rige al Proceso de Admisión a las universidades chilenas y 
+soy consciente de que, en caso de colaborar con la reproducción, sustracción, almacenamiento o transmisión, total o 
+parcial, de este folleto, a través de cualquier medio, me expongo a la exclusión inmediata de este Proceso, sin perjuicio 
+de las demás acciones o sanciones legales.
+FirmaNúmero de cédula de identidad (o pasaporte)
+—
+Proceso de Admisión 2026
+FORMA 111
+---PAGE_BREAK---
+FORMA 111 – 2026
+EN ESTA PRUEBA SE CONSIDERARÁ LO SIGUIENTE:
+1. Las figuras que aparecen son solo indicativas.
+2. Los gráficos que se presentan están dibujados en un sistema de ejes
+perpendiculares, cuyo origen es el punto (0, 0).
+3. El intervalo [p, q] es el conjunto de todos los números reales mayores o
+iguales que p y menores o iguales que q; el intervalo ]p, q] es el conjunto
+de todos los números reales mayores que p y menores o iguales que q;
+el intervalo [p, q[ es el conjunto de todos los números reales mayores o
+iguales que p y menores que q; y el intervalo ]p, q[ es el conjunto de todos
+los números reales mayores que p y menores que q.
+4. Todas las funciones presentadas tendrán como dominio el conjunto de los
+números reales a menos que se indique lo contrario.
+5.
+→
+v= (a, b) es un vector que tiene su punto de inicio en el origen del plano
+cartesiano y su punto final en el punto (a, b), a menos que se indique lo
+contrario.
+6. Se entenderá por dado común a aquel que posee 6 caras numeradas del 1
+al 6 y en el experimento de lanzarlo, sus caras son equiprobables de salir.
+7. En el experimento de lanzar una moneda, sus dos opciones son
+equiprobables de salir, a menos que se indique lo contrario.
+SÍMBOLOS MATEMÁTICOS
+< es menor que
+> es mayor que
+≤ es menor o igual que
+≥ es mayor o igual que
+ángulo recto
+∼ es semejante con
+̸= es distinto de
+AB trazo AB
+AB medida del trazo AB
+Registro de Propiedad Intelectual Nº 2025 - A - 2573
+Universidad de Chile.
+Derechos reservados ©. Prohibida su reproducción total o parcial.
+- 2 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+1. ¿Cuál es el valor de 1 − (−3)(−2 − 6)?
+A) −32
+B) −23
+C) −16
+D) −4
+2. Consuelo y dos amigas comieron en un restaurante. A continuación se presenta la
+boleta de todo lo consumido por las tres amigas.
+Acordaron que cada una de ellas pagará lo que consumió y, además, la promoción
+de sopaipillas la dividirán en tres partes iguales y cada una pagará una de esas tres
+partes.
+Si Consuelo consumió un sándwich y una bebida, ¿cuánto tiene que pagar?
+A) $8900
+B) $9000
+C) $12 000
+D) $22 200
+- 3 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+3. Para representar una fracción se pueden utilizar gráficos circulares.
+Por ejemplo, en la siguiente imagen se han representado los números
+5
+6
+y 1 1
+6
+.
+¿En cuál de las siguientes opciones se representa el resultado de 3 ·
+1
+6 + 3
+2 · 4
+6
+
+?
+A)
+B)
+C)
+D)
+- 4 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+4. Para calcular el valor de la expresión
+−2(4 · 5) − (30 − 2 · 3)
+12
+, se realizan los
+siguientes pasos, cometiéndose un error.
+Paso 1: se reescribe −2(4 · 5) como (−8) · (−10), obteniéndose
+(−8) · (−10) − (30 − 2 · 3)
+12 .
+Paso 2: se resuelve (30 − 2 · 3), obteniéndose
+(−8) · (−10) − 24
+12
+.
+Paso 3: se resuelve el numerador, obteniéndose
+56
+12
+.
+Paso 4: se simplifica la fracción del paso anterior, obteniéndose
+14
+3
+.
+¿En cuál de los pasos se cometió el error?
+A) En el Paso 1
+B) En el Paso 2
+C) En el Paso 3
+D) En el Paso 4
+- 5 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+5. En el gráfico adjunto se representa la percepción ciudadana en relación con los
+atributos de un candidato. Esta percepción se presenta en un puntaje que va de
+−20 a 20 puntos.
+¿Cuál de los atributos presentó una mayor variación en su puntaje según la
+percepción ciudadana, entre agosto y noviembre?
+A) Liderazgo
+B) Cercanía
+C) Honestidad
+D) Capacidad de diálogo
+- 6 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+6. En un juego, en cada partida un jugador debe responder 10 preguntas de cultura
+general y tiene la opción de no contestar en 4 oportunidades.
+• Cuando el jugador da una respuesta correcta gana una ficha blanca que vale
+1 punto,
+• y cuando da una respuesta incorrecta gana una ficha negra que vale −1 punto.
+Luego de tres partidas completas, una persona que jugó este juego, quedó con las
+siguientes fichas:
+¿Cuál de las siguientes expresiones representa el puntaje final de este jugador luego
+de estas tres partidas?
+A) (5 · 1 − (5 · −1)) + (5 · 1 − (4 · −1)) + (4 · 1 − (2 · −1))
+B) (5 · 1 + 5 · −1) + (5 · 1 + 4 · −1) + (4 · 1 + 2 · −1)
+C) (5 · −1 + 5 · 1) + (5 · −1 + 4 · 1) + (4 · −1 + 2 · 1)
+D) (5 · 1 + 5 · 1) + (5 · 1 + 4 · 1) + (4 · 1 + 2 · 1)
+- 7 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+7. Una persona tiene una caja con 12 huevos y realiza lo siguiente:
+• aparta
+1
+3
+y
+1
+6
+del total de los huevos de la caja para la preparación de una tortilla
+y huevos revueltos, respectivamente,
+• utiliza la mitad de los huevos restantes para preparar un queque y
+• al guardar la caja se le rompe un huevo y lo elimina.
+¿Cuántos huevos le quedan a la persona en la caja para ser utilizados en otra
+preparación?
+A)
+B)
+C)
+D)
+- 8 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+8. Se prepararán 200 copas de un cóctel para un evento, utilizando bebida gaseosa y
+jugo de limón. Cada copa del cóctel y sus medidas se representan en la siguiente
+imagen:
+Si se considera que 1 onza es 30 mL, ¿cuántos mL de jugo de limón se necesitarán
+para preparar las copas del cóctel?
+A) 300 mL
+B) 7500 mL
+C) 9000 mL
+D) 21 000 mL
+- 9 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+9. La masa molar de un compuesto químico se calcula sumando las masas molares de
+todos los átomos que lo conforman.
+Considera el compuesto denominado ácido sulfúrico y la información que se presenta
+a continuación:
+Ácido sulfúrico
+H2SO4
+2 átomos de
+hidrógeno 1 átomo de
+azufre
+4 átomos de
+oxígeno
+Átomo Masa molar
+ g
+mol
+
+H 1
+S 32
+O 16
+¿Cuál de las siguientes expresiones representa la masa molar del ácido sulfúrico?
+A) (1 + 32 + 16) g
+mol
+B) (2 + 4) · (32 + 16) g
+mol
+C) (2 · 1 + 1 · 32 + 4 · 16) g
+mol
+D) (1 + 2 + 4) · (1 + 32 + 16) g
+mol
+- 10 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+10. Considera una hoja de papel de 20 cm de ancho y 30 cm de largo. Esta hoja se
+dobla sucesivamente por la mitad del lado más largo, formando en cada doblez un
+rectángulo, como se representa en la figura.
+¿Cuántos dobleces se le deben hacer a la hoja de papel para conseguir un rectángulo
+de 2,5 cm de ancho y 3,75 cm de largo?
+A) 3
+B) 4
+C) 5
+D) 6
+- 11 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+11. ¿Cuál de las siguientes afirmaciones permite justificar que 5 es el 25 % de 20?
+A) Que 20 + 5 = 25 .
+B) Que 5, 20 y 25 son múltiplos de 5.
+C) Que 5 es divisor de 20.
+D) Que 5 es la cuarta parte de 20.
+12. El círculo de la figura adjunta está dividido en nueve partes iguales y algunas de estas
+se pintaron de color gris.
+¿Qué porcentaje de la figura se pintó de color gris?
+A) 11,1 %
+B) 12,5 %
+C) 80 %
+D) 88,8 %
+- 12 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+13. Existen estándares para las medidas de las casillas de un tablero de ajedrez y sus
+piezas. Uno de estos es la relación entre la base circular de la pieza llamada rey y el
+tamaño de las casillas. El diámetro de la base debe medir entre un 75 % y un 80 %
+del lado de la casilla.
+El tablero y la pieza del rey se representa en la siguiente figura:
+Si en un tablero de ajedrez las casillas tienen de lado 5 cm y se quieren seguir los
+estándares, ¿cuánto debe medir el diámetro de la base del rey?
+A) Entre 15 cm y 16 cm
+B) Entre 4,2 cm y 4,25 cm
+C) Entre 3,75 cm y 4 cm
+D) Entre 1,875 cm y 2 cm
+- 13 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+14. Una cafetería ofrece la siguiente promoción:
+Un grupo de cinco personas asiste a la cafetería a comprar esta promoción y desean
+dividir el total a pagar en partes iguales.
+¿Qué porcentaje de descuento obtuvo cada persona al pagar por su café?
+A) 4 %
+B) 5 %
+C) 20 %
+D) 25 %
+15. En una elección, el 45 % de los electores no votó y el candidato ganador obtuvo
+6 de cada 10 votos.
+¿Qué porcentaje de los electores votó por el candidato ganador?
+A) 2,7 %
+B) 3,3 %
+C) 27 %
+D) 33 %
+- 14 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+16. En el gráfico circular adjunto se presenta la cantidad de personas que han
+seleccionado cada alternativa de una pregunta en un test de personalidad.
+Considerando que todas las personas marcaron solo una alternativa, ¿cuál de las
+siguientes afirmaciones es verdadera, en relación con los datos del gráfico?
+A) Más del 50 % de las personas marcó las alternativas C o D.
+B) Exactamente un 25 % de las personas marcó la alternativa C.
+C) Exactamente un 4 % de las personas marcó la alternativa B.
+D) Menos del 25 % de las personas marcó las alternativas B o C.
+- 15 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+17. Una persona tiene un emprendimiento de bizcochuelos. Para prepararlos compra
+5 cajas de huevos, tal que cada caja contiene 6 bandejas y cada bandeja tiene
+30 huevos.
+Producto de la mala manipulación de las cajas se quebraron el 1 % de los huevos
+comprados, los cuales no se utilizarán en la preparación de bizcochuelos.
+Si para cada bizcochuelo la persona ocupa6 huevos, ¿cuántos de estos bizcochuelos
+puede preparar con los huevos que le quedaron?
+A) 150
+B) 149
+C) 148
+D) 135
+18. Se comienza un cultivo con 100 bacterias que duplican su cantidad cada hora.
+¿Cuántas bacterias habrá en el cultivo en 24 h?
+A) 20025
+B) 20024
+C) 100 · 224
+D) 100 · 225
+- 16 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+19. ¿Cuál es el valor de 2 · 2
+√
+5?
+A) 2
+√
+10
+B) 4
+√
+5
+C) 10
+D) 4
+√
+10
+20. ¿Cuál es el valor de
+23 · 34
+2 · 9
+?
+A) 36
+B) 72
+C) 625
+D) 1296
+- 17 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+21. ¿Cuál es el valor de (−2)6?
+A) −64
+B) −12
+C) 12
+D) 64
+22. La diagonal de un prisma recto de base rectangular se calcula como
+√
+a2 + b2 + c2,
+con a, b y c las medidas de sus aristas.
+Considera que la diagonal de un prisma recto de base rectangular mide
+√
+83 cm y
+que dos de sus aristas miden 3 cm y 5 cm.
+¿Cuánto mide la arista faltante?
+A) 4 cm
+B) 7 cm
+C) 19 cm
+D) 49 cm
+- 18 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+23. Se representará la expresión (4 · 125)3 como producto de potencias de base 2 y 5,
+para lo cual se realiza el siguiente procedimiento, cometiéndose un error.
+Paso 1: se reescriben los factores de la base, obteniéndose
+ 
+22 · 533
+.
+Paso 2: se aplica la propiedad de la multiplicación de potencias con igual exponente,
+obteniéndose
+ 
+223
+·
+ 
+533
+.
+Paso 3: se aplica la propiedad de la potencia de una potencia, obteniéndose
+2(2 + 3) · 5(3 + 3).
+Paso 4: se resuelve la suma de los exponentes, obteniéndose 25 · 56.
+¿En cuál de los pasos se cometió el error?
+A) En el Paso 1
+B) En el Paso 2
+C) En el Paso 3
+D) En el Paso 4
+- 19 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+24. En el año 2020, la capacidad mundial de almacenamiento alcanzó los6,7 zettabytes.
+De acuerdo con algunas estimaciones, la capacidad mundial de almacenamiento,
+en zettabytes, aumentará a un ritmo del20 % anualmente entre los años 2020 y 2025.
+Dada esta información, la capacidad mundial de almacenamiento, en zettabytes en
+el año 2025 se puede proyectar por el modelo 6,7 · (1,2)N.
+¿Qué representa el parámetro N en este modelo?
+A) Al cociente entre 2025 y 2020.
+B) La diferencia entre 2025 y 2020.
+C) La capacidad en que aumentó el almacenamiento entre 2020 y 2025.
+D) La capacidad en que aumentó el almacenamiento entre 2020 y 2021.
+25. Si la edad actual de Pedro esm años, ¿cuál de las siguientes expresiones representa
+la expresión “la edad de Pedro hacen años disminuida en 3 años”?
+A)
+m − n
+3
+B) m − n − 3
+C) m − (n − 3)
+D) (m + n) − 3
+- 20 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+26. En los meses de menor demanda, el metro traslada aproximadamente
+2 600 000 personas cada día, recibiendo un total de $2 000 000 000 diarios
+por concepto de pasaje.
+En los meses de mayor demanda, el metro traslada diariamente 100 000 personas
+más que en los meses de menor demanda.
+Si el precio del pasaje es igual todo el año, ¿cuánto dinero recibe diariamente el
+metro en los meses de mayor demanda, en pesos?
+A)
+2 000 100 000
+2 600 000
+B)
+2 700 000
+2 600 000 · 2 000 000 000
+C)
+2 000 000 000
+2 600 000 + 100 000
+D) 2 600 000 · 2 000 000 000 + 100 000
+27. ¿Cuál de las siguientes expresiones es igual a (2x − 3)2 − (2x − 3)(2x + 3)?
+A) 18
+B) 0
+C) −6x + 18
+D) −12x + 18
+- 21 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+28. En la siguiente imagen se presentan las instrucciones para preparar un cereal
+instantáneo para bebé que viene con una cuchara de capacidad 5 gramos.
+Se quiere preparar este cereal instantáneo usando solo 120 mL de leche tibia.
+Si se mantienen las proporciones de las instrucciones, ¿cuántas cucharadas se
+deben agregar a la leche?
+A) 3
+B) 4
+C) 6
+D) 9
+- 22 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+29. En un estacionamiento se cobra de manera proporcional al tiempo en que un vehículo
+se encuentra estacionado. Algunos valores se presentan en la tabla adjunta.
+Tiempo en minutos Precio en pesos
+1 12
+2 24
+3 36
+4 48
+¿Cuál de las siguientes expresiones representa el precio por pagar, en pesos, de un
+vehículo que está estacionado x minutos?
+A) 12x
+B)
+12
+x
+C) x + 11
+D) x + 12
+30. Javier y David compraron una bolsa de 24 dulces a un precio total de $2100, tal que
+Javier aportó $1400 y David aportó el resto del dinero.
+Ellos deciden vender cada dulce a $200 y repartirse el dinero obtenido de forma
+proporcional a lo que aportó cada uno en la compra.
+¿Cuánto dinero recibirá Javier luego de vender todos los dulces?
+A) $1600
+B) $2400
+C) $2700
+D) $3200
+- 23 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+31. Para juntar dinero para un viaje, Pedro ahorró durante solo 8 semanas el dinero
+que su abuela le daba semanalmente, el cual siempre era el mismo monto. Luego,
+en los dos meses siguientes, recibió una mesada de $10 000 cada mes y trabajó
+6 sábados, en los que ganó $15 000 diarios.
+Si Pedro logró juntar en total $210 000 para el viaje, ¿cuánto dinero le dio la abuela
+semanalmente?
+A) $12 500
+B) $15 000
+C) $23 125
+D) $26 250
+- 24 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+32. La solución de una inecuación se representa en el intervalo de la figura adjunta.
+¿Cuál de los siguientes intervalos representa este gráfico?
+A) [1, 3]
+B) ]1, 3[
+C) [1, 3[
+D) ]1, 3]
+33. La dosis de un medicamento solo es efectiva si se suministran como mínimo 25 mg
+por kilogramo una vez al día, pero la dosis diaria no puede ser mayor que 2000 mg.
+¿Cuántos kilogramos, como máximo, debe tener un paciente para que este
+medicamento sea efectivo y no supere la dosis diaria?
+A) 25 kg
+B) 55 kg
+C) 80 kg
+D) 105 kg
+- 25 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+34. El índice HOMA-IR es un modelo que sirve para evaluar la resistencia a la insulina y se
+mide utilizando la insulinemia y la glucemia, ambas medidas en ayunas, de acuerdo
+con la siguiente igualdad:
+HOMA-IR =
+insulinemia
+ µU
+mL
+
+· glucemia
+mmol
+L
+
+22,5
+En la siguiente tabla se presenta la interpretación de los distintos valores del índice
+HOMA-IR:
+Valores Interpretación
+Inferiores a 1,96 Sin resistencia a la insulina
+Entre 1,96 a 3 Sospecha de resistencia a la insulina
+Superiores que 3 Resistencia a la insulina
+Si una persona tiene una glucemia de 5,6 mmol
+L
+, ¿cuál de las siguientes
+desigualdades representa la condición que debe tener su insulinemia (x), medida
+en
+µU
+mL
+, para que la interpretación de su índice HOMA-IR sea sin resistencia a la
+insulina?
+A) x < 1,96 · 22,5
+5,6
+B) x < 1,96 · 5,6
+22,5
+C) x > 1,96 · 22,5
+5,6
+D) x > 1,96 · 5,6
+22,5
+- 26 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+35. Una persona compró una camisa y un pantalón, pagando en total $50 000.
+La camisa costó un 30 % del total pagado, mientras que el pantalón tenía ya un
+descuento de un 20 % sobre su precio original.
+En el siguiente sistema de ecuaciones se modela la situación anterior:
+A
+50 000 = 30
+100
+B · 80
+100 + A = 50 000
+¿Qué representa B en el sistema de ecuaciones?
+A) El precio original del pantalón
+B) El precio final del pantalón
+C) La suma del precio original de ambas prendas
+D) La suma del precio final de ambas prendas
+- 27 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+36. Una empresa dedicada a la venta de poleras ofrece a sus clientes dos opciones de
+diseño: personalizado o de catálogo.
+El precio por polera con diseño personalizado es $8500 y con diseño de catálogo
+es $7500. Adicionalmente, se hace un cobro por envío a domicilio de $2500.
+En un día de trabajo se vendió un total de 18 poleras en diez envíos y se recaudó
+$146 000 solo por las poleras.
+La persona encargada de verificar las ventas debe determinar la cantidad de poleras
+con diseño personalizado que se vendieron. Para calcular, realiza el siguiente
+procedimiento, cometiendo un error.
+Paso 1: representa con la letra x la cantidad de poleras con diseño personalizado
+y con la letra y la cantidad de poleras con diseño de catálogo. Luego,
+establece el sistema
+x + y = 18
+8500x + 7500y = 146 000 + 25 000
+Paso 2: despeja la variable y de la primera ecuación, obteniendo y = 18 − x.
+Paso 3: reemplaza y en la segunda ecuación, obteniendo
+8500x − 7500x = 146 000 + 25 000 − 7500 · 18.
+Paso 4: resuelve la igualdad anterior y determina que la cantidad de poleras con
+diseño personalizado es 36.
+¿En cuál de los pasos la persona cometió el error?
+A) En el Paso 1
+B) En el Paso 2
+C) En el Paso 3
+D) En el Paso 4
+- 28 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+37. Considera la función g definida por g(x) = 8x − 5, con dominio el conjunto de los
+números reales.
+Si g(x) = 35 , ¿cuál es el valor de x?
+A)
+15
+4
+B) 5
+C) 240
+D) 275
+- 29 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+38. Para pintar las líneas blancas de una carretera se utilizaron máquinas idénticas que
+pintan una misma cantidad de kilómetros de la línea cada hora. El trabajo se realizó
+en 6 horas, las primeras 4 horas trabajó solo una máquina, pero durante las 2 horas
+siguientes trabajaron dos máquinas en forma simultánea.
+¿Cuál de los siguientes gráficos representa mejor la relación entre el tiempo en que
+trabajaron las máquinas y la cantidad de kilómetros de la línea pintada?
+A)
+ B)
+C)
+ D)
+- 30 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+39. En una imprenta ofrecen un servicio de empastado para tesis universitarias, cobrando
+un valor de $115 por página, más una tarifa fija de $27 000 por el servicio.
+¿Cuál de las siguientes funciones modela el precio, en pesos, que debe pagar una
+persona por empastar su tesis de x páginas?
+A) f(x) = 115x
+B) g(x) = 115x + 27 000
+C) h(x) = (115 + 27 000)x
+D) k(x) = 115 + 27 000x
+- 31 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+40. La distancia de reacción es la distancia recorrida por un vehículo desde que el
+conductor se percata de un obstáculo hasta que comienza a pisar el pedal de freno.
+La distancia de reacción f y la rapidez del vehículo se relacionan mediante una
+función de la forma f(x) = ax , con a constante.
+En la siguiente tabla se presentan algunos ejemplos:
+Rapidez del vehículo Distancia de reacción
+110 km
+h 33 m
+70 km
+h 21 m
+¿Cuál es la distancia de reacción de un vehículo que tiene una rapidez de 30 km
+h
+?
+A) 15 m
+B) 10 m
+C) 9 m
+D) 1 m
+- 32 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+41. En el año 2021 se produjeron 57,4 millones de toneladas de basura tecnológica y en
+el año 2022 se produjeron 59,4 millones.
+Si se considera que el aumento de producción de basura tecnológica será el mismo
+cada año, ¿cuántos millones de toneladas de basura tecnológica se producirían en
+el año 2030?
+A) 77,4
+B) 75,4
+C) 73,4
+D) 71,4
+42. La empresa CIELOS construye diferentes tipos de casas en terrenos rectangulares
+de distintas áreas, cumpliéndose siempre que el largo de cada terreno mida5 m más
+que su ancho.
+Si el área de uno de los terrenos es 104 m2, ¿cuál es el perímetro del terreno?
+A) 62 m
+B) 42 m
+C) 31 m
+D) 21 m
+- 33 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+43. La siguiente gráfica de una función cuadrática representa la altura que alcanza un
+chorro de agua en términos de la distancia horizontal recorrida desde el punto en que
+emerge el chorro.
+¿Cuál de las siguientes afirmaciones es verdadera respecto al gráfico?
+A) La distancia horizontal máxima recorrida por el chorro de agua es 25 cm .
+B) La altura máxima alcanzada por el chorro de agua es 60 cm .
+C) La altura alcanzada por el chorro de agua, luego de recorrer 10 cm horizontales
+es igual a la altura alcanzada a los 50 cm .
+D) La altura máxima del chorro de agua se alcanza cuando este ha recorrido 60 cm
+horizontalmente.
+44. Una malla rectangular está formada por cuadrados de lado 2 cm. La malla tiene
+100 cuadrados de alto y 200 cuadrados de largo.
+¿Cuál es el perímetro de la malla?
+A) 600 cm
+B) 1200 cm
+C) 40 000 cm
+D) 160 000 cm
+- 34 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+45. El área de la siguiente figura, formada por 10 cuadrados congruentes entre sí, es
+160 cm2.
+Se realiza el siguiente procedimiento para determinar el perímetro de la figura,
+cometiéndose un error.
+Paso 1: se determina el área de cada cuadrado dividiendo el área total por la
+cantidad de cuadrados, obteniéndose 16 cm2.
+Paso 2: se determina la medida del lado de un cuadrado calculando la raíz cuadrada
+de la medida de su área, obteniéndose 4 cm.
+Paso 3: se determina que el perímetro es la suma de la medida de todos los lados de
+los cuadrados que conforman la figura, concluyéndose que se debe sumar
+la medida de 29 lados.
+Paso 4: se calcula el perímetro multiplicando 29 · 4, obteniéndose 116 cm.
+¿En cuál de los pasos se cometió el error?
+A) En el Paso 1
+B) En el Paso 2
+C) En el Paso 3
+D) En el Paso 4
+- 35 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+46. Una persona debe confeccionar una repisa con dos tensores, tal como se representan
+en la imagen.
+Si la persona quiere calcular la medida que debe tener cada uno de los tensores,
+en centímetros, ¿cuál de las siguientes expresiones debe utilizar?
+A)
+√
+2002 − 1502
+B) 2002 − 1502
+C)
+√
+2002 + 1502
+D) 2002 + 1502
+- 36 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+47. Un carpintero restaurará el siguiente mueble con forma de prisma recto de base
+rectangular.
+Para la restauración, debe pintar el exterior de la estructura, sin incluir la base inferior.
+¿Cuál es la medida de la superficie por pintar?
+A) 24 800 cm 2
+B) 28 000 cm 2
+C) 46 400 cm 2
+D) 49 600 cm 2
+- 37 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+48. Considera la siguiente técnica para hacer figuras con una hoja de papel:
+• Se dobla la hoja de papel a la mitad.
+• Se marca la mitad de la figura, se recorta y por último se desdobla el papel.
+¿Cuál de las siguientes figuras se puede hacer utilizando esta técnica?
+A)
+B)
+C)
+D)
+- 38 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+49. Un barco que inicia un recorrido realiza los siguientes movimientos:
+5 kilómetros al oeste
+4 kilómetros al norte
+3 kilómetros al este
+9 kilómetros al sur
+6 kilómetros al oeste
+¿Cuál es la ubicación final del barco con respecto a su ubicación inicial?
+A) 8 kilómetros al oeste y 5 kilómetros al sur
+B) 14 kilómetros al oeste y 13 kilómetros al norte
+C) 8 kilómetros al este y 5 kilómetros al norte
+D) 14 kilómetros al este y 13 kilómetros al sur
+- 39 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+50. Helena creó una obra de arte moderno. Realizó un dibujo sobre el cuadrado ABCD,
+como se presenta en la siguiente figura, donde O es el centro del cuadrado:
+Creó otras tres figuras distintas y las unió, donde la primera es obtenida por una
+reflexión con respecto al lado BC, la segunda por una reflexión con respecto al
+punto O, y la tercera por una rotación en torno al punto O, en 90◦, en sentido
+antihorario.
+Si la primera figura la posicionó a la izquierda, la segunda al centro y la tercera a la
+derecha, ¿cuál de las siguientes figuras muestra la obra de arte de Helena?
+A)
+B)
+C)
+D)
+- 40 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+51. Considera la siguiente figura:
+¿Cuáles son las coordenadas del vector de traslación?
+A) (−12, 6)
+B) (−12, −6)
+C) (12, 6)
+D) (12, −6)
+- 41 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+52. A una figura se le aplica una reflexión y luego una traslación. La imagen del vértice
+(x, y) es (x + 2, 6 − y).
+A otra figura se le aplican las mismas transformaciones isométricas y en el mismo
+orden.
+Si (−1, −2) es un vértice de la figura, ¿cuáles son las coordenadas de la imagen de
+este vértice?
+A) (1, 8)
+B) (1, −8)
+C) (−1, −8)
+D) (−1, 8)
+- 42 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+53. En la siguiente tabla se resume la distribución de los puntajes de una prueba en un
+curso.
+Puntaje Frecuencia
+1 2
+2 4
+3 4
+4 5
+5 7
+6 3
+7 5
+¿Cuál es el total de estudiantes del curso que rindió la prueba?
+A) 7
+B) 21
+C) 30
+D) 63
+- 43 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+54. En el siguiente gráfico se representan las cantidades de celulares vendidos
+diariamente en una tienda, por cuatro personas de esta área, durante una semana
+de trabajo.
+La meta propuesta por la tienda es que cada persona logre vender al menos
+5 celulares en un día de trabajo.
+¿Cuál es la persona que cumplió la meta más veces durante la semana de trabajo?
+A) Gonzalo
+B) Camilo
+C) Antonia
+D) Fabiola
+- 44 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+55. Los artículos de una tienda de jardinería están clasificados en cinco categorías:
+flores, árboles, semillas, tierra y arbustos.
+La cantidad de artículos vendidos en cierta semana se presenta en el siguiente
+gráfico:
+¿Cuál fue el total de artículos vendidos?
+A) 500
+B) 340
+C) 300
+D) 200
+- 45 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+56. En las tablas adjuntas se presenta la cantidad de estudiantes que poseen “baja” y
+“no baja” asistencia en los distintos niveles de un colegio, durante un semestre.
+Primeros medios Segundos medios
+Asistencia Frecuencia Asistencia Frecuencia
+Baja 20 Baja 25
+No baja 60 No baja 100
+Terceros medios Cuartos medios
+Asistencia Frecuencia Asistencia Frecuencia
+Baja 20 Baja 25
+No baja 100 No baja 150
+En el colegio se elegirá el nivel que tenga mayor porcentaje de sus estudiantes con
+“baja” asistencia para ser el primero al que se le realizará un seguimiento.
+¿Con cuál de los niveles se comenzará?
+A) Con los primeros medios
+B) Con los segundos medios
+C) Con los terceros medios
+D) Con los cuartos medios
+- 46 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+57. En los siguientes gráficos se presenta el porcentaje de alimentos orgánicos a la venta
+durante tres años en dos supermercados.
+Los gráficos presentan un aspecto en su construcción que dificulta la comparación
+de los porcentajes de venta de alimentos orgánicos entre los supermercados.
+¿Cuál de los siguientes argumentos justifica esta afirmación?
+A) Que los gráficos están graduados en distintas escalas.
+B) Que los porcentajes están escritos sobre las barras a distintas alturas.
+C) Que los porcentajes de ambos supermercados aumentaron en el tiempo.
+D) Que las barras se encuentran juntas, una a continuación de otra.
+- 47 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+58. En el mundial de fútbol del 2022 participaron 32 países. La edad promedio de los
+futbolistas fue de 26,95 años.
+En el siguiente gráfico se presenta la distribución de las edades de los futbolistas de
+cuatro países que participaron en el mundial.
+¿Cuál de estos cuatro países tiene el mayor promedio de edad?
+A) Irán
+B) España
+C) EE.UU.
+D) Ghana
+- 48 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+59. En la tabla adjunta se presentan los milímetros de precipitaciones en cada mes en
+cierta ciudad de Chile.
+Mes ene feb mar abr may jun jul ago sep oct nov dic
+Precipitaciones
+(mm)
+0 1 2 13 42 54 47 36 16 7 2 1
+¿Cuál es el promedio de precipitaciones de junio, julio, agosto y septiembre?
+A) 20,09 mm
+B) 38,25 mm
+C) 41,50 mm
+D) 76,50 mm
+- 49 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+60. La distribución de seguidores, en redes sociales de internet, que tiene un grupo de
+estudiantes de cuarto año medio está representada en el diagrama de cajón adjunto.
+¿Cuál de las siguientes afirmaciones se puede deducir a partir de este diagrama?
+A) El promedio de la cantidad de seguidores en el grupo de estudiantes es de 270.
+B) La mitad de estudiantes del grupo tiene 270 seguidores.
+C) Hay 60 estudiantes en el grupo que tienen entre 80 y 140 seguidores.
+D) Al menos un 25 % de los estudiantes del grupo tiene desde 140 hasta
+270 seguidores.
+- 50 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+61. Considera el siguiente grupo de datos: 18, 19, 20, 21, 21, 27, 30, 30, 31, 34 y 35.
+¿Cuál de los siguientes diagramas de cajón representa a este grupo de datos?
+A)
+B)
+C)
+D)
+- 51 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+62. En la tabla adjunta se presentan los resultados de una encuesta realizada a un grupo
+de estudiantes sobre el área de preferencia para realizar sus estudios superiores.
+Área de preferencia Hombre Mujer
+Científica 7 10
+Humanista 4 6
+Matemática 8 9
+Artística 3 5
+Si se selecciona al azar a una persona del grupo de estudiantes, ¿cuál es la
+probabilidad de que sea mujer y que escoja el área artística?
+A)
+5
+52
+B)
+1
+5
+C)
+5
+8
+D)
+5
+30
+- 52 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+63. Un grupo de personas está jugando a un juego que consiste en:
+• escoger un número entre el 2 y el 12, ambos valores incluidos,
+• después debe lanzar dos dados comunes y calcular la suma de los puntos en
+los dados.
+Si la suma obtenida coincide con el número escogido, entonces se obtiene un punto.
+Finalmente, gana el juego la persona que primero consiga 20 puntos.
+¿Cuál de los siguientes números debería escoger una persona para tener mayor
+probabilidad de ganar el juego?
+A) 12
+B) 10
+C) 7
+D) 6
+- 53 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+64. En la siguiente tabla se presenta la probabilidad de obtener cada cara de un dado
+cargado al lanzarlo.
+Número de la cara Probabilidad
+1 0,2
+2 0,1
+3 0,1
+4 0,1
+5 0,4
+6 0,1
+¿Cuál de las siguientes afirmaciones es verdadera con respecto a la información
+entregada?
+A) La probabilidad de obtener un 1 o un 2 al lanzar este dado es la misma que se
+obtiene al lanzar un dado común.
+B) La probabilidad de obtener un 6 al lanzar este dado es la misma que se obtiene
+al lanzar un dado común.
+C) La probabilidad de obtener un número mayor que 4 al lanzar este dado es 0,5 .
+D) La probabilidad de obtener un número par al lanzar este dado es 0,1 .
+- 54 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+65. Un juego de azar consiste en lanzar tres monedas simultáneamente. El puntaje
+obtenido por un jugador está dado por la expresiónc − 2s, tal que c y s corresponden
+a la cantidad de caras y de sellos, respectivamente, obtenidos en el lanzamiento.
+¿Cuál es la probabilidad de que un jugador obtenga un puntaje negativo en un
+lanzamiento?
+A)
+1
+8
+B)
+1
+4
+C)
+3
+8
+D)
+1
+2
+- 55 -
+---PAGE_BREAK---
+FORMA 111 – 2026
+               Listado de referencias bibliográficas 
+Pregunta Cita bibliográfica
+34 Fonasa.(2022). Cuenta pública 2022. Fondo Nacional de Salud (FONASA).
+https//www.fonasa.cl/sities/fonasa/adjuntos/CUENTAPUBLICA2022c
+- 56 -
+---PAGE_BREAK---
+IMPORTANTE
+Proceso de Admisión 2026
+■	 Este folleto está protegido bajo Registro de Propiedad Intelectual de la 
+Universidad de Chile.
+■	 Está prohibida la reproducción, transmisión total o parcial de este folleto, 
+por cualquier medio o método.
+■	 Es obligatorio devolver íntegramente este folleto antes de abandonar la 
+sala.
+■	 Es obligatorio devolver la hoja de respuestas antes de abandonar la sala.
+---PAGE_BREAK---
