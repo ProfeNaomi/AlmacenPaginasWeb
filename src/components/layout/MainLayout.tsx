@@ -17,7 +17,8 @@ import {
   Database,
   PenTool,
   Map,
-  Gamepad2
+  Gamepad2,
+  LayoutTemplate
 } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
