@@ -18,7 +18,10 @@ body {
 
 @media print {
   @page {
-    margin: 1.5cm; /* Restaura el margen para que las páginas 2 en adelante no queden pegadas al borde superior */
+    margin-top: 2cm;
+    margin-bottom: 2cm;
+    margin-left: 1.5cm;
+    margin-right: 1.5cm;
   }
 
   aside, header {
@@ -30,12 +33,14 @@ body {
     max-width: 100% !important;
   }
   
-  /* Forzar modo claro en TODO para evadir Dark Reader o fondos oscuros */
+  /* Forzar modo claro en TODO para evadir Dark Reader o fondos oscuros y ocultar scrollbars */
   * {
     background-color: transparent !important;
     color: black !important;
     box-shadow: none !important;
     text-shadow: none !important;
+    overflow: visible !important;
+    max-height: none !important;
   }
 
   body, html, #root, .min-h-screen {
