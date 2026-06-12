@@ -289,7 +289,7 @@ export default function ExamBuilder() {
                 <p className="text-sm text-slate-400 mb-6">Selecciona las categorías para limitar los contenidos de la evaluación.</p>
                 
                 <div className="space-y-4">
-                  {Object.entries(globalTopicsByAxis).map(([axis, topics]) => {
+                  {(Object.entries(globalTopicsByAxis) as [string, string[]][]).map(([axis, topics]) => {
                     if (topics.length === 0) return null;
                     const topicsInAxis = globalTopicsByAxis[axis] || [];
                     const selectedCount = topicsInAxis.filter(t => autoSelectedTopics.has(t)).length;
@@ -392,7 +392,7 @@ export default function ExamBuilder() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {Object.entries(groupedQuestions).sort().map(([groupName, groupQs]) => {
+                    {(Object.entries(groupedQuestions) as [string, Question[]][]).sort().map(([groupName, groupQs]) => {
                       const selectedInGroup = groupQs.filter(q => selectedQuestions.includes(q.id)).length;
                       if (selectedInGroup === 0 && !expandedGroups.includes(groupName)) {
                         // Collapse groups with no selections by default to save space

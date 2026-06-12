@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Plus, Search, Filter, Bot, Save, Trash2, Image as ImageIcon, Loader2, UploadCloud } from 'lucide-react';
+import { Plus, Filter, Bot, Save, Trash2, Image as ImageIcon, Loader2, UploadCloud, X, ChevronDown, ChevronRight, Folder } from 'lucide-react';
 import { Question, getQuestions, createQuestion, updateQuestion, deleteQuestion, QuestionAxis, QuestionSource, QuestionLevel } from '../../lib/paes';
 import { generateMathSolution, hasAIConfigured } from '../../lib/ai';
 import RichTextEditor from '../../components/ui/RichTextEditor';
@@ -24,8 +24,9 @@ export default function QuestionBank() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // Filter state
+  // Filter & Folders
   const [examFilter, setExamFilter] = useState<string>('Todos');
+  const [expandedFolders, setExpandedFolders] = useState<string[]>([]);
   
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -88,6 +89,23 @@ export default function QuestionBank() {
     return filtered;
   }, [questions, examFilter]);
 
+  // Group by ExamReference for Folders
+  const questionsByExam = React.useMemo(() => {
+    const grouped: Record<string, Question[]> = {};
+    filteredQuestions.forEach(q => {
+      const ref = q.examReference || 'Preguntas Sueltas (Sin Ensayo)';
+      if (!grouped[ref]) grouped[ref] = [];
+      grouped[ref].push(q);
+    });
+    return grouped;
+  }, [filteredQuestions]);
+
+  const toggleFolder = (folder: string) => {
+    setExpandedFolders(prev => 
+      prev.includes(folder) ? prev.filter(f => f !== folder) : [...prev, folder]
+    );
+  };
+
   const handleImportBatch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -99,7 +117,7 @@ export default function QuestionBank() {
         const data = JSON.parse(content);
         
         if (Array.isArray(data)) {
-          const examRefPrompt = prompt("¿A qué ensayo pertenecen estas preguntas? (Ej. 'PAES Invierno 2026' o déjalo en blanco)");
+          const examRefPrompt = prompt("¿A qué ensayo pertenecen estas preguntas? (Ej. 'PAES Invierno 2026' o déjalo en blanco para preguntas sueltas)");
           const batchExamRef = examRefPrompt ? examRefPrompt.trim() : undefined;
           
           setImportingBatch(true);
@@ -147,6 +165,12 @@ export default function QuestionBank() {
     setLoading(true);
     const data = await getQuestions();
     setQuestions(data);
+    
+    // Auto-expand all folders initially
+    const set = new Set<string>();
+    data.forEach(q => set.add(q.examReference || 'Preguntas Sueltas (Sin Ensayo)'));
+    setExpandedFolders(Array.from(set));
+    
     setLoading(false);
   };
 
@@ -242,19 +266,33 @@ export default function QuestionBank() {
     }
   };
 
-  const handleInlineUpdate = async (id: string, field: string, value: string) => {
-    let finalValue = value;
-    if (field === 'topic' && value === 'NEW_TOPIC') {
+  // Multiple updates to keep state consistent (e.g., when changing axis, topic resets)
+  const handleInlineUpdates = async (id: string, updates: Partial<Question>) => {
+    // Process "NEW" actions
+    const processedUpdates = { ...updates };
+    
+    if (processedUpdates.topic === 'NEW_TOPIC') {
       const newTopic = prompt("Ingresa el nuevo tema:");
       if (!newTopic || newTopic.trim() === '') return;
-      finalValue = newTopic;
+      processedUpdates.topic = newTopic.trim();
+    }
+    
+    if (processedUpdates.examReference === 'NEW_EXAM') {
+      const newRef = prompt("Ingresa el nombre del nuevo Ensayo de Origen:");
+      if (!newRef || newRef.trim() === '') return;
+      processedUpdates.examReference = newRef.trim();
+      
+      // Auto-expand the new folder
+      if (!expandedFolders.includes(processedUpdates.examReference)) {
+        setExpandedFolders(prev => [...prev, processedUpdates.examReference as string]);
+      }
     }
     
     // Optimistic UI update
-    setQuestions(prev => prev.map(q => q.id === id ? { ...q, [field]: finalValue } : q));
+    setQuestions(prev => prev.map(q => q.id === id ? { ...q, ...processedUpdates } : q));
     
     // Save to DB
-    await updateQuestion(id, { [field]: finalValue });
+    await updateQuestion(id, processedUpdates);
   };
 
   return (
@@ -262,7 +300,7 @@ export default function QuestionBank() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
         <div>
           <h1 className="text-3xl font-display font-bold text-white mb-2">Banco de Preguntas PAES</h1>
-          <p className="text-slate-400">Gestiona tus ejercicios y solucionarios con Inteligencia Artificial.</p>
+          <p className="text-slate-400">Gestiona tus ejercicios agrupados por Ensayo de Origen.</p>
         </div>
         <div className="flex gap-3">
           <input 
@@ -293,13 +331,13 @@ export default function QuestionBank() {
       {/* Filtro de Ensayo */}
       <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 flex items-center gap-4 mb-8">
         <Filter className="w-5 h-5 text-cyan-500" />
-        <span className="font-bold text-slate-300">Clasificar por Ensayo:</span>
+        <span className="font-bold text-slate-300">Mostrar solo:</span>
         <select 
           value={examFilter} 
           onChange={e => setExamFilter(e.target.value)}
           className="bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-2 outline-none focus:border-cyan-500"
         >
-          <option value="Todos">Mostrar todas las preguntas</option>
+          <option value="Todos">Todos los ensayos y carpetas</option>
           {uniqueExams.map(ex => (
             <option key={ex} value={ex}>{ex}</option>
           ))}
@@ -309,85 +347,133 @@ export default function QuestionBank() {
       {loading ? (
         <div className="flex justify-center py-20"><Loader2 className="w-10 h-10 animate-spin text-cyan-500" /></div>
       ) : (
-        <div className="flex flex-col gap-6">
-          {filteredQuestions.map(q => (
-            <div key={q.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition-all shadow-xl group relative">
-              <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={() => openEdit(q)} className="p-2 bg-slate-800 hover:bg-cyan-600 rounded-lg text-slate-300 hover:text-white transition-colors">
-                  Editar
-                </button>
-                <button onClick={() => handleDelete(q.id)} className="p-2 bg-slate-800 hover:bg-red-600 rounded-lg text-slate-300 hover:text-white transition-colors">
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-4 pr-20 items-center bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
-                <input 
-                  type="text"
-                  defaultValue={q.questionNumber || ''}
-                  onBlur={(e) => {
-                    if(e.target.value !== q.questionNumber) handleInlineUpdate(q.id, 'questionNumber', e.target.value);
-                  }}
-                  className="w-16 text-center text-xs font-bold bg-white/10 text-white px-2 py-1 rounded border border-white/20 focus:outline-none focus:border-cyan-500"
-                  placeholder="Nº"
-                  title="Número de Pregunta (ej. 1, 2, Sin número)"
-                />
-                
-                <input 
-                  type="text"
-                  defaultValue={q.examReference || ''}
-                  onBlur={(e) => {
-                    if(e.target.value !== q.examReference) handleInlineUpdate(q.id, 'examReference', e.target.value);
-                  }}
-                  className="w-32 text-xs font-bold bg-amber-900/30 text-amber-400 px-2 py-1 rounded border border-amber-800 focus:outline-none focus:border-amber-500"
-                  placeholder="Ensayo de Origen"
-                  title="Referencia de Ensayo"
-                />
-
-                <span className={`text-xs font-bold px-2 py-1 rounded border ${q.level === 'Universitario' ? 'bg-indigo-900/30 text-indigo-400 border-indigo-800' : 'bg-pink-900/30 text-pink-400 border-pink-800'}`}>{q.level || 'Secundaria'}</span>
-                
-                <select 
-                  value={q.axis} 
-                  onChange={(e) => handleInlineUpdate(q.id, 'axis', e.target.value)}
-                  className="text-xs font-bold bg-cyan-900/30 text-cyan-400 px-2 py-1 rounded border border-cyan-800 focus:outline-none cursor-pointer hover:bg-cyan-900/50 transition-colors"
+        <div className="space-y-6">
+          {(Object.entries(questionsByExam) as [string, Question[]][]).sort().map(([folderName, qs]) => {
+            const isExpanded = expandedFolders.includes(folderName);
+            
+            return (
+              <div key={folderName} className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/50 shadow-lg">
+                <button 
+                  onClick={() => toggleFolder(folderName)}
+                  className="w-full flex items-center justify-between p-4 bg-slate-800 hover:bg-slate-700 transition-colors"
                 >
-                  {AXIS_BY_LEVEL[q.level || 'Secundaria'].map(a => <option key={a} value={a}>{a}</option>)}
-                </select>
-
-                <select 
-                  value={q.topic} 
-                  onChange={(e) => handleInlineUpdate(q.id, 'topic', e.target.value)}
-                  className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 focus:outline-none cursor-pointer hover:bg-slate-700 transition-colors max-w-[200px] truncate"
-                >
-                  <option value={q.topic}>{q.topic}</option>
-                  {(globalTopicsByAxis[q.axis] || []).filter(t => t !== q.topic).map(t => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
-                  <option disabled>-----------</option>
-                  <option value="NEW_TOPIC">+ Añadir nuevo tema...</option>
-                </select>
-
-                <span className="text-xs font-bold bg-purple-900/30 text-purple-400 px-2 py-1 rounded border border-purple-800">{q.source}</span>
+                  <div className="flex items-center gap-3">
+                    {isExpanded ? <ChevronDown className="w-5 h-5 text-cyan-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
+                    <Folder className="w-6 h-6 text-amber-500" />
+                    <h2 className="font-bold text-lg text-white">{folderName}</h2>
+                  </div>
+                  <div className="flex items-center gap-4 text-sm font-bold">
+                    <span className="text-slate-400">{qs.length} preguntas</span>
+                  </div>
+                </button>
                 
-                {q.skill && (
-                  <input 
-                    type="text" 
-                    defaultValue={q.skill}
-                    onBlur={(e) => {
-                      if(e.target.value !== q.skill) handleInlineUpdate(q.id, 'skill', e.target.value);
-                    }}
-                    className="text-xs font-bold bg-emerald-900/30 text-emerald-400 px-2 py-1 rounded border border-emerald-800 focus:outline-none focus:border-emerald-500 w-32"
-                    placeholder="Habilidad"
-                    title="Editar habilidad (Enter/Blur para guardar)"
-                  />
+                {isExpanded && (
+                  <div className="p-4 space-y-4">
+                    {qs.map(q => (
+                      <div key={q.id} className="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition-all group relative shadow-md">
+                        <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button onClick={() => openEdit(q)} className="p-2 bg-slate-800 hover:bg-cyan-600 rounded-lg text-slate-300 hover:text-white transition-colors">
+                            Editar
+                          </button>
+                          <button onClick={() => handleDelete(q.id)} className="p-2 bg-slate-800 hover:bg-red-600 rounded-lg text-slate-300 hover:text-white transition-colors">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 mb-4 pr-20 items-center bg-slate-800/50 p-2 rounded-lg border border-slate-700/50">
+                          
+                          {/* 1. Ensayo de Origen (Dropdown) */}
+                          <select
+                            value={q.examReference || ''}
+                            onChange={(e) => handleInlineUpdates(q.id, { examReference: e.target.value })}
+                            className="text-xs font-bold bg-amber-900/30 text-amber-400 px-2 py-1.5 rounded border border-amber-800 focus:outline-none cursor-pointer hover:bg-amber-900/50 transition-colors max-w-[150px] truncate"
+                            title="Ensayo de Origen / Carpeta"
+                          >
+                            <option value="">Sueltas (Sin Ensayo)</option>
+                            {uniqueExams.map(ex => <option key={ex} value={ex}>{ex}</option>)}
+                            <option disabled>-----------</option>
+                            <option value="NEW_EXAM">+ Añadir Nuevo Ensayo...</option>
+                          </select>
+
+                          {/* 2. Número */}
+                          <input 
+                            type="text"
+                            defaultValue={q.questionNumber || ''}
+                            onBlur={(e) => {
+                              if(e.target.value !== q.questionNumber) handleInlineUpdates(q.id, { questionNumber: e.target.value });
+                            }}
+                            className="w-12 text-center text-xs font-bold bg-white/10 text-white px-2 py-1.5 rounded border border-white/20 focus:outline-none focus:border-cyan-500"
+                            placeholder="Nº"
+                            title="Número (ej. 1)"
+                          />
+                          
+                          {/* Nivel (Readonly inline for simplicity) */}
+                          <span className={`text-xs font-bold px-2 py-1.5 rounded border ${q.level === 'Universitario' ? 'bg-indigo-900/30 text-indigo-400 border-indigo-800' : 'bg-pink-900/30 text-pink-400 border-pink-800'}`}>{q.level || 'Secundaria'}</span>
+                          
+                          {/* 3. Eje Temático */}
+                          <select 
+                            value={q.axis} 
+                            onChange={(e) => {
+                              const newAxis = e.target.value as QuestionAxis;
+                              const newTopic = globalTopicsByAxis[newAxis]?.[0] || 'Otro';
+                              handleInlineUpdates(q.id, { axis: newAxis, topic: newTopic });
+                            }}
+                            className="text-xs font-bold bg-cyan-900/30 text-cyan-400 px-2 py-1.5 rounded border border-cyan-800 focus:outline-none cursor-pointer hover:bg-cyan-900/50 transition-colors"
+                          >
+                            {AXIS_BY_LEVEL[q.level || 'Secundaria'].map(a => <option key={a} value={a}>{a}</option>)}
+                          </select>
+
+                          {/* 4. Tema Específico */}
+                          <select 
+                            value={q.topic} 
+                            onChange={(e) => handleInlineUpdates(q.id, { topic: e.target.value })}
+                            className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1.5 rounded border border-slate-700 focus:outline-none cursor-pointer hover:bg-slate-700 transition-colors max-w-[150px] truncate"
+                          >
+                            <option value={q.topic}>{q.topic}</option>
+                            {(globalTopicsByAxis[q.axis] || []).filter(t => t !== q.topic).map(t => (
+                              <option key={t} value={t}>{t}</option>
+                            ))}
+                            <option disabled>-----------</option>
+                            <option value="NEW_TOPIC">+ Añadir nuevo tema...</option>
+                          </select>
+
+                          {/* 5. Origen / Fuente */}
+                          <select 
+                            value={q.source} 
+                            onChange={(e) => handleInlineUpdates(q.id, { source: e.target.value as any })}
+                            className="text-xs font-bold bg-purple-900/30 text-purple-400 px-2 py-1.5 rounded border border-purple-800 focus:outline-none cursor-pointer hover:bg-purple-900/50 transition-colors"
+                          >
+                            <option value="DEMRE">DEMRE</option>
+                            <option value="Propio">Propio</option>
+                            <option value="Universidades">Universidades</option>
+                            <option value="Otro">Otro Ensayo</option>
+                          </select>
+                          
+                          {/* 6. Habilidad */}
+                          <select 
+                            value={q.skill} 
+                            onChange={(e) => handleInlineUpdates(q.id, { skill: e.target.value })}
+                            className="text-xs font-bold bg-emerald-900/30 text-emerald-400 px-2 py-1.5 rounded border border-emerald-800 focus:outline-none cursor-pointer hover:bg-emerald-900/50 transition-colors"
+                          >
+                            <option value="Resolver problemas">Resolver problemas</option>
+                            <option value="Representar">Representar</option>
+                            <option value="Modelar">Modelar</option>
+                            <option value="Argumentar">Argumentar</option>
+                            <option value={q.skill}>{q.skill}</option> {/* fallback for custom skills */}
+                          </select>
+                        </div>
+                        
+                        <div className="overflow-hidden rounded-xl bg-slate-950 p-2">
+                          <PaesQuestionPreview question={q} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
-              
-              <div className="overflow-hidden rounded-xl">
-                <PaesQuestionPreview question={q} />
-              </div>
-            </div>
-          ))}
+            );
+          })}
+          
           {filteredQuestions.length === 0 && (
             <div className="text-center py-20 bg-slate-900 rounded-2xl border border-slate-800">
               <p className="text-slate-400 mb-4">No hay preguntas que coincidan con este filtro.</p>
@@ -409,10 +495,10 @@ export default function QuestionBank() {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-slate-800/50 p-4 rounded-xl">
                 <div>
                   <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Número</label>
-                  <input type="text" value={questionNumber} onChange={e => setQuestionNumber(e.target.value)} placeholder="Ej. 1, 2, Sin número" className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm" />
+                  <input type="text" value={questionNumber} onChange={e => setQuestionNumber(e.target.value)} placeholder="Ej. 1" className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm" />
                 </div>
                 <div className="md:col-span-3">
-                  <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Ensayo de Origen</label>
+                  <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Ensayo de Origen / Carpeta</label>
                   <input type="text" value={examReference} onChange={e => setExamReference(e.target.value)} placeholder="Ej. PAES Invierno 2026" className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm" />
                 </div>
               </div>
@@ -475,7 +561,17 @@ export default function QuestionBank() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Habilidad</label>
-                  <input type="text" value={skill} onChange={e => setSkill(e.target.value)} placeholder="Ej. Resolver" className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm" />
+                  <select 
+                    value={skill} 
+                    onChange={e => setSkill(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500 text-sm"
+                  >
+                    <option value="Resolver problemas">Resolver problemas</option>
+                    <option value="Representar">Representar</option>
+                    <option value="Modelar">Modelar</option>
+                    <option value="Argumentar">Argumentar</option>
+                    <option value={skill}>{skill}</option> {/* fallback for custom skills */}
+                  </select>
                 </div>
               </div>
 
@@ -555,5 +651,3 @@ export default function QuestionBank() {
     </div>
   );
 }
-
-import { X as CloseIcon } from 'lucide-react';
