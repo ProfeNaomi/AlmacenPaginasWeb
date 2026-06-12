@@ -18,7 +18,7 @@ body {
 
 @media print {
   @page {
-    margin: 1cm; /* Removes default browser headers/footers in many browsers */
+    margin: 0; /* Removes default browser headers/footers completely */
   }
 
   aside, header {
@@ -29,7 +29,16 @@ body {
     padding: 0 !important;
     max-width: 100% !important;
   }
-  body {
+  
+  /* Forzar modo claro en TODO para evadir Dark Reader o fondos oscuros */
+  * {
+    background-color: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body, html, #root, .min-h-screen {
     background: white !important;
     color: black !important;
     -webkit-print-color-adjust: exact;

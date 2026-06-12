@@ -105,13 +105,13 @@ export default function ExamViewer() {
         </button>
 
         {/* Cover Page */}
-        <div className="p-8 max-w-4xl mx-auto break-after-page pt-20 print:pt-8 flex flex-col min-h-[80vh] justify-center">
+        <div className="p-8 print:p-16 max-w-4xl mx-auto break-after-page pt-20 print:pt-32 flex flex-col min-h-[80vh] justify-center">
           <div className="text-center mb-16 border-b-4 border-black pb-12">
-            <h1 className="text-5xl font-black mb-6 uppercase tracking-tighter leading-tight">{exam.title}</h1>
-            <p className="text-2xl text-gray-700 uppercase tracking-widest font-bold">{exam.type}</p>
+            <h1 className="text-5xl font-black mb-6 uppercase tracking-tighter leading-tight text-black">{exam.title}</h1>
+            <p className="text-2xl uppercase tracking-widest font-bold text-black">{exam.type}</p>
           </div>
-          <div className="space-y-6 text-xl border-4 border-black p-12 rounded-2xl font-medium max-w-2xl mx-auto w-full bg-slate-50">
-            <div className="flex justify-between border-b-2 border-gray-300 pb-4">
+          <div className="space-y-6 text-xl border-4 border-black p-12 rounded-2xl font-medium max-w-2xl mx-auto w-full">
+            <div className="flex justify-between border-b-2 border-gray-300 pb-4 text-black">
               <strong>TIEMPO ASIGNADO:</strong> 
               <span>{exam.durationMinutes} minutos</span>
             </div>
@@ -131,31 +131,31 @@ export default function ExamViewer() {
         </div>
 
         {/* Questions Pages */}
-        <div className="max-w-4xl mx-auto p-8 bg-white">
+        <div className="max-w-4xl mx-auto p-8 print:p-12 print:pt-16">
           {questions.map((q, i) => (
-            <div key={q.id} className="mb-14 break-inside-avoid relative" style={{ pageBreakInside: 'avoid' }}>
-              <div className="flex gap-5">
+            <div key={q.id} className="mb-8 print:mb-6 break-inside-avoid relative" style={{ pageBreakInside: 'avoid' }}>
+              <div className="flex gap-4">
                 {/* Question Number */}
-                <div className="font-black text-2xl min-w-[2.5rem] mt-0.5">
+                <div className="font-black text-xl min-w-[2rem] text-black">
                   {q.questionNumber || (i + 1)}.
                 </div>
                 
                 {/* Question Content */}
                 <div className="flex-1">
-                  <div className="prose prose-slate prose-img:max-w-full prose-p:my-1 prose-strong:font-bold text-[17px] mb-5 text-black leading-relaxed" dangerouslySetInnerHTML={{__html: q.text}} />
+                  <div className="prose prose-slate prose-img:max-w-full prose-p:my-0.5 prose-strong:font-bold text-[15px] print:text-[14px] mb-3 text-black leading-snug" dangerouslySetInnerHTML={{__html: q.text}} />
                   
                   {q.imageUrl && (
-                    <div className="mb-8 mt-4 flex justify-center">
-                      <img src={q.imageUrl} alt="Apoyo" className="max-w-[80%] border border-gray-300 rounded" />
+                    <div className="mb-4 mt-2 flex justify-center">
+                      <img src={q.imageUrl} alt="Apoyo" className="max-w-[70%] print:max-w-[60%] border border-gray-300 rounded" />
                     </div>
                   )}
                   
                   {/* Options List */}
-                  <div className="space-y-4 mt-6 ml-2">
+                  <div className="space-y-2 mt-3 ml-1">
                     {q.options.map((opt, idx) => (
-                      <div key={idx} className="flex gap-4 text-[17px] items-start">
-                        <span className="font-bold mt-0.5">{String.fromCharCode(65 + idx)})</span>
-                        <div dangerouslySetInnerHTML={{__html: opt}} className="flex-1 prose prose-slate prose-p:m-0" />
+                      <div key={idx} className="flex gap-3 text-[15px] print:text-[14px] items-start text-black">
+                        <span className="font-bold">{String.fromCharCode(65 + idx)})</span>
+                        <div dangerouslySetInnerHTML={{__html: opt}} className="flex-1 prose prose-slate prose-p:m-0 text-black" />
                       </div>
                     ))}
                   </div>
@@ -163,11 +163,11 @@ export default function ExamViewer() {
               </div>
               
               {/* Separator line for print clarity */}
-              <div className="w-16 h-0.5 bg-gray-200 mt-12 mx-auto"></div>
+              <div className="w-16 h-px bg-gray-300 mt-6 mx-auto mb-2 print:mb-4"></div>
             </div>
           ))}
           
-          <div className="text-center font-bold text-gray-400 tracking-widest mt-20 pb-20">
+          <div className="text-center font-bold text-gray-400 tracking-widest mt-12 pb-12">
             FIN DEL ENSAYO
           </div>
         </div>
