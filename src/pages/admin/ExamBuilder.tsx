@@ -114,7 +114,7 @@ export default function ExamBuilder() {
   });
 
   const printExam = (id: string) => {
-    window.open(`/exam/${id}?print=true`, '_blank');
+    window.open(`/ensayos/${id}?print=true`, '_blank');
   };
 
   // --- Auto Generator Logic ---
@@ -163,20 +163,29 @@ export default function ExamBuilder() {
       alert(`Solo hay ${pool.length} preguntas disponibles con estos temas. Se añadirán todas.`);
     }
 
-    // Shuffle and pick
+    // Pick random questions
     const shuffled = [...pool].sort(() => 0.5 - Math.random());
-    const picked = shuffled.slice(0, autoCount).map(q => q.id);
+    const pickedQuestions = shuffled.slice(0, autoCount);
+    
+    // Sort the picked questions by questionNumber so they appear in numerical order
+    pickedQuestions.sort((a, b) => {
+      const numA = parseInt(a.questionNumber || '99999') || 99999;
+      const numB = parseInt(b.questionNumber || '99999') || 99999;
+      return numA - numB;
+    });
 
-    if (picked.length === 0) {
+    const pickedIds = pickedQuestions.map(q => q.id);
+
+    if (pickedIds.length === 0) {
       alert("No se encontraron preguntas.");
       return;
     }
 
     setTitle(`Ensayo Temático: ${Array.from(autoSelectedTopics).slice(0, 2).join(', ')}${autoSelectedTopics.size > 2 ? '...' : ''}`);
-    setDescription(`Generado automáticamente con ${picked.length} preguntas.`);
+    setDescription(`Generado automáticamente con ${pickedIds.length} preguntas.`);
     setType('Temático');
     setDurationMinutes(autoTime);
-    setSelectedQuestions(picked);
+    setSelectedQuestions(pickedIds);
     
     setIsAutoOpen(false);
     setIsModalOpen(true); // Open the manual editor to review/save

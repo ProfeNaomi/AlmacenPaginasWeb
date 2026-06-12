@@ -101,6 +101,8 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
           max-width: 100%;
           cursor: se-resize;
           border: 2px dashed transparent;
+          display: inline-block;
+          vertical-align: middle;
         }
         .editor-content img:hover {
           border-color: #06b6d4;
