@@ -1,0 +1,83 @@
+{
+  "blocks": [
+    {
+      "id": "blk_1",
+      "type": "text",
+      "content": "<h1>Un Previo al Cálculo 🚀</h1><p>El Cálculo es fundamentalmente diferente de las matemáticas que has estudiado anteriormente: el Cálculo es menos estático y más dinámico. Se ocupa de los cambios y el movimiento; estudia cantidades que se aproximan a otras cantidades. Aquí damos un vistazo de algunas de las ideas principales del Cálculo, mostrando cómo surge el concepto de <strong>límite</strong> cuando intentamos resolver diversos problemas.</p>"
+    },
+    {
+      "id": "blk_2",
+      "type": "row",
+      "columns": [
+        {
+          "id": "col_1",
+          "blocks": [
+            {
+              "id": "blk_2a",
+              "type": "text",
+              "content": "<h2>1. El problema del área</h2><p>Los orígenes del cálculo se remontan a unos 2 500 años a los antiguos griegos, quienes calcularon áreas usando el \"método de agotamiento\". Los griegos sabían cómo encontrar el área de cualquier polígono al dividirlo en triángulos y sumar sus áreas.</p><p>Un problema mucho más difícil es encontrar el área encerrada por una figura curvada. El método de agotamiento consistía en inscribir y circunscribir polígonos en el círculo y a continuación aumentar el número de lados. A medida que aumenta el número de lados <em>n</em>, el área se parece cada vez más al área del círculo.</p>"
+            }
+          ]
+        },
+        {
+          "id": "col_2",
+          "blocks": [
+            {
+              "id": "blk_2b",
+              "type": "image",
+              "url": "/img_clases/stewart_area.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blk_3",
+      "type": "box",
+      "boxType": "theorem",
+      "content": "<p><strong>Concepto de Límite de Área:</strong> Decimos que el área del círculo es el <em>límite</em> de las áreas de los polígonos inscritos conforme la cantidad de lados tiende a infinito:</p><p class=\"text-center\">\\( A = \\lim_{n \\to \\infty} A_n \\)</p>"
+    },
+    {
+      "id": "blk_4",
+      "type": "text",
+      "content": "<hr/><h2>2. El problema de la tangente</h2><p>Considere el problema de encontrar la ecuación de la recta tangente <em>t</em> a una curva. Como sabemos que el punto <em>P</em> se encuentra en la recta tangente, podemos encontrar la ecuación si sabemos su pendiente. El problema es que necesitamos dos puntos para calcular la pendiente, pero solo tenemos uno.</p>"
+    },
+    {
+      "id": "blk_5",
+      "type": "row",
+      "columns": [
+        {
+          "id": "col_3",
+          "blocks": [
+            {
+              "id": "blk_5a",
+              "type": "text",
+              "content": "<p>Para sortear el problema encontramos en primer lugar una aproximación tomando un punto cercano <em>Q</em> de la curva y calculamos la pendiente de la <strong>recta secante</strong> <em>PQ</em>.</p><p>Ahora imaginemos que <em>Q</em> se mueve a lo largo de la curva hacia <em>P</em>. La recta secante gira y se acerca a la recta tangente como su posición límite.</p>"
+            }
+          ]
+        },
+        {
+          "id": "col_4",
+          "blocks": [
+            {
+              "id": "blk_5b",
+              "type": "app",
+              "url": "https://www.geogebra.org/material/iframe/id/bWjT3B97/width/600/height/400/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blk_6",
+      "type": "box",
+      "boxType": "definition",
+      "content": "<p><strong>La Pendiente como Límite:</strong> La pendiente <em>m</em> de la recta tangente es el límite de la pendiente de la recta secante cuando <em>Q</em> se aproxima a <em>P</em>:</p><p class=\"text-center\">\\( m = \\lim_{Q \\to P} m_{PQ} \\)</p>"
+    },
+    {
+      "id": "blk_7",
+      "type": "text",
+      "content": "<hr/><h2>3. El Límite de una Sucesión (La Paradoja de Zenón)</h2><p>El filósofo griego Zenón argumentaba que Aquiles nunca podría rebasar a una tortuga con ventaja inicial. Cuando Aquiles alcanza la posición inicial de la tortuga, esta ya avanzó un poco más. Este proceso parece infinito, ¡la tortuga siempre estará por delante!</p><p>Una manera de explicar esta paradoja es con el concepto de <strong>sucesión</strong>. Al sumar los tiempos y las distancias cada vez más pequeñas, vemos que la suma parcial converge a un número finito: el <strong>límite</strong>. Es exactamente en ese punto matemático donde Aquiles alcanza a la tortuga.</p>"
+    }
+  ]
+}

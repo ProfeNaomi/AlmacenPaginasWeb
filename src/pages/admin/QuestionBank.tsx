@@ -186,6 +186,24 @@ export default function QuestionBank() {
     }
   };
 
+  const handleInlineUpdate = async (id: string, field: string, value: string) => {
+    let finalValue = value;
+    if (field === 'topic' && value === 'NEW_TOPIC') {
+      const newTopic = prompt("Ingresa el nuevo tema:");
+      if (!newTopic || newTopic.trim() === '') return;
+      finalValue = newTopic;
+      // Añadirlo a la lista local para no perderlo
+      if (!TOPICS_BY_AXIS['Otro']) TOPICS_BY_AXIS['Otro'] = [];
+      TOPICS_BY_AXIS['Otro'].push(finalValue);
+    }
+    
+    // Optimistic UI update
+    setQuestions(prev => prev.map(q => q.id === id ? { ...q, [field]: finalValue } : q));
+    
+    // Save to DB
+    await updateQuestion(id, { [field]: finalValue });
+  };
+
   return (
     <div className="w-full max-w-7xl mx-auto p-4 sm:p-8">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
@@ -234,11 +252,44 @@ export default function QuestionBank() {
                 </button>
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-4 pr-20">
+              <div className="flex flex-wrap gap-2 mb-4 pr-20 items-center">
                 <span className={`text-xs font-bold px-2 py-1 rounded border ${q.level === 'Universitario' ? 'bg-indigo-900/30 text-indigo-400 border-indigo-800' : 'bg-pink-900/30 text-pink-400 border-pink-800'}`}>{q.level || 'Secundaria'}</span>
-                <span className="text-xs font-bold bg-cyan-900/30 text-cyan-400 px-2 py-1 rounded border border-cyan-800">{q.axis}</span>
+                
+                <select 
+                  value={q.axis} 
+                  onChange={(e) => handleInlineUpdate(q.id, 'axis', e.target.value)}
+                  className="text-xs font-bold bg-cyan-900/30 text-cyan-400 px-2 py-1 rounded border border-cyan-800 focus:outline-none cursor-pointer hover:bg-cyan-900/50 transition-colors"
+                >
+                  {AXIS_BY_LEVEL[q.level || 'Secundaria'].map(a => <option key={a} value={a}>{a}</option>)}
+                </select>
+
+                <select 
+                  value={q.topic} 
+                  onChange={(e) => handleInlineUpdate(q.id, 'topic', e.target.value)}
+                  className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 focus:outline-none cursor-pointer hover:bg-slate-700 transition-colors max-w-[150px] truncate"
+                >
+                  <option value={q.topic}>{q.topic}</option>
+                  {(TOPICS_BY_AXIS[q.axis] || []).filter(t => t !== q.topic).map(t => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                  <option disabled>-----------</option>
+                  <option value="NEW_TOPIC">+ Añadir nuevo tema...</option>
+                </select>
+
                 <span className="text-xs font-bold bg-purple-900/30 text-purple-400 px-2 py-1 rounded border border-purple-800">{q.source}</span>
-                <span className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">{q.topic}</span>
+                
+                {q.skill && (
+                  <input 
+                    type="text" 
+                    defaultValue={q.skill}
+                    onBlur={(e) => {
+                      if(e.target.value !== q.skill) handleInlineUpdate(q.id, 'skill', e.target.value);
+                    }}
+                    className="text-xs font-bold bg-emerald-900/30 text-emerald-400 px-2 py-1 rounded border border-emerald-800 focus:outline-none focus:border-emerald-500 w-32"
+                    placeholder="Habilidad"
+                    title="Editar habilidad (Enter/Blur para guardar)"
+                  />
+                )}
               </div>
               
               <div className="mt-4 overflow-hidden rounded-xl">

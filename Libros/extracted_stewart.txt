@@ -1,0 +1,1017 @@
+xx PREFACIO
+REVISORES DE EDICIONES ANTERIORES
+B. D. Aggarwala, University of Calgary
+John Alberghini, Manchester Community College
+Michael Albert, Carnegie-Mellon University
+Daniel Anderson, University of Iowa
+Donna J. Bailey, Northeast Missouri State University
+Wayne Barber, Chemeketa Community College
+Marilyn Belkin, Villanova University
+Neil Berger, University of Illinois, Chicago
+David Berman, University of New Orleans
+Richard Biggs, University of Western Ontario
+Robert Blumenthal, Oglethorpe University
+Martina Bode, Northwestern University
+Barbara Bohannon, Hofstra University
+Philip L. Bowers, Florida State University
+Amy Elizabeth Bowman, University of Alabama in Huntsville
+Jay Bourland, Colorado State University
+Stephen W. Brady, Wichita State University
+Michael Breen, Tennessee Technological University
+Robert N. Bryan, University of Western Ontario
+David Buchthal, University of Akron
+Jorge Cassio, Miami-Dade Community College
+Jack Ceder, University of California, Santa Barbara
+Scott Chapman, Trinity University
+James Choike, Oklahoma State University
+Barbara Cortzen, DePaul University
+Carl Cowen, Purdue University
+Philip S. Crooke, Vanderbilt University
+Charles N. Curtis, Missouri Southern State College
+Daniel Cyphert, Armstrong State College
+Robert Dahlin
+M. Hilary Davies, University of Alaska Anchorage
+Gregory J. Davis, University of Wisconsin–Green Bay
+Elias Deeba, University of Houston–Downtown
+Daniel DiMaria, Suffolk Community College
+Seymour Ditor, University of Western Ontario
+Greg Dresden, Washington and Lee University
+Daniel Drucker, Wayne State University
+Kenn Dunn, Dalhousie University
+Dennis Dunninger, Michigan State University
+Bruce Edwards, University of Florida
+David Ellis, San Francisco State University
+John Ellison, Grove City College
+Martin Erickson, Truman State University
+Garret Etgen, University of Houston
+Theodore G. Faticoni, Fordham University
+Laurene V . Fausett, Georgia Southern University
+Norman Feldman, Sonoma State University
+Newman Fisher, San Francisco State University
+José D. Flores, The University of South Dakota
+William Francis, Michigan Technological University 
+James T. Franklin, Valencia Community College, East
+Stanley Friedlander, Bronx Community College
+P
+atrick Gallagher, Columbia University–New York
+Paul Garrett, University of Minnesota–Minneapolis
+Frederick Gass, Miami University of Ohio
+Bruce Gilligan, University of Regina
+Matthias K. Gobbert, University of Maryland,
+Baltimore County
+Gerald Goff, Oklahoma State University
+Stuart Goldenberg, California Polytechnic State University
+John A. Graham, Buckingham Browne & Nichols School
+Richard Grassl, University of New Mexico
+Michael Gregory, University of North Dakota
+Charles Groetsch, University of Cincinnati
+Paul Triantaﬁlos Hadavas, Armstrong Atlantic State University
+Salim M. Haïdar, Grand Valley State University
+D. W. Hall, Michigan State University
+Robert L. Hall, University of Wisconsin–Milwaukee
+Howard B. Hamilton, California State University, Sacramento
+Darel Hardy, Colorado State University
+Gary W. Harrison, College of Charleston
+Melvin Hausner, New York University/Courant Institute 
+Curtis Herink, Mercer University
+Russell Herman, University of North Carolina at Wilmington
+Allen Hesse, Rochester Community College
+Randall R. Holmes, Auburn University
+James F. Hurley, University of Connecticut
+Matthew A. Isom, Arizona State University
+Gerald Janusz, University of Illinois at Urbana-Champaign
+John H. Jenkins, Embry-Riddle Aeronautical University, 
+Prescott Campus
+Clement Jeske, University of Wisconsin, Platteville
+Carl Jockusch, University of Illinois at Urbana-Champaign
+Jan E. H. Johansson, University of Vermont
+Jerry Johnson, Oklahoma State University
+Zsuzsanna M. Kadas, St. Michael’s College
+Nets Katz, Indiana University Bloomington
+Matt Kaufman
+Matthias Kawski, Arizona State University
+Frederick W. Keene, Pasadena City College
+Robert L. Kelley, University of Miami
+Virgil Kowalik, Texas A&I University
+Kevin Kreider, University of Akron
+Leonard Krop, DePaul University
+Mark Krusemeyer, Carleton College
+John C. Lawlor, University of Vermont
+Christopher C. Leary, State University of New York 
+at Geneseo
+David Leeming, University of Victoria
+Sam Lesseig, Northeast Missouri State University
+Phil Locke, University of Maine
+Joan McCarter, Arizona State University
+Phil McCartney, Northern Kentucky University
+James McKinney, California State Polytechnic University, Pomona
+Igor Malyshev, San Jose State University
+Larry Mansﬁeld, Queens Colle
+ge
+Mary Martin, Colgate University
+Nathaniel F. G. Martin, University of Virginia
+Gerald Y . Matsumoto, American River College
+Tom Metzger, University of Pittsburgh
+Michael Montaño, Riverside Community College
+Teri Jo Murphy, University of Oklahoma
+98678_FMSVET_FMSVET_pi-xxvi.qk_98678_FMSVET_FMSVET_pi-xxiii  05/04/12  11:20 p.m.  Página xx
+---PAGE_BREAK---
+PREFACIO xxi
+Martin Nakashima, California State Polytechnic University, Pomona
+Richard Nowakowski, Dalhousie University
+Hussain S. Nur, California State University, Fresno
+Wayne N. Palmer, Utica College
+Vincent Panico, University of the Paciﬁc
+F. J. Papp, University of Michigan–Dearborn
+Mike Penna, Indiana University–Purdue University Indianapolis
+Mark Pinsky, Northwestern University
+Lothar Redlin, The Pennsylvania State University
+Joel W. Robbin, University of Wisconsin–Madison
+Lila Roberts, Georgia College and State University
+E. Arthur Robinson, Jr., The George Washington University
+Richard Rockwell, Paciﬁc Union College 
+Rob Root, Lafayette College
+Richard Ruedemann, Arizona State University
+David Ryeburn, Simon Fraser University
+Richard St. Andre, Central Michigan University
+Ricardo Salinas, San Antonio College
+Robert Schmidt, South Dakota State University
+Eric Schreiner, Western Michigan University
+Mihr J. Shah, Kent State University–Trumbull
+Theodore Shifrin, University of Georgia
+Wayne Skrapek, University of Saskatchewan
+Larry Small, Los Angeles Pierce College
+Teresa Morgan Smith, Blinn College
+William Smith, University of North Carolina
+Donald W. Solomon, University of Wisconsin–Milwaukee
+Edward Spitznagel, Washington University
+Joseph Stampﬂi, Indiana University
+Kristin Stoley, Blinn College
+M. B. Tavakoli, Chaffey College
+Paul Xavier Uhlig, St. Mary’s University, San Antonio
+Stan Ver Nooy, University of Oregon
+Andrei Verona, California State University–Los Angeles
+Russell C. Walker, Carnegie Mellon University
+William L. Walton, McCallie School
+Jack Weiner, University of Guelph
+Alan Weinstein, University of California, Berkeley
+Theodore W. Wilcox, Rochester Institute of Technology
+Steven Willard, University of Alberta
+Robert Wilson, University of Wisconsin–Madison
+Jerome Wolbert, University of Michigan–Ann Arbor 
+Dennis H. Wortman, University of Massachusetts, Boston
+Mary Wright, Southern Illinois University–Carbondale
+Paul M. Wright, Austin Community College
+Xian Wu, University of South Carolina
+Además, me gustaría dar las gracias a Jordan Bell, George Bergman, Leon Gerber,
+Mary Pugh y Simon Smith por sus sugerencias; Al Shenk y Dennis Zill por su permiso
+para utilizar ejercicios de sus textos de cálculo; COMAP por su permiso para utilizar el
+material de los proyectos; George Bergman, David Bleecker. Dan Clegg, Victor Kaftal,
+Anthony Lam, Jamie Lawson, Ira Rosenholtz, Paul Sally, Lowell Smylie y Larry Wallen
+por sus ideas para los ejercicios; Dan Drucker por el proyecto del derby de rodillos; Tho-
+mas Banchoff, Tom Farmer, Fred Gass, John Ramsay, Larry Riddle, Philip Strafﬁn y
+Klaus Volpert por sus ideas para los proyectos; Dan Anderson, Dan Clegg, Jeff Cole, Dan
+Drucker y Barbara Frank por resolver los nuevos ejercicios y sugerir formas para mejo-
+rarlos; Marv Riedesel y Mary Johnson por su precisión en la corrección; y Jeff Cole y Dan
+Clegg por su cuidadosa preparación y corrección del manuscrito de respuesta.
+Asimismo, doy las gracias a quienes han contribuido a pasadas ediciones: Ed Barbeau,
+Fred Brauer, Andy Bulman-Fleming, Bob Burton, David Cusick, Tom DiCiccio, Garret
+Etgen, Chris Fisher, Stuart Goldenberg, Arnold Good, Gene Hecht, Harvey Keynes, E.L.
+Koh, Zdislav Kovarik, Kevin Kreider, Emile LeBlanc, David Leep, Gerald Leibowitz,
+Larry Peterson, Lothar Redlin, Carl Riehm, John Ringland, Peter Rosenthal, Doug Shaw,
+Dan Silver, Norton Starr, Saleem Watson, Alan Weinstein y Gail Wolkowicz.
+También agradezco a Kathi Townes, Stephanie Kuhns y Rebekah Million of TECHarts
+por sus servicios de producción y al siguiente personal de Brooks/Cole: Cheryll Linthi-
+cum, gerente de proyecto de contenido; Liza Neustaetter, editor asistente; Maureen Ross,
+editor de medios; Sam Subity, gerente de medios de edición; Jennifer Jones, director de
+marketing; y Vernon Boes, director de arte. Todos han hecho un trabajo excepcional. 
+He sido muy afortunado de haber trabajado con algunos de los mejores en el negocio
+de la edición en Matemáticas durante las últimas tres décadas: Ron Munro, Harry Camp-
+bell, Craig Barth, Jeremy Hayhurst, Gary Ostedt, Bob Pirtle, Richard Stratton y ahora Liz
+Covello. Todos ellos han contribuido en gran medida al éxito de este libro.
+JAMES STEW ART
+98678_FMSVET_FMSVET_pi-xxvi.qk_98678_FMSVET_FMSVET_pi-xxiii  05/04/12  11:20 p.m.  Página xxi
+---PAGE_BREAK---
+xxii PREFACIO
+Asimismo, deseamos agradecer la valiosa colaboración de los profesores Dr. Ernesto
+Filio López de UPITA (IPN), M. en C. Manuel Robles Bernal, L.F.M. Luis Ángel Filio
+Rivera, de ESIME Zacatenco (IPN), M. en C. Lilia Quintos Vázquez, de ESIME Ticomán
+(IPN), Dr. Abel Flores Amado, del ITESM Campus Puebla y al Mtro. Gustavo Zamorano
+Montiel, de la UPAEP (Puebla), en la revisión de esta séptima edición en español.
+Además agradecemos al Dr. Hugo Gustavo González Hernández, Director del
+Departamento de Ciencias y al Dr. Abel Flores Amado, Coordinador de la materia 
+de Cálculo así como a los siguientes profesores del ITESM Campus Puebla por la con-
+fianza depositada en la obra Cálculo Trascendentes tempranas de Stewart y adoptarlo
+para sus cursos.
+Dr. Juan José Gómez Diaz
+Master Aida Ignacia Salazar C.
+Master Álvaro Andrade Andrade
+Master Jorge Luis Figueroa Ramírez
+Dr. Juan Manuel Merlo 
+Dr. Julio César Ramírez San Juan
+Master Luis Daniel Bravo 
+Atentamente, 
+Los Editores.
+98678_FMSVET_FMSVET_pi-xxvi.qk_98678_FMSVET_FMSVET_pi-xxiii  05/04/12  11:20 p.m.  Página xxii
+---PAGE_BREAK---
+Auxiliares para instructores
+Power Lecture
+ISBN 0-8400-5421-1
+Este DVD contiene todo el arte del texto en formatos de
+PowerPoint y jpeg, ecuaciones clave y tablas del texto completo
+predefinidas de conferencias en PowerPoint, una versión
+electrónica de la guía del instructor, un generador de soluciones,
+un software de pruebas ExamView, herramientas para enriquecer
+el cálculo (TEC), un video de instrucciones y un comando
+JoinIn sobre el contenido de TurningPoint.
+Instructor’s Guide
+Por Douglas Show
+ISBN 0-8400-5418-1
+Cada sección del texto se analiza desde varios puntos de vista.
+La guía del instructor (Instructor’s Guide) contiene tiempo
+sugerido de asignación, puntos a destacar, temas de debate
+del texto, materiales básicos para la clase, sugerencias para
+trabajo en taller y ejercicios de trabajo de grupo en una forma 
+adecuada para su entrega y sugiere las asignaciones de tareas.
+Una versión electrónica de la guía del instructor está
+disponible en el DVD de PowerLecture.
+Complete Solutions Manual
+Single V
+ariable Early Transcendentals
+Por Daniel Anderson, Jeffery A. Cole y Daniel Drucker
+ISBN 0-8400-4936-6
+Contiene las soluciones detalladas de todos los ejercicios del
+texto.
+Solution Builder
+www.cengage.com /solutionbuilder
+Esta base de datos en línea para el instructor ofrece soluciones
+muy elaboradas para todos los ejercicios en el texto. El generad
+or
+de soluciones (Solution Builder) permite crear impresiones
+personalizadas de soluciones seguras (en formato PDF) que
+coinciden exactamente con los problemas asignados en clase.
+Printed Test Bank
+Por William Steven Harmon
+ISBN 0-8400-5419-X
+Contiene textos específicos de opción múltiple y exámenes de
+respuesta libre.
+ExamView Testing
+Crear, entregar y personalizar los exámenes en formatos 
+impresos en línea con ExamView, permite una evaluación de
+fácil uso a través de un software tutorial. ExamView contiene
+cientos de elementos para exámenes de respuesta múltiple y
+libre. ExamView está disponible en el DVD de 
+PowerLecture.
+Auxiliares para instructores y estudiantes
+Stewart Website
+www.stewartcalculus.com
+Contenido: Tareas sugeridas ■ Repaso de álgebra ■ Temas
+adicionales ■ Ejercicios de simulación ■ Problemas de 
+desafío ■ Enlaces web ■ Historia de las matemáticas
+■ Herramientas para enriquecer el cálculo (TEC)
+Tools for Enriching™ Calculus
+Por James Stewart, Harvey Keynes, Dan Clegg y 
+el desarrollador Hu Hohn
+Herramientas para enriquecer el cálculo (TEC) funciona 
+como una poderosa herramienta para instructores, así como 
+un entorno tutorial en el que los estudiantes pueden explorar 
+y revisar temas seleccionados. Los módulos de simulación en
+Flash en TEC incluyen instrucciones escritas y en audio de 
+los conceptos y ejercicios. TEC está accesible en CourseMate,
+WebAssign y PowerLecture. Los elementos seleccionados en
+Visual y Module están disponibles en
+www.stewartcalculus.com.
+Enhanced WebAssign
+www.webassign.net
+El sistema de distribución de tareas de WebAssign permite a
+los instructores entregar, recoger, calificar y elaborar listas 
+a través de la web. Enhanced WebAssign para el Cálculode 
+Stewart involucra ahora a los estudiantes en la revisión del con-
+tenido al comienzo del curso y al principio de cada sección así
+como en los conocimientos previos. Además, para los problemas
+seleccionados, los estudiantes pueden obtener ayuda adicional
+en forma de “mayor retroalimentación” (las respuestas) y solu-
+ciones en video. Otras características clave incluyen:miles de
+problemas del Cálculode Stewart. Un personalizable Cengage
+YouBook, un plan de estudio personal, una muestra de su 
+trabajo, un repaso en el momento, un evaluador de respuestas,
+módulos de animaciones y visualización del Cálculo, concursos,
+videos de conferencias (con preguntas asociadas) y mucho más.
+Cengage Customizable YouBook
+YouBook es un eBook en Flash interactivo y personalizable,
+que tiene todo el contenido del Cálculo de Stewart. Las 
+características de YouBook son una herramienta de edición 
+de texto que permite a los profesores modificar la narrativa del
+libro de texto según sea necesario. Con YouBook, los profesor
+es
+pueden reordenar rápidamente capítulos y secciones enteras u
+ocultar cualquier contenido que no enseñan, para crear un libro
+electrónico que coincida perfectamente con su plan de estudios.
+Los profesores pueden personalizar aún más el texto añadiendo
+sus ideas o enlaces de video en YouTube. Los activos de 
+medios adicionales incluyen: figuras animadas, videoclips,
+destacando notas y más. YouBook está disponible en 
+Enhanced WebAssign.
+TEC
+■ Electrónicos ■ Impresos
+xxiii
+98678_FMSVET_FMSVET_pi-xxvi.qk_98678_FMSVET_FMSVET_pi-xxiii  05/04/12  11:20 p.m.  Página xxiii
+---PAGE_BREAK---
+CourseMate
+www.cengagebrain.com
+CourseMate es una perfecta herramienta de autoaprendizaje
+para estudiantes y no requiere ningún apoyo de los profesores.
+CourseMate trae conceptos con aprendizaje interactivo,
+estudio y herramientas interactivas para la preparación de
+exámenes que apoyan al libro de texto impreso. CourseMate
+para el Cálculo de Stewart incluye: un libro electrónico
+interactivo, herramientas para enriquecer el cálculo, videos,
+cuestionarios, tarjetas en flash y más. Para los profesores,
+CourseMate incluye Engagement Tracker, una herramienta de
+primera en su tipo que supervisa el trabajo estudiantil.
+Maple CD-ROM
+Maple proporciona un dispositivo avanzado de cálculo
+matemático de alto rendimiento plenamente integrado con
+símbolos numéricos, todos accesibles desde un entorno técnico
+desde WYSIWYG.
+CengageBrain.com
+Para accesos de materiales adicionales del curso y recursos de
+apoyo, por favor visite www.c
+engagebrain.com. En esta página
+busque por ISBN o por título (desde la cubierta posterior de su
+libro) usando el comando de búsqueda en la parte superior de
+la página. Esto le llevará a la página del producto donde se
+pueden encontrar gratuitamente recursos de apoyo.
+Auxiliares para estudiantes
+Student Solutions Manual
+Single Variable Early Transcendentals
+Por Daniel Anderson, Jeffery A. Cole y Daniel Drucker
+ISBN 0-8400-4934-X
+Proporciona soluciones completamente detalladas para todos
+los ejercicios impares en el texto, dando a los estudiantes una
+oportunidad de verificar sus respuestas y asegurar que hicieron
+los pasos correctos para llegar a una respuesta.
+Study Guide
+Single V
+ariable Early Transcendentals
+Por Richard St. Andre
+ISBN 0-8400-5420-3
+Para cada sección del texto, la guía de estudio proporciona a
+los estudiantes una breve introducción, una breve lista de
+conceptos al profesor así como resumen y preguntas de
+enfoque con respuestas explicadas. La guía de estudio también
+contiene preguntas “Tecnología Plus” y preguntas tipo examen 
+de opción múltiple y de estilo “su propia respuesta”.
+CalcLabs with Maple
+Single V
+ariable
+Por Philip B. Yasskin y Robert Lopez
+ISBN 0-8400-5811-X
+CalcLabs with Mathematica
+Single Variable
+Por Selwyn Hollis
+ISBN 0-8400-5814-4
+Cada uno de estos comprensibles manuales de laboratorio 
+ayudará a los estudiantes a aprender a usar las herramientas
+de tecnología a su disposición. CalcLabs contienen ejercicios
+claramente explicados y una variedad de proyectos para 
+acompañar el texto y laboratorios.
+A Companion to Calculus
+Por Dennis Ebersole, Doris Schattschneider, Alicia Sevilla 
+y Kay Somers
+ISBN 0-495-01124-X
+Escrito para mejorar el álgebra y las habilidades para resolver
+problemas de los estudiantes que están tomando un curso de
+Cálculo. Cada capítulo de este acompañante tiene una clave
+referente a un tema de Cálculo, que proporciona antecedentes
+conceptuales y técnicas de álgebra específicos necesarios para
+comprender y resolver problemas de Cálculo relacionados con
+ese tema. Está diseñado para cursos de Cálculo que incluyen la
+revisión de los conceptos de precálculo o para uso individual.
+Linear Algebra for Calculus
+Por Konrad J. Heuvers, William P. Francis, John H. Kuisti, 
+Deborah F
+. Lockhart, Daniel S. Moak y Gene M. Ortner
+ISBN 0-534-25248-6
+Este comprensible libro está diseñado para complementar el
+curso de Cálculo. Proporciona una introducción y un repaso 
+de las ideas básicas del Álgebra lineal.
+■ Electrónicos ■ Impresos
+xxiv
+98678_FMSVET_FMSVET_pi-xxvi.qk_98678_FMSVET_FMSVET_pi-xxiii  05/04/12  11:20 p.m.  Página xxiv
+---PAGE_BREAK---
+xxv
+Al estudiante
+Leer un libro de texto de Cálculo es diferente a la lectura de un periódico, una novela o incluso un
+libro de física. No se desaliente si tiene que leer un párrafo más de una vez para entenderlo. Debe
+tener lápiz, papel y calculadora disponibles para esbozar un diagrama o hacer un cálculo.
+Algunos estudiantes comienzan por abordar sus problemas de tarea y leen el texto sólo si se
+bloquean en un ejercicio. Sugiero que un plan mucho mejor es leer y comprender una sección
+del texto antes de enfrentar los ejercicios. En particular, debe leer con cuidado las deﬁniciones
+para ver el signiﬁcado exacto de cada término. Antes de leer cada ejemplo, le sugiero que lle-
+gue a la solución tratando de resolver el problema usted mismo. Obtendrá mucho más que
+mirando la solución si es que lo hace.
+Parte del objetivo de este curso es inducir el pensamiento lógico. Es muy importante apren-
+der a escribir las soluciones de los ejercicios de una manera articulada, paso a paso, con comen-
+tarios explicativos, no sólo una cadena de ecuaciones o fórmulas desconectadas.
+Las respuestas a los ejercicios de número impar aparecen al ﬁnal del libro, en el apéndice I.
+Algunos ejercicios piden una explicación verbal, interpretación o descripción. En tales casos no
+hay una única forma correcta de expresar la respuesta, por lo que no se preocupe si no ha encon-
+trado la respuesta deﬁnitiva. Además, a menudo hay varias formas diferentes para expresar una
+respuesta numérica o algebraica, así que si su respuesta aparenta ser diferente a la mía, no asuma
+inmediatamente que se equivocó. Por ejemplo, si la respuesta dada al ﬁnal del libro es 
+y usted obtuvo , entonces está usted en lo correcto y racionalizar el denominador
+demostrará que las respuestas son equivalentes.
+El icono ; indica un ejercicio que sin duda requiere el uso de una calculadora graﬁcadora o
+una computadora con software de gráﬁcos (en la sección 1.4 se analiza el uso de estos disposi-
+tivos de graﬁcación y algunas de las diﬁcultades que puedan surgir). Sin embargo, esto no sig-
+niﬁca que los dispositivos de gráﬁcos no puedan utilizarse para comprobar el trabajo de otros
+ejercicios. El símbolo 
+se reserva para problemas en los que se requieren todos los recursos
+1/H20862(1 /H11001s2)
+s2 /H110021
+SAC
+98678_FMSVET_FMSVET_pi-xxvi.qk_98678_FMSVET_FMSVET_pi-xxiii  05/04/12  11:20 p.m.  Página xxv
+---PAGE_BREAK---
+xxvi
+de un sistema algebraico computarizado (Derive, Maple, Mathematica o la TI-89/92). También
+se usará el símbolo | para cuidar que no se cometa un error. He puesto este símbolo en los
+márgenes en situaciones donde he advertido que gran parte de mis estudiantes tienden a come-
+ter el mismo error.
+Las Herramientas para enriquecer el cálculo, acompañantes de este texto, están indicadas
+por medio del s
+ímbolo y están disponible en Enhanced WebAssign y en CourseMate (los
+recursos Visual y Module están disponibles en www.stewartcalculus.com). Aquí se dirige al
+estudiante a los módulos en los que puede explorar los aspectos del Cálculo para los que la
+computadora es particularmente útil.
+En TEC también se encuentra Tareas sugeridas para ejercicios representativos que están
+indicados con número en rojo: 
+5. Estas sugerencias pueden encontrarse en stewartcalculus.com
+así como en Enhanced WebAssign y CourseMate. Estas sugerencias de tareas hacen preguntas
+al estudiante que le permiten avanzar hacia una solución sin dar realmente la respuesta. Es nece-
+sario que el estudiante siga activamente cada pista con lápiz y papel a la mano para destacar los
+detalles. Si una sugerencia particular no permite resolver el problema, puede hacer clic para ver
+la siguiente sugerencia.
+Le recomiendo que conserve este libro para ﬁnes de consulta después de terminar el curso.
+Es probable que olvide algunos de los detalles especíﬁcos del Cálculo, por lo que el libro servirá
+como una referencia útil cuando sea necesario utilizar el Cálculo en cursos posteriores. Puesto
+que este libro contiene más material del que es posible cubrir en todo un curso, también puede
+servir como un valioso recurso para un trabajo cientíﬁco o de ingeniería.
+El Cálculo es un tema apasionante, justamente considerado uno de los mayores logros del
+intelecto humano. Espero que el estudiante 
+descubra que no sólo es útil, sino también intrín-
+secamente hermoso.
+JAMES STEW ART
+TEC
+98678_FMSVET_FMSVET_pi-xxvi.qk_98678_FMSVET_FMSVET_pi-xxiii  05/04/12  11:20 p.m.  Página xxvi
+---PAGE_BREAK---
+Exámenes de diagnóstico
+El éxito en Cálculo depende en gran medida del conocimiento de las 
+matemáticas que le preceden: álgebra, geometría analítica, funciones 
+y trigonometría. Los siguientes exámenes están destinados a diagnosticar las
+debilidades que el estudiante pueda tener en estas áreas. Después de cada
+examen puede veriﬁcar sus respuestas comparándolas con las respuestas
+determinadas y, si es necesario, actualizar sus habilidades haciendo referencia 
+a los materiales de repaso que se proporcionan.
+Examen de diagnóstico: álgebraA
+1. Evalúe las siguientes expresiones sin utilizar calculadora:
+a) b) c)
+d) e) f )
+2. Simplifique las siguientes expresiones. Escriba su respuesta sin exponentes negativos:
+a)
+b)
+c)
+3. Desarrolle y simplifique las siguientes expresiones:
+a) b)
+c) d)
+e)
+4. Factorice las siguientes expresiones:
+a) b)
+c) d)
+e) f)
+5. Simplifique las siguientes expresiones racionales:
+a) b)
+c) d)
+3/H110024/H1100234/H20849/H110023/H208504
+16/H110023/H208624
+/H20873
+2
+3 /H20874
+/H110022
+523
+521
+s200 /H11002s32
+/H208493a3b3/H20850/H208494ab2/H208502
+/H20873
+3x3/H208622y3
+x2y/H110021/H208622/H20874
+/H110022
+/H20849x /H110013/H20850/H208494x /H110025/H208503/H20849x /H110016/H20850/H110014/H208492x /H110025/H20850
+/H208492x /H110013/H208502(sa /H11001sb )(sa /H11002sb )
+/H20849x /H110012/H208503
+2x2 /H110015x /H11002124x2 /H1100225
+x4 /H1100127xx3 /H110023x2 /H110024x /H1100112
+x3y /H110024xy3x3/H208622/H110029x1/H208622/H110016x/H110021/H208622
+2x2 /H11002x /H110021
+x2 /H110029 /H11554x /H110013
+2x /H110011
+x2 /H110013x /H110012
+x2 /H11002x /H110022
+y
+x /H11002x
+y
+1
+y /H110021
+x
+x2
+x2 /H110024 /H11002x /H110011
+x /H110012
+xxvii
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxvii
+---PAGE_BREAK---
+xxviii EXÁMENES DE DIAGNÓSTICO
+6. Racionalice y simplifique las siguientes expresiones.
+a) b)
+7. Reescriba las siguientes expresiones completando un trinomio cuadrado perfecto.
+a) b)
+8. Resuelva las siguientes ecuaciones (encuentre sólo las soluciones reales).
+a) b)
+c) x2 /H11002x /H1100212 /H335270d )
+e) f)
+g)
+9. Resuelva las siguientes desigualdades y exprese la solución en intervalos:
+a) b)
+c) d)
+e)
+10. Indique si cada una de las siguientes afirmaciones es verdadera o falsa:
+a) b)
+c) d)
+e) f)
+s10
+s5 /H110022
+s4 /H11001h /H110022
+h
+x2 /H11001x /H1100112 x2 /H1100212x /H1100111
+x /H110015 /H3352714 /H11002
+1
+2 x 2x
+x /H110011 /H335272x /H110021
+x
+2x2 /H110014x /H110011 /H335270
+x4 /H110023x2 /H110012 /H3352703 /H11341x /H110024 /H11341/H3352710
+2x/H208494/H11002x/H20850/H110021/H208622 /H110023 s4 /H11002x /H335270
+/H110024/H110215 /H110023x /H3335517 x2 /H110212x /H110018
+x/H20849x /H110021/H20850/H20849x /H110012/H20850/H110220 /H11341x /H110024 /H11341/H110213
+2x /H110023
+x /H110011 /H333551
+/H20849p /H11001q/H208502 /H33527p2 /H11001q2 sab /H33527sa sb
+sa2 /H11001b2 /H33527a /H11001b 1 /H11001TC
+C /H335271 /H11001T
+1
+x /H11002y /H335271
+x /H110021
+y
+1/H20862x
+a/H20862x /H11002b/H20862x /H335271
+a /H11002b
+1. a) b) c)
+d) e) f)
+2. a) b) c)
+3. a) b)
+c) d)
+e)
+4. a) b)
+c) d)
+e) f)
+5. a) b)
+c) d)
+81 /H1100281
+1
+81
+25
+9
+4
+1
+8
+6s2 48a5b7 x
+9y7
+11x /H1100224 x2 /H110017x /H1100215
+a /H11002b 4x2 /H1100112x /H110019
+x3 /H110016x2 /H1100112x /H110018
+/H208492x /H110025/H20850/H208492x /H110015/H20850/H20849 2x /H110023/H20850/H20849x /H110014/H20850
+/H20849x /H110023/H20850/H20849x /H110022/H20850/H20849x /H110012/H20850 x/H20849x /H110013/H20850/H20849x2 /H110023x /H110019/H20850
+3x/H110021/H208622/H20849x /H110021/H20850/H20849x /H110022/H20850 xy/H20849x /H110022/H20850/H20849x /H110012/H20850
+x /H110012
+x /H110022
+x /H110021
+x /H110023
+1
+x /H110022 /H11002/H20849x /H11001y/H20850
+6. a) b)
+7. a) b)  
+8. a) b) c)
+d) e) f)
+g)
+9. a) b)
+c) d)
+e)
+10. a) Falsa b) Verdadera c) Falsa
+d) Falsa e) Falsa f) Verdadera
+61 /H110023, 4
+/H110021/H11006
+1
+2 s2 /H110061, /H11006s2
+2
+3 , 
+22
+3
+12
+5
+/H20851/H110024, 3/H20850/H20849 /H110022, 4/H20850
+/H20849/H110022, 0/H20850/H20668/H208491, /H11009/H20850/H208491, 7/H20850
+/H20849/H110021, 4/H20852
+5s2 /H110012s10 1
+s4 /H11001h /H110012
+(x /H11001
+1
+2 )
+2
+/H11001
+3
+4 2/H20849x /H110023/H208502 /H110027
+Respuestas al examen de diagnóstico A: álgebra
+Si tiene usted diﬁcultades con este examen, puede consultar Review of
+Algebra (repaso de álgebra) en el sitio web www.stewartcalculus.com
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxviii
+---PAGE_BREAK---
+EXÁMENES DE DIAGNÓSTICO xxix
+1. Encuentre la ecuación de la recta que pasa por y
+a) tiene pendiente
+b) es paralela al eje x
+c) es paralela al eje y
+d) es paralela a la recta 
+2. Encuentre la ecuación de la circunferencia con centro en y que pasa por el punto
+.
+3. Encuentre el centro y el radio de la circunferencia cuya ecuación es
+.
+4. Sean y puntos en el plano.
+a) Encuentre la pendiente de la recta determinada por y .
+b) Encuentre la ecuación de la recta que pasa por y . ¿Cuáles son los puntos de
+intersección con los ejes?
+c) Encuentre el punto medio del segmento .
+d) Encuentre la longitud del segmento .
+e) Encuentre la ecuación de la perpendicular que 
+biseca a .
+f) Encuentre la ecuación de la circunferencia para la que es diámetro.
+5. Trace la región en el plano xy deﬁnida por la ecuación o desigualdades.
+a) b)
+c) d)
+e) f)
+/H110023
+x
+2 /H11001y2 /H110026x /H1100110y /H110019 /H335270
+A/H20849/H110027, 4/H20850B/H208495, /H1100212/H20850
+AB
+AB
+AB
+AB
+AB
+AB
+/H110021/H33355y /H333553
+y /H110211 /H11002
+1
+2 xy /H33356x2 /H110021
+x2 /H11001y2 /H1102149 x2 /H1100116y2 /H33527144
+/H208492, /H110025/H20850
+2x /H110024y /H335273
+/H20849/H110021, 4/H20850
+/H208493, /H110022/H20850
+x 4 y y 2
+Examen de diagnóstico: geometría analíticaB
+1. a) b)
+c) d)
+2.
+3. Centro , radio 5
+4. a)
+b) ; intersección en x /H33527 /H110024,
+intersección en y /H33527
+c)
+d)
+e)
+f)
+y /H33527/H110023x/H110011 y /H33527/H110025
+x /H335272 y /H33527
+1
+2 x /H110026
+/H20849x /H110011/H208502 /H11001/H20849y /H110024/H208502 /H3352752
+/H208493, /H110025/H20850
+/H11002
+4
+3
+4x /H110013y /H1100116 /H335270
+/H11002
+16
+3
+/H20849/H110021, /H110024/H20850
+20
+3x /H110024y /H3352713
+/H20849x /H110011/H208502 /H11001/H20849y /H110014/H208502 /H33527100
+5.
+y
+x12
+0
+y
+x0
+y
+x0 4
+3
+_1
+2
+y
+x
+0
+y
+x04_4
+y
+x0 2
+1
+a) b) c)
+d) e) f)
+_1
+3
+2
+_2
+y=≈-1
+≈+¥=4
+ 
+y=1-   x1
+2
+Respuestas al examen de diagnóstico B: geometría analítica
+Si tiene usted diﬁcultades con este examen, puede consultar el
+repaso de geometría analítica en los apéndices B y C.
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxix
+---PAGE_BREAK---
+xxx EXÁMENES DE DIAGNÓSTICO
+1. La gráﬁca de una función f está dada a la izquierda.
+a) Determine el valor de .
+b) Estime el valor de .
+c) ¿Para qué valores de x es ?
+d) Estime los valores de x tales que .
+e) Establezca el dominio y el rango de .
+2. Si , evalúe el cociente de diferencias y simpliﬁque su respuesta.
+3. Encuentre el dominio de la función
+a) b) c)
+4. ¿Qué aspecto tiene cada una de las gráﬁcas siguientes a partir de la gráﬁca de f ?
+a) b) c)
+5. Sin usar calculadora, haga un bosquejo de cada una de las gráﬁcas siguientes:
+a) b) c)
+d) e) f )
+g) h)
+6.
+a) Evalúe y . b) Trace la gráﬁca de f
+7. Si y , encuentre cada una de las siguientes funciones:
+a) b) c)
+f /H20849/H110021/H20850
+f /H208492/H20850
+f /H20849x/H20850/H335272
+f /H20849x/H20850/H335270
+f
+f /H20849x/H20850/H33527x3 f /H208492/H11001h/H20850/H11002f /H208492/H20850
+h
+f /H20849x/H20850/H335272x /H110011
+x2 /H11001x /H110022 t/H20849x/H20850/H33527s
+3
+x
+x2 /H110011 h/H20849x/H20850/H33527s4 /H11002x /H11001sx2 /H110021
+y /H33527/H11002f/H20849x/H20850 y /H335272 f /H20849x/H20850/H110021 y /H33527f /H20849x /H110023/H20850/H110012
+y /H33527x3 y /H33527/H20849x /H110011/H208503 y /H33527/H20849x /H110022/H208503 /H110013
+y /H335274 /H11002x2 y /H33527sx y /H335272 sx
+y /H33527/H110022x y /H335271 /H11001x/H110021
+f /H20849/H110022/H20850f /H208491/H20850
+f /H20849x/H20850/H33527x2 /H110012x /H110021 t/H20849x/H20850/H335272x /H110023
+f /H11568tt /H11568f t /H11568t /H11568t
+Sea f x 1 x2
+2x 1
+si x 0
+si x 0
+Examen de diagnóstico: funcionesC
+y
+0x
+1
+1
+FIGURA PARA EL PROBLEMA 1
+1. a) b) 2.8
+c) d)
+e)
+2.
+3. a)
+b)
+c)
+4. a) Reﬂexión respecto al eje x
+b) Alargamiento vertical en un factor de 2 y después un
+desplazamiento de 1 unidad hacia abajo
+c) Desplazamiento de 3 unidades a la derecha y 2 unidades 
+hacia arriba
+5.
+/H110022
+/H110023, 1 /H110022.5, 0.3
+/H20851/H110023, 3/H20852, /H20851/H110022, 3/H20852
+12 /H110016h /H11001h
+2
+/H20849/H11002/H11009, /H110022/H20850/H20668/H20849/H110022, 1/H20850/H20668/H208491, /H11009/H20850
+/H20849/H11002/H11009, /H11009/H20850
+/H20849/H11002/H11009, /H110021/H20852/H20668/H208511, 4/H20852
+6. a) 7. a)
+b) b)
+c)
+/H110023, 3 /H20849f /H11568t/H20850/H20849x/H20850/H335274x2 /H110028x /H110012
+y
+x0_1
+1
+/H20849t /H11568f /H20850/H20849x/H20850/H335272x2 /H110014x /H110025
+/H20849t /H11568t /H11568t/H20850/H20849x/H20850/H335278x /H1100221
+Respuestas al examen de diagnóstico C: funciones
+Si tiene usted diﬁcultades con este examen, vea las secciones 1.1-1.3 de este libro
+y
+x0
+a)
+1
+1
+yb)
+x0
+1
+_1
+c) y
+x0
+(2, 3)
+yd)
+x0
+4
+2
+e) y
+x0 1
+f) y
+x0 1
+g) y
+x
+0
+1_1
+yh)
+x0
+1
+1
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxx
+---PAGE_BREAK---
+EXÁMENES DE DIAGNÓSTICO xxxi
+1. Convierta de grados a radianes.
+a) b)
+2. Convierta de radianes a grados.
+a) b)
+3. Encuentre la longitud del arco de circunferencia de radio 12 cm si el arco subtiende un
+ángulo central de 30°.
+4. Encuentre los valores exactos de:
+a) tan(p /H208623) b) sen(7p /H208626) c) sec(5p /H208623)
+5. Exprese las longitudes de a y b de la ﬁgura en términos de u .
+6. Si y , donde x y y están entre 0 y p/H208622, evalúe sen (x/H11001y).
+7. Demuestre las identidades:
+a) tan u sen u /H11001cos u /H33527sec u
+b)
+8. Encuentre todos los valores de x tales que sen 2x /H33527sen x y.
+9. Trace la gráﬁca de la función y /H335271 /H11001sen 2x sin usar calculadora.
+300/H11034/H1100218/H11034
+5/H9266/H2086262
+tan/H20849/H9266/H208623/H20850
+sec y /H33527
+5
+4
+0 /H33355x /H333552/H9266
+sen x
+1
+3
+2 tan x
+1 tan2 x sen 2x
+Examen de diagnóstico: trigonometríaD
+a
+¨
+b
+24
+FIGURA PARA EL PROBLEMA 5
+Si tiene usted diﬁcultades con este examen de diagnóstico, vea el apéndice D de este libro.
+1. a) b)
+2. a) b)
+3.
+4. a) b) c)
+5. a) 24 sen u b)
+/H11002/H9266/H20862105/H9266/H208623
+360/H11034/H20862/H9266/H11015114.6/H11034150/H11034
+2/H9266 cm
+2/H11002
+1
+2s3
+24 cos /H9258
+6.
+8.
+9.
+1
+15 (4 /H110016 s2 )
+0, /H9266/H208623, /H9266, 5/H9266/H208623, 2/H9266
+_π π x0
+2
+y
+Respuestas al examen de diagnóstico D: trigonometría
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxxi
+---PAGE_BREAK---
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxxii
+---PAGE_BREAK---
+Un previo de Cálculo
+El Cálculo es fundamentalmente diferente de las matemáticas que ha estudiado anteriormente: el Cálculo 
+es menos estático y más dinámico. Se ocupa de los cambios y el movimiento; estudia cantidades que se 
+aproximan a otras cantidades. Por eso puede ser útil tener una visión general del tema antes de comenzar 
+su estudio intensivo. Aquí damos un vistazo de algunas de las ideas principales del Cálculo, mostrando 
+cómo surge el concepto de límite cuando intentamos resolver diversos problemas.
+1
+© Ziga Camernik / Shutterstock
+© Pichugin Dmitry / Shutterstock
+© Brett Mulcahy / Shutterstock
+© iofoto / Shutterstock
+Cuando termine este curso, podrá usted estimar el número de
+trabajadores necesarios para construir una pirámide, explicar la
+formación y ubicación del arcoíris, diseñar una montaña rusa para
+un viaje suave y calcular la fuerza sobre una presa.
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 1
+---PAGE_BREAK---
+2 UN PREVIO DE CÁLCULO
+El problema del área
+Los orígenes del cálculo se remontan a unos 2 500 años a los antiguos griegos, quienes 
+calcularon áreas usando el “método de agotamiento”. Los griegos sabían cómo encontrar el
+área de cualquier polígono al dividirlo en triángulos como se ve en la figura 1 y sumar
+las áreas de estos triángulos.
+Un problema mucho más difícil es encontrar el área encerrada por una ﬁgura curvada.
+El método griego de agotamiento consistía en inscribir y circunscribir polígonos en la ﬁgu-
+ra y a continuación aumentar el número de lados de los polígonos. La ﬁgura 2 ilustra este
+proceso para el caso especial de un círculo con polígonos regulares inscritos.
+Sea el área del polígono inscrito con n lados. A medida que aumenta n, el área
+se parece cada vez más y más al área del círculo. Así, decimos que el área del círculo 
+es el límite de las áreas de los polígonos inscritos, y escribimos
+Los griegos no utilizaron explícitamente el concepto de límite. Sin embargo, por razona-
+miento indirecto, Eudoxo (siglo 
+V a.C.) utilizó la técnica de agotamiento para obtener la
+conocida fórmula para el área de un círculo:
+En el capítulo 5 utilizaremos una idea similar para encontrar las áreas de regiones del
+tipo que se muestra en la ﬁgura 3. Nos aproximaremos al área deseada por medio de áreas
+de rectángulos (como en la ﬁgura 4), disminuyendo el ancho de los rectángulos y luego
+calculando el área A como el límite de estas sumas de áreas de rectángulos.
+El problema del área es el problema central en la rama del Cálculo llamado cálculo
+integral. Las técnicas que vamos a desarrollar en el capítulo 5 para encontrar áreas tam-
+bién nos permitirán calcular el volumen de un sólido, la longitud de una curva, la fuerza
+de las aguas contra una presa, la masa y el centro de gravedad de una varilla y el trabajo
+realizado al bombear agua hacia afuera de un tanque.
+El problema de la tangente
+Considere el problema de encontrar la ecuación de la recta tangente t a una curva con
+ecuación en un punto dado P . (En el capítulo 2 daremos una definición precisa
+FIGURA 3 
+1
+n
+10 x
+y
+(1, 1)
+10 x
+y
+(1, 1)
+1
+4
+1
+2
+3
+4
+0 x
+y
+1
+(1, 1)
+FIGURA 4 
+10 x
+y
+y=≈
+A
+(1, 1)
+A¡™ /H11080/H11080/H11080A¶ /H11080/H11080/H11080AßA∞A¢A£
+FIGURA 2 
+A /H33527/H9266r2.
+An
+y /H33527f /H20849x/H20850
+A lím
+n l
+An
+An
+FIGURA 1 
+A=A¡+A™+A£+A¢+A∞
+A¡
+A™
+A£ A¢
+A∞
+En Preview Visual, puede ver cómo las
+áreas de los polígonos inscritos y circunscritos 
+se aproximan al área del círculo.
+TEC
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 2
+---PAGE_BREAK---

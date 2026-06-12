@@ -1,0 +1,1262 @@
+xxx EXÁMENES DE DIAGNÓSTICO
+1. La gráﬁca de una función f está dada a la izquierda.
+a) Determine el valor de .
+b) Estime el valor de .
+c) ¿Para qué valores de x es ?
+d) Estime los valores de x tales que .
+e) Establezca el dominio y el rango de .
+2. Si , evalúe el cociente de diferencias y simpliﬁque su respuesta.
+3. Encuentre el dominio de la función
+a) b) c)
+4. ¿Qué aspecto tiene cada una de las gráﬁcas siguientes a partir de la gráﬁca de f ?
+a) b) c)
+5. Sin usar calculadora, haga un bosquejo de cada una de las gráﬁcas siguientes:
+a) b) c)
+d) e) f )
+g) h)
+6.
+a) Evalúe y . b) Trace la gráﬁca de f
+7. Si y , encuentre cada una de las siguientes funciones:
+a) b) c)
+f /H20849/H110021/H20850
+f /H208492/H20850
+f /H20849x/H20850/H335272
+f /H20849x/H20850/H335270
+f
+f /H20849x/H20850/H33527x3 f /H208492/H11001h/H20850/H11002f /H208492/H20850
+h
+f /H20849x/H20850/H335272x /H110011
+x2 /H11001x /H110022 t/H20849x/H20850/H33527s
+3
+x
+x2 /H110011 h/H20849x/H20850/H33527s4 /H11002x /H11001sx2 /H110021
+y /H33527/H11002f/H20849x/H20850 y /H335272 f /H20849x/H20850/H110021 y /H33527f /H20849x /H110023/H20850/H110012
+y /H33527x3 y /H33527/H20849x /H110011/H208503 y /H33527/H20849x /H110022/H208503 /H110013
+y /H335274 /H11002x2 y /H33527sx y /H335272 sx
+y /H33527/H110022x y /H335271 /H11001x/H110021
+f /H20849/H110022/H20850f /H208491/H20850
+f /H20849x/H20850/H33527x2 /H110012x /H110021 t/H20849x/H20850/H335272x /H110023
+f /H11568tt /H11568f t /H11568t /H11568t
+Sea f x 1 x2
+2x 1
+si x 0
+si x 0
+Examen de diagnóstico: funcionesC
+y
+0x
+1
+1
+FIGURA PARA EL PROBLEMA 1
+1. a) b) 2.8
+c) d)
+e)
+2.
+3. a)
+b)
+c)
+4. a) Reﬂexión respecto al eje x
+b) Alargamiento vertical en un factor de 2 y después un
+desplazamiento de 1 unidad hacia abajo
+c) Desplazamiento de 3 unidades a la derecha y 2 unidades 
+hacia arriba
+5.
+/H110022
+/H110023, 1 /H110022.5, 0.3
+/H20851/H110023, 3/H20852, /H20851/H110022, 3/H20852
+12 /H110016h /H11001h
+2
+/H20849/H11002/H11009, /H110022/H20850/H20668/H20849/H110022, 1/H20850/H20668/H208491, /H11009/H20850
+/H20849/H11002/H11009, /H11009/H20850
+/H20849/H11002/H11009, /H110021/H20852/H20668/H208511, 4/H20852
+6. a) 7. a)
+b) b)
+c)
+/H110023, 3 /H20849f /H11568t/H20850/H20849x/H20850/H335274x2 /H110028x /H110012
+y
+x0_1
+1
+/H20849t /H11568f /H20850/H20849x/H20850/H335272x2 /H110014x /H110025
+/H20849t /H11568t /H11568t/H20850/H20849x/H20850/H335278x /H1100221
+Respuestas al examen de diagnóstico C: funciones
+Si tiene usted diﬁcultades con este examen, vea las secciones 1.1-1.3 de este libro
+y
+x0
+a)
+1
+1
+yb)
+x0
+1
+_1
+c) y
+x0
+(2, 3)
+yd)
+x0
+4
+2
+e) y
+x0 1
+f) y
+x0 1
+g) y
+x
+0
+1_1
+yh)
+x0
+1
+1
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxx
+---PAGE_BREAK---
+EXÁMENES DE DIAGNÓSTICO xxxi
+1. Convierta de grados a radianes.
+a) b)
+2. Convierta de radianes a grados.
+a) b)
+3. Encuentre la longitud del arco de circunferencia de radio 12 cm si el arco subtiende un
+ángulo central de 30°.
+4. Encuentre los valores exactos de:
+a) tan(p /H208623) b) sen(7p /H208626) c) sec(5p /H208623)
+5. Exprese las longitudes de a y b de la ﬁgura en términos de u .
+6. Si y , donde x y y están entre 0 y p/H208622, evalúe sen (x/H11001y).
+7. Demuestre las identidades:
+a) tan u sen u /H11001cos u /H33527sec u
+b)
+8. Encuentre todos los valores de x tales que sen 2x /H33527sen x y.
+9. Trace la gráﬁca de la función y /H335271 /H11001sen 2x sin usar calculadora.
+300/H11034/H1100218/H11034
+5/H9266/H2086262
+tan/H20849/H9266/H208623/H20850
+sec y /H33527
+5
+4
+0 /H33355x /H333552/H9266
+sen x
+1
+3
+2 tan x
+1 tan2 x sen 2x
+Examen de diagnóstico: trigonometríaD
+a
+¨
+b
+24
+FIGURA PARA EL PROBLEMA 5
+Si tiene usted diﬁcultades con este examen de diagnóstico, vea el apéndice D de este libro.
+1. a) b)
+2. a) b)
+3.
+4. a) b) c)
+5. a) 24 sen u b)
+/H11002/H9266/H20862105/H9266/H208623
+360/H11034/H20862/H9266/H11015114.6/H11034150/H11034
+2/H9266 cm
+2/H11002
+1
+2s3
+24 cos /H9258
+6.
+8.
+9.
+1
+15 (4 /H110016 s2 )
+0, /H9266/H208623, /H9266, 5/H9266/H208623, 2/H9266
+_π π x0
+2
+y
+Respuestas al examen de diagnóstico D: trigonometría
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxxi
+---PAGE_BREAK---
+Examen de diagnostico.qk_98678_DTSV_DTSV_pxxiv-xxviii  05/04/12  11:22 p.m.  Página xxxii
+---PAGE_BREAK---
+Un previo de Cálculo
+El Cálculo es fundamentalmente diferente de las matemáticas que ha estudiado anteriormente: el Cálculo 
+es menos estático y más dinámico. Se ocupa de los cambios y el movimiento; estudia cantidades que se 
+aproximan a otras cantidades. Por eso puede ser útil tener una visión general del tema antes de comenzar 
+su estudio intensivo. Aquí damos un vistazo de algunas de las ideas principales del Cálculo, mostrando 
+cómo surge el concepto de límite cuando intentamos resolver diversos problemas.
+1
+© Ziga Camernik / Shutterstock
+© Pichugin Dmitry / Shutterstock
+© Brett Mulcahy / Shutterstock
+© iofoto / Shutterstock
+Cuando termine este curso, podrá usted estimar el número de
+trabajadores necesarios para construir una pirámide, explicar la
+formación y ubicación del arcoíris, diseñar una montaña rusa para
+un viaje suave y calcular la fuerza sobre una presa.
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 1
+---PAGE_BREAK---
+2 UN PREVIO DE CÁLCULO
+El problema del área
+Los orígenes del cálculo se remontan a unos 2 500 años a los antiguos griegos, quienes 
+calcularon áreas usando el “método de agotamiento”. Los griegos sabían cómo encontrar el
+área de cualquier polígono al dividirlo en triángulos como se ve en la figura 1 y sumar
+las áreas de estos triángulos.
+Un problema mucho más difícil es encontrar el área encerrada por una ﬁgura curvada.
+El método griego de agotamiento consistía en inscribir y circunscribir polígonos en la ﬁgu-
+ra y a continuación aumentar el número de lados de los polígonos. La ﬁgura 2 ilustra este
+proceso para el caso especial de un círculo con polígonos regulares inscritos.
+Sea el área del polígono inscrito con n lados. A medida que aumenta n, el área
+se parece cada vez más y más al área del círculo. Así, decimos que el área del círculo 
+es el límite de las áreas de los polígonos inscritos, y escribimos
+Los griegos no utilizaron explícitamente el concepto de límite. Sin embargo, por razona-
+miento indirecto, Eudoxo (siglo 
+V a.C.) utilizó la técnica de agotamiento para obtener la
+conocida fórmula para el área de un círculo:
+En el capítulo 5 utilizaremos una idea similar para encontrar las áreas de regiones del
+tipo que se muestra en la ﬁgura 3. Nos aproximaremos al área deseada por medio de áreas
+de rectángulos (como en la ﬁgura 4), disminuyendo el ancho de los rectángulos y luego
+calculando el área A como el límite de estas sumas de áreas de rectángulos.
+El problema del área es el problema central en la rama del Cálculo llamado cálculo
+integral. Las técnicas que vamos a desarrollar en el capítulo 5 para encontrar áreas tam-
+bién nos permitirán calcular el volumen de un sólido, la longitud de una curva, la fuerza
+de las aguas contra una presa, la masa y el centro de gravedad de una varilla y el trabajo
+realizado al bombear agua hacia afuera de un tanque.
+El problema de la tangente
+Considere el problema de encontrar la ecuación de la recta tangente t a una curva con
+ecuación en un punto dado P . (En el capítulo 2 daremos una definición precisa
+FIGURA 3 
+1
+n
+10 x
+y
+(1, 1)
+10 x
+y
+(1, 1)
+1
+4
+1
+2
+3
+4
+0 x
+y
+1
+(1, 1)
+FIGURA 4 
+10 x
+y
+y=≈
+A
+(1, 1)
+A¡™ /H11080/H11080/H11080A¶ /H11080/H11080/H11080AßA∞A¢A£
+FIGURA 2 
+A /H33527/H9266r2.
+An
+y /H33527f /H20849x/H20850
+A lím
+n l
+An
+An
+FIGURA 1 
+A=A¡+A™+A£+A¢+A∞
+A¡
+A™
+A£ A¢
+A∞
+En Preview Visual, puede ver cómo las
+áreas de los polígonos inscritos y circunscritos 
+se aproximan al área del círculo.
+TEC
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 2
+---PAGE_BREAK---
+UN PREVIO DE CÁLCULO 3
+de una recta tangente. Por ahora podemos considerarla como una recta que toca la curva
+en P como en la ﬁgura 5.) Como sabemos que el punto P se encuentra en la recta tangen-
+te, podemos encontrar la ecuación de t si sabemos su pendiente m . El problema es que
+necesitamos dos puntos para calcular la pendiente y tenemos sólo un punto P de t. Para
+sortear el problema encontramos en primer lugar una aproximación a m tomando un punto
+cercano Q de la curva y calculamos la pendiente de la recta secante PQ. De la ﬁgura 6
+vemos que
+Ahora imaginemos que Q se mueve a lo largo de la curva hacia P como en la ﬁgura 7.
+Puede ver que la recta secante gira y se acerca a la recta tangente como su posición limi-
+te. Esto signiﬁca que la pendiente de la recta secante se acerca más y más a la pen-
+diente m de la recta tangente. Escribimos
+y decimos que mes el límite de cuando Q se aproxima a Pa lo largo de la curva. Puesto
+que x se aproxima a a cuando Q se aproxima a P, también podríamos utilizar la ecuación
+1 para escribir
+En el capítulo 2 veremos ejemplos especíﬁcos de este procedimiento.
+El problema de la tangente ha dado lugar a la rama del cálculo llamada cálculo dife-
+rencial, inventada más de 2 000 años después que el cálculo integral. Las principales
+ideas detrás del cálculo diferencial se deben al matemático francés Pierre de Fermat
+(1601–1665) y fueron desarrolladas por los matemáticos ingleses John Wallis (1616–1703),
+Isaac Barrow (1630–1677) e Isaac Newton (1642–1727) y el matemático alemán Gottfried
+Leibniz (1646–1716).
+Las dos ramas de cálculo y sus principales problemas, el problema del área y el pro-
+blema de la tangente, parecen ser muy diferentes, pero resulta que hay una conexión muy
+estrecha entre ellos. El problema de la tangente y el área son problemas inversos en un
+sentido que se describe en el capítulo 5.
+Velocidad
+Cuando miramos el velocímetro de un automóvil y leemos que se está desplazando a 48 mi/h,
+¿qué información estamos obteniendo? Si la velocidad se mantiene constante, después de
+una hora nos habremos desplazado 48 mi. Pero, si varía la velocidad del coche, ¿qué signi-
+ﬁca decir que la velocidad en un instante dado es 48 mi/h?
+A ﬁn de analizar esta situación, examinemos el caso de un automóvil que viaja a lo largo
+de una carretera recta en el que suponemos que es posible medir la distancia recorrida por
+el vehículo (en pies) a intervalos de un segundo como se registra en la siguiente tabla:
+m
+PQ /H33527f /H20849x/H20850/H11002f /H20849a/H20850
+x /H11002a
+1
+2
+mPQ
+mPQ
+mPQ
+m lím
+Q lP
+mPQ
+m lím
+x l a
+fx fa
+xa
+0
+y
+x
+P
+y=ƒ
+t
+P
+Q
+t
+0 x
+y
+y
+0 xax
+ƒ-f(a)P{a, f(a)}
+x-a
+t
+Q{x, ƒ }
+FIGURA 5 
+La recta tangente en  P
+FIGURA 6
+La recta secante PQ
+FIGURA 7
+Recta secante aproximándose
+a la recta tangente
+t /H33527 Tiempo transcurrido (s) 0 1 2 3 4 5
+d /H33527 Distancia (pies) 0 2 9 24 42 71
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 3
+---PAGE_BREAK---
+4 UN PREVIO DE CÁLCULO
+Un primer paso para hallar la velocidad una vez que han transcurrido 2 segundos, es
+encontrar la velocidad promedio durante el intervalo :
+Del mismo modo, la velocidad promedio en el intervalo es
+Tenemos la sensación de que la velocidad en el instante /H335272 no puede ser muy diferente
+de la velocidad promedio durante un corto intervalo de tiempo desde . Así que ima-
+ginemos que se ha medido la distancia recorrida en intervalos de tiempo de 0.1 segundo
+como se ve en la siguiente tabla:
+Entonces podemos calcular, por ejemplo, la velocidad promedio en el intervalo de tiempo
+:
+Los resultados de estos cálculos se muestran en la siguiente tabla:
+Las velocidades promedio durante intervalos sucesivamente más pequeños parecen
+estar aproximándose cada vez más a un número cercano a 10 y, por tanto, esperaríamos
+que la velocidad en exactamente sea de 10 pies/s. En el capítulo 2 deﬁniremos la
+velocidad instantánea de un objeto en movimiento, como el valor límite de las velocidades
+promedio durante intervalos de tiempo cada vez más pequeños.
+En la ﬁgura 8 se muestra una representación gráﬁca del movimiento del automóvil al
+ubicar los puntos correspondientes a la distancia recorrida como función del tiempo. Si
+escribimos , entonces es el número de pies recorridos después de t segundos.
+La velocidad promedio en el intervalo de tiempo es
+que es lo mismo que la pendiente de la recta secante PQen la ﬁgura 8. La velocidad cuan-
+do es el valor límite de esta velocidad promedio cuando t se aproxima a 2; es decir,
+y de la ecuación 2 reconocemos que esto es lo mismo que la pendiente de la recta tangen-
+te a la curva en P.
+2 /H33355t /H333554
+2 /H33355t /H333553
+t
+t /H335272
+/H208512, 2.5/H20852
+t /H335272
+f /H20849t/H20850d /H33527f /H20849t/H20850
+/H208512, t/H20852
+t /H335272
+v
+v lím
+t l 2
+ft f2
+t 2
+16.5 pies/H20862s
+42 9
+4 2
+velocidad promedio cambio en la posición
+tiempo transcurrido
+velocidad promedio 24 9
+3 2 15 pies/H20862s
+velocidad promedio 15.80 9.00
+2.5 2 13.6 pies/H20862s
+velocidad promedio cambio en la posición
+tiempo transcurrido
+f t f 2
+t 2
+FIGURA 8 
+t
+d
+0 12345
+10
+20
+P{2, f(2)}
+Q{t, f(t)}
+t 2.0 2.1 2.2 2.3 2.4 2.5
+d 9.00 10.02 11.16 12.45 13.96 15.80
+Intervalo de tiempo
+Velocidad promedio (pies/H20862s) 15.0 13.6 12.4 11.5 10.8 10.2
+/H208512, 2.5/H20852/H20851 2, 2.1/H20852/H208512, 2.2/H20852/H208512, 2.3/H20852/H208512, 2.4/H20852/H208512, 3/H20852
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 4
+---PAGE_BREAK---
+UN PREVIO DE CÁLCULO 5
+Así, cuando resolvemos el problema de la tangente en el cálculo diferencial, también
+estamos resolviendo problemas relativos a velocidades. Las mismas técnicas permiten
+resolver problemas relacionados con tasas de cambio en las ciencias naturales y sociales.
+El límite de una sucesión
+En el siglo V a.C. el ﬁlósofo griego Zenón de Elea planteó cuatro problemas, ahora cono-
+cidos como Paradojas de Zenón, que estaban diseñados para cuestionar algunas de las ideas
+sobre el espacio y el tiempo que se sostenían en esos días. La segunda paradoja de Zenón
+se reﬁere a una carrera entre el héroe griego Aquiles y una tortuga a la que se ha dado cier-
+ta ventaja al inicio. Zenón argumentaba, como se hace ver enseguida, que Aquiles nunca
+podría rebasar a la tortuga. Supongamos que Aquiles empieza en la posición y la tortu-
+ga comienza en posición (véase la ﬁgura 9). Cuando Aquiles alcanza el punto , la
+tortuga está más adelante en la posición . Cuando Aquiles llega a , la tortuga está
+en . Este proceso continúa indeﬁnidamente y así parece que ¡la tortuga siempre estará por
+delante! Pero esto desafía el sentido común.
+Una manera de explicar esta paradoja es con el concepto de sucesión. Las posiciones
+sucesivas de Aquiles o las posiciones sucesivas de la tortuga 
+forman lo que se conoce como una sucesión.
+En general, una sucesión es un conjunto de números escritos en un orden deﬁnido.
+Por ejemplo, la sucesión
+puede describirse dando la siguiente fórmula para el -ésimo término:
+Podemos visualizar esta sucesión ubicando sus términos en una recta numérica como
+en la ﬁgura 10a) o dibujando su gráﬁca como en la ﬁgura 10b). En cualquiera de las dos
+representaciones observamos que los términos de la sucesión se aproximan cada
+vez más y más a 0 al aumentar . De hecho, podemos encontrar términos tan pequeños
+como queramos haciendo suﬁcientemente grande. En estas condiciones, decimos que el
+límite de la sucesión es 0, y lo indicamos escribiendo
+En general, la notación
+se utiliza si los términos de se aproximan al número L cuando n es suﬁcientemente gran-
+de. Esto signiﬁca que los números pueden acercarse al número L tanto como se quiera
+si se toma una n suﬁcientemente grande.
+a
+n /H335271
+n
+{1, 
+1
+2 , 
+1
+3 , 
+1
+4 , 
+1
+5 ,  ... }
+FIGURA 9 
+Aquiles
+Tortuga
+a¡ a™ a£ a¢ a∞
+t¡ t™ t£ t¢
+. . .
+. . .
+a1
+t1 a2 /H33527t1
+t2 a3 /H33527t2
+t3
+/H20849a1, a2, a3,  ... /H20850/H20849 t1, t2, t3,  ... /H20850
+/H20853an/H20854
+n
+an /H335271/H20862n
+n
+n
+an
+lím
+n l
+1
+n 0
+lím
+n l
+an L
+an
+1
+n1 2345678
+FIGURA 10
+10
+a¡a™a£a¢
+a)
+b)
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 5
+---PAGE_BREAK---
+6 UN PREVIO DE CÁLCULO
+El concepto de límite de una sucesión ocurre cada vez que utilizamos la representación
+decimal de un número real. Por ejemplo, si
+entonces
+Los términos de esta sucesión son aproximaciones racionales de .
+Regresemos a la paradoja de Zenón. Las posiciones sucesivas de Aquiles y la tortuga
+forman sucesiones y , donde para toda n. Puede demostrarse que ambas
+sucesiones tienen el mismo límite
+Es precisamente en este punto p que Aquiles alcanza a la tortuga.
+La suma de una serie
+Otra de las paradojas de Zenón, según Aristóteles, es la siguiente: “un hombre parado en
+una sala no puede caminar hasta la pared. Para ello, primero tendría que recorrer la mitad
+de la distancia, después recorrer la mitad de la distancia restante y, a continuación,
+recorrer la mitad de lo que falta. Este proceso puede mantenerse siempre y nunca puede
+ser terminado”. (Véase la ﬁgura 11.)
+Por supuesto, sabemos que el hombre realmente puede llegar a la pared, lo que sugiere
+que tal vez la distancia total puede expresarse como la suma de una inﬁnidad de distancias
+cada vez más pequeñas como sigue:
+a
+1 /H335273.1
+a2 /H335273.14
+a3 /H335273.141
+a4 /H335273.1415
+a5 /H335273.14159
+a6 /H335273.141592
+a7 /H335273.1415926
+/H11080/H11080
+/H11080
+/H9266
+FIGURA 11
+1
+2
+1
+4
+1
+8
+1
+16
+1 /H335271
+2 /H110011
+4 /H110011
+8 /H110011
+16 /H11001/H11080/H11080/H11080/H110011
+2n /H11001/H11080/H11080/H110803
+/H20853an/H20854/H20853tn/H20854 an /H11021tn
+lím
+n l
+an
+lím
+n l
+an p lím
+n l
+tn
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 6
+---PAGE_BREAK---
+UN PREVIO DE CÁLCULO 7
+Zenón argumentaba que no tiene sentido sumar una inﬁnidad de números. Pero hay otras
+situaciones en que utilizamos implícitamente sumas inﬁnitas. Por ejemplo, en notación
+decimal, el símbolo 0.3– /H335270.3333. . . signiﬁca
+y así, en cierto sentido, debe ser cierto que
+Más generalmente, si denota el n -ésimo dígito en la representación decimal de un
+número, entonces
+Por tanto, algunas sumas inﬁnitas o series inﬁnitas, como se les llama, tienen un signiﬁca-
+do. Pero debemos deﬁnir cuidadosamente lo que es la suma de una serie inﬁnita.
+Regresando a la serie en la ecuación 3, denotamos por la suma de los n primeros 
+términos de la serie. Por tanto,
+Observe que como le añadimos cada vez más términos, las sumas parciales parecen ser
+más cercanas a 1. De hecho, se puede demostrar que si es suﬁcientemente grande (es
+decir, si se suman suﬁcientes términos de la serie), podemos aproximar la suma parcial 
+tanto como queramos al número 1. Por tanto, parece razonable decir que la suma de la
+serie inﬁnita es 1 y escribir
+3
+10 /H110013
+100 /H110013
+1000 /H110013
+10 000 /H11001/H11080/H11080/H11080
+3
+10 /H110013
+100 /H110013
+1000 /H110013
+10 000 /H11001/H11080/H11080/H11080/H335271
+3
+dn
+0.d1d2 d3 d4 ... /H33527d1
+10 /H11001d2
+102 /H11001d3
+103 /H11001/H11080/H11080/H11080/H11001dn
+10n /H11001/H11080/H11080/H11080
+n
+sn
+1
+2 /H110011
+4 /H110011
+8 /H11001/H11080/H11080/H11080/H110011
+2n /H11001/H11080/H11080/H11080/H335271
+sn
+s16
+1
+2
+1
+4
+1
+216 0.99998474
+s10
+1
+2
+1
+4
+1
+1024 0.99902344
+s7
+1
+2
+1
+4
+1
+8
+1
+16
+1
+32
+1
+64
+1
+128 0.9921875
+s6
+1
+2
+1
+4
+1
+8
+1
+16
+1
+32
+1
+64 0.984375
+s5
+1
+2
+1
+4
+1
+8
+1
+16
+1
+32 0.96875
+s4
+1
+2
+1
+4
+1
+8
+1
+16 0.9375
+s3
+1
+2
+1
+4
+1
+8 0.875
+s2
+1
+2
+1
+4 0.75
+s1
+1
+2 0.5
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 7
+---PAGE_BREAK---
+8 UN PREVIO DE CÁLCULO
+En otras palabras, la razón de que la suma de la serie sea 1 es que
+En el capítulo 11 analizaremos con más detalle estas ideas y utilizaremos la propuesta
+de Newton de combinar las series inﬁnitas con el cálculo diferencial e integral.
+Resumen
+Hemos visto que el concepto de límite surge al intentar encontrar el área de una región, la
+pendiente de la recta tangente a una curva, la velocidad de un móvil o la suma de una serie
+inﬁnita. En cada caso el problema común es el cálculo de una cantidad como el límite de
+otras cantidades fáciles de calcular. Esta idea básica de límite separa al Cálculo de otras
+áreas de las matemáticas. De hecho, podríamos deﬁnir al Cálculo como la parte de las
+matemáticas que estudia límites.
+Después de que Sir Isaac Newton inventó su versión del Cálculo, la usó para explicar el
+movimiento de los planetas alrededor del Sol. Hoy el Cálculo se utiliza para determinar las
+órbitas de los satélites y naves espaciales, en la predicción de tamaños de población, en la
+estimación de la rapidez con la que los precios del petróleo suben o bajan, en la predicción
+meteorológica, en medir el ritmo cardiaco del corazón, en el cálculo de las primas de segu-
+ros de vida y en una gran variedad de otras áreas. En este libro exploraremos algunos de
+estos usos del Cálculo.
+Con el ﬁn de dar una idea del poder del Cálculo, terminamos este panorama preliminar
+con una lista de algunas de las preguntas que usted podrá responder mediante el Cálculo:
+1. ¿Cómo podemos explicar el hecho, ilustrado en la ﬁgura 12, de que el ángulo de
+elevación desde un observador hasta el punto más alto en un arcoíris es 42°?
+(Consulte la página 282.)
+2. ¿Cómo podemos explicar las formas de las latas en supermercados? (Consulte la
+página 337.)
+3. ¿Dónde está el mejor lugar para sentarse en una sala de cine? (Consulte la 
+página 456.)
+4. ¿Cómo podemos diseñar una montaña rusa para un viaje suave? (Consulte la
+página 184.)
+5. ¿A qué distancia de la pista de un aeropuerto debe un piloto iniciar el descenso?
+(Consulte la página 208.)
+6. ¿Cómo podemos utilizar las curvas y el diseño de las formas para representar
+letras en una impresora láser? (Consulte la página 653.)
+7. ¿Cómo podemos estimar el número de trabajadores que fueron necesarios para
+construir la gran pirámide de Keops en Egipto? (Consulte la página 451.)
+8. ¿Dónde debe colocarse un parador en corto para atrapar una pelota de beisbol
+lanzada por un jardinero y lanzarla al plato (home)? (Consulte la página 456.)
+9. Una bola lanzada verticalmente hacia arriba, ¿tarda más tiempo en llegar a su
+altura máxima o en volver a su posición original de lanzamiento? (Consulte la
+página 604.)
+lím
+n /H11009l
+sn 1
+Rayos del Sol
+Observador
+Rayos del Sol
+42°
+FIGURA 12
+138°
+98678_00SV_ch00SV_p001-008_98678_00SV_ch00SV_p001-008  05/04/12  11:25 p.m.  Página 8
+---PAGE_BREAK---
+Funciones y modelos1
+A menudo una gráﬁca es la mejor manera 
+de representar una función porque 
+transmite mucha información en un 
+vistazo. En la fotografía se muestra la 
+gráﬁca de la aceleración del suelo, 
+creada por el terremoto de 2008 en la 
+provincia de Sichuan, en China. La ciudad 
+más golpeada fue Beichuan, como 
+muestra la imagen.
+© Mark Ralston / AFP / Getty Images
+Cortesía de the IRIS Consortium. www.iris.edu
+9
+Los objetos fundamentales con los que trata el Cálculo son las funciones. Este capítulo prepara el camino 
+para el Cálculo discutiendo las ideas básicas sobre las gráﬁcas de funciones y la manera de transformarlas 
+y combinarlas. Destacamos que una función puede representarse de diferentes maneras: mediante una 
+ecuación, una tabla, una gráﬁca o en palabras. Veremos los principales tipos de funciones que aparecen en 
+el Cálculo y describiremos cómo se utilizan estas funciones para modelar matemáticamente fenómenos 
+del mundo real. También analizaremos el uso de calculadoras graﬁcadoras y programas de graﬁcación por 
+computadora.
+---PAGE_BREAK---
+10    CAPÍTULO 1  FUNCIONES Y MODELOS
+Las funciones surgen siempre que una cantidad depende de otra. Considere las cuatro 
+situaciones siguientes:
+A.  El área A de un círculo depende de su radio r. La regla que relaciona A con r está 
+dada por la ecuación A m )r
+2. Con cada número positivo r hay asociado un valor de 
+A, por lo que decimos que A es una función de r. 
+B.  La población humana del mundo P depende del tiempo t. La tabla muestra las estima-
+ciones de la población mundial P(t) en el tiempo t, para algunos años. Por ejemplo,
+P(1950)  2 560 000 000
+ Pero para cada valor del tiempo t hay un valor correspondiente de P, por lo que  
+decimos que P es una función de t.
+C.  El costo C de envío de un paquete por correo depende de su peso w. Aunque no hay 
+alguna fórmula simple que relacione a w con C, la oficina de correos tiene una regla 
+para determinar C cuando se conoce w. 
+D.  La aceleración vertical a  de suelo, medida por un sismógrafo durante un terremoto, 
+es una función del tiempo transcurrido t. La figura 1 muestra una gráfica generada 
+por la actividad sísmica durante el terremoto de Northridge que sacudió Los Ángeles 
+en 1994. Para un determinado valor de t, la gráfica proporciona un valor correspon-
+diente de a.
+1.1 Cuatro maneras de representar una función
+Población
+(millones)Año
+1900 1  650
+1910 1  750
+1920 1  860
+1930 2  070
+1940 2  300
+1950 2  560
+1960 3  040
+1970 3  710
+1980 4  450
+1990 5  280
+2000 6  080
+2010 6  870
+FIGURA 1
+Aceleración vertical de suelo durante
+el terremoto de Northridge
+{cm/s@}
+(segundos)
+Departamento de Minas y Geología de California
+5
+50
+10 15 20 25
+a
+t
+100
+30
+_50
+Cada uno de estos ejemplos describe una regla según la cual, a un número dado (r, t , w 
+o t), se le asigna otro número (A, P , C, o a). En cada caso decimos que el segundo núme-
+ro es una función del primero.
+Una función f es una regla que asigna a cada elemento x de un conjunto D exacta-
+mente un elemento, llamado f (x), de un conjunto E.
+Usualmente consideramos funciones para los cuales los conjuntos D y E son conjuntos 
+de números reales. Al conjunto D se le denomina dominio de la función. El número f (x) 
+es el valor de f en x y se lee “f de x”. El rango de f es el conjunto de todos los valores 
+posibles de f (x) conforme x varía a través de todo el dominio. Un símbolo que representa 
+un número arbitrario en el dominio de una función f se llama variable independiente.  
+Un símbolo que representa un número en el rango de f  se conoce como variable 
+dependiente. En el ejemplo A, r es la variable independiente, y A es la variable dependiente.
+---PAGE_BREAK---
+ EJEMPLO 1   La gráfica de una función f se muestra en la figura 6.
+a) Encuentre los valores de f (1) y f (5).
+b) ¿Cuál es el dominio y el rango de f  ?
+SOLUCIÓN 
+a) De la figura 6 vemos que el punto (1, 3) está en la gráfica de f, por lo que el valor de f 
+en 1 es f (1) m 3. (En otras palabras, el punto en la gráfica que se encuentra por encima 
+de x m 1 está 3 unidades por encima del eje x.)
+Cuando x m 5, la gráfica se encuentra aproximadamente a 0.7 unidades por debajo del 
+eje x, así que estimamos que f (5)  0.7. 
+b) Vemos que f (x) está definida cuando 0  x  7, por lo que el dominio de f es el  
+intervalo cerrado F0, 7G. Observe que f toma todos los valores de 2 a 4, así que  
+el rango de f es
+ 
+y 2 y 4 2, 4  
+SECCIÓN 1.1  CUATRO MANERAS DE REPRESENTAR UNA FUNCIÓN    11   
+Es útil pensar en una función como una máquina (véase la figura 2). Si x está en el 
+dominio de la función f, cuando x entra en la máquina, que se acepta como una entrada, la 
+máquina produce una salida f (x) de acuerdo con la regla de la función. Así, podemos pen-
+sar el dominio como el conjunto de todas las posibles entradas, y en el rango como el 
+conjunto de todas las posibles salidas.
+Las funciones preprogramadas en una calculadora son buenos ejemplos de una función 
+como una máquina. Por ejemplo, el comando raíz cuadrada en su calculadora computa esa 
+función. Oprima la tecla etiquetada (o )s
+sx  e introduzca la entrada x; si x  0, entonces 
+x no está en el dominio de esta función; es decir, x no es una entrada aceptable, y la calcu-
+ladora indicará un error. Si x  0, entonces aparecerá una aproximación a sx  en la pan-
+talla. Así, el comando sx  en la calculadora no es exactamente el mismo que la función 
+matemática f definida por .f x sx
+Otra forma de imaginar una función es con un diagrama de flechas como en la 
+figura 3. Cada flecha conecta un elemento de D con un elemento de E. La flecha indica 
+que f (x) está asociada con x, f (a) está asociada con a, y así sucesivamente. 
+El método más común para la visualización de una función es con su gráfica. Si f es una 
+función con dominio D, entonces su gráfica es el conjunto de pares ordenados
+x, f x x D
+(Observe que estos son pares de entrada-salida). En otras palabras, la gráfica de f  cons-
+ta de todos los puntos (x , y) en el plano coordenado tales que y m f (x) y x  está en el 
+dominio de f . 
+La gráfica de una función f nos da una imagen visual útil del comportamiento o “historia de 
+vida” de una función. Dado que la coordenada y de cualquier punto (x, y ) en el gráfico es 
+y m f (x), podemos leer el valor de f (x) de la gráfica como la altura de la gráfica por encima 
+del punto x (véase la figura 4). La gráfica de f permite también tener una imagen visual del 
+dominio de f en el eje x y su rango en el eje y como en la figura 5.
+FIGURA 6
+x
+y
+0
+1
+1
+FIGURA 2
+Diagrama de una función ƒ como una
+máquina 
+x
+(entrada)
+ƒ
+(salida)
+f
+fD E
+ƒ
+f(a)a
+x
+FIGURA 3 
+Diagrama de flechas para ƒ
+La notación por intervalos está dada en el 
+apéndice A.
+0
+y  ƒ(x)
+dominio
+rango
+FIGURA 4
+{x, ƒ }
+ƒ
+f(1)
+f(2)
+0 12 x
+FIGURA 5
+xx
+y y
+---PAGE_BREAK---
+12    CAPÍTULO 1  FUNCIONES Y MODELOS
+ EJEMPLO 2   Trace la gráfica y encuentre el dominio y rango de cada una de las siguientes 
+funciones:
+a) f (x) m 2x  1 b) J (x) m x2
+SOLUCIÓN
+a) La ecuación de la gráfica es y m 2x 1 y representa la ecuación de una recta con 
+pendiente 2 e intersección con el eje y en y m 1 (recuerde que la forma pendiente-inter-
+sección de la ecuación de la recta es y m mx  b. Véase el apéndice B). Esto nos permite 
+dibujar la porción de la gráfica de f en la figura 7. La expresión 2x  1 está definida para 
+todos los números reales, así que el dominio de f es el conjunto 2 de todos los números 
+reales. La gráfica muestra que el rango también es 2.
+b) Dado que J(2) m 22 m 4 y J(1) m (1)2 m 1, podemos ubicar los puntos (2, 4) y 
+(1, 1) junto con algunos otros puntos de la gráfica, y después unirlos para obtener la gráfica 
+(figura 8). La ecuación de la gráfica es y m x2 y representa una parábola (véase apéndice C). 
+El dominio de J es 2, y el rango consiste en todos los valores de J(x), esto es, todos los 
+números de la forma x 2. Pero x 2  0 para todos los números x, y todo número y en  
+estas condiciones es positivo, así que el rango de J es .y y 0 0,  Esto puede 
+verse en la figura 8. 
+ EJEMPLO 3   Si f (x) m 2x2  5x  1 y h  0, evalúe  f a h f a
+h .
+SOLUCIÓN Primero evaluamos f  (a  h) reemplazando x  por a  h en la expresión 
+para f (x):
+2a2 4ah 2h2 5a 5h 1
+2 a2 2ah h2 5 a h 1
+f a h 2 a h 2 5 a h 1
+Después sustituimos en la expresión dada y simplificamos:
+4ah 2h2 5h
+h 4a 2h 5
+2a2 4ah 2h2 5a 5h 1 2a2 5a 1
+h
+f a h f a
+h
+2a2 4ah 2h2 5a 5h 1 2a2 5a 1
+h
+  
+ Representaciones de funciones
+Hay cuatro posibles maneras de representar una función:
+■ Verbalmente (por una descripción en palabras)
+■ Numéricamente (por una tabla de valores)
+■ Visualmente (por una gráfica)
+■ Algebraicamente (por una fórmula explícita)
+Si una función puede representarse de las cuatro maneras, con frecuencia es muy útil 
+pasar de una representación a otra a fin de disponer de información adicional de la función. 
+(En el ejemplo 2, empezamos con formas algebraicas y de ellas obtuvimos gráficas.) Pero 
+ciertas funciones se describen de manera más naturalmente por una forma que por otra. 
+Con esto en mente, reexaminaremos las cuatro situaciones que consideramos al inicio de 
+esta sección. 
+FIGURA 7
+x
+y=2x-1
+0
+-1
+y
+1
+2
+(_1, 1)
+(2, 4)
+0
+y
+1
+x1
+y=≈
+FIGURA 8
+La expresión
+f a h f a
+h
+en el ejemplo 3 se llama cociente de  
+diferencias y se presenta frecuentemente  
+en cálculo. Como veremos en el capítulo 2, 
+representa la razón de cambio de f (x)  
+entre x m a y x m a  h.
+---PAGE_BREAK---
+SECCIÓN 1.1  CUATRO MANERAS DE REPRESENTAR UNA FUNCIÓN    13   
+La función P es típica de aquellas que surgen cuando se intenta aplicar el Cálculo 
+en el mundo real. Comenzamos con una descripción verbal de una función. 
+A continuación, debemos ser capaces de elaborar una tabla de valores de la función; 
+tal vez de lecturas del instrumento en un experimento científico. A pesar de que no 
+tenemos un conocimiento completo de los valores de la función, veremos a lo largo del 
+libro que todavía es posible realizar las operaciones del Cálculo con dicha función.
+C.  Nuevamente la función se describe con palabras: sea C( w) el costo de envío por 
+correo de un paquete con peso w. La regla que el Servicio Postal de EU utiliza desde 
+2010 es la siguiente: el costo es de 88 centavos de dólar para paquetes hasta  
+de 1 onza, más 17 centavos por cada onza adicional (o menos) hasta 13 onzas. La 
+tabla de valores que se muestran en el margen es la representación más conveniente 
+para esta función, aunque es posible esbozar una gráfica (véase el ejemplo 10).
+D.  La gráfica que se muestra en la figura 1 es la representación más natural de la función 
+aceleración vertical a(t). Es cierto que podría elaborarse una tabla de valores, y que 
+incluso es posible idear una fórmula aproximada. Pero todo lo que necesita saber 
+un geólogo —las amplitudes y patrones— puede verse fácilmente en la gráfica. (Lo 
+mismo es cierto para los patrones que se observan en los electrocardiogramas de 
+pacientes que sufren del corazón y en polígrafos para la detección de mentiras).
+A.  La representación probablemente más útil del área de un círculo como una función  
+de su radio es la fórmula algebraica A(r) m )r
+2, aunque es posible compilar una tabla  
+de valores para esbozar una gráfica (la mitad de una parábola). Debido a que un  
+círculo tiene un radio positivo, el dominio es 
+r r 0 0, , y el rango (0, @).
+B.  Se nos da una descripción de la función en palabras: P(t) es la población humana del 
+mundo en el tiempo t. Vamos a medir t, así que t m 0 se corresponde con el año 1900. 
+La tabla de valores de la población mundial proporciona una representación adecuada 
+de esta función. Si se grafican estos valores, obtenemos la gráfica (llamada gráfica de 
+dispersión) en la figura 9. También es una representación útil porque la gráfica nos  
+permite disponer de todos los datos a la vez. ¿Qué pasa con una fórmula? Por 
+supuesto, es imposible concebir una fórmula explícita que proporcione la población 
+humana exacta P(t) en cualquier tiempo t. Pero es posible encontrar una expresión 
+para una función que se aproxime a P(t). De hecho, utilizando los métodos que se 
+explican en la sección 1.2, conseguimos la aproximación
+P
+t f t 1.43653 10 9 1.01395 t
+  La figura 10 muestra que es un “ajuste” razonablemente bueno. La función f se llama 
+modelo matemático para el crecimiento de la población. En otras palabras, es una 
+función con una fórmula explícita que aproxima el comportamiento de nuestra función 
+dada. Sin embargo, veremos que las ideas del Cálculo también pueden aplicarse a una 
+tabla de valores; una fórmula explícita no es necesaria.
+Población
+(millones)
+01  650
+10 1  750
+20 1  860
+30 2  070
+40 2  300
+50 2  560
+60 3  040
+70 3  710
+80 4  450
+90 5  280
+100 6  080
+110 6  870
+t
+(onzas) (dólares)
+0.88
+1.05
+1.22
+1.39
+1.56
+4 w 5
+3 w 4
+2 w 3
+1 w 2
+0 w 1
+C ww
+FIGURA 10FIGURA 9
+5x10' 5x10'
+P
+t20 40 60 80 100 120 20 40 60 80 100 120
+P
+t00
+Una función deﬁnida por una tabla de valores se 
+llama función tabular
+.
+---PAGE_BREAK---
+14    CAPÍTULO 1  FUNCIONES Y MODELOS
+En el ejemplo siguiente, esboce la gráfica de una función definida verbalmente.
+ EJEMPLO 4   Al abrir un grifo de agua caliente, la temperatura T del agua depende de 
+cuánto tiempo ha estado saliendo el agua. Dibuje un esbozo de gráfica de T como una 
+función del tiempo t que ha transcurrido desde que fue abierto el grifo.
+SOLUCIÓN La temperatura inicial del agua corriente es cercana a la temperatura ambiente 
+porque el agua ha permanecido en las tuberías. Cuando empieza a salir el agua desde 
+el tanque de agua caliente, T  aumenta rápidamente. En la siguiente fase, T  es constante 
+a la temperatura del agua caliente en el tanque. Cuando el tanque se drena, T disminuye hasta 
+la temperatura de la fuente de agua. Esto nos permite hacer el esbozo de T en función  
+de t en la figura 11. 
+El siguiente ejemplo inicia con una descripción verbal de una función en una situación 
+física, y hay que obtener una fórmula algebraica explícita. La capacidad para hacer esto es 
+una habilidad útil para resolver problemas de Cálculo en los que se piden los valores máxi-
+mo o mínimo de cantidades.
+ v   EJEMPLO 5   Un contenedor rectangular sin tapa tiene un volumen de 10 m3. La 
+longitud de su base es dos veces su ancho. El material para la base cuesta $10 por metro  
+cuadrado, y el material para los lados cuesta $6 por metro cuadrado. Exprese el costo  
+de los materiales como una función del ancho de la base.
+SOLUCIÓN Dibujamos un diagrama como el de la figura 12 e introducimos la notación w 
+y 2w para el ancho y la longitud de la base, respectivamente, y h para la altura.
+El área de la base es w(2w) m 2w2, por lo que el costo en dólares de los materiales  
+para la base es 10(2 w2). Dos de los lados tienen área wh, y los otros dos tienen área  
+2wh, por lo que el costo de los materiales para los lados es 6F2( wh)  2(2wh)G. El costo 
+total es, por tanto,
+C 10 2w2 6 2 wh 2 2wh 20w2 36wh
+Para expresar C sólo como una función de w, necesitamos eliminar h y para hacerlo 
+utilizamos el hecho de que el volumen es de 10 m3. Por tanto,
+w(2w)h m 10
+esto da h 10
+2w2
+5
+w2
+Sustituyendo en la expresión para C, tenemos
+C 20w2 36w 5
+w2 20w2 180
+w
+Por tanto, la ecuación
+w 0C w 20w2 180
+w
+expresa C como una función de w. 
+ EJEMPLO 6   Encuentre el dominio de cada una de las siguientes funciones:
+ )a f x sx 2       
+SOLUCIÓN 
+a) Debido a que la raíz cuadrada de un número negativo no está definida (como un 
+número real), el dominio de f consta de todos los valores de x tales que x  2  0. Esto 
+es equivalente a x  2, por lo que el dominio es el intervalo F2, @).
+t
+T
+0
+FIGURA 11
+w
+2w
+h
+FIGURA 12
+RP  Para establecer funciones aplicadas como 
+en el ejemplo 5, puede ser útil revisar los 
+principios de la resolución de problemas como se 
+explica en la página 75, particularmente el 
+paso 1: comprender el problema.
+Convención para el dominio
+Si una función viene dada por una fórmula y el 
+dominio no se expresa explícitamente, la  
+convención es que el dominio es el conjunto de 
+todos los números para los que la fórmula tiene 
+sentido y deﬁne un número real.
+---PAGE_BREAK---
+SECCIÓN 1.1  CUATRO MANERAS DE REPRESENTAR UNA FUNCIÓN    15   
+La razón de la validez de la prueba de la vertical puede verse en la figura 13. Si cada 
+recta vertical x m a intercepta una curva sólo una vez, en (a, b ), entonces se define exac-
+tamente un valor funcional para f (a) m b. Pero si una recta x m a intercepta la curva dos 
+veces, en (a, b) y (a, c), entonces la curva no puede representar una función debido a que 
+una función no puede asignar dos valores diferentes de a.
+b) Como
+t x 1
+x2 x
+1
+x x 1
+y no se permite la división entre 0, vemos que J(x) no está definida cuando x m 0 o x m 1. 
+Por tanto, el dominio de J es
+x x 0, x 1
+que también puede escribirse en notación de intervalos como
+  ,0 0, 1 1,  
+La gráfica de una función es una curva en el plano xy. Pero surge la pregunta: ¿qué 
+curvas en el plano xy son gráficas de funciones? Esta pregunta se contesta con la siguiente 
+prueba.
+La prueba de la vertical Una curva en el plano xy es la gráfica de una función de x si 
+y sólo si no hay recta vertical que intercepte la curva más de una vez.
+a
+x=a
+(a, b)
+0 a
+(a, c)
+(a, b)
+x=a
+0 x
+y
+x
+y
+FIGURA 13
+Por ejemplo, la parábola x m y2  2 que se muestra en la figura 14 a) no es la gráfica 
+de una función de x porque, como puede ver, hay rectas verticales que intersectan a la 
+parábola dos veces. La parábola, sin embargo, contiene las gráficas de dos funciones de x. 
+Note que la ecuación x m y2  2 implica que y2 m x  2, así que y sx 2 . Por tanto, 
+las mitades superior e inferior de la parábola son las gráficas de las funciones 
+f x sx 2  Fdel ejemplo 6 a)G y .t x sx 2  FVéanse las figuras 14 b) y c).G 
+Observamos que si invertimos los roles de x y y, entonces la ecuación x m h(y) m y2  2 
+define a x como una función de y (con y como la variable independiente y x como la varia-
+ble dependiente), y la parábola aparece ahora como la gráfica de la función h.
+FIGURA 14 b) y=œ „„„„x+2
+_2 0x
+y
+(_2, 0)
+a) x=¥-2
+0x
+y
+c) y=_œ „„„„x+2
+_2
+0
+y
+x
+---PAGE_BREAK---
+16    CAPÍTULO 1  FUNCIONES Y MODELOS
+ Funciones definidas por secciones
+Las funciones en los siguientes cuatro ejemplos se definen mediante diferentes fórmulas 
+en distintos tramos de sus dominios. Estas funciones se denominan funciones definidas 
+por secciones.
+ v   EJEMPLO 7   Una función f está definida por 
+f x 1 x
+x2
+si x 1
+si x 1
+Evalúe f (2), f (1) y f (0) y graﬁque la función.
+SOLUCIÓN Recuerde que una función es una regla. Para esta función en particular la regla 
+es la siguiente: primero ver el valor de la entrada x. Si sucede que x   1, entonces el 
+valor de f (x) se encuentra con 1  x. Por otro lado, si x  1, entonces el valor de f (x) 
+se obtiene con x2.
+Puesto que 2  1, tenemos f (2) m 1  (2) m 3
+Puesto que 1  1, tenemos f (1) m 1  (1) m 2
+Puesto que 0  1, tenemos f (0) m 02 m 0.
+¿Cómo obtenemos la gráfica de f ? Observamos que si x  1, entonces f (x) m 1  x, 
+por lo que la parte de la gráfica de f  que se encuentra a la izquierda de la recta 
+vertical x m 1 debe coincidir con la recta y m 1  x, que tiene pendiente 1 e 
+intersección en (0, 1). Si x  1, entonces f (x) m x2, por lo que la parte de la gráfica 
+de f que se encuentra a la derecha de la recta x m 1 debe coincidir con la gráfica de 
+y m x2,  que es una parábola. Esto nos permite esbozar la gráfica en la figura 15. El punto 
+relleno indica que (1, 2) está incluido en la gráfica; el punto hueco indica que (1, 1) 
+está excluido de la gráfica. 
+El siguiente ejemplo de una función definida por secciones es la función valor absoluto. 
+Recuerde que el valor absoluto de un número a, denotado por U a U, es la distancia desde a 
+hasta 0 en la recta de números reales. Las distancias son siempre positivas o cero, así 
+tenemos que
+U a U  0  para todo número a
+Por ejemplo,
+3 3s2 1 s2 10 03 33 3
+En general, tenemos
+si a 0a a
+si a 0a a
+(Recuerde que si a es negativa, entonces a es positiva.)
+ EJEMPLO 8   Grafique la función valor absoluto f x x  .
+SOLUCIÓN De la discusión precedente sabemos que
+x x
+x
+si x 0
+si x 0
+Utilizando el mismo método que en el ejemplo 7, vemos que la gráfica de f coincide con 
+la recta y m x a la derecha del eje y, y coincide con la recta y m x a la izquierda del eje 
+y (véase la figura 16). 
+1
+x
+y
+1_1
+FIGURA 15
+0
+x
+y = |x|
+0
+y
+FIGURA 16
+Para un repaso más amplio de valores absolutos, 
+véase el apéndice A.
+---PAGE_BREAK---
+SECCIÓN 1.1  CUATRO MANERAS DE REPRESENTAR UNA FUNCIÓN    17   
+SOLUCIÓN La recta que pasa por (0, 0) y (1, 1) tiene pendiente m m 1 e intersección con 
+el eje y en b m 0, por lo que su ecuación es y m x. Así, por la parte de la gráfica de f  
+que une a (0, 0) con (1, 1), tenemos
+si 0 x 1f x x
+La recta que une a (1, 1) y (2, 0) tiene pendiente m m 1, por lo que su forma punto- 
+pen diente es
+y  0 m (1)(x  2) o bien y m 2  x
+Así tenemos si 1 x 2f x 2 x
+También vemos que la gráfica de f  coincide con el eje x  para x  2. Reuniendo esta 
+información, tenemos la siguiente fórmula en tres secciones para f:
+ 
+f x
+x
+2 x
+0
+si 0 x 1
+si 1 x 2
+si x 2  
+ EJEMPLO 10   En el ejemplo C al principio de esta sección hemos considerado el costo 
+C(w) de enviar por correo paquetes con peso w. En efecto, esto define una función por 
+secciones porque, por la tabla de valores en la página 13, tenemos
+0.88
+1.05
+1.22
+1.39
+si 0
+w 1
+si 1 w 2
+si 2 w 3
+si 3 w 4
+C w
+La gráfica se muestra en la figura 18. Puede verse por qué funciones similares a ésta 
+se denominan funciones escalón: saltan de un valor al siguiente. Estas funciones se 
+estudiarán en el capítulo 2. 
+ Simetría
+Si una función f satisface f (x) m f (x) para todo x en su dominio, entonces f es una fun-
+ción par. Por ejemplo, la función f (x) m x2 es par porque
+f x x 2 x2 f x
+El significado geométrico de una función par es que su gráfica es simétrica respecto al eje 
+ EJEMPLO 9   Encuentre una fórmula para la función f graficada en la figura 17.
+FIGURA 17
+x
+y
+0 1
+1
+Forma punto-pendiente de la ecuación de la 
+recta:
+y  y1 m m(x  x1)
+Véase el apéndice B.
+FIGURA 18
+C
+0.50
+1.00
+1.50
+0 123 5 4 w
+---PAGE_BREAK---

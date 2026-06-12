@@ -217,18 +217,18 @@ export default function ExamViewer() {
       <div className="flex-1 overflow-hidden flex flex-col md:flex-row">
         
         {/* Left: Question Content */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-8 bg-slate-950">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 bg-white text-black font-sans" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
           <div className="max-w-3xl mx-auto">
             <div className="flex gap-2 mb-6">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{q.axis}</span>
-              <span className="text-xs font-bold text-slate-600">•</span>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{q.topic}</span>
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{q.axis}</span>
+              <span className="text-xs font-bold text-slate-400">•</span>
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{q.topic}</span>
             </div>
             
-            <div className="prose prose-invert prose-lg max-w-none text-slate-200 mb-8" dangerouslySetInnerHTML={{__html: q.text}} />
+            <div className="prose prose-slate prose-img:mx-auto prose-img:max-w-full prose-p:leading-relaxed prose-p:my-2 prose-a:text-blue-600 prose-strong:font-bold text-[15px] mb-8" dangerouslySetInnerHTML={{__html: q.text}} />
             
             {q.imageUrl && (
-              <div className="mb-8 p-4 bg-white/5 rounded-xl border border-slate-800 inline-block">
+              <div className="mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200 inline-block">
                 <img src={q.imageUrl} alt="Material de apoyo" className="max-w-full rounded-lg max-h-[400px]" />
               </div>
             )}
@@ -236,8 +236,8 @@ export default function ExamViewer() {
         </div>
 
         {/* Right: Options */}
-        <div className="w-full md:w-96 bg-slate-900 border-l border-slate-800 p-6 flex flex-col overflow-y-auto shadow-[-10px_0_30px_rgba(0,0,0,0.2)]">
-          <h3 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Selecciona tu respuesta:</h3>
+        <div className="w-full md:w-96 bg-slate-50 border-l border-slate-200 p-6 flex flex-col overflow-y-auto shadow-[-10px_0_30px_rgba(0,0,0,0.05)]">
+          <h3 className="font-bold text-slate-700 mb-6 uppercase tracking-wider text-sm">Selecciona tu respuesta:</h3>
           <div className="space-y-4 flex-1">
             {q.options.map((opt, idx) => {
               const selected = answers[q.id] === idx;
@@ -245,16 +245,16 @@ export default function ExamViewer() {
                 <button
                   key={idx}
                   onClick={() => selectAnswer(q.id, idx)}
-                  className={`w-full text-left p-4 rounded-xl border-2 transition-all flex items-start gap-4 ${
+                  className={`w-full text-left p-4 rounded-xl border-2 transition-all flex items-start gap-4 text-[15px] ${
                     selected 
-                      ? 'border-cyan-500 bg-cyan-900/20 text-white shadow-[0_0_15px_rgba(8,145,178,0.3)]' 
-                      : 'border-slate-800 hover:border-slate-600 text-slate-300 hover:bg-slate-800/50'
+                      ? 'border-cyan-500 bg-cyan-50 text-slate-900 shadow-[0_0_15px_rgba(8,145,178,0.1)]' 
+                      : 'border-slate-300 bg-white text-slate-700 hover:border-cyan-400 hover:bg-cyan-50/50'
                   }`}
                 >
-                  <span className={`font-bold text-lg mt-0.5 ${selected ? 'text-cyan-400' : 'text-slate-500'}`}>
+                  <span className={`font-bold mt-0.5 ${selected ? 'text-cyan-600' : 'text-slate-400'}`}>
                     {String.fromCharCode(65 + idx)})
                   </span>
-                  <span className="text-lg">{opt}</span>
+                  <div className="flex-1" dangerouslySetInnerHTML={{__html: opt}} />
                 </button>
               );
             })}
