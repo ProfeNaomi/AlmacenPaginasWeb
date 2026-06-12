@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { getExamById, getQuestionById, PaesExam, Question } from '../lib/paes';
+import { getCoverById, Cover } from '../lib/covers';
 import { useAuth } from '../context/AuthContext';
 import { ArrowLeft, Clock, ArrowRight, CheckCircle2, XCircle, Bot, Trophy, Printer } from 'lucide-react';
 import 'katex/dist/katex.min.css';
@@ -14,6 +15,7 @@ export default function ExamViewer() {
 
   const [exam, setExam] = useState<PaesExam | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [cover, setCover] = useState<Cover | null>(null);
   const [loading, setLoading] = useState(true);
   
   // Exam State
@@ -64,6 +66,11 @@ export default function ExamViewer() {
         return numA - numB;
       });
       setQuestions(fetchedQuestions);
+
+      if (eData.coverId) {
+        const cData = await getCoverById(eData.coverId);
+        setCover(cData);
+      }
     }
     setLoading(false);
   };
@@ -105,33 +112,37 @@ export default function ExamViewer() {
         </button>
 
         {/* Cover Page */}
-        <div className="p-8 max-w-4xl mx-auto break-after-page pt-20 flex flex-col min-h-[80vh] justify-center">
-          <div className="text-center mb-16 border-b-4 border-black pb-12">
-            <h1 className="text-5xl font-black mb-6 uppercase tracking-tighter leading-tight text-black">{exam.title}</h1>
-            <p className="text-2xl uppercase tracking-widest font-bold text-black">{exam.type}</p>
-          </div>
-          <div className="space-y-6 text-xl border-4 border-black p-12 rounded-2xl font-medium max-w-2xl mx-auto w-full">
-            <div className="flex justify-between border-b-2 border-gray-300 pb-4 text-black">
-              <strong>TIEMPO ASIGNADO:</strong> 
-              <span>{exam.durationMinutes} minutos</span>
+        {cover?.frontContent ? (
+          <div className="w-full min-h-[100vh] break-after-page print-cover" dangerouslySetInnerHTML={{__html: cover.frontContent}} />
+        ) : (
+          <div className="p-8 max-w-4xl mx-auto break-after-page pt-20 flex flex-col min-h-[80vh] justify-center">
+            <div className="text-center mb-16 border-b-4 border-black pb-12">
+              <h1 className="text-5xl font-black mb-6 uppercase tracking-tighter leading-tight text-black">{exam.title}</h1>
+              <p className="text-2xl uppercase tracking-widest font-bold text-black">{exam.type}</p>
             </div>
-            <div className="flex justify-between border-b-2 border-gray-300 pb-4">
-              <strong>CANTIDAD DE PREGUNTAS:</strong> 
-              <span>{questions.length}</span>
+            <div className="space-y-6 text-xl border-4 border-black p-12 rounded-2xl font-medium max-w-2xl mx-auto w-full">
+              <div className="flex justify-between border-b-2 border-gray-300 pb-4 text-black">
+                <strong>TIEMPO ASIGNADO:</strong> 
+                <span>{exam.durationMinutes} minutos</span>
+              </div>
+              <div className="flex justify-between border-b-2 border-gray-300 pb-4">
+                <strong>CANTIDAD DE PREGUNTAS:</strong> 
+                <span>{questions.length}</span>
+              </div>
+              {exam.description && (
+                <p className="mt-8 text-base text-gray-600 italic text-center leading-relaxed">
+                  {exam.description}
+                </p>
+              )}
             </div>
-            {exam.description && (
-              <p className="mt-8 text-base text-gray-600 italic text-center leading-relaxed">
-                {exam.description}
-              </p>
-            )}
+            <div className="mt-32 text-center text-sm font-bold text-gray-400 uppercase tracking-widest">
+              Generado automáticamente por Plataforma PAES
+            </div>
           </div>
-          <div className="mt-32 text-center text-sm font-bold text-gray-400 uppercase tracking-widest">
-            Generado automáticamente por Plataforma PAES
-          </div>
-        </div>
+        )}
 
         {/* Questions Pages */}
-        <div className="max-w-4xl mx-auto p-8 print:p-0">
+        <div className="max-w-4xl mx-auto p-8 print:p-0 break-after-page">
           {questions.map((q, i) => (
             <div key={q.id} className="mb-8 print:mb-6 break-inside-avoid relative" style={{ pageBreakInside: 'avoid' }}>
               <div className="flex gap-4">
@@ -171,6 +182,40 @@ export default function ExamViewer() {
             FIN DEL ENSAYO
           </div>
         </div>
+
+        {/* Answer Key Page (Hoja de Solucionario) */}
+        <div className="max-w-4xl mx-auto p-8 pt-12 break-after-page print-solucionario">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-black uppercase text-black mb-2">Claves de Respuestas</h2>
+            <p className="text-lg font-bold text-gray-600">{exam.title}</p>
+          </div>
+          
+          <table className="w-full border-collapse border-2 border-black text-black">
+            <thead>
+              <tr className="bg-gray-200 border-b-2 border-black">
+                <th className="border border-black px-4 py-2 text-center w-16">Nº</th>
+                <th className="border border-black px-4 py-2 text-center w-24">Clave</th>
+                <th className="border border-black px-4 py-2 text-left">Eje Temático</th>
+                <th className="border border-black px-4 py-2 text-left">Habilidad Evaluada</th>
+              </tr>
+            </thead>
+            <tbody>
+              {questions.map((q, i) => (
+                <tr key={q.id} className="border-b border-gray-400">
+                  <td className="border border-gray-400 px-4 py-2 text-center font-bold">{q.questionNumber || (i + 1)}</td>
+                  <td className="border border-gray-400 px-4 py-2 text-center font-black">{String.fromCharCode(65 + q.correctAnswer)}</td>
+                  <td className="border border-gray-400 px-4 py-2 text-sm">{q.axis}</td>
+                  <td className="border border-gray-400 px-4 py-2 text-sm">{q.skill}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Back Cover Page */}
+        {cover?.backContent && (
+          <div className="w-full min-h-[100vh] print-cover" dangerouslySetInnerHTML={{__html: cover.backContent}} />
+        )}
       </div>
     );
   }

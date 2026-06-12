@@ -16,6 +16,7 @@ import LessonViewer from './pages/LessonViewer';
 import AdminSettings from './pages/admin/AdminSettings';
 import QuestionBank from './pages/admin/QuestionBank';
 import ExamBuilder from './pages/admin/ExamBuilder';
+import CoverBuilder from './pages/admin/CoverBuilder';
 import PaesExams from './pages/PaesExams';
 import ExamViewer from './pages/ExamViewer';
 import GameMapViewer from './pages/GameMapViewer';
@@ -87,6 +88,7 @@ function AppRoutes() {
         <Route path="/admin/settings" element={<AdminSettings />} />
         <Route path="/admin/question-bank" element={<QuestionBank />} />
         <Route path="/admin/exam-builder" element={<ExamBuilder />} />
+        <Route path="/admin/covers" element={<CoverBuilder />} />
         <Route path="/admin/desafios" element={<GameMapBuilder />} />
       </Route>
 

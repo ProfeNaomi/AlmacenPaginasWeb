@@ -35,6 +35,7 @@ export interface PaesExam {
   questions: string[]; // Array of Question IDs
   isPublished: boolean;
   durationMinutes: number;
+  coverId?: string;
   createdAt: number;
 }
 

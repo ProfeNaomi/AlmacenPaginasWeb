@@ -47,6 +47,7 @@ export default function MainLayout() {
     { name: 'Banco de Preguntas', path: '/admin/question-bank', icon: Database },
     { name: 'Creador de Ensayos', path: '/admin/exam-builder', icon: PenTool },
     { name: 'Creador de Desafíos', path: '/admin/desafios', icon: Map },
+    { name: 'Portadas', path: '/admin/covers', icon: LayoutTemplate },
     { name: 'Ajustes IA', path: '/admin/settings', icon: Settings },
   ];
 

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getQuestions, getExams, createExam, updateExam, deleteExam, Question, PaesExam, QuestionLevel, QuestionAxis } from '../../lib/paes';
+import { getCovers, Cover } from '../../lib/covers';
 import { Plus, Save, Trash2, Edit, ChevronDown, ChevronRight, CheckSquare, Square, X, AlertCircle, Folder, Printer, Wand2 } from 'lucide-react';
 
 export default function ExamBuilder() {
   const [exams, setExams] = useState<PaesExam[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [covers, setCovers] = useState<Cover[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Manual Modal State
@@ -24,6 +26,7 @@ export default function ExamBuilder() {
   const [type, setType] = useState<'Oficial DEMRE' | 'Simulacro' | 'Temático'>('Simulacro');
   const [durationMinutes, setDurationMinutes] = useState(140);
   const [isPublished, setIsPublished] = useState(false);
+  const [coverId, setCoverId] = useState<string>('');
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
 
@@ -33,9 +36,10 @@ export default function ExamBuilder() {
 
   const loadData = async () => {
     setLoading(true);
-    const [eData, qData] = await Promise.all([getExams(), getQuestions()]);
+    const [eData, qData, cData] = await Promise.all([getExams(), getQuestions(), getCovers()]);
     setExams(eData);
     setQuestions(qData);
+    setCovers(cData);
     setLoading(false);
   };
 
@@ -45,6 +49,7 @@ export default function ExamBuilder() {
     setType('Simulacro');
     setDurationMinutes(140);
     setIsPublished(false);
+    setCoverId('');
     setSelectedQuestions([]);
     setEditingId(null);
     setIsModalOpen(true);
@@ -56,6 +61,7 @@ export default function ExamBuilder() {
     setType(e.type);
     setDurationMinutes(e.durationMinutes);
     setIsPublished(e.isPublished);
+    setCoverId(e.coverId || '');
     setSelectedQuestions(e.questions);
     setEditingId(e.id);
     setIsModalOpen(true);
@@ -67,12 +73,12 @@ export default function ExamBuilder() {
       return;
     }
 
-    const data = { title, description, type, durationMinutes, isPublished, questions: selectedQuestions };
+    const data = { title, description, type, durationMinutes, isPublished, questions: selectedQuestions, coverId: coverId || undefined };
     
     if (editingId) {
       await updateExam(editingId, data);
     } else {
-      await createExam(data);
+      await createExam(data as any);
     }
     setIsModalOpen(false);
     loadData();
@@ -387,9 +393,21 @@ export default function ExamBuilder() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-bold text-slate-300 mb-2">Descripción Corta</label>
-                <textarea value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500 min-h-[80px]" />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-slate-300 mb-2">Descripción Corta</label>
+                  <textarea value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500 min-h-[80px]" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-300 mb-2">Plantilla de Portada</label>
+                  <select value={coverId} onChange={e => setCoverId(e.target.value)} className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500">
+                    <option value="">-- Sin portada --</option>
+                    {covers.map(c => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-slate-500 mt-1">Crea nuevas portadas en la sección "Portadas".</p>
+                </div>
               </div>
 
               <div className="flex items-center gap-3 bg-slate-800/50 p-4 rounded-xl border border-slate-700">
