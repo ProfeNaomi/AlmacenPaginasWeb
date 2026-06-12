@@ -146,8 +146,8 @@ export default function QuestionBank() {
                 source: item.source || 'Propio',
                 topic: item.topic || 'Otro',
                 skill: item.skill || 'Resolver problemas',
-                examReference: item.examReference || batchExamRef,
-                questionNumber: item.questionNumber || undefined
+                examReference: item.examReference || batchExamRef || '',
+                questionNumber: item.questionNumber || ''
               });
               successCount++;
             }
