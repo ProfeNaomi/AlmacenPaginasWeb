@@ -77,7 +77,9 @@ export default function QuestionBank() {
 
   const filteredQuestions = React.useMemo(() => {
     let filtered = questions;
-    if (examFilter !== 'Todos') {
+    if (examFilter === 'SUELTAS') {
+      filtered = questions.filter(q => !q.examReference);
+    } else if (examFilter !== 'Todos') {
       filtered = questions.filter(q => q.examReference === examFilter);
     }
     // Sort by questionNumber
@@ -268,31 +270,88 @@ export default function QuestionBank() {
 
   // Multiple updates to keep state consistent (e.g., when changing axis, topic resets)
   const handleInlineUpdates = async (id: string, updates: Partial<Question>) => {
-    // Process "NEW" actions
-    const processedUpdates = { ...updates };
-    
-    if (processedUpdates.topic === 'NEW_TOPIC') {
+    // Optimistic UI update
+    setQuestions(prev => prev.map(q => q.id === id ? { ...q, ...updates } : q));
+    // Save to DB
+    await updateQuestion(id, updates);
+  };
+
+  const handleDropdownAction = async (id: string, field: 'examReference' | 'topic', actionValue: string, currentValue: string) => {
+    if (actionValue === 'NEW_TOPIC') {
       const newTopic = prompt("Ingresa el nuevo tema:");
       if (!newTopic || newTopic.trim() === '') return;
-      processedUpdates.topic = newTopic.trim();
-    }
-    
-    if (processedUpdates.examReference === 'NEW_EXAM') {
-      const newRef = prompt("Ingresa el nombre del nuevo Ensayo de Origen:");
-      if (!newRef || newRef.trim() === '') return;
-      processedUpdates.examReference = newRef.trim();
+      handleInlineUpdates(id, { topic: newTopic.trim() });
+    } 
+    else if (actionValue === 'RENAME_TOPIC') {
+      const newTopic = prompt(`Renombrar el tema "${currentValue}" a:`, currentValue);
+      if (!newTopic || newTopic.trim() === '' || newTopic === currentValue) return;
       
-      // Auto-expand the new folder
-      if (!expandedFolders.includes(processedUpdates.examReference)) {
-        setExpandedFolders(prev => [...prev, processedUpdates.examReference as string]);
+      const qToUpdate = questions.filter(q => q.topic === currentValue);
+      if (confirm(`¿Actualizar el tema en ${qToUpdate.length} preguntas?`)) {
+        setLoading(true);
+        for (const q of qToUpdate) {
+          await updateQuestion(q.id, { topic: newTopic.trim() });
+        }
+        loadQuestions();
       }
     }
-    
-    // Optimistic UI update
-    setQuestions(prev => prev.map(q => q.id === id ? { ...q, ...processedUpdates } : q));
-    
-    // Save to DB
-    await updateQuestion(id, processedUpdates);
+    else if (actionValue === 'DELETE_TOPIC') {
+      const qToUpdate = questions.filter(q => q.topic === currentValue);
+      if (confirm(`¿Eliminar este tema y pasar ${qToUpdate.length} preguntas a "Otro"?`)) {
+        setLoading(true);
+        for (const q of qToUpdate) {
+          await updateQuestion(q.id, { topic: 'Otro' });
+        }
+        loadQuestions();
+      }
+    }
+    else if (actionValue === 'NEW_EXAM') {
+      const newRef = prompt("Ingresa el nombre del nuevo Ensayo de Origen:");
+      if (!newRef || newRef.trim() === '') return;
+      const refName = newRef.trim();
+      handleInlineUpdates(id, { examReference: refName });
+      if (!expandedFolders.includes(refName)) {
+        setExpandedFolders(prev => [...prev, refName]);
+      }
+    }
+    else if (actionValue === 'RENAME_EXAM') {
+      const newRef = prompt(`Renombrar el ensayo "${currentValue}" a:`, currentValue);
+      if (!newRef || newRef.trim() === '' || newRef === currentValue) return;
+      
+      const qToUpdate = questions.filter(q => (q.examReference || '') === currentValue);
+      if (confirm(`¿Actualizar el nombre de ensayo en ${qToUpdate.length} preguntas?`)) {
+        setLoading(true);
+        for (const q of qToUpdate) {
+          await updateQuestion(q.id, { examReference: newRef.trim() });
+        }
+        loadQuestions();
+      }
+    }
+    else if (actionValue === 'DELETE_EXAM') {
+      const qToUpdate = questions.filter(q => (q.examReference || '') === currentValue);
+      if (confirm(`¿Desvincular ${qToUpdate.length} preguntas de este ensayo? Pasarán a ser "Sueltas".`)) {
+        setLoading(true);
+        for (const q of qToUpdate) {
+          await updateQuestion(q.id, { examReference: '' });
+        }
+        loadQuestions();
+      }
+    }
+    else {
+      // Normal value selection
+      handleInlineUpdates(id, { [field]: actionValue });
+    }
+  };
+
+  const handleDeleteFolder = async (e: React.MouseEvent, folderName: string, qs: Question[]) => {
+    e.stopPropagation();
+    if (confirm(`⚠️ ATENCIÓN: ¿Estás seguro de ELIMINAR PERMANENTEMENTE TODAS las ${qs.length} preguntas de la carpeta "${folderName}"? Esta acción borrará las preguntas del sistema y no se puede deshacer.`)) {
+      setLoading(true);
+      for (const q of qs) {
+        await deleteQuestion(q.id);
+      }
+      loadQuestions();
+    }
   };
 
   return (
@@ -338,7 +397,8 @@ export default function QuestionBank() {
           className="bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-2 outline-none focus:border-cyan-500"
         >
           <option value="Todos">Todos los ensayos y carpetas</option>
-          {uniqueExams.map(ex => (
+          <option value="SUELTAS">Preguntas Sueltas (Sin Ensayo)</option>
+          {uniqueExams.filter(Boolean).map(ex => (
             <option key={ex} value={ex}>{ex}</option>
           ))}
         </select>
@@ -353,19 +413,26 @@ export default function QuestionBank() {
             
             return (
               <div key={folderName} className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/50 shadow-lg">
-                <button 
-                  onClick={() => toggleFolder(folderName)}
-                  className="w-full flex items-center justify-between p-4 bg-slate-800 hover:bg-slate-700 transition-colors"
-                >
-                  <div className="flex items-center gap-3">
+                <div className="w-full flex items-center justify-between p-4 bg-slate-800 hover:bg-slate-700 transition-colors">
+                  <button 
+                    onClick={() => toggleFolder(folderName)}
+                    className="flex flex-1 items-center gap-3 text-left"
+                  >
                     {isExpanded ? <ChevronDown className="w-5 h-5 text-cyan-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
                     <Folder className="w-6 h-6 text-amber-500" />
                     <h2 className="font-bold text-lg text-white">{folderName}</h2>
-                  </div>
+                  </button>
                   <div className="flex items-center gap-4 text-sm font-bold">
                     <span className="text-slate-400">{qs.length} preguntas</span>
+                    <button 
+                      onClick={(e) => handleDeleteFolder(e, folderName, qs)} 
+                      className="p-2 bg-slate-900/50 hover:bg-red-600 rounded-lg text-slate-400 hover:text-white transition-colors" 
+                      title="Eliminar TODAS las preguntas de esta carpeta"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
-                </button>
+                </div>
                 
                 {isExpanded && (
                   <div className="p-4 space-y-4">
@@ -385,7 +452,7 @@ export default function QuestionBank() {
                           {/* 1. Ensayo de Origen (Dropdown) */}
                           <select
                             value={q.examReference || ''}
-                            onChange={(e) => handleInlineUpdates(q.id, { examReference: e.target.value })}
+                            onChange={(e) => handleDropdownAction(q.id, 'examReference', e.target.value, q.examReference || '')}
                             className="text-xs font-bold bg-amber-900/30 text-amber-400 px-2 py-1.5 rounded border border-amber-800 focus:outline-none cursor-pointer hover:bg-amber-900/50 transition-colors max-w-[150px] truncate"
                             title="Ensayo de Origen / Carpeta"
                           >
@@ -393,6 +460,8 @@ export default function QuestionBank() {
                             {uniqueExams.map(ex => <option key={ex} value={ex}>{ex}</option>)}
                             <option disabled>-----------</option>
                             <option value="NEW_EXAM">+ Añadir Nuevo Ensayo...</option>
+                            {q.examReference && <option value="RENAME_EXAM">- Renombrar este Ensayo...</option>}
+                            {q.examReference && <option value="DELETE_EXAM">- Eliminar este Ensayo...</option>}
                           </select>
 
                           {/* 2. Número */}
@@ -426,7 +495,7 @@ export default function QuestionBank() {
                           {/* 4. Tema Específico */}
                           <select 
                             value={q.topic} 
-                            onChange={(e) => handleInlineUpdates(q.id, { topic: e.target.value })}
+                            onChange={(e) => handleDropdownAction(q.id, 'topic', e.target.value, q.topic)}
                             className="text-xs font-bold bg-slate-800 text-slate-300 px-2 py-1.5 rounded border border-slate-700 focus:outline-none cursor-pointer hover:bg-slate-700 transition-colors max-w-[150px] truncate"
                           >
                             <option value={q.topic}>{q.topic}</option>
@@ -435,6 +504,8 @@ export default function QuestionBank() {
                             ))}
                             <option disabled>-----------</option>
                             <option value="NEW_TOPIC">+ Añadir nuevo tema...</option>
+                            <option value="RENAME_TOPIC">- Renombrar este tema...</option>
+                            <option value="DELETE_TOPIC">- Eliminar este tema...</option>
                           </select>
 
                           {/* 5. Origen / Fuente */}
