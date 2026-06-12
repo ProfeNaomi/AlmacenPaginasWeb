@@ -7,8 +7,9 @@ import {
   AlignLeft, Layout, FileQuestion, ArrowUp, ArrowDown, Bold, List, 
   Type, Columns, Underline, AlignCenter, AlignRight, AlignJustify, 
   Sigma, Scaling, CaseUpper, CaseLower, Space, MessageSquare,
-  ListOrdered, Indent, Outdent, Palette, FileText, ChevronDown, CheckCircle, FolderTree, GripVertical, UploadCloud
+  ListOrdered, Indent, Outdent, Palette, FileText, ChevronDown, CheckCircle, FolderTree, GripVertical, UploadCloud, Eye, PlaySquare
 } from 'lucide-react';
+import { LessonRenderer } from '../components/ui/LessonRenderer';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import EquationEditorModal from '../components/EquationEditorModal';
@@ -44,6 +45,7 @@ export default function ContentMaker() {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [quiz, setQuiz] = useState<Quiz | undefined>(undefined);
   const [activeTab, setActiveTab] = useState<'content' | 'quiz'>('content');
+  const [showPreview, setShowPreview] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImportIA = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,6 +184,7 @@ export default function ContentMaker() {
       tabsContent: type === 'tabs' ? [{ id: generateId(), title: 'Pestaña 1', content: '' }, { id: generateId(), title: 'Pestaña 2', content: '' }] : undefined,
       accordionItems: type === 'accordion' ? [{ id: generateId(), title: 'Elemento 1', content: '' }] : undefined,
       quizData: type === 'inline-quiz' ? { question: '', options: ['', ''], correctIndex: 0 } : undefined,
+      stepBlocks: type === 'step-by-step' ? [] : undefined,
       // Default props for app and video
       height: type === 'app' ? 500 : undefined,
       rounded: type === 'app' ? true : undefined,
@@ -349,6 +352,58 @@ export default function ContentMaker() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      );
+    }
+
+    if (block.type === 'step-by-step') {
+      const updateStepBlocks = (newBlocks: Block[]) => {
+        updateBlock(block.id, { stepBlocks: newBlocks }, blocksArray, setBlocksArray);
+      };
+
+      return (
+        <div key={block.id} className="group relative bg-slate-800/40 border-2 border-dashed border-purple-700/50 rounded-2xl p-6 hover:border-purple-500/50 transition-colors my-6">
+          <div className="absolute -left-12 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button onClick={() => moveBlock(index, 'up', blocksArray, setBlocksArray)} disabled={index === 0} className="p-1.5 bg-slate-800 text-slate-400 hover:text-white rounded-lg disabled:opacity-30">
+              <ArrowUp className="w-4 h-4" />
+            </button>
+            <button onClick={() => moveBlock(index, 'down', blocksArray, setBlocksArray)} disabled={index === blocksArray.length - 1} className="p-1.5 bg-slate-800 text-slate-400 hover:text-white rounded-lg disabled:opacity-30">
+              <ArrowDown className="w-4 h-4" />
+            </button>
+          </div>
+
+          <button 
+            onClick={() => removeBlock(block.id, blocksArray, setBlocksArray)}
+            className="absolute -top-3 -right-3 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 hover:scale-110 shadow-lg z-10"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+
+          <div className="flex items-center gap-2 mb-4">
+            <PlaySquare className="w-5 h-5 text-purple-400" />
+            <span className="text-sm font-bold text-slate-300 uppercase">Paso a Paso Animado ({block.stepBlocks?.length || 0} Pasos)</span>
+          </div>
+
+          <div className="space-y-6">
+            {block.stepBlocks?.map((subBlock, subIdx) => (
+               <div key={subBlock.id} className="relative bg-slate-900 border border-purple-900/30 rounded-xl p-4">
+                  <div className="absolute top-0 right-0 bg-purple-900 text-purple-200 text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">
+                    Paso {subIdx + 1}
+                  </div>
+                  <div className="pt-4">
+                    {renderBlockEditor(subBlock as Block, subIdx, block.stepBlocks as Block[], updateStepBlocks)}
+                  </div>
+               </div>
+            ))}
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-slate-800 flex justify-center gap-2">
+            <button onClick={() => addBlock('text', block.stepBlocks || [], updateStepBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-cyan-400 rounded-lg" title="Añadir Texto"><Type className="w-4 h-4"/></button>
+            <button onClick={() => addBlock('image', block.stepBlocks || [], updateStepBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-blue-400 rounded-lg" title="Añadir Imagen"><ImageIcon className="w-4 h-4"/></button>
+            <button onClick={() => addBlock('video', block.stepBlocks || [], updateStepBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-red-400 rounded-lg" title="Añadir Video"><Video className="w-4 h-4"/></button>
+            <button onClick={() => addBlock('app', block.stepBlocks || [], updateStepBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-emerald-400 rounded-lg" title="Añadir App"><Layout className="w-4 h-4"/></button>
+            <button onClick={() => addBlock('box', block.stepBlocks || [], updateStepBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-amber-400 rounded-lg" title="Añadir Recuadro"><MessageSquare className="w-4 h-4"/></button>
           </div>
         </div>
       );
@@ -749,14 +804,22 @@ export default function ContentMaker() {
             <p className="text-sm text-cyan-400 font-medium">Visual Page Maker</p>
           </div>
         </div>
-        <button 
-          onClick={handleSave}
-          disabled={saving}
-          className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg"
-        >
-          {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-          Guardar Clase
-        </button>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => setShowPreview(true)}
+            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg border border-slate-700"
+          >
+            <Eye className="w-5 h-5" /> Vista Previa
+          </button>
+          <button 
+            onClick={handleSave}
+            disabled={saving}
+            className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg"
+          >
+            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
+            Guardar Clase
+          </button>
+        </div>
       </div>
 
       {/* Main Container */}
@@ -837,6 +900,7 @@ export default function ContentMaker() {
                   <button onClick={() => addBlock('app', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><Layout className="w-4 h-4 text-emerald-400"/> App / Simulador Pro</button>
                   <button onClick={() => addBlock('video', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><Video className="w-4 h-4 text-red-400"/> Contenedor de Video</button>
                   <button onClick={() => addBlock('inline-quiz', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><FileQuestion className="w-4 h-4 text-yellow-400"/> Mini-Quiz Formativo</button>
+                  <button onClick={() => addBlock('step-by-step', blocks, setBlocks)} className="text-left px-4 py-2 hover:bg-slate-800 text-sm text-slate-300 flex items-center gap-2"><PlaySquare className="w-4 h-4 text-purple-400"/> Paso a Paso Animado</button>
                 </div>
               </div>
 
@@ -941,6 +1005,30 @@ export default function ContentMaker() {
           )}
         </div>
       </div>
+
+      {showPreview && (
+        <div className="fixed inset-0 z-[100] bg-slate-950 overflow-y-auto">
+          <div className="sticky top-0 bg-slate-900 border-b border-slate-800 p-4 flex items-center justify-between z-50">
+            <h2 className="text-xl font-bold text-white flex items-center gap-2"><Eye className="w-5 h-5 text-cyan-400" /> Vista Previa de la Clase</h2>
+            <button 
+              onClick={() => setShowPreview(false)}
+              className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg font-bold transition-colors"
+            >
+              Cerrar Vista Previa
+            </button>
+          </div>
+          <div className="max-w-5xl mx-auto p-4 sm:p-8 pb-24">
+            <div className="bg-slate-900/50 p-6 sm:p-12 rounded-3xl border border-slate-800/50 shadow-2xl min-h-[60vh]">
+              <div className="space-y-4">
+                {blocks.map(block => <LessonRenderer key={block.id} block={block} onZoom={() => {}} />)}
+                {blocks.length === 0 && (
+                  <div className="text-center py-20 text-slate-500">Agrega bloques para ver la previsualización.</div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

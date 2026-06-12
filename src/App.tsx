@@ -18,6 +18,8 @@ import QuestionBank from './pages/admin/QuestionBank';
 import ExamBuilder from './pages/admin/ExamBuilder';
 import PaesExams from './pages/PaesExams';
 import ExamViewer from './pages/ExamViewer';
+import GameMapViewer from './pages/GameMapViewer';
+import GameMapBuilder from './pages/admin/GameMapBuilder';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -77,11 +79,15 @@ function AppRoutes() {
         {/* Rutas PAES */}
         <Route path="/ensayos" element={<PaesExams />} />
         <Route path="/ensayos/:id" element={<ExamViewer />} />
+
+        {/* Videojuego (Mapa de Desafíos) */}
+        <Route path="/desafios" element={<GameMapViewer />} />
         
         {/* Rutas Admin */}
         <Route path="/admin/settings" element={<AdminSettings />} />
         <Route path="/admin/question-bank" element={<QuestionBank />} />
         <Route path="/admin/exam-builder" element={<ExamBuilder />} />
+        <Route path="/admin/desafios" element={<GameMapBuilder />} />
       </Route>
 
       {/* Catch all */}

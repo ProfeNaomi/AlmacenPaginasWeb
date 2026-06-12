@@ -19,7 +19,7 @@ export interface LessonPage {
 
 export interface Block {
   id: string;
-  type: 'text' | 'image' | 'video' | 'app' | 'row' | 'box' | 'page-break' | 'challenge' | 'tabs' | 'accordion' | 'inline-quiz';
+  type: 'text' | 'image' | 'video' | 'app' | 'row' | 'box' | 'page-break' | 'challenge' | 'tabs' | 'accordion' | 'inline-quiz' | 'step-by-step';
   content?: string; // For text, box, challenge problem statement
   url?: string; // For image, video, app
   zoom?: boolean; // For image
@@ -37,6 +37,7 @@ export interface Block {
   tabsContent?: { id: string; title: string; content: string }[]; // For tabs
   accordionItems?: { id: string; title: string; content: string }[]; // For accordion
   quizData?: { question: string; options: string[]; correctIndex: number }; // For inline-quiz
+  stepBlocks?: any[]; // For step-by-step (avoid circular type issues by using any[] or we can just omit if TypeScript complains)
   columns?: {
     id: string;
     blocks: Omit<Block, 'columns'>[];
