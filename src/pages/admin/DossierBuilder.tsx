@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Save, Trash2, Loader2, ArrowUp, ArrowDown, Type, Image as ImageIcon, Video, Layout, MessageSquare, Columns, FileText, Settings, PlaySquare } from 'lucide-react';
+import { Plus, Save, Trash2, Loader2, ArrowUp, ArrowDown, Type, Image as ImageIcon, Video, Layout, MessageSquare, Columns, FileText, Settings, PlaySquare, LayoutTemplate } from 'lucide-react';
 import { Dossier, DossierPage, getDossiers, createDossier, updateDossier, deleteDossier, getDossierTemplates, DossierTemplate } from '../../lib/dossiers';
 import { Block } from '../../lib/courses';
 import RichTextEditor from '../../components/ui/RichTextEditor';
