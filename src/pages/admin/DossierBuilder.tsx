@@ -34,6 +34,7 @@ export default function DossierBuilder() {
   const [templateId, setTemplateId] = useState('');
   const [headerContent, setHeaderContent] = useState('');
   const [footerContent, setFooterContent] = useState('');
+  const [showFooter, setShowFooter] = useState(true);
   const [pageMargins, setPageMargins] = useState<'normal' | 'narrow' | 'wide'>('normal');
   const [pageNumbers, setPageNumbers] = useState<'none' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'bottom-center'>('none');
   const [isPublished, setIsPublished] = useState(false);
