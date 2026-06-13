@@ -38,6 +38,7 @@ export default function DossierViewer() {
           body { background-color: white !important; }
           .break-after-page { page-break-after: always; }
           .break-inside-avoid { page-break-inside: avoid; }
+          @page { margin: 0; }
         }
       `}</style>
 
@@ -59,34 +60,37 @@ export default function DossierViewer() {
 
       {/* Content */}
       <div className="pt-24 print:pt-0 pb-12 print:pb-0">
-        {dossier.pages.map((page, idx) => (
-          <div 
-            key={page.id} 
-            className="max-w-[210mm] min-h-[297mm] mx-auto bg-white p-[20mm] print:p-0 mb-8 print:mb-0 shadow-2xl print:shadow-none break-after-page relative flex flex-col box-border"
-            style={{ margin: '0 auto', marginBottom: '2rem' }}
-          >
-            {/* Header Template */}
-            {idx === 0 && (dossier.headerContent || template?.headerContent) && (
-              <div 
-                className="mb-8 w-full text-black prose max-w-none"
-                dangerouslySetInnerHTML={{ __html: dossier.headerContent || template?.headerContent || '' }} 
-              />
-            )}
+        {dossier.pages.map((page, idx) => {
+          const paddingClass = dossier.pageMargins === 'narrow' ? 'p-[12mm]' : dossier.pageMargins === 'wide' ? 'p-[40mm]' : 'p-[25mm]';
+          return (
+            <div 
+              key={page.id} 
+              className={`max-w-[210mm] min-h-[297mm] mx-auto bg-white mb-8 print:mb-0 shadow-2xl print:shadow-none break-after-page relative flex flex-col box-border ${paddingClass}`}
+              style={{ margin: '0 auto', marginBottom: '2rem' }}
+            >
+              {/* Header Template */}
+              {idx === 0 && (dossier.headerContent || template?.headerContent) && (
+                <div 
+                  className="mb-8 w-full text-black prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: dossier.headerContent || template?.headerContent || '' }} 
+                />
+              )}
 
-            {/* Page Blocks */}
-            <div className="flex-1 w-full">
-              {page.blocks.map(b => <DossierRenderer key={b.id} block={b} />)}
+              {/* Page Blocks */}
+              <div className="flex-1 w-full">
+                {page.blocks.map(b => <DossierRenderer key={b.id} block={b} />)}
+              </div>
+
+              {/* Footer Template */}
+              {idx === dossier.pages.length - 1 && dossier.showFooter !== false && (dossier.footerContent || template?.footerContent) && (
+                <div 
+                  className="mt-auto pt-4 w-full text-black border-t border-gray-300 prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: dossier.footerContent || template?.footerContent || '' }} 
+                />
+              )}
             </div>
-
-            {/* Footer Template */}
-            {idx === 0 && (dossier.footerContent || template?.footerContent) && (
-              <div 
-                className="mt-12 pt-4 w-full text-black border-t border-gray-300 prose max-w-none"
-                dangerouslySetInnerHTML={{ __html: dossier.footerContent || template?.footerContent || '' }} 
-              />
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

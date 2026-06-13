@@ -249,18 +249,25 @@ export const RichTextEditor = ({ content, onChange, theme = 'dark' }: { content:
 
       {selectedImage && (
         <div 
-          className="absolute z-10 flex gap-2 p-2 bg-slate-800 border border-slate-600 rounded-lg shadow-xl"
+          className="absolute z-10 flex flex-col gap-2 p-2 bg-slate-800 border border-slate-600 rounded-lg shadow-xl w-max max-w-[300px]"
           style={{
-            top: selectedImage.offsetTop - 40 > 0 ? selectedImage.offsetTop - 40 : 10,
-            left: selectedImage.offsetLeft + (selectedImage.width / 2) - 100
+            top: selectedImage.offsetTop - 60 > 0 ? selectedImage.offsetTop - 60 : 10,
+            left: Math.max(10, selectedImage.offsetLeft + (selectedImage.width / 2) - 150)
           }}
         >
-          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.float = 'left'; selectedImage.style.margin = '0 15px 15px 0'; selectedImage.style.display = 'block'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">← Flotar Izq</button>
-          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.float = 'none'; selectedImage.style.margin = '0 auto 15px auto'; selectedImage.style.display = 'block'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Centro</button>
-          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.float = 'right'; selectedImage.style.margin = '0 0 15px 15px'; selectedImage.style.display = 'block'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Flotar Der →</button>
-          <div className="w-px bg-slate-600 mx-1"></div>
-          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '100%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">100%</button>
-          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '50%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">50%</button>
+          <div className="flex flex-wrap justify-center gap-1">
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'left'; selectedImage.style.margin = '0 15px 15px 0'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">← Flotar Izq</button>
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'none'; selectedImage.style.margin = '0 auto 15px auto'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Centro</button>
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'right'; selectedImage.style.margin = '0 0 15px 15px'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Flotar Der →</button>
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'none'; selectedImage.style.display = 'inline-block'; selectedImage.style.margin = '0'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">En Línea</button>
+          </div>
+          <div className="flex flex-wrap justify-center gap-1 border-t border-slate-600 pt-2">
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'absolute'; selectedImage.style.zIndex = '10'; handleInput(); }} className="text-[10px] bg-purple-900/50 hover:bg-purple-600 text-white px-2 py-1 rounded border border-purple-700" title="Ignora el texto y se superpone">Frente al Texto</button>
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'absolute'; selectedImage.style.zIndex = '-1'; handleInput(); }} className="text-[10px] bg-purple-900/50 hover:bg-purple-600 text-white px-2 py-1 rounded border border-purple-700" title="Queda de fondo, permite escribir encima">Detrás del Texto</button>
+            <div className="w-px bg-slate-600 mx-1"></div>
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '100%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">100%</button>
+            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '50%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">50%</button>
+          </div>
         </div>
       )}
 

@@ -33,6 +33,8 @@ export default function DossierBuilder() {
   const [templateId, setTemplateId] = useState('');
   const [headerContent, setHeaderContent] = useState('');
   const [footerContent, setFooterContent] = useState('');
+  const [showFooter, setShowFooter] = useState(true);
+  const [pageMargins, setPageMargins] = useState<'normal' | 'narrow' | 'wide'>('normal');
   const [isPublished, setIsPublished] = useState(false);
   const [pages, setPages] = useState<DossierPage[]>([{ id: generateId(), blocks: [] }]);
   const [saving, setSaving] = useState(false);
@@ -57,6 +59,8 @@ export default function DossierBuilder() {
     setTemplateId('');
     setHeaderContent('');
     setFooterContent('');
+    setShowFooter(true);
+    setPageMargins('normal');
     setIsPublished(false);
     setPages([{ id: generateId(), blocks: [] }]);
   };
@@ -69,6 +73,8 @@ export default function DossierBuilder() {
     setTemplateId(dossier.templateId || '');
     setHeaderContent(dossier.headerContent || '');
     setFooterContent(dossier.footerContent || '');
+    setShowFooter(dossier.showFooter ?? true);
+    setPageMargins(dossier.pageMargins || 'normal');
     setIsPublished(dossier.isPublished || false);
     setPages(dossier.pages && dossier.pages.length > 0 ? dossier.pages : [{ id: generateId(), blocks: [] }]);
   };
@@ -100,6 +106,8 @@ export default function DossierBuilder() {
       templateId,
       headerContent,
       footerContent,
+      showFooter,
+      pageMargins,
       isPublished,
       pages: cleanForFirestore(pages)
     };
@@ -343,17 +351,33 @@ export default function DossierBuilder() {
             </div>
 
             {/* Settings Bar */}
-            <div className="bg-slate-50 p-4 border-b border-slate-200 flex flex-col md:flex-row gap-4 text-sm z-10">
-              <div className="flex-1">
+            <div className="bg-slate-50 p-4 border-b border-slate-200 flex flex-col md:flex-row gap-4 text-sm z-10 flex-wrap">
+              <div className="flex-1 min-w-[200px]">
                 <label className="block text-xs font-bold text-slate-500 mb-1">Descripción Corta</label>
                 <input type="text" value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-900 focus:outline-none focus:border-amber-500" placeholder="Breve resumen de los contenidos..." />
               </div>
-              <div className="w-full md:w-1/3">
+              <div className="w-full md:w-1/3 min-w-[200px]">
                 <label className="block text-xs font-bold text-slate-500 mb-1 flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Aplicar Plantilla (Sobrescribe Encabezado/Pie)</label>
                 <select value={templateId} onChange={handleTemplateChange} className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-900 focus:outline-none focus:border-amber-500 font-bold text-amber-700">
                   <option value="">(Ninguna)</option>
                   {templates.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
                 </select>
+              </div>
+              <div className="w-full md:w-auto flex gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 mb-1 flex items-center gap-1"><Settings className="w-3 h-3"/> Márgenes</label>
+                  <select value={pageMargins} onChange={e => setPageMargins(e.target.value as any)} className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-900 focus:outline-none focus:border-amber-500 font-bold">
+                    <option value="narrow">Estrechos (1 cm)</option>
+                    <option value="normal">Normales (2.5 cm)</option>
+                    <option value="wide">Anchos (4 cm)</option>
+                  </select>
+                </div>
+                <div className="flex items-end pb-1">
+                  <label className="flex items-center gap-2 text-sm text-slate-600 font-bold cursor-pointer hover:bg-slate-200 px-2 py-1 rounded">
+                    <input type="checkbox" checked={showFooter} onChange={e => setShowFooter(e.target.checked)} className="w-4 h-4 rounded text-amber-500 focus:ring-amber-500" />
+                    Pie de Página
+                  </label>
+                </div>
               </div>
             </div>
 
@@ -375,7 +399,7 @@ export default function DossierBuilder() {
                     </div>
 
                     {/* A4 Canvas Simulation */}
-                    <div className="bg-white border border-slate-300 shadow-2xl min-h-[800px] p-10 flex flex-col relative mx-auto w-full max-w-[1000px] rounded text-slate-900">
+                    <div className={`bg-white border border-slate-300 shadow-2xl min-h-[800px] flex flex-col relative mx-auto w-full max-w-[1000px] rounded text-slate-900 ${pageMargins === 'narrow' ? 'p-4 sm:p-6' : pageMargins === 'wide' ? 'p-12 sm:p-16' : 'p-8 sm:p-10'}`}>
                       {pIdx === 0 && (
                         <div className="mb-6">
                            <h4 className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Encabezado (Página 1)</h4>
@@ -396,8 +420,8 @@ export default function DossierBuilder() {
                         <button onClick={() => addBlock('row', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-purple-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Columns className="w-3 h-3"/> Fila</button>
                       </div>
 
-                      {pIdx === 0 && (
-                        <div className="mt-6 pt-6 border-t-2 border-dashed border-slate-200">
+                      {pIdx === pages.length - 1 && showFooter && (
+                        <div className="mt-auto pt-6 border-t-2 border-dashed border-slate-200">
                            <h4 className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Pie de Página (Al final)</h4>
                            <RichTextEditor theme="light" content={footerContent} onChange={setFooterContent} />
                         </div>

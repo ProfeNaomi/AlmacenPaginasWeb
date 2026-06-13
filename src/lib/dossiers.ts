@@ -21,6 +21,8 @@ export interface Dossier {
   templateId?: string;
   headerContent?: string;
   footerContent?: string;
+  showFooter?: boolean;
+  pageMargins?: 'normal' | 'narrow' | 'wide';
   pages: DossierPage[];
   isPublished: boolean;
   createdAt: number;
