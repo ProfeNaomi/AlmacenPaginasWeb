@@ -27,6 +27,7 @@ export default function DossierBuilder() {
   const [loading, setLoading] = useState(true);
   
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [templateId, setTemplateId] = useState('');
@@ -48,6 +49,7 @@ export default function DossierBuilder() {
 
   const openNew = () => {
     setEditingId(null);
+    setIsCreating(true);
     setTitle('');
     setDescription('');
     setTemplateId('');
@@ -57,6 +59,7 @@ export default function DossierBuilder() {
 
   const openEdit = (dossier: Dossier) => {
     setEditingId(dossier.id);
+    setIsCreating(false);
     setTitle(dossier.title);
     setDescription(dossier.description || '');
     setTemplateId(dossier.templateId || '');
@@ -85,6 +88,7 @@ export default function DossierBuilder() {
     }
     
     setSaving(false);
+    setIsCreating(false);
     loadData();
     setEditingId(null);
   };
@@ -93,7 +97,10 @@ export default function DossierBuilder() {
     if (confirm('¿Estás seguro de eliminar este dossier?')) {
       await deleteDossier(id);
       loadData();
-      if (editingId === id) setEditingId(null);
+      if (editingId === id) {
+        setEditingId(null);
+        setIsCreating(false);
+      }
     }
   };
 
@@ -279,7 +286,7 @@ export default function DossierBuilder() {
 
       {/* Right Column: Editor */}
       <div className="w-full lg:w-3/4">
-        {editingId !== null || title !== '' ? (
+        {editingId !== null || isCreating ? (
           <div className="bg-slate-950 border border-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col h-full min-h-[80vh]">
             
             {/* Header controls */}

@@ -8,6 +8,7 @@ export default function DossierTemplateBuilder() {
   const [loading, setLoading] = useState(true);
   
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
   const [name, setName] = useState('');
   const [headerContent, setHeaderContent] = useState('');
   const [footerContent, setFooterContent] = useState('');
@@ -26,6 +27,7 @@ export default function DossierTemplateBuilder() {
 
   const openNew = () => {
     setEditingId(null);
+    setIsCreating(true);
     setName('');
     setHeaderContent('<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;"><tbody><tr><td style="width: 20%; text-align: center; border: 1px solid #ccc; padding: 10px;">LOGO</td><td style="width: 80%; border: 1px solid #ccc; padding: 10px;"><h2>Mi Colegio</h2><p><b>Nombre:</b> ___________________________ <b>Fecha:</b> _________</p></td></tr></tbody></table>');
     setFooterContent('<div style="text-align: center; border-top: 1px solid #ccc; padding-top: 10px; margin-top: 20px; font-size: 12px;">Documento Institucional - Área Académica</div>');
@@ -33,6 +35,7 @@ export default function DossierTemplateBuilder() {
 
   const openEdit = (template: DossierTemplate) => {
     setEditingId(template.id);
+    setIsCreating(false);
     setName(template.name);
     setHeaderContent(template.headerContent || '');
     setFooterContent(template.footerContent || '');
@@ -57,6 +60,7 @@ export default function DossierTemplateBuilder() {
     }
     
     setSaving(false);
+    setIsCreating(false);
     loadTemplates();
     setEditingId(null);
   };
@@ -65,7 +69,10 @@ export default function DossierTemplateBuilder() {
     if (confirm('¿Estás seguro de eliminar esta plantilla de dossier?')) {
       await deleteDossierTemplate(id);
       loadTemplates();
-      if (editingId === id) setEditingId(null);
+      if (editingId === id) {
+        setEditingId(null);
+        setIsCreating(false);
+      }
     }
   };
 
@@ -117,7 +124,7 @@ export default function DossierTemplateBuilder() {
 
       {/* Right Column: Editor */}
       <div className="w-full lg:w-2/3">
-        {editingId !== null || name !== '' ? (
+        {editingId !== null || isCreating ? (
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
             <div className="flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
               <h2 className="text-xl font-bold text-white">
