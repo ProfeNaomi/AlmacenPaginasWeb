@@ -12,6 +12,7 @@ const ImageResizeOverlay = ({ image, onChange }: { image: HTMLImageElement, onCh
 
   useEffect(() => {
     const updateRect = () => {
+      if (!image || !(image instanceof Element) || !image.isConnected) return;
       setRect({
         top: image.offsetTop,
         left: image.offsetLeft,
@@ -20,9 +21,20 @@ const ImageResizeOverlay = ({ image, onChange }: { image: HTMLImageElement, onCh
       });
     };
     updateRect();
-    const ro = new ResizeObserver(updateRect);
-    ro.observe(image);
-    return () => ro.disconnect();
+    
+    let ro: ResizeObserver | null = null;
+    try {
+      if (image && image instanceof Element) {
+        ro = new ResizeObserver(updateRect);
+        ro.observe(image);
+      }
+    } catch (err) {
+      console.warn("ResizeObserver error:", err);
+    }
+    
+    return () => {
+      if (ro) ro.disconnect();
+    };
   }, [image]);
 
   const handleMouseDown = (e: React.MouseEvent, corner: string) => {

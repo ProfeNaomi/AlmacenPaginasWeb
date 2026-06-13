@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Save, Trash2, Loader2, ArrowUp, ArrowDown, Type, Image as ImageIcon, Video, Layout, MessageSquare, Columns, FileText, Settings, PlaySquare, LayoutTemplate, ArrowLeft, Printer } from 'lucide-react';
+import { Plus, Save, Trash2, Loader2, ArrowUp, ArrowDown, Type, Image as ImageIcon, Video, Layout, MessageSquare, Columns, FileText, Settings, PlaySquare, LayoutTemplate, ArrowLeft, Printer, FileQuestion } from 'lucide-react';
 import { Dossier, DossierPage, getDossiers, createDossier, updateDossier, deleteDossier, getDossierTemplates, DossierTemplate } from '../../lib/dossiers';
 import { Block } from '../../lib/courses';
 import RichTextEditor from '../../components/ui/RichTextEditor';
+import QuestionBankSelectorModal from '../../components/QuestionBankSelectorModal';
 
 const cleanForFirestore = (obj: any): any => {
   if (obj === undefined) return undefined;
@@ -38,6 +39,7 @@ export default function DossierBuilder() {
   const [isPublished, setIsPublished] = useState(false);
   const [pages, setPages] = useState<DossierPage[]>([{ id: generateId(), blocks: [] }]);
   const [saving, setSaving] = useState(false);
+  const [showQuestionSelectorForPage, setShowQuestionSelectorForPage] = useState<number | null>(null);
 
   useEffect(() => {
     loadData();
@@ -436,6 +438,8 @@ export default function DossierBuilder() {
                         <button onClick={() => addBlock('image', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-blue-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><ImageIcon className="w-3 h-3"/> Imagen</button>
                         <button onClick={() => addBlock('box', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-amber-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><MessageSquare className="w-3 h-3"/> Recuadro</button>
                         <button onClick={() => addBlock('row', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-purple-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Columns className="w-3 h-3"/> Fila</button>
+                        <div className="w-px h-6 bg-slate-300 mx-1 self-center"></div>
+                        <button onClick={() => setShowQuestionSelectorForPage(pIdx)} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded text-xs font-bold flex items-center gap-1 border border-emerald-200 shadow-sm"><FileQuestion className="w-3 h-3"/> Insertar Pregunta</button>
                       </div>
 
                       {pIdx === pages.length - 1 && showFooter && (
@@ -448,8 +452,8 @@ export default function DossierBuilder() {
                       {/* Page Numbering Preview */}
                       {pageNumbers && pageNumbers !== 'none' && (
                         <div className={`absolute text-sm font-bold text-slate-400 z-50 pointer-events-none
-                          ${pageNumbers.includes('top') ? 'top-[15mm]' : 'bottom-[15mm]'}
-                          ${pageNumbers.includes('left') ? 'left-[20mm]' : pageNumbers.includes('right') ? 'right-[20mm]' : 'left-1/2 -translate-x-1/2'}
+                          ${pageNumbers?.includes('top') ? 'top-[15mm]' : 'bottom-[15mm]'}
+                          ${pageNumbers?.includes('left') ? 'left-[20mm]' : pageNumbers?.includes('right') ? 'right-[20mm]' : 'left-1/2 -translate-x-1/2'}
                         `}>
                           {pIdx + 1}
                         </div>
@@ -468,6 +472,42 @@ export default function DossierBuilder() {
 
           </div>
         </div>
+      )}
+
+      {showQuestionSelectorForPage !== null && (
+        <QuestionBankSelectorModal
+          onClose={() => setShowQuestionSelectorForPage(null)}
+          onInsert={(question) => {
+            const pageIdx = showQuestionSelectorForPage;
+            const targetArray = pages[pageIdx].blocks;
+            
+            let contentHtml = `<div>${question.text}</div>`;
+            if (question.imageUrl) {
+              contentHtml += `<div style="text-align: center; margin: 15px 0;"><img src="${question.imageUrl}" style="max-width: 100%;" /></div>`;
+            }
+            if (question.options && question.options.length > 0) {
+              const labels = ['A)', 'B)', 'C)', 'D)', 'E)'];
+              contentHtml += `<ul style="list-style: none; padding-left: 0; margin-top: 15px;">`;
+              question.options.forEach((opt, idx) => {
+                contentHtml += `<li style="margin-bottom: 8px;"><b>${labels[idx] || '-'}</b> ${opt}</li>`;
+              });
+              contentHtml += `</ul>`;
+            }
+
+            const newBlock: Block = {
+              id: generateId(),
+              type: 'box',
+              title: `Pregunta - ${question.topic || 'General'}`,
+              theme: 'exercise',
+              content: contentHtml
+            };
+            
+            const newPages = [...pages];
+            newPages[pageIdx].blocks = [...targetArray, newBlock];
+            setPages(newPages);
+            setShowQuestionSelectorForPage(null);
+          }}
+        />
       )}
 
     </div>
