@@ -21,6 +21,9 @@ import PaesExams from './pages/PaesExams';
 import ExamViewer from './pages/ExamViewer';
 import GameMapViewer from './pages/GameMapViewer';
 import GameMapBuilder from './pages/admin/GameMapBuilder';
+import DossierBuilder from './pages/admin/DossierBuilder';
+import DossierTemplateBuilder from './pages/admin/DossierTemplateBuilder';
+import DossierViewer from './pages/DossierViewer';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -90,6 +93,11 @@ function AppRoutes() {
         <Route path="/admin/exam-builder" element={<ExamBuilder />} />
         <Route path="/admin/covers" element={<CoverBuilder />} />
         <Route path="/admin/desafios" element={<GameMapBuilder />} />
+        <Route path="/admin/dossiers" element={<DossierBuilder />} />
+        <Route path="/admin/dossier-templates" element={<DossierTemplateBuilder />} />
+        
+        {/* Rutas para ver Dossier */}
+        <Route path="/dossiers/:dossierId" element={<DossierViewer />} />
       </Route>
 
       {/* Catch all */}

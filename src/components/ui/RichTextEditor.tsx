@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Bold, List, CaseUpper, CaseLower, Space, ListOrdered, Indent, Outdent, Palette, Underline, AlignCenter, AlignRight, AlignJustify, AlignLeft, Sigma, Image as ImageIcon, Eraser, Highlighter
+  Bold, List, CaseUpper, CaseLower, Space, ListOrdered, Indent, Outdent, Palette, Underline, AlignCenter, AlignRight, AlignJustify, AlignLeft, Sigma, Image as ImageIcon, Eraser, Highlighter, Table, Shapes
 } from 'lucide-react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import EquationEditorModal from '../EquationEditorModal';
+import ShapeSelectorModal from '../ShapeSelectorModal';
 
 export const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val: string) => void }) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [isReady, setIsReady] = useState(false);
   const [lineSpacing, setLineSpacing] = useState<'normal' | 'relaxed' | 'loose'>('normal');
+  const [showEquationEditor, setShowEquationEditor] = useState(false);
+  const [showShapeSelector, setShowShapeSelector] = useState(false);
+  const [savedRange, setSavedRange] = useState<Range | null>(null);
 
   useEffect(() => {
     if (editorRef.current && !isReady) {
@@ -30,20 +34,16 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
     handleInput();
   };
 
-  const [showEquationEditor, setShowEquationEditor] = useState(false);
-  const [savedRange, setSavedRange] = useState<Range | null>(null);
-
-  const openEquationEditor = (e: React.MouseEvent) => {
+  const openModal = (e: React.MouseEvent, setter: React.Dispatch<React.SetStateAction<boolean>>) => {
     e.preventDefault();
     const sel = window.getSelection();
     if (sel && sel.rangeCount > 0) {
       setSavedRange(sel.getRangeAt(0));
     }
-    setShowEquationEditor(true);
+    setter(true);
   };
 
-  const handleInsertEquation = (tex: string) => {
-    setShowEquationEditor(false);
+  const restoreSelectionAndInsert = (insertFn: () => void) => {
     if (editorRef.current) {
       editorRef.current.focus();
       if (savedRange) {
@@ -51,15 +51,33 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
         sel?.removeAllRanges();
         sel?.addRange(savedRange);
       }
+      insertFn();
+      handleInput();
+    }
+  };
+
+  const handleInsertEquation = (tex: string) => {
+    setShowEquationEditor(false);
+    restoreSelectionAndInsert(() => {
       try {
         const html = katex.renderToString(tex, { throwOnError: false, displayMode: false });
         const span = `<span class="math-tex inline-block mx-1 align-middle" contenteditable="false">${html}</span>&nbsp;`;
         document.execCommand('insertHTML', false, span);
-        handleInput();
       } catch (err) {
         alert("Error en el formato LaTeX");
       }
-    }
+    });
+  };
+
+  const handleInsertShape = (urlOrSvg: string, isImage: boolean = true) => {
+    setShowShapeSelector(false);
+    restoreSelectionAndInsert(() => {
+      if (isImage) {
+        document.execCommand('insertImage', false, urlOrSvg);
+      } else {
+        document.execCommand('insertHTML', false, urlOrSvg);
+      }
+    });
   };
 
   const insertImage = (e: React.MouseEvent) => {
@@ -80,6 +98,21 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
       document.execCommand('insertText', false, type === 'upper' ? text.toUpperCase() : text.toLowerCase());
       handleInput();
     }
+  };
+
+  const insertTable = (e: React.MouseEvent, rows: number, cols: number) => {
+    e.preventDefault();
+    let tableHTML = '<table style="width: 100%; border-collapse: collapse; border: 2px solid #334155; margin: 10px 0;"><tbody>';
+    for (let r = 0; r < rows; r++) {
+      tableHTML += '<tr>';
+      for (let c = 0; c < cols; c++) {
+        tableHTML += '<td style="border: 1px solid #475569; padding: 8px; min-width: 50px;">&nbsp;</td>';
+      }
+      tableHTML += '</tr>';
+    }
+    tableHTML += '</tbody></table><p><br/></p>';
+    document.execCommand('insertHTML', false, tableHTML);
+    handleInput();
   };
 
   const toggleSpacing = (e: React.MouseEvent) => {
@@ -168,10 +201,26 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
         <button type="button" onMouseDown={toggleSpacing} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors" title="Interlineado"><Space className="w-4 h-4" /></button>
         <div className="w-px h-4 bg-slate-600 mx-1"></div>
 
+        {/* Tablas dropdown (3x3, 4x4) */}
+        <div className="relative group flex items-center">
+          <button type="button" className="p-1.5 hover:bg-purple-600/50 bg-purple-900/30 text-purple-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Tabla">
+            <Table className="w-4 h-4" /> Tabla
+          </button>
+          <div className="absolute top-full left-0 mt-1 hidden group-hover:block bg-slate-800 border border-slate-700 rounded-lg shadow-xl z-50 overflow-hidden min-w-[120px]">
+            <button type="button" onMouseDown={(e) => insertTable(e, 2, 2)} className="block w-full text-left px-4 py-2 hover:bg-slate-700 text-slate-300 text-xs">Tabla 2x2</button>
+            <button type="button" onMouseDown={(e) => insertTable(e, 3, 3)} className="block w-full text-left px-4 py-2 hover:bg-slate-700 text-slate-300 text-xs">Tabla 3x3</button>
+            <button type="button" onMouseDown={(e) => insertTable(e, 4, 4)} className="block w-full text-left px-4 py-2 hover:bg-slate-700 text-slate-300 text-xs">Tabla 4x4</button>
+          </div>
+        </div>
+
+        <button type="button" onMouseDown={(e) => openModal(e, setShowShapeSelector)} className="p-1.5 hover:bg-orange-600/50 bg-orange-900/30 text-orange-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Figuras Geométricas y Estadísticas">
+          <Shapes className="w-4 h-4" /> Figuras
+        </button>
+
         <button type="button" onMouseDown={insertImage} className="p-1.5 hover:bg-blue-600/50 bg-blue-900/30 text-blue-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Imagen desde URL o carpeta public">
           <ImageIcon className="w-4 h-4" /> Img
         </button>
-        <button type="button" onMouseDown={openEquationEditor} className="p-1.5 hover:bg-emerald-600/50 bg-emerald-900/30 text-emerald-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Ecuación (LaTeX)">
+        <button type="button" onMouseDown={(e) => openModal(e, setShowEquationEditor)} className="p-1.5 hover:bg-emerald-600/50 bg-emerald-900/30 text-emerald-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Ecuación (LaTeX)">
           <Sigma className="w-4 h-4" /> LaTeX
         </button>
       </div>
@@ -188,6 +237,12 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
         <EquationEditorModal 
           onInsert={handleInsertEquation} 
           onClose={() => setShowEquationEditor(false)} 
+        />
+      )}
+      {showShapeSelector && (
+        <ShapeSelectorModal 
+          onInsert={handleInsertShape} 
+          onClose={() => setShowShapeSelector(false)} 
         />
       )}
     </div>
