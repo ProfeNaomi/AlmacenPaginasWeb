@@ -8,7 +8,7 @@ export const DossierRenderer: React.FC<{ block: Block }> = ({ block }) => {
       <div key={block.id} className="flex flex-row w-full gap-4 my-4 break-inside-avoid">
         {block.columns?.map(col => (
           <div key={col.id} className="flex-1 space-y-4">
-            {col.blocks.map(subBlock => (
+            {(col.blocks || []).map(subBlock => (
               <DossierRenderer key={subBlock.id} block={subBlock as Block} />
             ))}
           </div>

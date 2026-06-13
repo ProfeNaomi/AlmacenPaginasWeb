@@ -78,7 +78,7 @@ export default function DossierViewer() {
 
               {/* Page Blocks */}
               <div className="flex-1 w-full">
-                {page.blocks.map(b => <DossierRenderer key={b.id} block={b} />)}
+                {(page.blocks || []).map(b => <DossierRenderer key={b.id} block={b} />)}
               </div>
 
               {/* Footer Template */}

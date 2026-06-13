@@ -80,7 +80,10 @@ export default function DossierBuilder() {
     setPageMargins(dossier.pageMargins || 'normal');
     setPageNumbers(dossier.pageNumbers || 'none');
     setIsPublished(dossier.isPublished || false);
-    setPages(dossier.pages && dossier.pages.length > 0 ? dossier.pages : [{ id: generateId(), blocks: [] }]);
+    const safePages = dossier.pages && dossier.pages.length > 0 
+      ? dossier.pages.map(p => ({ ...p, blocks: p.blocks || [] })) 
+      : [{ id: generateId(), blocks: [] }];
+    setPages(safePages);
   };
 
   const handleTemplateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -228,12 +231,12 @@ export default function DossierBuilder() {
                     <button onClick={() => removeColumn(block.id, col.id, blocksArray, setBlocksArray)} className="absolute top-1 right-1 text-slate-400 hover:text-red-500 p-1 opacity-0 group-hover/col:opacity-100 transition-opacity"><Trash2 className="w-3 h-3" /></button>
                   )}
                   <div className="space-y-3 mt-4">
-                    {col.blocks.map((subBlock, subIdx) => renderBlockEditor(subBlock as Block, subIdx, col.blocks as Block[], updateColBlocks))}
+                    {(col.blocks || []).map((subBlock, subIdx) => renderBlockEditor(subBlock as Block, subIdx, (col.blocks || []) as Block[], updateColBlocks))}
                   </div>
                   <div className="mt-auto pt-3 border-t border-slate-100 flex justify-center gap-1 flex-wrap">
-                    <button onClick={() => addBlock('text', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-cyan-600 rounded"><Type className="w-3 h-3"/></button>
-                    <button onClick={() => addBlock('image', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-blue-600 rounded"><ImageIcon className="w-3 h-3"/></button>
-                    <button onClick={() => addBlock('box', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-amber-600 rounded"><MessageSquare className="w-3 h-3"/></button>
+                    <button onClick={() => addBlock('text', (col.blocks || []) as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-cyan-600 rounded"><Type className="w-3 h-3"/></button>
+                    <button onClick={() => addBlock('image', (col.blocks || []) as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-blue-600 rounded"><ImageIcon className="w-3 h-3"/></button>
+                    <button onClick={() => addBlock('box', (col.blocks || []) as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-amber-600 rounded"><MessageSquare className="w-3 h-3"/></button>
                   </div>
                 </div>
               );
@@ -428,16 +431,16 @@ export default function DossierBuilder() {
                       )}
 
                       <div className="flex-1 space-y-4">
-                        {page.blocks.map((block, bIdx) => renderBlockEditor(block as Block, bIdx, page.blocks as Block[], setPageBlocks))}
-                        {page.blocks.length === 0 && <div className="text-center py-20 text-slate-600 italic">Hoja en blanco. Añade bloques usando los botones inferiores.</div>}
+                        {(page.blocks || []).map((block, bIdx) => renderBlockEditor(block as Block, bIdx, (page.blocks || []) as Block[], setPageBlocks))}
+                        {(!page.blocks || page.blocks.length === 0) && <div className="text-center py-20 text-slate-600 italic">Hoja en blanco. Añade bloques usando los botones inferiores.</div>}
                       </div>
 
                       {/* Add Block Toolbar for this Page */}
                       <div className="mt-8 pt-4 border-t border-slate-200 flex justify-center gap-2 sticky bottom-0 bg-white/90 backdrop-blur py-2 z-10 shadow-[0_-10px_20px_rgba(255,255,255,0.9)]">
-                        <button onClick={() => addBlock('text', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-cyan-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Type className="w-3 h-3"/> Texto / Ecuaciones</button>
-                        <button onClick={() => addBlock('image', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-blue-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><ImageIcon className="w-3 h-3"/> Imagen</button>
-                        <button onClick={() => addBlock('box', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-amber-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><MessageSquare className="w-3 h-3"/> Recuadro</button>
-                        <button onClick={() => addBlock('row', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-purple-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Columns className="w-3 h-3"/> Fila</button>
+                        <button onClick={() => addBlock('text', (page.blocks || []) as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-cyan-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Type className="w-3 h-3"/> Texto / Ecuaciones</button>
+                        <button onClick={() => addBlock('image', (page.blocks || []) as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-blue-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><ImageIcon className="w-3 h-3"/> Imagen</button>
+                        <button onClick={() => addBlock('box', (page.blocks || []) as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-amber-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><MessageSquare className="w-3 h-3"/> Recuadro</button>
+                        <button onClick={() => addBlock('row', (page.blocks || []) as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-purple-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Columns className="w-3 h-3"/> Fila</button>
                         <div className="w-px h-6 bg-slate-300 mx-1 self-center"></div>
                         <button onClick={() => setShowQuestionSelectorForPage(pIdx)} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded text-xs font-bold flex items-center gap-1 border border-emerald-200 shadow-sm"><FileQuestion className="w-3 h-3"/> Insertar Pregunta</button>
                       </div>
