@@ -7,13 +7,14 @@ import 'katex/dist/katex.min.css';
 import EquationEditorModal from '../EquationEditorModal';
 import ShapeSelectorModal from '../ShapeSelectorModal';
 
-export const RichTextEditor = ({ content, onChange }: { content: string, onChange: (val: string) => void }) => {
+export const RichTextEditor = ({ content, onChange, theme = 'dark' }: { content: string, onChange: (val: string) => void, theme?: 'dark' | 'light' }) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [isReady, setIsReady] = useState(false);
   const [lineSpacing, setLineSpacing] = useState<'normal' | 'relaxed' | 'loose'>('normal');
   const [showEquationEditor, setShowEquationEditor] = useState(false);
   const [showShapeSelector, setShowShapeSelector] = useState(false);
   const [savedRange, setSavedRange] = useState<Range | null>(null);
+  const [selectedImage, setSelectedImage] = useState<HTMLImageElement | null>(null);
 
   useEffect(() => {
     if (editorRef.current && !isReady) {
@@ -25,6 +26,14 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
   const handleInput = () => {
     if (editorRef.current) {
       onChange(editorRef.current.innerHTML);
+    }
+  };
+
+  const handleEditorClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).tagName === 'IMG') {
+      setSelectedImage(e.target as HTMLImageElement);
+    } else {
+      setSelectedImage(null);
     }
   };
 
@@ -125,8 +134,10 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
     handleInput();
   };
 
+  const isLight = theme === 'light';
+
   return (
-    <div className="border border-slate-700 rounded-lg overflow-hidden bg-slate-900 focus-within:border-cyan-500 transition-colors">
+    <div className={`border rounded-lg overflow-hidden relative focus-within:border-cyan-500 transition-colors ${isLight ? 'bg-white border-slate-300' : 'bg-slate-900 border-slate-700'}`}>
       <style>{`
         .editor-content img { 
           resize: both; 
@@ -141,8 +152,8 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
           border-color: #06b6d4;
         }
       `}</style>
-      <div className="flex items-center gap-1 p-2 bg-slate-800 border-b border-slate-700 flex-wrap">
-        <button type="button" onMouseDown={(e) => format(e, 'formatBlock', 'H1')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 text-xs font-bold transition-colors" title="Título 1">H1</button>
+      <div className={`flex items-center gap-1 p-2 border-b flex-wrap ${isLight ? 'bg-slate-100 border-slate-300 text-slate-700' : 'bg-slate-800 border-slate-700 text-slate-300'}`}>
+        <button type="button" onMouseDown={(e) => format(e, 'formatBlock', 'H1')} className={`p-1.5 rounded text-xs font-bold transition-colors ${isLight ? 'hover:bg-slate-300 text-slate-700' : 'hover:bg-slate-700 text-slate-300'}`} title="Título 1">H1</button>
         <button type="button" onMouseDown={(e) => format(e, 'formatBlock', 'H2')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 text-xs font-bold transition-colors" title="Título 2">H2</button>
         <button type="button" onMouseDown={(e) => format(e, 'formatBlock', 'H3')} className="p-1.5 hover:bg-slate-700 rounded text-slate-300 text-xs font-bold transition-colors" title="Título 3">H3</button>
         <div className="w-px h-4 bg-slate-600 mx-1"></div>
@@ -226,13 +237,33 @@ export const RichTextEditor = ({ content, onChange }: { content: string, onChang
       </div>
       <div 
         ref={editorRef}
-        className={`editor-content p-4 min-h-[120px] text-slate-300 outline-none prose prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-4xl sm:prose-h1:text-5xl prose-h2:text-3xl sm:prose-h2:text-4xl prose-h3:text-2xl sm:prose-h3:text-3xl
+        onClick={handleEditorClick}
+        className={`editor-content p-4 min-h-[120px] outline-none prose max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-4xl sm:prose-h1:text-5xl prose-h2:text-3xl sm:prose-h2:text-4xl prose-h3:text-2xl sm:prose-h3:text-3xl
+          ${isLight ? 'prose-slate text-slate-900' : 'prose-invert text-slate-300'}
           ${lineSpacing === 'relaxed' ? 'leading-relaxed' : lineSpacing === 'loose' ? 'leading-loose' : 'leading-normal'}
         `}
         contentEditable
         onInput={handleInput}
         onBlur={handleInput}
       />
+
+      {selectedImage && (
+        <div 
+          className="absolute z-10 flex gap-2 p-2 bg-slate-800 border border-slate-600 rounded-lg shadow-xl"
+          style={{
+            top: selectedImage.offsetTop - 40 > 0 ? selectedImage.offsetTop - 40 : 10,
+            left: selectedImage.offsetLeft + (selectedImage.width / 2) - 100
+          }}
+        >
+          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.float = 'left'; selectedImage.style.margin = '0 15px 15px 0'; selectedImage.style.display = 'block'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">← Flotar Izq</button>
+          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.float = 'none'; selectedImage.style.margin = '0 auto 15px auto'; selectedImage.style.display = 'block'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Centro</button>
+          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.float = 'right'; selectedImage.style.margin = '0 0 15px 15px'; selectedImage.style.display = 'block'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Flotar Der →</button>
+          <div className="w-px bg-slate-600 mx-1"></div>
+          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '100%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">100%</button>
+          <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '50%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-xs bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">50%</button>
+        </div>
+      )}
+
       {showEquationEditor && (
         <EquationEditorModal 
           onInsert={handleInsertEquation} 

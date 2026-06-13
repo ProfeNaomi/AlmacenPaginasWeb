@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Save, Trash2, Loader2, LayoutTemplate } from 'lucide-react';
+import { Plus, Save, Trash2, Loader2, LayoutTemplate, ArrowLeft } from 'lucide-react';
 import { DossierTemplate, getDossierTemplates, createDossierTemplate, updateDossierTemplate, deleteDossierTemplate } from '../../lib/dossiers';
 import RichTextEditor from '../../components/ui/RichTextEditor';
 
@@ -76,111 +76,112 @@ export default function DossierTemplateBuilder() {
     }
   };
 
+  const isEditorActive = editingId !== null || isCreating;
+
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 sm:p-8 flex flex-col lg:flex-row gap-8">
+    <div className={`w-full mx-auto p-4 sm:p-8 flex flex-col lg:flex-row gap-8 transition-all ${isEditorActive ? 'max-w-[1000px]' : 'max-w-7xl'}`}>
       
       {/* Left Column: List of Templates */}
-      <div className="w-full lg:w-1/3 flex flex-col">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-display font-bold text-white flex items-center gap-2">
-            <LayoutTemplate className="w-6 h-6 text-emerald-400" /> Plantillas Dossier
-          </h1>
-          <button 
-            onClick={openNew}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl transition-colors"
-            title="Nueva Plantilla"
-          >
-            <Plus className="w-5 h-5" />
-          </button>
-        </div>
-
-        {loading ? (
-          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-emerald-500" /></div>
-        ) : (
-          <div className="space-y-3">
-            {templates.map(template => (
-              <div 
-                key={template.id}
-                onClick={() => openEdit(template)}
-                className={`p-4 rounded-xl border cursor-pointer transition-all ${editingId === template.id ? 'bg-emerald-900/30 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'bg-slate-900 border-slate-800 hover:border-slate-600 hover:bg-slate-800'}`}
-              >
-                <div className="flex justify-between items-center">
-                  <h3 className="font-bold text-white truncate pr-4">{template.name}</h3>
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); handleDelete(template.id); }}
-                    className="text-slate-500 hover:text-red-400 p-1"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            ))}
-            {templates.length === 0 && (
-              <p className="text-slate-500 text-center py-8">No hay plantillas creadas.</p>
-            )}
+      {!isEditorActive && (
+        <div className="w-full flex flex-col">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-display font-bold text-white flex items-center gap-2">
+              <LayoutTemplate className="w-6 h-6 text-emerald-400" /> Plantillas Dossier
+            </h1>
+            <button 
+              onClick={openNew}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl transition-colors"
+              title="Nueva Plantilla"
+            >
+              <Plus className="w-5 h-5" />
+            </button>
           </div>
-        )}
-      </div>
+
+          {loading ? (
+            <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-emerald-500" /></div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {templates.map(template => (
+                <div 
+                  key={template.id}
+                  onClick={() => openEdit(template)}
+                  className={`p-5 rounded-xl border cursor-pointer transition-all bg-slate-900 border-slate-800 hover:border-slate-600`}
+                >
+                  <div className="flex justify-between items-center">
+                    <h3 className="font-bold text-white pr-4 text-lg">{template.name}</h3>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); handleDelete(template.id); }}
+                      className="text-slate-500 hover:text-red-400 p-1"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+              {templates.length === 0 && (
+                <div className="col-span-full">
+                  <p className="text-slate-500 text-center py-8">No hay plantillas creadas.</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Right Column: Editor */}
-      <div className="w-full lg:w-2/3">
-        {editingId !== null || isCreating ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-            <div className="flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
-              <h2 className="text-xl font-bold text-white">
-                {editingId ? 'Editar Plantilla' : 'Nueva Plantilla'}
-              </h2>
+      {isEditorActive && (
+        <div className="w-full">
+          <div className="bg-slate-100 border border-slate-300 rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-white p-4 border-b border-slate-300 flex justify-between items-center z-20 sticky top-0 shadow-sm">
+              <div className="flex items-center gap-4 flex-1">
+                <button onClick={() => { setIsCreating(false); setEditingId(null); }} className="text-slate-500 hover:text-slate-800 transition-colors p-2 rounded-lg hover:bg-slate-100 flex items-center gap-1 font-bold text-sm">
+                  <ArrowLeft className="w-4 h-4" /> Volver
+                </button>
+                <div className="w-px h-6 bg-slate-200"></div>
+                <input 
+                  type="text" 
+                  value={name} 
+                  onChange={e => setName(e.target.value)} 
+                  placeholder="Nombre de la Plantilla..." 
+                  className="bg-transparent border-none text-xl font-bold text-slate-900 focus:outline-none focus:ring-0 flex-1 placeholder-slate-400" 
+                />
+              </div>
               <button 
                 onClick={handleSave}
                 disabled={saving}
-                className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2 disabled:opacity-50"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2 disabled:opacity-50 text-sm"
               >
                 {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} 
                 {saving ? 'Guardando...' : 'Guardar Plantilla'}
               </button>
             </div>
 
-            <div className="space-y-8">
-              <div>
-                <label className="block text-sm font-bold text-slate-300 mb-2">Nombre de la Plantilla</label>
-                <input 
-                  type="text" 
-                  value={name} 
-                  onChange={e => setName(e.target.value)} 
-                  placeholder="Ej. Plantilla Oficial Matemática" 
-                  className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 font-bold" 
-                />
-              </div>
+            <div className="p-8 space-y-8 bg-slate-200">
+              <div className="bg-white border border-slate-300 shadow-xl rounded-lg p-8 max-w-[900px] mx-auto text-slate-900">
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-lg font-bold text-slate-800 flex items-center gap-2 mb-2">
+                      Encabezado Institucional (Página 1)
+                    </label>
+                    <p className="text-sm text-slate-500 mb-4">Se mostrará al principio del Dossier. Aquí puedes armar el logo, curso, fecha, nombre del alumno y cuadro de objetivos/indicadores con tablas.</p>
+                    <RichTextEditor theme="light" content={headerContent} onChange={(c) => setHeaderContent(c)} />
+                  </div>
+                </div>
 
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-lg font-bold text-white flex items-center gap-2 mb-2">
-                    Encabezado Institucional (Página 1)
-                  </label>
-                  <p className="text-sm text-slate-400 mb-4">Se mostrará al principio del Dossier. Aquí puedes armar el logo, curso, fecha, nombre del alumno y cuadro de objetivos/indicadores con tablas.</p>
-                  <RichTextEditor content={headerContent} onChange={(c) => setHeaderContent(c)} />
+                <div className="space-y-4 pt-12 mt-12 border-t border-slate-200">
+                  <div>
+                    <label className="block text-lg font-bold text-slate-800 flex items-center gap-2 mb-2">
+                      Pie de Página (Al final)
+                    </label>
+                    <p className="text-sm text-slate-500 mb-4">Aparecerá al final de la última hoja del dossier.</p>
+                    <RichTextEditor theme="light" content={footerContent} onChange={(c) => setFooterContent(c)} />
+                  </div>
                 </div>
               </div>
-
-              <div className="space-y-4 pt-4 border-t border-slate-800">
-                <div>
-                  <label className="block text-lg font-bold text-white flex items-center gap-2 mb-2">
-                    Pie de Página (Opcional)
-                  </label>
-                  <p className="text-sm text-slate-400 mb-4">Aparecerá al final del dossier o en la parte inferior de las hojas impresas (requiere ajustes de impresión CSS).</p>
-                  <RichTextEditor content={footerContent} onChange={(c) => setFooterContent(c)} />
-                </div>
-              </div>
-
             </div>
           </div>
-        ) : (
-          <div className="h-full flex flex-col items-center justify-center text-slate-500 border-2 border-dashed border-slate-800 rounded-2xl p-12 bg-slate-900/50">
-            <LayoutTemplate className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-lg font-bold">Selecciona o crea una plantilla institucional</p>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
     </div>
   );

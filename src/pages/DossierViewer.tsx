@@ -66,10 +66,10 @@ export default function DossierViewer() {
             style={{ margin: '0 auto', marginBottom: '2rem' }}
           >
             {/* Header Template */}
-            {idx === 0 && template?.headerContent && (
+            {idx === 0 && (dossier.headerContent || template?.headerContent) && (
               <div 
                 className="mb-8 w-full text-black prose max-w-none"
-                dangerouslySetInnerHTML={{ __html: template.headerContent }} 
+                dangerouslySetInnerHTML={{ __html: dossier.headerContent || template?.headerContent || '' }} 
               />
             )}
 
@@ -79,10 +79,10 @@ export default function DossierViewer() {
             </div>
 
             {/* Footer Template */}
-            {idx === dossier.pages.length - 1 && template?.footerContent && (
+            {idx === 0 && (dossier.footerContent || template?.footerContent) && (
               <div 
                 className="mt-12 pt-4 w-full text-black border-t border-gray-300 prose max-w-none"
-                dangerouslySetInnerHTML={{ __html: template.footerContent }} 
+                dangerouslySetInnerHTML={{ __html: dossier.footerContent || template?.footerContent || '' }} 
               />
             )}
           </div>

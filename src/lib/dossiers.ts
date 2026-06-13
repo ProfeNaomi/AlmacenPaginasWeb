@@ -19,6 +19,8 @@ export interface Dossier {
   title: string;
   description: string;
   templateId?: string;
+  headerContent?: string;
+  footerContent?: string;
   pages: DossierPage[];
   isPublished: boolean;
   createdAt: number;

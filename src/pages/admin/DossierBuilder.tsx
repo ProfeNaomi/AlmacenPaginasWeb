@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Save, Trash2, Loader2, ArrowUp, ArrowDown, Type, Image as ImageIcon, Video, Layout, MessageSquare, Columns, FileText, Settings, PlaySquare, LayoutTemplate } from 'lucide-react';
+import { Plus, Save, Trash2, Loader2, ArrowUp, ArrowDown, Type, Image as ImageIcon, Video, Layout, MessageSquare, Columns, FileText, Settings, PlaySquare, LayoutTemplate, ArrowLeft, Printer } from 'lucide-react';
 import { Dossier, DossierPage, getDossiers, createDossier, updateDossier, deleteDossier, getDossierTemplates, DossierTemplate } from '../../lib/dossiers';
 import { Block } from '../../lib/courses';
 import RichTextEditor from '../../components/ui/RichTextEditor';
@@ -31,6 +31,8 @@ export default function DossierBuilder() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [templateId, setTemplateId] = useState('');
+  const [headerContent, setHeaderContent] = useState('');
+  const [footerContent, setFooterContent] = useState('');
   const [isPublished, setIsPublished] = useState(false);
   const [pages, setPages] = useState<DossierPage[]>([{ id: generateId(), blocks: [] }]);
   const [saving, setSaving] = useState(false);
@@ -53,6 +55,8 @@ export default function DossierBuilder() {
     setTitle('');
     setDescription('');
     setTemplateId('');
+    setHeaderContent('');
+    setFooterContent('');
     setIsPublished(false);
     setPages([{ id: generateId(), blocks: [] }]);
   };
@@ -63,8 +67,25 @@ export default function DossierBuilder() {
     setTitle(dossier.title);
     setDescription(dossier.description || '');
     setTemplateId(dossier.templateId || '');
+    setHeaderContent(dossier.headerContent || '');
+    setFooterContent(dossier.footerContent || '');
     setIsPublished(dossier.isPublished || false);
     setPages(dossier.pages && dossier.pages.length > 0 ? dossier.pages : [{ id: generateId(), blocks: [] }]);
+  };
+
+  const handleTemplateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newId = e.target.value;
+    if (newId) {
+      if (headerContent || footerContent) {
+        if (!confirm('Esto reemplazará el encabezado y pie de página actuales de este dossier. ¿Deseas continuar?')) return;
+      }
+      const t = templates.find(x => x.id === newId);
+      if (t) {
+        setHeaderContent(t.headerContent || '');
+        setFooterContent(t.footerContent || '');
+      }
+    }
+    setTemplateId(newId);
   };
 
   const handleSave = async () => {
@@ -77,6 +98,8 @@ export default function DossierBuilder() {
       title,
       description,
       templateId,
+      headerContent,
+      footerContent,
       isPublished,
       pages: cleanForFirestore(pages)
     };
@@ -163,20 +186,20 @@ export default function DossierBuilder() {
 
     if (block.type === 'row') {
       return (
-        <div key={block.id} className="group relative bg-white/5 border border-slate-700/50 rounded-xl p-4 hover:border-slate-500 transition-colors my-2">
+        <div key={block.id} className="group relative bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-cyan-400 transition-colors my-2">
           <div className="absolute -left-10 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button onClick={() => moveBlock(index, 'up', blocksArray, setBlocksArray)} disabled={index === 0} className="p-1 bg-slate-800 text-slate-400 hover:text-white rounded disabled:opacity-30"><ArrowUp className="w-3 h-3" /></button>
-            <button onClick={() => moveBlock(index, 'down', blocksArray, setBlocksArray)} disabled={index === blocksArray.length - 1} className="p-1 bg-slate-800 text-slate-400 hover:text-white rounded disabled:opacity-30"><ArrowDown className="w-3 h-3" /></button>
+            <button onClick={() => moveBlock(index, 'up', blocksArray, setBlocksArray)} disabled={index === 0} className="p-1 bg-white border border-slate-200 text-slate-400 hover:text-slate-800 rounded disabled:opacity-30 shadow-sm"><ArrowUp className="w-3 h-3" /></button>
+            <button onClick={() => moveBlock(index, 'down', blocksArray, setBlocksArray)} disabled={index === blocksArray.length - 1} className="p-1 bg-white border border-slate-200 text-slate-400 hover:text-slate-800 rounded disabled:opacity-30 shadow-sm"><ArrowDown className="w-3 h-3" /></button>
           </div>
           <button onClick={() => removeBlock(block.id, blocksArray, setBlocksArray)} className="absolute -top-2 -right-2 bg-red-500 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg z-10"><Trash2 className="w-3 h-3" /></button>
 
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Columns className="w-4 h-4 text-slate-400" />
-              <span className="text-xs font-bold text-slate-400 uppercase">Fila ({block.columns?.length} Columnas)</span>
+              <Columns className="w-4 h-4 text-slate-500" />
+              <span className="text-xs font-bold text-slate-500 uppercase">Fila ({block.columns?.length} Columnas)</span>
             </div>
             {block.columns && block.columns.length < 4 && (
-              <button onClick={() => addColumn(block.id, blocksArray, setBlocksArray)} className="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 font-bold">+ Columna</button>
+              <button onClick={() => addColumn(block.id, blocksArray, setBlocksArray)} className="text-[10px] bg-slate-200 text-slate-600 px-2 py-1 rounded hover:bg-slate-300 font-bold shadow-sm">+ Columna</button>
             )}
           </div>
 
@@ -187,17 +210,17 @@ export default function DossierBuilder() {
                 updateBlock(block.id, { columns: newCols }, blocksArray, setBlocksArray);
               };
               return (
-                <div key={col.id} className="flex-1 bg-slate-900 border border-slate-700/50 rounded-lg p-3 min-h-[100px] flex flex-col relative group/col">
+                <div key={col.id} className="flex-1 bg-white border border-slate-200 rounded-lg p-3 min-h-[100px] flex flex-col relative group/col shadow-sm">
                   {block.columns!.length > 1 && (
-                    <button onClick={() => removeColumn(block.id, col.id, blocksArray, setBlocksArray)} className="absolute top-1 right-1 text-slate-500 hover:text-red-400 p-1 opacity-0 group-hover/col:opacity-100 transition-opacity"><Trash2 className="w-3 h-3" /></button>
+                    <button onClick={() => removeColumn(block.id, col.id, blocksArray, setBlocksArray)} className="absolute top-1 right-1 text-slate-400 hover:text-red-500 p-1 opacity-0 group-hover/col:opacity-100 transition-opacity"><Trash2 className="w-3 h-3" /></button>
                   )}
                   <div className="space-y-3 mt-4">
                     {col.blocks.map((subBlock, subIdx) => renderBlockEditor(subBlock as Block, subIdx, col.blocks as Block[], updateColBlocks))}
                   </div>
-                  <div className="mt-auto pt-3 border-t border-slate-800/50 flex justify-center gap-1 flex-wrap">
-                    <button onClick={() => addBlock('text', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-cyan-400 rounded"><Type className="w-3 h-3"/></button>
-                    <button onClick={() => addBlock('image', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-blue-400 rounded"><ImageIcon className="w-3 h-3"/></button>
-                    <button onClick={() => addBlock('box', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-800 text-slate-400 hover:text-amber-400 rounded"><MessageSquare className="w-3 h-3"/></button>
+                  <div className="mt-auto pt-3 border-t border-slate-100 flex justify-center gap-1 flex-wrap">
+                    <button onClick={() => addBlock('text', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-cyan-600 rounded"><Type className="w-3 h-3"/></button>
+                    <button onClick={() => addBlock('image', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-blue-600 rounded"><ImageIcon className="w-3 h-3"/></button>
+                    <button onClick={() => addBlock('box', col.blocks as Block[], updateColBlocks)} className="p-1.5 bg-slate-100 text-slate-500 hover:text-amber-600 rounded"><MessageSquare className="w-3 h-3"/></button>
                   </div>
                 </div>
               );
@@ -209,27 +232,27 @@ export default function DossierBuilder() {
 
     // Default block wrapper
     return (
-      <div key={block.id} className="group relative bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-slate-600 transition-colors my-2">
+      <div key={block.id} className="group relative bg-white border border-slate-200 rounded-xl p-4 hover:border-cyan-400 transition-colors my-2 shadow-sm">
         <div className="absolute -left-10 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-          <button onClick={() => moveBlock(index, 'up', blocksArray, setBlocksArray)} disabled={index === 0} className="p-1 bg-slate-800 text-slate-400 hover:text-white rounded disabled:opacity-30"><ArrowUp className="w-3 h-3" /></button>
-          <button onClick={() => moveBlock(index, 'down', blocksArray, setBlocksArray)} disabled={index === blocksArray.length - 1} className="p-1 bg-slate-800 text-slate-400 hover:text-white rounded disabled:opacity-30"><ArrowDown className="w-3 h-3" /></button>
+          <button onClick={() => moveBlock(index, 'up', blocksArray, setBlocksArray)} disabled={index === 0} className="p-1 bg-white border border-slate-200 text-slate-400 hover:text-slate-800 rounded disabled:opacity-30 shadow-sm"><ArrowUp className="w-3 h-3" /></button>
+          <button onClick={() => moveBlock(index, 'down', blocksArray, setBlocksArray)} disabled={index === blocksArray.length - 1} className="p-1 bg-white border border-slate-200 text-slate-400 hover:text-slate-800 rounded disabled:opacity-30 shadow-sm"><ArrowDown className="w-3 h-3" /></button>
         </div>
         <button onClick={() => removeBlock(block.id, blocksArray, setBlocksArray)} className="absolute -top-2 -right-2 bg-red-500 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg z-20"><Trash2 className="w-3 h-3" /></button>
 
         <div className="flex items-center gap-2 mb-2">
-          <div className="p-1 bg-slate-800 rounded">
-            {block.type === 'text' && <Type className="w-3 h-3 text-cyan-400" />}
-            {block.type === 'image' && <ImageIcon className="w-3 h-3 text-blue-400" />}
-            {block.type === 'box' && <MessageSquare className="w-3 h-3 text-amber-400" />}
+          <div className="p-1 bg-slate-100 rounded">
+            {block.type === 'text' && <Type className="w-3 h-3 text-cyan-600" />}
+            {block.type === 'image' && <ImageIcon className="w-3 h-3 text-blue-600" />}
+            {block.type === 'box' && <MessageSquare className="w-3 h-3 text-amber-600" />}
           </div>
-          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Bloque {block.type}</span>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Bloque {block.type}</span>
         </div>
 
         {block.type === 'box' && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <input type="text" value={block.title || ''} onChange={(e) => updateBlock(block.id, { title: e.target.value }, blocksArray, setBlocksArray)} className="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Título..." />
-              <select value={block.theme || 'history'} onChange={(e) => updateBlock(block.id, { theme: e.target.value as any }, blocksArray, setBlocksArray)} className="bg-slate-950 border border-slate-700 rounded-lg px-2 py-1.5 text-sm text-white focus:outline-none focus:border-cyan-500">
+              <input type="text" value={block.title || ''} onChange={(e) => updateBlock(block.id, { title: e.target.value }, blocksArray, setBlocksArray)} className="flex-1 bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500" placeholder="Título..." />
+              <select value={block.theme || 'history'} onChange={(e) => updateBlock(block.id, { theme: e.target.value as any }, blocksArray, setBlocksArray)} className="bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500">
                 <option value="history">Información / Historia (Café)</option>
                 <option value="formula">Fórmula (Morado)</option>
                 <option value="exercise">Ejercitación (Verde)</option>
@@ -238,82 +261,96 @@ export default function DossierBuilder() {
                 <option value="alert">Alerta (Naranja)</option>
               </select>
             </div>
-            <RichTextEditor content={block.content || ''} onChange={(val) => updateBlock(block.id, { content: val }, blocksArray, setBlocksArray)} />
+            <RichTextEditor theme="light" content={block.content || ''} onChange={(val) => updateBlock(block.id, { content: val }, blocksArray, setBlocksArray)} />
           </div>
         )}
 
-        {block.type === 'text' && <RichTextEditor content={block.content || ''} onChange={(val) => updateBlock(block.id, { content: val }, blocksArray, setBlocksArray)} />}
+        {block.type === 'text' && <RichTextEditor theme="light" content={block.content || ''} onChange={(val) => updateBlock(block.id, { content: val }, blocksArray, setBlocksArray)} />}
 
         {block.type === 'image' && (
           <div className="space-y-2">
-            <input type="url" value={block.url || ''} onChange={(e) => updateBlock(block.id, { url: e.target.value }, blocksArray, setBlocksArray)} className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="URL de la imagen (ej: GitHub Raw)" />
-            {block.url && <div className="mt-2 border border-slate-800 rounded bg-black/50 flex justify-center"><img src={block.url} alt="Preview" className="max-h-48 object-contain" /></div>}
+            <input type="url" value={block.url || ''} onChange={(e) => updateBlock(block.id, { url: e.target.value }, blocksArray, setBlocksArray)} className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-cyan-500" placeholder="URL de la imagen (ej: GitHub Raw)" />
+            {block.url && <div className="mt-2 border border-slate-200 rounded bg-slate-50 flex justify-center"><img src={block.url} alt="Preview" className="max-h-48 object-contain" /></div>}
           </div>
         )}
       </div>
     );
   };
 
+  const isEditorActive = editingId !== null || isCreating;
+
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 sm:p-8 flex flex-col lg:flex-row gap-8">
+    <div className={`w-full mx-auto p-4 sm:p-8 flex flex-col lg:flex-row gap-8 transition-all ${isEditorActive ? 'max-w-[1600px]' : 'max-w-7xl'}`}>
       
-      {/* Left Column: List */}
-      <div className="w-full lg:w-1/4 flex flex-col">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-display font-bold text-white flex items-center gap-2">
-            <FileText className="w-6 h-6 text-amber-400" /> Dossiers
-          </h1>
-          <button onClick={openNew} className="bg-amber-600 hover:bg-amber-500 text-white p-2 rounded-xl transition-colors"><Plus className="w-5 h-5" /></button>
-        </div>
-
-        {loading ? (
-          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-500" /></div>
-        ) : (
-          <div className="space-y-3">
-            {dossiers.map(dossier => (
-              <div key={dossier.id} onClick={() => openEdit(dossier)} className={`p-4 rounded-xl border cursor-pointer transition-all ${editingId === dossier.id ? 'bg-amber-900/30 border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]' : 'bg-slate-900 border-slate-800 hover:border-slate-600'}`}>
-                <div className="flex justify-between items-center">
-                  <h3 className="font-bold text-white truncate pr-4 text-sm">{dossier.title}</h3>
-                  <button onClick={(e) => { e.stopPropagation(); handleDelete(dossier.id); }} className="text-slate-500 hover:text-red-400 p-1"><Trash2 className="w-4 h-4" /></button>
-                </div>
-                {!dossier.isPublished && <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded mt-2 inline-block">Borrador</span>}
-              </div>
-            ))}
-            {dossiers.length === 0 && <p className="text-slate-500 text-center text-sm py-8">No hay dossiers creados.</p>}
+      {/* Left Column: List (Hidden when editing) */}
+      {!isEditorActive && (
+        <div className="w-full flex flex-col">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-display font-bold text-white flex items-center gap-2">
+              <FileText className="w-6 h-6 text-amber-400" /> Mis Dossiers
+            </h1>
+            <button onClick={openNew} className="bg-amber-600 hover:bg-amber-500 text-white p-2 rounded-xl transition-colors"><Plus className="w-5 h-5" /></button>
           </div>
-        )}
-      </div>
 
-      {/* Right Column: Editor */}
-      <div className="w-full lg:w-3/4">
-        {editingId !== null || isCreating ? (
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col h-full min-h-[80vh]">
+          {loading ? (
+            <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-500" /></div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {dossiers.map(dossier => (
+                <div key={dossier.id} onClick={() => openEdit(dossier)} className={`p-5 rounded-xl border cursor-pointer transition-all bg-slate-900 border-slate-800 hover:border-slate-600`}>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-bold text-white pr-4 text-lg">{dossier.title}</h3>
+                    <button onClick={(e) => { e.stopPropagation(); handleDelete(dossier.id); }} className="text-slate-500 hover:text-red-400 p-1"><Trash2 className="w-4 h-4" /></button>
+                  </div>
+                  <p className="text-sm text-slate-400 line-clamp-2">{dossier.description || 'Sin descripción'}</p>
+                  {!dossier.isPublished && <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded mt-3 inline-block">Borrador</span>}
+                </div>
+              ))}
+              {dossiers.length === 0 && <div className="col-span-full"><p className="text-slate-500 text-center text-sm py-8">No hay dossiers creados.</p></div>}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Right Column: Editor (Full width when active) */}
+      {isEditorActive && (
+        <div className="w-full">
+          <div className="bg-slate-100 border border-slate-300 rounded-2xl shadow-2xl overflow-hidden flex flex-col h-full min-h-[80vh]">
             
             {/* Header controls */}
-            <div className="bg-slate-900 p-4 border-b border-slate-800 flex justify-between items-center z-10 sticky top-0">
+            <div className="bg-white p-4 border-b border-slate-300 flex justify-between items-center z-20 sticky top-0 shadow-sm">
               <div className="flex items-center gap-4 flex-1">
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Título del Dossier..." className="bg-transparent border-none text-xl font-bold text-white focus:outline-none focus:ring-0 flex-1" />
+                <button onClick={() => { setIsCreating(false); setEditingId(null); }} className="text-slate-500 hover:text-slate-800 transition-colors p-2 rounded-lg hover:bg-slate-100 flex items-center gap-1 font-bold text-sm">
+                  <ArrowLeft className="w-4 h-4" /> Volver
+                </button>
+                <div className="w-px h-6 bg-slate-200"></div>
+                <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Título del Dossier..." className="bg-transparent border-none text-xl font-bold text-slate-900 focus:outline-none focus:ring-0 flex-1 placeholder-slate-400" />
               </div>
               <div className="flex items-center gap-3">
-                <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
-                  <input type="checkbox" checked={isPublished} onChange={e => setIsPublished(e.target.checked)} className="w-4 h-4 rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-amber-500" />
+                <label className="flex items-center gap-2 text-sm text-slate-600 font-bold cursor-pointer bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+                  <input type="checkbox" checked={isPublished} onChange={e => setIsPublished(e.target.checked)} className="w-4 h-4 rounded text-amber-500 focus:ring-amber-500" />
                   Publicado
                 </label>
                 <button onClick={handleSave} disabled={saving} className="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 disabled:opacity-50">
-                  {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} {saving ? '...' : 'Guardar'}
+                  {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} Guardar
                 </button>
+                {editingId && (
+                  <button onClick={() => window.open(`/dossiers/${editingId}?print=true`, '_blank')} className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+                    <Printer className="w-4 h-4" /> Exportar a PDF
+                  </button>
+                )}
               </div>
             </div>
 
             {/* Settings Bar */}
-            <div className="bg-slate-900/50 p-4 border-b border-slate-800 flex gap-4 text-sm">
+            <div className="bg-slate-50 p-4 border-b border-slate-200 flex flex-col md:flex-row gap-4 text-sm z-10">
               <div className="flex-1">
-                <label className="block text-xs font-bold text-slate-400 mb-1">Descripción Corta</label>
-                <input type="text" value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-amber-500" placeholder="Breve resumen de los contenidos..." />
+                <label className="block text-xs font-bold text-slate-500 mb-1">Descripción Corta</label>
+                <input type="text" value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-900 focus:outline-none focus:border-amber-500" placeholder="Breve resumen de los contenidos..." />
               </div>
-              <div className="w-1/3">
-                <label className="block text-xs font-bold text-slate-400 mb-1 flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Plantilla Institucional</label>
-                <select value={templateId} onChange={e => setTemplateId(e.target.value)} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-amber-500">
+              <div className="w-full md:w-1/3">
+                <label className="block text-xs font-bold text-slate-500 mb-1 flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Aplicar Plantilla (Sobrescribe Encabezado/Pie)</label>
+                <select value={templateId} onChange={handleTemplateChange} className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-900 focus:outline-none focus:border-amber-500 font-bold text-amber-700">
                   <option value="">(Ninguna)</option>
                   {templates.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
                 </select>
@@ -321,7 +358,7 @@ export default function DossierBuilder() {
             </div>
 
             {/* Pages Editor */}
-            <div className="p-6 bg-slate-800/30 overflow-y-auto flex-1 space-y-12">
+            <div className="p-6 bg-slate-200 overflow-y-auto flex-1 space-y-12 pb-32">
               {pages.map((page, pIdx) => {
                 const setPageBlocks = (newBlocks: Block[]) => {
                   const newPages = [...pages];
@@ -338,10 +375,11 @@ export default function DossierBuilder() {
                     </div>
 
                     {/* A4 Canvas Simulation */}
-                    <div className="bg-slate-950 border border-slate-700 shadow-2xl rounded-sm min-h-[800px] p-8 flex flex-col">
-                      {pIdx === 0 && templateId && (
-                        <div className="mb-6 p-4 border-2 border-dashed border-emerald-900/50 bg-emerald-900/10 rounded-lg text-center text-emerald-500/50 text-sm font-bold">
-                          [ Plantilla Institucional se insertará aquí al imprimir ]
+                    <div className="bg-white border border-slate-300 shadow-2xl min-h-[800px] p-10 flex flex-col relative mx-auto w-full max-w-[1000px] rounded text-slate-900">
+                      {pIdx === 0 && (
+                        <div className="mb-6">
+                           <h4 className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Encabezado (Página 1)</h4>
+                           <RichTextEditor theme="light" content={headerContent} onChange={setHeaderContent} />
                         </div>
                       )}
 
@@ -351,32 +389,34 @@ export default function DossierBuilder() {
                       </div>
 
                       {/* Add Block Toolbar for this Page */}
-                      <div className="mt-8 pt-4 border-t border-slate-800 flex justify-center gap-2 sticky bottom-0 bg-slate-950 py-2">
-                        <button onClick={() => addBlock('text', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-800 text-slate-300 hover:text-cyan-400 hover:bg-slate-700 rounded text-xs font-bold flex items-center gap-1"><Type className="w-3 h-3"/> Texto / Ecuaciones</button>
-                        <button onClick={() => addBlock('image', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-800 text-slate-300 hover:text-blue-400 hover:bg-slate-700 rounded text-xs font-bold flex items-center gap-1"><ImageIcon className="w-3 h-3"/> Imagen</button>
-                        <button onClick={() => addBlock('box', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-800 text-slate-300 hover:text-amber-400 hover:bg-slate-700 rounded text-xs font-bold flex items-center gap-1"><MessageSquare className="w-3 h-3"/> Recuadro</button>
-                        <button onClick={() => addBlock('row', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-800 text-slate-300 hover:text-purple-400 hover:bg-slate-700 rounded text-xs font-bold flex items-center gap-1"><Columns className="w-3 h-3"/> Fila</button>
+                      <div className="mt-8 pt-4 border-t border-slate-200 flex justify-center gap-2 sticky bottom-0 bg-white/90 backdrop-blur py-2 z-10 shadow-[0_-10px_20px_rgba(255,255,255,0.9)]">
+                        <button onClick={() => addBlock('text', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-cyan-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Type className="w-3 h-3"/> Texto / Ecuaciones</button>
+                        <button onClick={() => addBlock('image', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-blue-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><ImageIcon className="w-3 h-3"/> Imagen</button>
+                        <button onClick={() => addBlock('box', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-amber-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><MessageSquare className="w-3 h-3"/> Recuadro</button>
+                        <button onClick={() => addBlock('row', page.blocks as Block[], setPageBlocks)} className="px-3 py-1.5 bg-slate-100 text-slate-600 hover:text-purple-600 hover:bg-slate-200 rounded text-xs font-bold flex items-center gap-1 border border-slate-200"><Columns className="w-3 h-3"/> Fila</button>
                       </div>
+
+                      {pIdx === 0 && (
+                        <div className="mt-6 pt-6 border-t-2 border-dashed border-slate-200">
+                           <h4 className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Pie de Página (Al final)</h4>
+                           <RichTextEditor theme="light" content={footerContent} onChange={setFooterContent} />
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
               })}
 
-              <div className="max-w-4xl mx-auto flex justify-center pb-12">
-                <button onClick={() => setPages([...pages, { id: generateId(), blocks: [] }])} className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-6 py-3 rounded-xl font-bold flex items-center gap-2 border border-slate-700 hover:border-slate-500 transition-colors shadow-lg">
+              <div className="max-w-4xl mx-auto flex justify-center mt-8">
+                <button onClick={() => setPages([...pages, { id: generateId(), blocks: [] }])} className="bg-white hover:bg-slate-50 text-slate-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2 border border-slate-300 hover:border-slate-400 transition-colors shadow-lg">
                   <Plus className="w-5 h-5" /> Añadir Nueva Hoja
                 </button>
               </div>
             </div>
 
           </div>
-        ) : (
-          <div className="h-full flex flex-col items-center justify-center text-slate-500 border-2 border-dashed border-slate-800 rounded-2xl p-12 bg-slate-900/50">
-            <FileText className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-lg font-bold">Selecciona o crea un dossier</p>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
     </div>
   );
