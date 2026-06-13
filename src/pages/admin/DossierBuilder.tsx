@@ -33,8 +33,8 @@ export default function DossierBuilder() {
   const [templateId, setTemplateId] = useState('');
   const [headerContent, setHeaderContent] = useState('');
   const [footerContent, setFooterContent] = useState('');
-  const [showFooter, setShowFooter] = useState(true);
   const [pageMargins, setPageMargins] = useState<'normal' | 'narrow' | 'wide'>('normal');
+  const [pageNumbers, setPageNumbers] = useState<'none' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'bottom-center'>('none');
   const [isPublished, setIsPublished] = useState(false);
   const [pages, setPages] = useState<DossierPage[]>([{ id: generateId(), blocks: [] }]);
   const [saving, setSaving] = useState(false);
@@ -61,6 +61,7 @@ export default function DossierBuilder() {
     setFooterContent('');
     setShowFooter(true);
     setPageMargins('normal');
+    setPageNumbers('none');
     setIsPublished(false);
     setPages([{ id: generateId(), blocks: [] }]);
   };
@@ -75,6 +76,7 @@ export default function DossierBuilder() {
     setFooterContent(dossier.footerContent || '');
     setShowFooter(dossier.showFooter ?? true);
     setPageMargins(dossier.pageMargins || 'normal');
+    setPageNumbers(dossier.pageNumbers || 'none');
     setIsPublished(dossier.isPublished || false);
     setPages(dossier.pages && dossier.pages.length > 0 ? dossier.pages : [{ id: generateId(), blocks: [] }]);
   };
@@ -108,6 +110,7 @@ export default function DossierBuilder() {
       footerContent,
       showFooter,
       pageMargins,
+      pageNumbers,
       isPublished,
       pages: cleanForFirestore(pages)
     };
@@ -363,19 +366,34 @@ export default function DossierBuilder() {
                   {templates.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
                 </select>
               </div>
-              <div className="w-full md:w-auto flex gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-500 mb-1 flex items-center gap-1"><Settings className="w-3 h-3"/> Márgenes</label>
-                  <select value={pageMargins} onChange={e => setPageMargins(e.target.value as any)} className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-900 focus:outline-none focus:border-amber-500 font-bold">
+              {/* Opciones de Impresión */}
+              <div className="w-full md:w-auto flex-1 flex gap-4 bg-white border border-slate-300 p-2 rounded-lg relative">
+                <div className="absolute -top-3 left-3 bg-white px-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                  <Printer className="w-3 h-3"/> Opciones de Impresión
+                </div>
+                <div className="flex-1 mt-2">
+                  <label className="block text-[10px] font-bold text-slate-500 mb-1">Márgenes</label>
+                  <select value={pageMargins} onChange={e => setPageMargins(e.target.value as any)} className="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-slate-900 focus:outline-none focus:border-amber-500 text-xs font-bold">
                     <option value="narrow">Estrechos (1 cm)</option>
                     <option value="normal">Normales (2.5 cm)</option>
                     <option value="wide">Anchos (4 cm)</option>
                   </select>
                 </div>
+                <div className="flex-1 mt-2">
+                  <label className="block text-[10px] font-bold text-slate-500 mb-1">Numeración</label>
+                  <select value={pageNumbers} onChange={e => setPageNumbers(e.target.value as any)} className="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-slate-900 focus:outline-none focus:border-amber-500 text-xs font-bold">
+                    <option value="none">Sin Numerar</option>
+                    <option value="top-left">Sup. Izquierda</option>
+                    <option value="top-right">Sup. Derecha</option>
+                    <option value="bottom-left">Inf. Izquierda</option>
+                    <option value="bottom-center">Inf. Centro</option>
+                    <option value="bottom-right">Inf. Derecha</option>
+                  </select>
+                </div>
                 <div className="flex items-end pb-1">
-                  <label className="flex items-center gap-2 text-sm text-slate-600 font-bold cursor-pointer hover:bg-slate-200 px-2 py-1 rounded">
-                    <input type="checkbox" checked={showFooter} onChange={e => setShowFooter(e.target.checked)} className="w-4 h-4 rounded text-amber-500 focus:ring-amber-500" />
-                    Pie de Página
+                  <label className="flex items-center gap-2 text-xs text-slate-600 font-bold cursor-pointer hover:bg-slate-100 px-2 py-1 rounded">
+                    <input type="checkbox" checked={showFooter} onChange={e => setShowFooter(e.target.checked)} className="w-3 h-3 rounded text-amber-500 focus:ring-amber-500" />
+                    Pie de Pág.
                   </label>
                 </div>
               </div>
@@ -424,6 +442,16 @@ export default function DossierBuilder() {
                         <div className="mt-auto pt-6 border-t-2 border-dashed border-slate-200">
                            <h4 className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1"><LayoutTemplate className="w-3 h-3"/> Pie de Página (Al final)</h4>
                            <RichTextEditor theme="light" content={footerContent} onChange={setFooterContent} />
+                        </div>
+                      )}
+
+                      {/* Page Numbering Preview */}
+                      {pageNumbers && pageNumbers !== 'none' && (
+                        <div className={`absolute text-sm font-bold text-slate-400 z-50 pointer-events-none
+                          ${pageNumbers.includes('top') ? 'top-[15mm]' : 'bottom-[15mm]'}
+                          ${pageNumbers.includes('left') ? 'left-[20mm]' : pageNumbers.includes('right') ? 'right-[20mm]' : 'left-1/2 -translate-x-1/2'}
+                        `}>
+                          {pIdx + 1}
                         </div>
                       )}
                     </div>

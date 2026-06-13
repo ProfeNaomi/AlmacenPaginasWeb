@@ -23,6 +23,7 @@ export interface Dossier {
   footerContent?: string;
   showFooter?: boolean;
   pageMargins?: 'normal' | 'narrow' | 'wide';
+  pageNumbers?: 'none' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'bottom-center';
   pages: DossierPage[];
   isPublished: boolean;
   createdAt: number;

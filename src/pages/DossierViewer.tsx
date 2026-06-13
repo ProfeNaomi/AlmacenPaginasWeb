@@ -88,6 +88,16 @@ export default function DossierViewer() {
                   dangerouslySetInnerHTML={{ __html: dossier.footerContent || template?.footerContent || '' }} 
                 />
               )}
+
+              {/* Page Numbering */}
+              {dossier.pageNumbers && dossier.pageNumbers !== 'none' && (
+                <div className={`absolute text-sm font-bold text-slate-800 z-50 print:text-black
+                  ${dossier.pageNumbers.includes('top') ? 'top-[15mm]' : 'bottom-[15mm]'}
+                  ${dossier.pageNumbers.includes('left') ? 'left-[20mm]' : dossier.pageNumbers.includes('right') ? 'right-[20mm]' : 'left-1/2 -translate-x-1/2'}
+                `}>
+                  {idx + 1}
+                </div>
+              )}
             </div>
           );
         })}

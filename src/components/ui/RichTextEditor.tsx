@@ -7,6 +7,86 @@ import 'katex/dist/katex.min.css';
 import EquationEditorModal from '../EquationEditorModal';
 import ShapeSelectorModal from '../ShapeSelectorModal';
 
+const ImageResizeOverlay = ({ image, onChange }: { image: HTMLImageElement, onChange: () => void }) => {
+  const [rect, setRect] = useState({ top: 0, left: 0, width: 0, height: 0 });
+
+  useEffect(() => {
+    const updateRect = () => {
+      setRect({
+        top: image.offsetTop,
+        left: image.offsetLeft,
+        width: image.offsetWidth,
+        height: image.offsetHeight,
+      });
+    };
+    updateRect();
+    const ro = new ResizeObserver(updateRect);
+    ro.observe(image);
+    return () => ro.disconnect();
+  }, [image]);
+
+  const handleMouseDown = (e: React.MouseEvent, corner: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startWidth = image.offsetWidth;
+    const startHeight = image.offsetHeight;
+    const ratio = startWidth / startHeight;
+
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      const dx = moveEvent.clientX - startX;
+      const dy = moveEvent.clientY - startY;
+
+      let newWidth = startWidth;
+      
+      if (corner.includes('right')) newWidth = startWidth + dx;
+      if (corner.includes('left')) newWidth = startWidth - dx;
+
+      // Keep aspect ratio
+      const newHeight = newWidth / ratio;
+      
+      image.style.width = `${newWidth}px`;
+      image.style.height = `${newHeight}px`;
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      onChange();
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  const handles = [
+    { id: 'top-left', cursor: 'nwse-resize', top: -5, left: -5 },
+    { id: 'top-right', cursor: 'nesw-resize', top: -5, right: -5 },
+    { id: 'bottom-left', cursor: 'nesw-resize', bottom: -5, left: -5 },
+    { id: 'bottom-right', cursor: 'nwse-resize', bottom: -5, right: -5 },
+    { id: 'right', cursor: 'ew-resize', top: '50%', right: -5, marginTop: -5 },
+    { id: 'bottom', cursor: 'ns-resize', bottom: -5, left: '50%', marginLeft: -5 }
+  ];
+
+  return (
+    <div 
+      className="absolute border border-blue-500 z-10 pointer-events-none"
+      style={{ top: rect.top, left: rect.left, width: rect.width, height: rect.height }}
+    >
+      {handles.map(h => (
+        <div 
+          key={h.id}
+          className="absolute w-2.5 h-2.5 bg-blue-500 border border-white pointer-events-auto"
+          style={{ ...h, cursor: h.cursor }}
+          onMouseDown={(e) => handleMouseDown(e, h.id)}
+        />
+      ))}
+    </div>
+  );
+};
+
 export const RichTextEditor = ({ content, onChange, theme = 'dark' }: { content: string, onChange: (val: string) => void, theme?: 'dark' | 'light' }) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [isReady, setIsReady] = useState(false);
@@ -140,16 +220,9 @@ export const RichTextEditor = ({ content, onChange, theme = 'dark' }: { content:
     <div className={`border rounded-lg overflow-hidden relative focus-within:border-cyan-500 transition-colors ${isLight ? 'bg-white border-slate-300' : 'bg-slate-900 border-slate-700'}`}>
       <style>{`
         .editor-content img { 
-          resize: both; 
-          overflow: hidden; 
           max-width: 100%;
-          cursor: se-resize;
-          border: 2px dashed transparent;
           display: inline-block;
           vertical-align: middle;
-        }
-        .editor-content img:hover {
-          border-color: #06b6d4;
         }
       `}</style>
       <div className={`flex items-center gap-1 p-2 border-b flex-wrap ${isLight ? 'bg-slate-100 border-slate-300 text-slate-700' : 'bg-slate-800 border-slate-700 text-slate-300'}`}>
@@ -234,6 +307,24 @@ export const RichTextEditor = ({ content, onChange, theme = 'dark' }: { content:
         <button type="button" onMouseDown={(e) => openModal(e, setShowEquationEditor)} className="p-1.5 hover:bg-emerald-600/50 bg-emerald-900/30 text-emerald-400 rounded transition-colors font-bold flex items-center gap-1 text-xs" title="Insertar Ecuación (LaTeX)">
           <Sigma className="w-4 h-4" /> LaTeX
         </button>
+
+        {selectedImage && (
+          <>
+            <div className="w-px h-4 bg-slate-600 mx-1"></div>
+            <div className="flex bg-blue-900/20 rounded p-0.5 border border-blue-500/30 gap-1 items-center">
+              <span className="text-[10px] text-blue-300 font-bold px-1 hidden md:inline">Imagen:</span>
+              <button type="button" onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'left'; selectedImage.style.margin = '0 15px 15px 0'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded" title="Alinear a la izquierda">Izq</button>
+              <button type="button" onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'none'; selectedImage.style.margin = '0 auto 15px auto'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded" title="Centrar">Centro</button>
+              <button type="button" onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'right'; selectedImage.style.margin = '0 0 15px 15px'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded" title="Alinear a la derecha">Der</button>
+              <button type="button" onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'none'; selectedImage.style.display = 'inline-block'; selectedImage.style.margin = '0'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded" title="Como carácter">En Línea</button>
+              
+              <div className="w-px h-4 bg-slate-600 mx-1"></div>
+              
+              <button type="button" onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'absolute'; selectedImage.style.zIndex = '10'; handleInput(); }} className="text-[10px] bg-purple-900/50 hover:bg-purple-600 text-white px-2 py-1 rounded border border-purple-700" title="Delante del texto">Frente</button>
+              <button type="button" onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'absolute'; selectedImage.style.zIndex = '-1'; handleInput(); }} className="text-[10px] bg-purple-900/50 hover:bg-purple-600 text-white px-2 py-1 rounded border border-purple-700" title="Detrás del texto">Atrás</button>
+            </div>
+          </>
+        )}
       </div>
       <div 
         ref={editorRef}
@@ -247,29 +338,7 @@ export const RichTextEditor = ({ content, onChange, theme = 'dark' }: { content:
         onBlur={handleInput}
       />
 
-      {selectedImage && (
-        <div 
-          className="absolute z-10 flex flex-col gap-2 p-2 bg-slate-800 border border-slate-600 rounded-lg shadow-xl w-max max-w-[300px]"
-          style={{
-            top: selectedImage.offsetTop - 60 > 0 ? selectedImage.offsetTop - 60 : 10,
-            left: Math.max(10, selectedImage.offsetLeft + (selectedImage.width / 2) - 150)
-          }}
-        >
-          <div className="flex flex-wrap justify-center gap-1">
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'left'; selectedImage.style.margin = '0 15px 15px 0'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">← Flotar Izq</button>
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'none'; selectedImage.style.margin = '0 auto 15px auto'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Centro</button>
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'right'; selectedImage.style.margin = '0 0 15px 15px'; selectedImage.style.display = 'block'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">Flotar Der →</button>
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'static'; selectedImage.style.float = 'none'; selectedImage.style.display = 'inline-block'; selectedImage.style.margin = '0'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-cyan-600 text-white px-2 py-1 rounded">En Línea</button>
-          </div>
-          <div className="flex flex-wrap justify-center gap-1 border-t border-slate-600 pt-2">
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'absolute'; selectedImage.style.zIndex = '10'; handleInput(); }} className="text-[10px] bg-purple-900/50 hover:bg-purple-600 text-white px-2 py-1 rounded border border-purple-700" title="Ignora el texto y se superpone">Frente al Texto</button>
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.position = 'absolute'; selectedImage.style.zIndex = '-1'; handleInput(); }} className="text-[10px] bg-purple-900/50 hover:bg-purple-600 text-white px-2 py-1 rounded border border-purple-700" title="Queda de fondo, permite escribir encima">Detrás del Texto</button>
-            <div className="w-px bg-slate-600 mx-1"></div>
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '100%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">100%</button>
-            <button onMouseDown={(e) => { e.preventDefault(); selectedImage.style.width = '50%'; selectedImage.style.height = 'auto'; handleInput(); }} className="text-[10px] bg-slate-700 hover:bg-blue-600 text-white px-2 py-1 rounded">50%</button>
-          </div>
-        </div>
-      )}
+      {selectedImage && <ImageResizeOverlay image={selectedImage} onChange={handleInput} />}
 
       {showEquationEditor && (
         <EquationEditorModal 
