@@ -9,21 +9,31 @@ export default function GameMapViewer() {
   const [selectedLevel, setSelectedLevel] = useState<GameLevel | null>(null);
   const [customBackgrounds, setCustomBackgrounds] = useState<Record<number, string>>({});
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Para hacer la curva adaptativa según el tamaño de la pantalla
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
     setProgress(getGameProgress());
     setCustomBackgrounds(getWorldBackgrounds());
+
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Configuraciones del mapa
+  // Configuraciones del mapa para proporción 16:9 (Full HD 1920x1080)
   const levels = defaultGameLevels;
-  const LEVEL_SPACING_Y = 130; // Ajustado para que el fondo de 1300px cuadre mejor en pantallas estándar
-  const AMPLITUDE_X = 250; // ¡Amplitud masiva para usar todo el ancho de la pantalla!
   
   // Agrupamos por mundo (10 niveles por mundo)
   const WORLDS_COUNT = 20;
   const LEVELS_PER_WORLD = 10;
-  const WORLD_HEIGHT = LEVELS_PER_WORLD * LEVEL_SPACING_Y;
+  const WORLD_HEIGHT = 1080; // Altura fija de 1080px por mundo para mantener la proporción rectangular de las imágenes
+  const LEVEL_SPACING_Y = WORLD_HEIGHT / LEVELS_PER_WORLD; // Automáticamente se ajusta a 108px de separación
+  
+  // Amplitud dinámica: máximo 450px o la mitad de la pantalla menos un margen seguro, para esparcirse lo más posible
+  const AMPLITUDE_X = Math.min(450, (windowWidth / 2) - 80); 
+  
   const START_OFFSET_Y = 150;
   const MAP_HEIGHT = WORLDS_COUNT * WORLD_HEIGHT + START_OFFSET_Y * 2;
 
@@ -34,7 +44,6 @@ export default function GameMapViewer() {
       const indexInWorld = index % 10; 
       
       // Senoide de ciclo completo: empieza en 0, va a la derecha, cruza el centro, va a la izquierda, termina en 0.
-      // Modificamos ligeramente con un coseno pequeño para darle un toque menos perfecto/más orgánico
       const xOffset = Math.sin((indexInWorld / 9) * Math.PI * 2) * AMPLITUDE_X + Math.sin(index * 0.5) * 20;
       
       return {
@@ -43,7 +52,7 @@ export default function GameMapViewer() {
         xOffset
       };
     });
-  }, [levels]);
+  }, [levels, AMPLITUDE_X, MAP_HEIGHT, LEVEL_SPACING_Y]);
 
   // Generar SVG Path para la línea de conexión
   const generatePath = () => {
