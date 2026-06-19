@@ -24,6 +24,7 @@ import GameMapBuilder from './pages/admin/GameMapBuilder';
 import DossierBuilder from './pages/admin/DossierBuilder';
 import DossierTemplateBuilder from './pages/admin/DossierTemplateBuilder';
 import DossierViewer from './pages/DossierViewer';
+import PlannerBuilder from './pages/admin/PlannerBuilder';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -95,6 +96,7 @@ function AppRoutes() {
         <Route path="/admin/desafios" element={<GameMapBuilder />} />
         <Route path="/admin/dossiers" element={<DossierBuilder />} />
         <Route path="/admin/dossier-templates" element={<DossierTemplateBuilder />} />
+        <Route path="/admin/planner" element={<PlannerBuilder />} />
         
         {/* Rutas para ver Dossier */}
         <Route path="/dossiers/:dossierId" element={<DossierViewer />} />

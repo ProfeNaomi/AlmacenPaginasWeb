@@ -18,7 +18,8 @@ import {
   PenTool,
   Map,
   Gamepad2,
-  LayoutTemplate
+  LayoutTemplate,
+  Calendar
 } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
@@ -42,9 +43,11 @@ export default function MainLayout() {
     { name: 'Mis Cursos', path: '/dashboard', icon: BookOpen }, // Por ahora un placeholder
     { name: 'Ensayos PAES', path: '/ensayos', icon: FileText },
     { name: 'Mapa de Desafíos', path: '/desafios', icon: Gamepad2 },
+    { name: 'Calendario', path: '/calendario', icon: Calendar },
   ];
 
   const adminItems = [
+    { name: 'Planificaciones', path: '/admin/planner', icon: Calendar },
     { name: 'Banco de Preguntas', path: '/admin/question-bank', icon: Database },
     { name: 'Creador de Ensayos', path: '/admin/exam-builder', icon: PenTool },
     { name: 'Creador de Desafíos', path: '/admin/desafios', icon: Map },
