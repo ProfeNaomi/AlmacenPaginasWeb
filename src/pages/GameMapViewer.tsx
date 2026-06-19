@@ -113,8 +113,8 @@ export default function GameMapViewer() {
           className="relative w-full mx-auto shadow-2xl"
           style={{ height: `${MAP_HEIGHT}px` }}
         >
-          {/* Fondos de los Mundos (Renderizados de arriba hacia abajo) */}
-          <div className="absolute inset-0 flex flex-col w-full h-full pointer-events-none">
+          {/* Fondos de los Mundos (Renderizados con posición absoluta para permitir solapamiento y crossfade) */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
              {Array.from({ length: WORLDS_COUNT }).map((_, i) => {
                const worldId = WORLDS_COUNT - i; // Mundo 20 arriba, Mundo 1 abajo
                
@@ -123,17 +123,35 @@ export default function GameMapViewer() {
                const fallbackImageId = ((worldId - 1) % 7) + 1;
                const finalImageUrl = customBg ? getDirectImageUrl(customBg) : `/worlds/clean_world_${fallbackImageId}.png`;
 
+               const OVERLAP = 250; // 250px de superposición para un crossfade muy suave
+               
+               // La posición "teórica" sin solapamiento
+               const theoreticalTop = i === 0 ? 0 : START_OFFSET_Y + i * WORLD_HEIGHT;
+               const theoreticalHeight = (i === 0 || i === WORLDS_COUNT - 1) ? WORLD_HEIGHT + START_OFFSET_Y : WORLD_HEIGHT;
+
+               // Extendemos la imagen hacia arriba y hacia abajo para el solapamiento
+               const top = i === 0 ? theoreticalTop : theoreticalTop - OVERLAP / 2;
+               const height = theoreticalHeight + (i === 0 ? 0 : OVERLAP / 2) + (i === WORLDS_COUNT - 1 ? 0 : OVERLAP / 2);
+
+               // Creamos una máscara de desvanecimiento
+               const maskTop = i === 0 ? 'black 0%' : `transparent 0%, black ${OVERLAP}px`;
+               const maskBottom = i === WORLDS_COUNT - 1 ? 'black 100%' : `black calc(100% - ${OVERLAP}px), transparent 100%`;
+               const maskImage = `linear-gradient(to bottom, ${maskTop}, ${maskBottom})`;
+
                return (
                  <div 
                    key={worldId}
-                   className="w-full relative bg-cover bg-center bg-no-repeat"
+                   className="absolute w-full bg-cover bg-center bg-no-repeat"
                    style={{ 
-                     height: `${worldId === 1 || worldId === WORLDS_COUNT ? WORLD_HEIGHT + START_OFFSET_Y : WORLD_HEIGHT}px`,
-                     backgroundImage: `url(${finalImageUrl})`
+                     top: `${top}px`,
+                     height: `${height}px`,
+                     backgroundImage: `url(${finalImageUrl})`,
+                     WebkitMaskImage: maskImage,
+                     maskImage: maskImage
                    }}
                  >
-                   {/* Gradient overlay for smooth transitions between worlds */}
-                   <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/30 via-transparent to-[#020617]/30"></div>
+                   {/* Un ligero oscurecimiento en general para que contraste el camino luminoso */}
+                   <div className="absolute inset-0 bg-[#020617]/20"></div>
                  </div>
                );
              })}
