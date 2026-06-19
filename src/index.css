@@ -33,20 +33,25 @@ body {
     max-width: 100% !important;
   }
   
-  /* Forzar modo claro en TODO para evadir Dark Reader o fondos oscuros y ocultar scrollbars */
-  * {
-    background-color: transparent !important;
-    color: black !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    overflow: visible !important;
-    max-height: none !important;
-  }
-
+  /* Evitar fondos muy oscuros, pero permitir colores de impresión */
   body, html, #root, .min-h-screen {
     background: white !important;
     color: black !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+  
+  .planner-table {
+    width: 100% !important;
+    page-break-inside: auto;
+  }
+  
+  .planner-table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  
+  .planner-table td, .planner-table th {
+    page-break-inside: avoid;
   }
 }
