@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { defaultGameLevels, getGameProgress, GameProgress, GameLevel, completeLevel, getWorldBackgrounds } from '../lib/gameMap';
+import { defaultGameLevels, getGameProgress, GameProgress, GameLevel, completeLevel, getWorldBackgrounds, getDirectImageUrl } from '../lib/gameMap';
 import { Lock, Star, Play, X, Trophy, Skull } from 'lucide-react';
 import { CustomAppRenderer } from '../components/apps/AppRegistry';
 
@@ -22,14 +22,14 @@ export default function GameMapViewer() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Configuraciones del mapa para proporción 16:9 (Full HD 1920x1080)
+  // Configuraciones del mapa para proporción rectangular reducida
   const levels = defaultGameLevels;
   
   // Agrupamos por mundo (10 niveles por mundo)
   const WORLDS_COUNT = 20;
   const LEVELS_PER_WORLD = 10;
-  const WORLD_HEIGHT = 1080; // Altura fija de 1080px por mundo para mantener la proporción rectangular de las imágenes
-  const LEVEL_SPACING_Y = WORLD_HEIGHT / LEVELS_PER_WORLD; // Automáticamente se ajusta a 108px de separación
+  const WORLD_HEIGHT = 750; // Reducido un 30% aprox desde 1080px para ver más niveles a la vez
+  const LEVEL_SPACING_Y = WORLD_HEIGHT / LEVELS_PER_WORLD; // Automáticamente se ajusta a 75px de separación
   
   // Amplitud dinámica: máximo 450px o la mitad de la pantalla menos un margen seguro, para esparcirse lo más posible
   const AMPLITUDE_X = Math.min(450, (windowWidth / 2) - 80); 
@@ -117,7 +117,7 @@ export default function GameMapViewer() {
                // Priorizamos el fondo subido por el admin, sino usamos el reciclado
                const customBg = customBackgrounds[worldId];
                const fallbackImageId = ((worldId - 1) % 7) + 1;
-               const finalImageUrl = customBg || `/worlds/clean_world_${fallbackImageId}.png`;
+               const finalImageUrl = customBg ? getDirectImageUrl(customBg) : `/worlds/clean_world_${fallbackImageId}.png`;
 
                return (
                  <div 

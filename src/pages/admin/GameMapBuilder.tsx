@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { defaultGameLevels, GameLevel, WORLD_NAMES, getWorldBackgrounds, setWorldBackground } from '../../lib/gameMap';
+import { defaultGameLevels, GameLevel, WORLD_NAMES, getWorldBackgrounds, setWorldBackground, getDirectImageUrl } from '../../lib/gameMap';
 import { Map, Edit3, Settings, Plus, Layout, Type, Image as ImageIcon, Save } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -222,7 +222,7 @@ export default function GameMapBuilder() {
                   {backgrounds[worldId] && (
                      <div 
                        className="w-full h-24 rounded-lg mt-2 bg-cover bg-center border border-slate-700" 
-                       style={{ backgroundImage: `url(${backgrounds[worldId]})` }}
+                       style={{ backgroundImage: `url(${getDirectImageUrl(backgrounds[worldId])})` }}
                      />
                   )}
                 </div>

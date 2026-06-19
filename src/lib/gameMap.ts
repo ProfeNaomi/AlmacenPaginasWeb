@@ -125,3 +125,19 @@ export const setWorldBackground = (worldId: number, url: string) => {
   localStorage.setItem(BACKGROUNDS_KEY, JSON.stringify(current));
   return current;
 };
+
+// Helper function to convert Google Drive share links to direct image links
+export const getDirectImageUrl = (url: string): string => {
+  if (!url) return url;
+  // Match https://drive.google.com/file/d/ID/view
+  const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (driveMatch && driveMatch[1]) {
+    return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+  }
+  // Match https://drive.google.com/open?id=ID
+  const driveOpenMatch = url.match(/id=([a-zA-Z0-9_-]+)/);
+  if (url.includes('drive.google.com') && driveOpenMatch && driveOpenMatch[1]) {
+    return `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
+  }
+  return url;
+};
