@@ -3,6 +3,13 @@ export interface WeekData {
   startDate: Date;
   endDate: Date;
   monthName: string;
+  formattedDateRange: string;
+}
+
+export function formatDateShort(date: Date): string {
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = new Intl.DateTimeFormat('es-CL', { month: 'short' }).format(date).replace('.', '');
+  return `${day} ${month.charAt(0).toUpperCase() + month.slice(1)}`;
 }
 
 export function getMonthName(date: Date): string {
@@ -29,11 +36,15 @@ export function calculateWeeks(startDateStr: string, endDateStr: string): WeekDa
 
     // Solo agregar la semana si al menos un día cae dentro del rango
     if (weekEnd >= start && weekStart <= end) {
+      const sDate = new Date(Math.max(weekStart.getTime(), start.getTime()));
+      const eDate = new Date(Math.min(weekEnd.getTime(), end.getTime()));
+      
       weeks.push({
         weekNumber,
-        startDate: new Date(Math.max(weekStart.getTime(), start.getTime())),
-        endDate: new Date(Math.min(weekEnd.getTime(), end.getTime())),
-        monthName: getMonthName(weekStart).charAt(0).toUpperCase() + getMonthName(weekStart).slice(1)
+        startDate: sDate,
+        endDate: eDate,
+        monthName: getMonthName(weekStart).charAt(0).toUpperCase() + getMonthName(weekStart).slice(1),
+        formattedDateRange: `${formatDateShort(sDate)} - ${formatDateShort(eDate)}`
       });
       weekNumber++;
     }

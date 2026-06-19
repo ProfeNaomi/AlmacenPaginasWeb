@@ -19,11 +19,12 @@ interface ClassDetailModalProps {
   weekEnd: Date;
   initialClasses: ClassDetail[];
   onSave: (rowId: string, classes: ClassDetail[]) => void;
+  defaultClassCount?: number;
 }
 
-export default function ClassDetailModal({ isOpen, onClose, rowId, weekStart, weekEnd, initialClasses, onSave }: ClassDetailModalProps) {
+export default function ClassDetailModal({ isOpen, onClose, rowId, weekStart, weekEnd, initialClasses, onSave, defaultClassCount = 3 }: ClassDetailModalProps) {
   const [classes, setClasses] = useState<ClassDetail[]>(initialClasses);
-  const [classCount, setClassCount] = useState(initialClasses.length || 3);
+  const [classCount, setClassCount] = useState(initialClasses.length || defaultClassCount);
   const [omitWeekends, setOmitWeekends] = useState(true);
 
   if (!isOpen) return null;
