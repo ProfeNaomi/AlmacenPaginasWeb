@@ -28,8 +28,8 @@ export default function GameMapViewer() {
   // Agrupamos por mundo (10 niveles por mundo)
   const WORLDS_COUNT = 20;
   const LEVELS_PER_WORLD = 10;
-  const WORLD_HEIGHT = 750; // Reducido un 30% aprox desde 1080px para ver más niveles a la vez
-  const LEVEL_SPACING_Y = 60; // Separación fija entre niveles
+  const WORLD_HEIGHT = 1200; // Aumentado para mejor distribución vertical
+  const LEVEL_SPACING_Y = 110; // Separación aumentada para que no se aprieten en móvil
   const WORLD_PADDING_Y = (WORLD_HEIGHT - ((LEVELS_PER_WORLD - 1) * LEVEL_SPACING_Y)) / 2; // Padding de 105px arriba y abajo
   
   // Amplitud dinámica: máximo 450px o la mitad de la pantalla menos un margen seguro, para esparcirse lo más posible
@@ -243,14 +243,7 @@ export default function GameMapViewer() {
                 className="absolute transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group z-10"
                 style={{ top: `${y}px`, left: `calc(50% + ${xOffset}px)` }}
               >
-                {/* Estrellas (si está completado) */}
-                {isCompleted && !isBoss && (
-                  <div className="flex gap-1 mb-2">
-                    {[1, 2, 3].map(star => (
-                      <Star key={star} className={`w-4 h-4 ${star <= stars ? 'fill-yellow-400 text-yellow-400' : 'fill-slate-800 text-slate-700'}`} />
-                    ))}
-                  </div>
-                )}
+                {/* Las estrellas se movieron abajo para que no se superpongan con otros niveles */}
                 
                 {isBoss && isCompleted && (
                    <div className="mb-2 bg-amber-400 text-amber-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
@@ -307,6 +300,15 @@ export default function GameMapViewer() {
                     </div>
                   </div>
                 )}
+
+                {/* Estrellas (ahora están abajo del nodo para evitar superposiciones) */}
+                {isCompleted && !isBoss && (
+                  <div className="flex gap-1 mt-2">
+                    {[1, 2, 3].map(star => (
+                      <Star key={star} className={`w-4 h-4 ${star <= stars ? 'fill-yellow-400 text-yellow-400' : 'fill-slate-800 text-slate-700'}`} />
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}
@@ -320,13 +322,13 @@ export default function GameMapViewer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center sm:p-8"
           >
             <motion.div 
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className={`bg-slate-900 border ${selectedLevel.isBoss ? 'border-red-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)]' : 'border-slate-800'} rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl relative`}
+              className={`bg-slate-900 sm:border ${selectedLevel.isBoss ? 'sm:border-red-500/50 sm:shadow-[0_0_50px_rgba(239,68,68,0.2)]' : 'sm:border-slate-800'} sm:rounded-3xl w-full max-w-4xl h-[100dvh] sm:h-auto sm:max-h-[90vh] flex flex-col overflow-hidden sm:shadow-2xl relative`}
             >
               
               {/* Boss Decorator */}
@@ -359,7 +361,7 @@ export default function GameMapViewer() {
               </div>
 
               {/* Contenido del Desafío */}
-              <div className="flex-1 overflow-y-auto p-0 bg-slate-950 flex flex-col relative rounded-b-3xl">
+              <div className="flex-1 overflow-y-auto p-0 bg-slate-950 flex flex-col relative sm:rounded-b-3xl">
                 {/* Background watermark for boss */}
                 {selectedLevel.isBoss && (
                    <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">

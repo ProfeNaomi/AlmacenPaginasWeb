@@ -40,6 +40,19 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
   const [flash, setFlash] = useState<'none' | 'correct' | 'wrong'>('none');
   
   const targetScore = 40;
+  const bgMusicRef = useRef<HTMLAudioElement | null>(null);
+
+  // Inicializar audio
+  useEffect(() => {
+    bgMusicRef.current = new Audio('/audio/game-melody.mp3');
+    bgMusicRef.current.loop = true;
+    bgMusicRef.current.volume = 0.3;
+    return () => {
+      if (bgMusicRef.current) {
+        bgMusicRef.current.pause();
+      }
+    };
+  }, []);
 
   // Inicializar juego
   const startGame = useCallback(() => {
@@ -48,6 +61,12 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
     setTimeLeft(60);
     setGameState('playing');
     setFlash('none');
+    
+    if (bgMusicRef.current) {
+      bgMusicRef.current.currentTime = 0;
+      bgMusicRef.current.playbackRate = 1.0;
+      bgMusicRef.current.play().catch(e => console.log('Interacción de usuario requerida para audio'));
+    }
   }, []);
 
   // Manejo de Sonidos (similar al de Contra Reloj)
@@ -88,8 +107,14 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
     if (gameState === 'playing' && timeLeft > 0) {
       timer = setInterval(() => {
         setTimeLeft(prev => {
+          if (bgMusicRef.current) {
+            // Acelerar la música a medida que queda menos tiempo (de 1.0x a 2.0x)
+            bgMusicRef.current.playbackRate = 1.0 + ((60 - prev) / 60);
+          }
+          
           if (prev <= 1) {
             setGameState('lost');
+            if (bgMusicRef.current) bgMusicRef.current.pause();
             return 0;
           }
           return prev - 1;
@@ -97,6 +122,7 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
       }, 1000);
     } else if (timeLeft <= 0 && gameState === 'playing') {
       setGameState('lost');
+      if (bgMusicRef.current) bgMusicRef.current.pause();
     }
     return () => clearInterval(timer);
   }, [gameState, timeLeft]);
@@ -116,6 +142,7 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
       
       if (newScore >= targetScore) {
         setGameState('won');
+        if (bgMusicRef.current) bgMusicRef.current.pause();
         if (onWin) setTimeout(onWin, 1500);
       }
     } else {
