@@ -1,35 +1,42 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { defaultGameLevels, getGameProgress, GameProgress, GameLevel, completeLevel } from '../lib/gameMap';
+import { defaultGameLevels, getGameProgress, GameProgress, GameLevel, completeLevel, getWorldBackgrounds } from '../lib/gameMap';
 import { Lock, Star, Play, X, Trophy, Skull } from 'lucide-react';
 import { CustomAppRenderer } from '../components/apps/AppRegistry';
 
 export default function GameMapViewer() {
   const [progress, setProgress] = useState<GameProgress>({ unlockedLevel: 1, completedLevels: [], stars: {} });
   const [selectedLevel, setSelectedLevel] = useState<GameLevel | null>(null);
+  const [customBackgrounds, setCustomBackgrounds] = useState<Record<number, string>>({});
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setProgress(getGameProgress());
+    setCustomBackgrounds(getWorldBackgrounds());
   }, []);
 
   // Configuraciones del mapa
   const levels = defaultGameLevels;
-  const LEVEL_SPACING_Y = 160; // Separar un poco más para aprovechar los 10 niveles por mundo
-  const AMPLITUDE_X = 140; // Un poco más ancho el zigzag
+  const LEVEL_SPACING_Y = 130; // Ajustado para que el fondo de 1300px cuadre mejor en pantallas estándar
+  const AMPLITUDE_X = 250; // ¡Amplitud masiva para usar todo el ancho de la pantalla!
   
   // Agrupamos por mundo (10 niveles por mundo)
   const WORLDS_COUNT = 20;
   const LEVELS_PER_WORLD = 10;
   const WORLD_HEIGHT = LEVELS_PER_WORLD * LEVEL_SPACING_Y;
-  const START_OFFSET_Y = 180;
+  const START_OFFSET_Y = 150;
   const MAP_HEIGHT = WORLDS_COUNT * WORLD_HEIGHT + START_OFFSET_Y * 2;
 
   // Calculamos las posiciones (Nivel 1 abajo, Nivel 200 arriba)
   const levelPositions = useMemo(() => {
     return levels.map((lvl, index) => {
-      // ZigZag más orgánico
-      const xOffset = Math.sin(index * Math.PI * 0.4) * AMPLITUDE_X + Math.cos(index * Math.PI * 0.15) * 40;
+      // index % 10 va de 0 (nivel 1) a 9 (nivel 10)
+      const indexInWorld = index % 10; 
+      
+      // Senoide de ciclo completo: empieza en 0, va a la derecha, cruza el centro, va a la izquierda, termina en 0.
+      // Modificamos ligeramente con un coseno pequeño para darle un toque menos perfecto/más orgánico
+      const xOffset = Math.sin((indexInWorld / 9) * Math.PI * 2) * AMPLITUDE_X + Math.sin(index * 0.5) * 20;
+      
       return {
         level: lvl,
         y: MAP_HEIGHT - (index * LEVEL_SPACING_Y + START_OFFSET_Y),
@@ -97,15 +104,19 @@ export default function GameMapViewer() {
           <div className="absolute inset-0 flex flex-col w-full h-full pointer-events-none">
              {Array.from({ length: WORLDS_COUNT }).map((_, i) => {
                const worldId = WORLDS_COUNT - i; // Mundo 20 arriba, Mundo 1 abajo
-               // Usamos modulo 7 porque tenemos 7 imágenes generadas (se repiten)
-               const imageId = ((worldId - 1) % 7) + 1;
+               
+               // Priorizamos el fondo subido por el admin, sino usamos el reciclado
+               const customBg = customBackgrounds[worldId];
+               const fallbackImageId = ((worldId - 1) % 7) + 1;
+               const finalImageUrl = customBg || `/worlds/clean_world_${fallbackImageId}.png`;
+
                return (
                  <div 
                    key={worldId}
                    className="w-full relative bg-cover bg-center bg-no-repeat"
                    style={{ 
                      height: `${worldId === 1 || worldId === WORLDS_COUNT ? WORLD_HEIGHT + START_OFFSET_Y : WORLD_HEIGHT}px`,
-                     backgroundImage: `url(/worlds/clean_world_${imageId}.png)`
+                     backgroundImage: `url(${finalImageUrl})`
                    }}
                  >
                    {/* Gradient overlay for smooth transitions between worlds */}

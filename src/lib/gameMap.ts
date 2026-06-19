@@ -16,7 +16,7 @@ export interface GameProgress {
   stars: Record<number, number>; // level number -> stars earned (1-3)
 }
 
-const WORLD_NAMES = [
+export const WORLD_NAMES = [
   "Bosque de los Naturales",
   "Pradera de los Enteros",
   "Ruinas Geométricas",
@@ -58,7 +58,7 @@ for (let i = 1; i <= 200; i++) {
   });
 }
 
-// Override the first 5 levels with the custom apps for demo purposes
+// Override the first 5 levels con los mini-juegos base
 defaultGameLevels[0] = { ...defaultGameLevels[0], title: 'El Teorema Perdido', description: 'Ayuda a Pitágoras a encontrar la hipotenusa para cruzar el río.', type: 'app', appComponentName: 'PythagorasGame' };
 defaultGameLevels[1] = { ...defaultGameLevels[1], title: 'Aproximación Numérica', description: 'Acércate al límite para desactivar el escudo.', type: 'app', appComponentName: 'LimitsSimulation' };
 defaultGameLevels[2] = { ...defaultGameLevels[2], title: 'Desafío Aritmético', description: 'Resuelve la ecuación fundamental para abrir la puerta.', type: 'quiz' };
@@ -67,6 +67,7 @@ defaultGameLevels[4] = { ...defaultGameLevels[4], title: 'El Laberinto Derivado'
 
 // Funciones para manejar el progreso temporalmente en LocalStorage
 const PROGRESS_KEY = 'mathema_game_progress';
+const BACKGROUNDS_KEY = 'mathema_world_backgrounds';
 
 export const getGameProgress = (): GameProgress => {
   const data = localStorage.getItem(PROGRESS_KEY);
@@ -104,4 +105,23 @@ export const completeLevel = (levelNumber: number, starsEarned: number = 3) => {
 
 export const resetProgress = () => {
   localStorage.removeItem(PROGRESS_KEY);
+};
+
+export const getWorldBackgrounds = (): Record<number, string> => {
+  const data = localStorage.getItem(BACKGROUNDS_KEY);
+  if (data) {
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      console.error("Error parsing backgrounds", e);
+    }
+  }
+  return {};
+};
+
+export const setWorldBackground = (worldId: number, url: string) => {
+  const current = getWorldBackgrounds();
+  current[worldId] = url;
+  localStorage.setItem(BACKGROUNDS_KEY, JSON.stringify(current));
+  return current;
 };
