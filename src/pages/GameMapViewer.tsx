@@ -29,7 +29,8 @@ export default function GameMapViewer() {
   const WORLDS_COUNT = 20;
   const LEVELS_PER_WORLD = 10;
   const WORLD_HEIGHT = 750; // Reducido un 30% aprox desde 1080px para ver más niveles a la vez
-  const LEVEL_SPACING_Y = WORLD_HEIGHT / LEVELS_PER_WORLD; // Automáticamente se ajusta a 75px de separación
+  const LEVEL_SPACING_Y = 60; // Separación fija entre niveles
+  const WORLD_PADDING_Y = (WORLD_HEIGHT - ((LEVELS_PER_WORLD - 1) * LEVEL_SPACING_Y)) / 2; // Padding de 105px arriba y abajo
   
   // Amplitud dinámica: máximo 450px o la mitad de la pantalla menos un margen seguro, para esparcirse lo más posible
   const AMPLITUDE_X = Math.min(450, (windowWidth / 2) - 80); 
@@ -40,19 +41,22 @@ export default function GameMapViewer() {
   // Calculamos las posiciones (Nivel 1 abajo, Nivel 200 arriba)
   const levelPositions = useMemo(() => {
     return levels.map((lvl, index) => {
-      // index % 10 va de 0 (nivel 1) a 9 (nivel 10)
-      const indexInWorld = index % 10; 
+      const worldIndex = Math.floor(index / LEVELS_PER_WORLD);
+      const indexInWorld = index % LEVELS_PER_WORLD; 
       
-      // Senoide de ciclo completo: empieza en 0, va a la derecha, cruza el centro, va a la izquierda, termina en 0.
-      const xOffset = Math.sin((indexInWorld / 9) * Math.PI * 2) * AMPLITUDE_X + Math.sin(index * 0.5) * 20;
+      const yOffsetInWorld = WORLD_PADDING_Y + indexInWorld * LEVEL_SPACING_Y;
+      const absoluteY = worldIndex * WORLD_HEIGHT + yOffsetInWorld;
+
+      // Senoide de ciclo completo, combinada con otra onda menor para darle aspecto orgánico de "S"
+      const xOffset = Math.sin((indexInWorld / 9) * Math.PI * 2) * AMPLITUDE_X + Math.sin(indexInWorld * 1.5) * 40;
       
       return {
         level: lvl,
-        y: MAP_HEIGHT - (index * LEVEL_SPACING_Y + START_OFFSET_Y),
+        y: MAP_HEIGHT - (absoluteY + START_OFFSET_Y),
         xOffset
       };
     });
-  }, [levels, AMPLITUDE_X, MAP_HEIGHT, LEVEL_SPACING_Y]);
+  }, [levels, AMPLITUDE_X, MAP_HEIGHT, LEVEL_SPACING_Y, WORLD_PADDING_Y]);
 
   // Generar SVG Path para la línea de conexión
   const generatePath = () => {

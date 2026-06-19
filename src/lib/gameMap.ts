@@ -129,15 +129,24 @@ export const setWorldBackground = (worldId: number, url: string) => {
 // Helper function to convert Google Drive share links to direct image links
 export const getDirectImageUrl = (url: string): string => {
   if (!url) return url;
-  // Match https://drive.google.com/file/d/ID/view
+  
+  // Extraer el ID de Google Drive de varios formatos posibles
+  let driveId = null;
+  
   const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
   if (driveMatch && driveMatch[1]) {
-    return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+    driveId = driveMatch[1];
+  } else {
+    const driveOpenMatch = url.match(/id=([a-zA-Z0-9_-]+)/);
+    if (url.includes('drive.google.com') && driveOpenMatch && driveOpenMatch[1]) {
+      driveId = driveOpenMatch[1];
+    }
   }
-  // Match https://drive.google.com/open?id=ID
-  const driveOpenMatch = url.match(/id=([a-zA-Z0-9_-]+)/);
-  if (url.includes('drive.google.com') && driveOpenMatch && driveOpenMatch[1]) {
-    return `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
+
+  if (driveId) {
+    // El endpoint de thumbnail es el más confiable actualmente para incrustar en img src o background-image
+    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w2500`;
   }
+  
   return url;
 };
