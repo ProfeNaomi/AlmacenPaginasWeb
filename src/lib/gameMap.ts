@@ -18,24 +18,34 @@ export interface GameProgress {
 
 const WORLD_NAMES = [
   "Bosque de los Naturales",
+  "Pradera de los Enteros",
   "Ruinas Geométricas",
+  "Cañón de los Racionales",
   "Océano de las Fracciones",
+  "Arrecife Decimal",
   "Desierto Algebraico",
+  "Dunas de las Variables",
   "Cavernas de las Ecuaciones",
+  "Minas de las Inecuaciones",
   "Volcán Probabilístico",
+  "Cumbres de la Combinatoria",
   "Cielo de las Funciones",
+  "Islas de los Gráficos",
   "Templo Trigonométrico",
+  "Santuario de los Ángulos",
   "Ciudad Estadística",
-  "El Vacío Infinito"
+  "Metrópolis de Datos",
+  "El Vacío Infinito",
+  "Horizonte del Cálculo"
 ];
 
 // Temporary in-memory level definitions (In the future, this can be fetched from Firebase)
 export const defaultGameLevels: GameLevel[] = [];
 
 for (let i = 1; i <= 200; i++) {
-  const worldIndex = Math.floor((i - 1) / 20);
+  const worldIndex = Math.floor((i - 1) / 10);
   const worldName = WORLD_NAMES[worldIndex];
-  const isBoss = i % 20 === 0;
+  const isBoss = i % 10 === 0;
 
   defaultGameLevels.push({
     id: `lvl-${i}`,

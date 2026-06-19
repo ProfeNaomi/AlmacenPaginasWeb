@@ -15,21 +15,21 @@ export default function GameMapViewer() {
 
   // Configuraciones del mapa
   const levels = defaultGameLevels;
-  const LEVEL_SPACING_Y = 140;
-  const AMPLITUDE_X = 120;
+  const LEVEL_SPACING_Y = 160; // Separar un poco más para aprovechar los 10 niveles por mundo
+  const AMPLITUDE_X = 140; // Un poco más ancho el zigzag
   
-  // Agrupamos por mundo (20 niveles por mundo)
-  const WORLDS_COUNT = 10;
-  const LEVELS_PER_WORLD = 20;
+  // Agrupamos por mundo (10 niveles por mundo)
+  const WORLDS_COUNT = 20;
+  const LEVELS_PER_WORLD = 10;
   const WORLD_HEIGHT = LEVELS_PER_WORLD * LEVEL_SPACING_Y;
-  const START_OFFSET_Y = 150;
+  const START_OFFSET_Y = 180;
   const MAP_HEIGHT = WORLDS_COUNT * WORLD_HEIGHT + START_OFFSET_Y * 2;
 
   // Calculamos las posiciones (Nivel 1 abajo, Nivel 200 arriba)
   const levelPositions = useMemo(() => {
     return levels.map((lvl, index) => {
       // ZigZag más orgánico
-      const xOffset = Math.sin(index * Math.PI * 0.35) * AMPLITUDE_X + Math.cos(index * Math.PI * 0.1) * 30;
+      const xOffset = Math.sin(index * Math.PI * 0.4) * AMPLITUDE_X + Math.cos(index * Math.PI * 0.15) * 40;
       return {
         level: lvl,
         y: MAP_HEIGHT - (index * LEVEL_SPACING_Y + START_OFFSET_Y),
@@ -71,7 +71,6 @@ export default function GameMapViewer() {
     if (containerRef.current) {
       const currentPos = levelPositions.find(p => p.level.number === progress.unlockedLevel);
       if (currentPos) {
-        // Delay slight to let images load
         setTimeout(() => {
           containerRef.current?.scrollTo({
             top: currentPos.y - window.innerHeight / 2,
@@ -91,36 +90,38 @@ export default function GameMapViewer() {
         className="flex-1 overflow-y-auto overflow-x-hidden relative scroll-smooth no-scrollbar"
       >
         <div 
-          className="relative w-full max-w-3xl mx-auto shadow-2xl"
+          className="relative w-full mx-auto shadow-2xl"
           style={{ height: `${MAP_HEIGHT}px` }}
         >
-          {/* Fondos de los Mundos (Renderizados de arriba hacia abajo, por lo que el Mundo 10 está arriba y Mundo 1 abajo) */}
-          <div className="absolute inset-0 flex flex-col w-full h-full pointer-events-none rounded-3xl overflow-hidden">
+          {/* Fondos de los Mundos (Renderizados de arriba hacia abajo) */}
+          <div className="absolute inset-0 flex flex-col w-full h-full pointer-events-none">
              {Array.from({ length: WORLDS_COUNT }).map((_, i) => {
-               const worldId = WORLDS_COUNT - i; // Para que el mundo 10 esté arriba y el 1 abajo
+               const worldId = WORLDS_COUNT - i; // Mundo 20 arriba, Mundo 1 abajo
+               // Usamos modulo 7 porque tenemos 7 imágenes generadas (se repiten)
+               const imageId = ((worldId - 1) % 7) + 1;
                return (
                  <div 
                    key={worldId}
                    className="w-full relative bg-cover bg-center bg-no-repeat"
                    style={{ 
                      height: `${worldId === 1 || worldId === WORLDS_COUNT ? WORLD_HEIGHT + START_OFFSET_Y : WORLD_HEIGHT}px`,
-                     backgroundImage: `url(/worlds/world_${worldId}.png)`
+                     backgroundImage: `url(/worlds/clean_world_${imageId}.png)`
                    }}
                  >
                    {/* Gradient overlay for smooth transitions between worlds */}
-                   <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/40 via-transparent to-[#020617]/40"></div>
+                   <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/30 via-transparent to-[#020617]/30"></div>
                  </div>
                );
              })}
           </div>
 
-          {/* Línea SVG conectora */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}>
+          {/* Línea SVG conectora (Centro de la pantalla) */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.7))' }}>
             <path 
               d={generatePath()} 
               fill="none" 
-              stroke="rgba(0,0,0,0.5)" 
-              strokeWidth="24" 
+              stroke="rgba(0,0,0,0.6)" 
+              strokeWidth="28" 
               strokeLinecap="round" 
               strokeLinejoin="round" 
             />
@@ -128,7 +129,7 @@ export default function GameMapViewer() {
               d={generatePath()} 
               fill="none" 
               stroke="#ffffff" 
-              strokeWidth="16" 
+              strokeWidth="18" 
               strokeLinecap="round" 
               strokeLinejoin="round" 
             />
@@ -137,7 +138,7 @@ export default function GameMapViewer() {
               d={generatePath()} 
               fill="none" 
               stroke="url(#progressGradient)" 
-              strokeWidth="10" 
+              strokeWidth="12" 
               strokeLinecap="round" 
               strokeLinejoin="round" 
               strokeDasharray="20, 20"
