@@ -25,6 +25,7 @@ import DossierBuilder from './pages/admin/DossierBuilder';
 import DossierTemplateBuilder from './pages/admin/DossierTemplateBuilder';
 import DossierViewer from './pages/DossierViewer';
 import PlannerBuilder from './pages/admin/PlannerBuilder';
+import OABank from './pages/admin/OABank';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -97,6 +98,7 @@ function AppRoutes() {
         <Route path="/admin/dossiers" element={<DossierBuilder />} />
         <Route path="/admin/dossier-templates" element={<DossierTemplateBuilder />} />
         <Route path="/admin/planner" element={<PlannerBuilder />} />
+        <Route path="/admin/oa-bank" element={<OABank />} />
         
         {/* Rutas para ver Dossier */}
         <Route path="/dossiers/:dossierId" element={<DossierViewer />} />

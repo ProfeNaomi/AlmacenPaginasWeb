@@ -48,6 +48,7 @@ export default function MainLayout() {
 
   const adminItems = [
     { name: 'Planificaciones', path: '/admin/planner', icon: Calendar },
+    { name: 'Banco de OAs', path: '/admin/oa-bank', icon: BookOpen },
     { name: 'Banco de Preguntas', path: '/admin/question-bank', icon: Database },
     { name: 'Creador de Ensayos', path: '/admin/exam-builder', icon: PenTool },
     { name: 'Creador de Desafíos', path: '/admin/desafios', icon: Map },
