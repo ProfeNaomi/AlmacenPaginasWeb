@@ -59,7 +59,13 @@ for (let i = 1; i <= 200; i++) {
 }
 
 // Override the first 5 levels con los mini-juegos base
-defaultGameLevels[0] = { ...defaultGameLevels[0], title: 'El Teorema Perdido', description: 'Ayuda a Pitágoras a encontrar la hipotenusa para cruzar el río.', type: 'app', appComponentName: 'PythagorasGame' };
+defaultGameLevels[0] = { 
+  ...defaultGameLevels[0], 
+  title: 'Contra Reloj', 
+  description: 'Números Naturales', 
+  type: 'app', 
+  appComponentName: 'ContraRelojGame' 
+};
 defaultGameLevels[1] = { ...defaultGameLevels[1], title: 'Aproximación Numérica', description: 'Acércate al límite para desactivar el escudo.', type: 'app', appComponentName: 'LimitsSimulation' };
 defaultGameLevels[2] = { ...defaultGameLevels[2], title: 'Desafío Aritmético', description: 'Resuelve la ecuación fundamental para abrir la puerta.', type: 'quiz' };
 defaultGameLevels[3] = { ...defaultGameLevels[3], title: 'El Valle de las Funciones', description: 'Identifica el dominio de la función misteriosa.', type: 'quiz' };

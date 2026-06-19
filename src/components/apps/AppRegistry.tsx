@@ -4,9 +4,16 @@ import React, { Suspense, lazy } from 'react';
 // Para agregar una nueva app, añádela a este registro usando lazy loading.
 const appRegistry: Record<string, React.LazyExoticComponent<any>> = {
   'LimitsSimulation': lazy(() => import('./LimitsSimulation')),
+  'ContraRelojGame': lazy(() => import('./ContraRelojGame')),
 };
 
-export const CustomAppRenderer: React.FC<{ name: string }> = ({ name }) => {
+interface CustomAppRendererProps {
+  name: string;
+  onWin?: () => void;
+  onClose?: () => void;
+}
+
+export const CustomAppRenderer: React.FC<CustomAppRendererProps> = ({ name, onWin, onClose }) => {
   const Component = appRegistry[name];
   
   if (!Component) {
@@ -28,9 +35,8 @@ export const CustomAppRenderer: React.FC<{ name: string }> = ({ name }) => {
         </div>
       }
     >
-      <div className="w-full bg-white rounded-2xl shadow-xl overflow-hidden relative" style={{ minHeight: '400px' }}>
-         {/* Renderizamos el componente. Le damos fondo blanco y shadow para que resalte. */}
-         <Component />
+      <div className="w-full bg-slate-950 rounded-2xl overflow-hidden relative" style={{ minHeight: '400px' }}>
+         <Component onWin={onWin} onClose={onClose} />
       </div>
     </Suspense>
   );

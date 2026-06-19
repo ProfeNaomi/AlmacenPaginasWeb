@@ -336,7 +336,7 @@ export default function GameMapViewer() {
               </div>
 
               {/* Contenido del Desafío */}
-              <div className="flex-1 overflow-y-auto p-6 bg-slate-950 flex flex-col relative">
+              <div className="flex-1 overflow-y-auto p-0 bg-slate-950 flex flex-col relative rounded-b-3xl">
                 {/* Background watermark for boss */}
                 {selectedLevel.isBoss && (
                    <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
@@ -346,10 +346,14 @@ export default function GameMapViewer() {
 
                 {selectedLevel.type === 'app' && selectedLevel.appComponentName ? (
                    // Cargamos la aplicación dinámica interactiva
-                   <CustomAppRenderer name={selectedLevel.appComponentName} />
+                   <CustomAppRenderer 
+                     name={selectedLevel.appComponentName} 
+                     onWin={handleWin}
+                     onClose={() => setSelectedLevel(null)}
+                   />
                 ) : (
                    // Desafío genérico PAES / Quiz
-                   <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 max-w-lg mx-auto z-10">
+                   <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 max-w-lg mx-auto z-10 p-6">
                       <div className={`w-24 h-24 ${selectedLevel.isBoss ? 'bg-gradient-to-br from-red-600 to-orange-600 shadow-red-500/50' : 'bg-gradient-to-br from-indigo-500 to-purple-600 shadow-indigo-500/50'} rounded-2xl flex items-center justify-center rotate-3 shadow-xl`}>
                         <span className="text-4xl font-bold text-white">?</span>
                       </div>
@@ -366,22 +370,24 @@ export default function GameMapViewer() {
                 )}
               </div>
 
-              {/* Footer / Acción */}
-              <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-between items-center z-10">
-                <button 
-                  onClick={() => setSelectedLevel(null)}
-                  className="px-6 py-3 font-bold text-slate-400 hover:text-white transition-colors"
-                >
-                  Huir cobardemente
-                </button>
-                <button 
-                  onClick={handleWin}
-                  className={`px-8 py-3 bg-gradient-to-r ${selectedLevel.isBoss ? 'from-red-500 to-orange-500 shadow-red-500/30 hover:from-red-400 hover:to-orange-400' : 'from-emerald-500 to-cyan-500 shadow-cyan-500/30 hover:from-emerald-400 hover:to-cyan-400'} text-white font-bold rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2`}
-                >
-                  <Trophy className="w-5 h-5" />
-                  Simular Victoria (Ganar Nivel)
-                </button>
-              </div>
+              {/* Footer / Acción (Solo para Quiz normal) */}
+              {selectedLevel.type !== 'app' && (
+                <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-between items-center z-10">
+                  <button 
+                    onClick={() => setSelectedLevel(null)}
+                    className="px-6 py-3 font-bold text-slate-400 hover:text-white transition-colors"
+                  >
+                    Huir cobardemente
+                  </button>
+                  <button 
+                    onClick={handleWin}
+                    className={`px-8 py-3 bg-gradient-to-r ${selectedLevel.isBoss ? 'from-red-500 to-orange-500 shadow-red-500/30 hover:from-red-400 hover:to-orange-400' : 'from-emerald-500 to-cyan-500 shadow-cyan-500/30 hover:from-emerald-400 hover:to-cyan-400'} text-white font-bold rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2`}
+                  >
+                    <Trophy className="w-5 h-5" />
+                    Simular Victoria (Ganar Nivel)
+                  </button>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
