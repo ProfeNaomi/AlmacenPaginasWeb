@@ -203,7 +203,7 @@ export default function PlannerBuilder() {
   };
 
   return (
-    <div className="flex-1 bg-[#020617] print:bg-white print:text-black h-full flex flex-col p-4 sm:p-8 font-sans overflow-hidden print:overflow-visible">
+    <div className="flex-1 bg-[#020617] print:bg-white print:text-black h-full print:h-auto flex flex-col print:block p-4 sm:p-8 font-sans overflow-hidden print:overflow-visible">
       {/* Header */}
       <div className="flex justify-between items-center mb-6 shrink-0 print:hidden">
         <div>
@@ -295,7 +295,7 @@ export default function PlannerBuilder() {
       </div>
 
       {/* Spreadsheet Area */}
-      <div className="flex-1 overflow-auto bg-slate-900 border border-slate-800 rounded-2xl relative shadow-xl custom-scrollbar print:overflow-visible print:bg-white print:border-none print:shadow-none print:rounded-none w-full print:absolute print:inset-0 print:m-0 print:p-0">
+      <div className="flex-1 overflow-auto bg-slate-900 border border-slate-800 rounded-2xl relative shadow-xl custom-scrollbar print:overflow-visible print:bg-white print:border-none print:shadow-none print:rounded-none print:block w-full print:m-0 print:p-0">
         {units.length === 0 ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 print:hidden">
             <FolderOpen className="w-16 h-16 mb-4 opacity-20" />

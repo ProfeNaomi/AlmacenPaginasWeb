@@ -252,7 +252,7 @@ export default function MainLayout() {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto relative print:p-0 print:m-0 print:block">
+        <main className="flex-1 overflow-auto relative print:p-0 print:m-0 print:block print:overflow-visible print:h-auto">
           <Outlet />
         </main>
       </div>
