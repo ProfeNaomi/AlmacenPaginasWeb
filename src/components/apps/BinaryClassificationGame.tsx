@@ -42,18 +42,6 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
   const targetScore = 40;
   const bgMusicRef = useRef<HTMLAudioElement | null>(null);
 
-  // Inicializar audio
-  useEffect(() => {
-    bgMusicRef.current = new Audio('/audio/game-melody.mp3');
-    bgMusicRef.current.loop = true;
-    bgMusicRef.current.volume = 0.3;
-    return () => {
-      if (bgMusicRef.current) {
-        bgMusicRef.current.pause();
-      }
-    };
-  }, []);
-
   // Inicializar juego
   const startGame = useCallback(() => {
     setItemsQueue(generateItems(100)); // Cola suficientemente grande
@@ -63,9 +51,14 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
     setFlash('none');
     
     if (bgMusicRef.current) {
+      bgMusicRef.current.volume = 0.8; // Mayor volumen
       bgMusicRef.current.currentTime = 0;
       bgMusicRef.current.playbackRate = 1.0;
-      bgMusicRef.current.play().catch(e => console.log('Interacción de usuario requerida para audio'));
+      bgMusicRef.current.play().catch(e => {
+        console.error('Error reproduciendo audio:', e);
+        // Si falla, intentamos forzarlo con un timeout
+        setTimeout(() => bgMusicRef.current?.play().catch(console.error), 100);
+      });
     }
   }, []);
 
@@ -230,6 +223,9 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
   return (
     <div className={`w-full h-full min-h-[500px] flex flex-col p-4 md:p-6 text-slate-100 rounded-2xl relative transition-colors duration-150 ${bgClass} overflow-hidden`}>
       
+      {/* Elemento de Audio Oculto */}
+      <audio ref={bgMusicRef} src="/audio/game-melody.mp3" loop preload="auto" />
+
       {/* Header Info */}
       <div className="flex justify-between items-center mb-6 z-10">
         <button onClick={onClose} className="p-2 bg-slate-800/50 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors">
