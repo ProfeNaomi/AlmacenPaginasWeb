@@ -68,14 +68,14 @@ export default function MainLayout() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsSidebarOpen(false)}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-40 lg:hidden print:hidden"
           />
         )}
       </AnimatePresence>
 
       {/* Sidebar */}
       <motion.aside
-        className={`fixed lg:sticky top-0 left-0 h-screen bg-slate-900 border-r border-slate-800 flex flex-col z-50 transition-all duration-300 ease-in-out shrink-0 overflow-hidden ${
+        className={`fixed lg:sticky top-0 left-0 h-screen bg-slate-900 border-r border-slate-800 flex flex-col z-50 transition-all duration-300 ease-in-out shrink-0 overflow-hidden print:hidden ${
           isSidebarOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full lg:translate-x-0 lg:w-0'
         }`}
       >
@@ -147,9 +147,9 @@ export default function MainLayout() {
       </motion.aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 print:block">
         {/* Top Header */}
-        <header className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 flex items-center justify-between px-4 sm:px-8 sticky top-0 z-30">
+        <header className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 flex items-center justify-between px-4 sm:px-8 sticky top-0 z-30 print:hidden">
           <div className="flex items-center gap-4">
             <button 
               className="text-slate-400 hover:text-white transition-colors"
@@ -252,7 +252,7 @@ export default function MainLayout() {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto relative">
+        <main className="flex-1 overflow-auto relative print:p-0 print:m-0 print:block">
           <Outlet />
         </main>
       </div>

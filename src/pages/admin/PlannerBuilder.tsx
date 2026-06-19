@@ -203,9 +203,9 @@ export default function PlannerBuilder() {
   };
 
   return (
-    <div className="flex-1 bg-[#020617] h-full flex flex-col p-4 sm:p-8 font-sans overflow-hidden">
+    <div className="flex-1 bg-[#020617] print:bg-white print:text-black h-full flex flex-col p-4 sm:p-8 font-sans overflow-hidden print:overflow-visible">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6 shrink-0">
+      <div className="flex justify-between items-center mb-6 shrink-0 print:hidden">
         <div>
           <h1 className="text-3xl font-bold font-display text-white">Creador de Planificaciones</h1>
           <p className="text-slate-400 mt-1">Genera tu planificación anual/semestral conectada al Banco de OAs</p>
@@ -243,7 +243,7 @@ export default function PlannerBuilder() {
       </div>
 
       {/* Toolbar */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6 flex flex-wrap gap-6 shrink-0 shadow-lg">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6 flex flex-wrap gap-6 shrink-0 shadow-lg print:hidden">
         <div className="flex-1 min-w-[150px]">
           <label className="block text-sm font-bold text-slate-400 mb-2">Nivel</label>
           <select value={nivel} onChange={(e) => setNivel(e.target.value)} className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white">
@@ -295,7 +295,7 @@ export default function PlannerBuilder() {
       </div>
 
       {/* Spreadsheet Area */}
-      <div className="flex-1 overflow-auto bg-slate-900 border border-slate-800 rounded-2xl relative shadow-xl custom-scrollbar print:overflow-visible print:bg-white print:border-none print:shadow-none print:rounded-none">
+      <div className="flex-1 overflow-auto bg-slate-900 border border-slate-800 rounded-2xl relative shadow-xl custom-scrollbar print:overflow-visible print:bg-white print:border-none print:shadow-none print:rounded-none w-full print:absolute print:inset-0 print:m-0 print:p-0">
         {units.length === 0 ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 print:hidden">
             <FolderOpen className="w-16 h-16 mb-4 opacity-20" />
