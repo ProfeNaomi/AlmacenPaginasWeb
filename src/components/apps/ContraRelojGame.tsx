@@ -61,20 +61,20 @@ const generateQuestions = (): Question[] => {
     });
   };
 
-  // Nivel 1 (Preguntas 1 a 3): Números 1 a 20
-  addQuestion(1, 20, 1);
-  addQuestion(1, 20, 2);
-  addQuestion(1, 20, 3);
-  // Nivel 2 (Preguntas 4 a 6): Números 10 a 50
-  addQuestion(10, 50, 4);
-  addQuestion(10, 50, 5);
-  addQuestion(10, 50, 6);
-  // Nivel 3 (Preguntas 7 a 9): Números 25 a 100
-  addQuestion(25, 100, 7);
-  addQuestion(25, 100, 8);
-  addQuestion(25, 100, 9);
-  // Nivel 4 (Pregunta 10): Números 50 a 200
-  addQuestion(50, 200, 10);
+  // Nivel 1 (Preguntas 1 a 3): Números 0 a 20
+  addQuestion(0, 20, 1);
+  addQuestion(0, 20, 2);
+  addQuestion(0, 20, 3);
+  // Nivel 2 (Preguntas 4 a 6): Números 10 a 40
+  addQuestion(10, 40, 4);
+  addQuestion(10, 40, 5);
+  addQuestion(10, 40, 6);
+  // Nivel 3 (Preguntas 7 a 9): Números 20 a 70
+  addQuestion(20, 70, 7);
+  addQuestion(20, 70, 8);
+  addQuestion(20, 70, 9);
+  // Nivel 4 (Pregunta 10): Números 50 a 100
+  addQuestion(50, 100, 10);
 
   return qs;
 };
@@ -82,17 +82,50 @@ const generateQuestions = (): Question[] => {
 export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(80);
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'won' | 'lost'>('idle');
   const [wrongOption, setWrongOption] = useState<number | null>(null);
+  const [flash, setFlash] = useState<'none' | 'correct' | 'wrong'>('none');
 
   const startGame = useCallback(() => {
     setQuestions(generateQuestions());
     setCurrentIndex(0);
-    setTimeLeft(60);
+    setTimeLeft(80);
     setGameState('playing');
     setWrongOption(null);
+    setFlash('none');
   }, []);
+
+  const playSound = (type: 'correct' | 'wrong') => {
+    try {
+      const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+      
+      osc.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      
+      if (type === 'correct') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+        gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + 0.1);
+      } else {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(200, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.2);
+        gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + 0.2);
+      }
+    } catch (e) {
+      console.log("Audio not supported");
+    }
+  };
 
   // Timer logic
   useEffect(() => {
@@ -118,6 +151,10 @@ export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
     if (option === currentQ.correctAnswer) {
       // Correct!
       setWrongOption(null);
+      setFlash('correct');
+      playSound('correct');
+      setTimeout(() => setFlash('none'), 300);
+
       if (currentIndex === questions.length - 1) {
         // Last question
         setGameState('won');
@@ -126,10 +163,14 @@ export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
         setCurrentIndex(prev => prev + 1);
       }
     } else {
-      // Wrong! Penalize by 5 seconds
+      // Wrong! Penalize by 2 seconds
       setWrongOption(option);
+      setFlash('wrong');
+      playSound('wrong');
+      setTimeout(() => setFlash('none'), 300);
+
       setTimeLeft(prev => {
-        const newTime = prev - 5;
+        const newTime = prev - 2;
         if (newTime <= 0) {
           setGameState('lost');
           return 0;
@@ -142,15 +183,15 @@ export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
 
   if (gameState === 'idle') {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-white p-6 relative">
+      <div className="flex flex-col items-center justify-center h-full text-white p-6 relative z-10">
         <button onClick={onClose} className="absolute top-6 left-6 p-2 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors">
           <ArrowLeft className="w-6 h-6" />
         </button>
         <Clock className="w-24 h-24 text-cyan-400 mb-6" />
         <h1 className="text-5xl font-display font-bold mb-4 text-center">Contra Reloj</h1>
         <p className="text-xl text-slate-300 mb-8 max-w-md text-center">
-          Resuelve 10 sumas mentalmente antes de que se acabe el minuto (60s). 
-          Cada error te restará 5 segundos. ¡Prepárate!
+          Resuelve 10 sumas mentalmente antes de que se acabe el tiempo (1m 20s). 
+          Cada error te restará 2 segundos. ¡Prepárate!
         </p>
         <button 
           onClick={startGame}
@@ -170,8 +211,21 @@ export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
         </button>
         
         {gameState === 'won' ? (
-          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex flex-col items-center">
-            <CheckCircle className="w-24 h-24 text-emerald-400 mb-6" />
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex flex-col items-center z-10">
+            <div className="flex gap-2 mb-6">
+              {[1, 2, 3].map(star => (
+                <motion.div
+                  key={star}
+                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ delay: star * 0.2, type: 'spring' }}
+                >
+                  <svg className="w-16 h-16 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </motion.div>
+              ))}
+            </div>
             <h2 className="text-5xl font-bold mb-4 text-emerald-400">¡Reto Completado!</h2>
             <p className="text-xl mb-8">Sobró tiempo: <span className="font-bold text-cyan-400">{timeLeft}s</span></p>
             <div className="flex gap-4">
@@ -203,15 +257,45 @@ export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
 
   return (
     <div className="flex flex-col h-full text-white p-6 max-w-4xl mx-auto w-full relative">
+      {/* Efecto de Flash en pantalla */}
+      <AnimatePresence>
+        {flash === 'correct' && (
+          <motion.div 
+            initial={{ opacity: 0.5 }} 
+            animate={{ opacity: 0 }} 
+            exit={{ opacity: 0 }} 
+            className="absolute inset-0 bg-green-500/30 z-0 pointer-events-none rounded-b-3xl"
+          />
+        )}
+        {flash === 'wrong' && (
+          <motion.div 
+            initial={{ opacity: 0.5 }} 
+            animate={{ opacity: 0 }} 
+            exit={{ opacity: 0 }} 
+            className="absolute inset-0 bg-red-500/30 z-0 pointer-events-none rounded-b-3xl"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Cabecera */}
-      <header className="flex justify-between items-center mb-12 relative z-10">
+      <header className="flex justify-between items-center mb-8 relative z-10">
         <button onClick={onClose} className="p-3 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2">
           <ArrowLeft className="w-5 h-5" /> <span className="hidden sm:inline">Volver</span>
         </button>
         
-        <div className={`flex items-center gap-3 bg-slate-800 px-6 py-3 rounded-full border-2 ${timeLeft <= 10 ? 'border-rose-500 text-rose-400 animate-pulse' : 'border-slate-700'}`}>
-          <Clock className="w-6 h-6" />
-          <span className="text-2xl font-bold font-mono">{timeLeft}s</span>
+        <div className="flex flex-col items-center flex-1 mx-4 sm:mx-8 max-w-md">
+          <div className="flex justify-between w-full mb-2 font-bold text-slate-300">
+            <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-cyan-400" /> Tiempo</span>
+            <span className={timeLeft <= 10 ? 'text-rose-400 animate-pulse' : 'text-cyan-400'}>{timeLeft}s</span>
+          </div>
+          <div className="w-full h-4 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+            <motion.div 
+              className={`h-full ${timeLeft <= 10 ? 'bg-rose-500' : 'bg-gradient-to-r from-cyan-500 to-blue-500'}`}
+              initial={{ width: '100%' }}
+              animate={{ width: `${(timeLeft / 80) * 100}%` }}
+              transition={{ ease: 'linear', duration: 1 }}
+            />
+          </div>
         </div>
 
         <button onClick={startGame} className="p-3 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2">
@@ -219,8 +303,7 @@ export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
         </button>
       </header>
 
-      {/* Progreso */}
-      <div className="w-full bg-slate-800 h-2 rounded-full mb-12 overflow-hidden">
+      <div className="w-full bg-slate-800 h-2 rounded-full mb-12 overflow-hidden relative z-10">
         <motion.div 
           className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400"
           initial={{ width: 0 }}
@@ -229,7 +312,7 @@ export default function ContraRelojGame({ onWin, onClose }: ContraRelojProps) {
       </div>
 
       {/* Pregunta */}
-      <div className="flex-1 flex flex-col items-center justify-center">
+      <div className="flex-1 flex flex-col items-center justify-center relative z-10">
         <AnimatePresence mode="wait">
           <motion.div 
             key={currentQ.id}
