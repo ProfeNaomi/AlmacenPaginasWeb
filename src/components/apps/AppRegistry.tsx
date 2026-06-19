@@ -5,6 +5,7 @@ import React, { Suspense, lazy } from 'react';
 const appRegistry: Record<string, React.LazyExoticComponent<any>> = {
   'LimitsSimulation': lazy(() => import('./LimitsSimulation')),
   'ContraRelojGame': lazy(() => import('./ContraRelojGame')),
+  'BinaryClassificationGame': lazy(() => import('./BinaryClassificationGame')),
 };
 
 interface CustomAppRendererProps {

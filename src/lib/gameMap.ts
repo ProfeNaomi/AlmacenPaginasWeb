@@ -66,7 +66,7 @@ defaultGameLevels[0] = {
   type: 'app', 
   appComponentName: 'ContraRelojGame' 
 };
-defaultGameLevels[1] = { ...defaultGameLevels[1], title: 'Aproximación Numérica', description: 'Acércate al límite para desactivar el escudo.', type: 'app', appComponentName: 'LimitsSimulation' };
+defaultGameLevels[1] = { ...defaultGameLevels[1], title: 'Clasificación Binaria', description: 'Ordena las frutas rápidamente usando las flechas.', type: 'app', appComponentName: 'BinaryClassificationGame' };
 defaultGameLevels[2] = { ...defaultGameLevels[2], title: 'Desafío Aritmético', description: 'Resuelve la ecuación fundamental para abrir la puerta.', type: 'quiz' };
 defaultGameLevels[3] = { ...defaultGameLevels[3], title: 'El Valle de las Funciones', description: 'Identifica el dominio de la función misteriosa.', type: 'quiz' };
 defaultGameLevels[4] = { ...defaultGameLevels[4], title: 'El Laberinto Derivado', description: 'Encuentra la pendiente de la recta tangente.', type: 'quiz' };

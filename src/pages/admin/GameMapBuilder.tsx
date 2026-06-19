@@ -32,7 +32,7 @@ export default function GameMapBuilder() {
 
   const handleSaveBackgrounds = () => {
     Object.entries(backgrounds).forEach(([id, url]) => {
-      setWorldBackground(parseInt(id), url);
+      setWorldBackground(parseInt(id), url as string);
     });
     alert('¡Fondos guardados correctamente!');
   };

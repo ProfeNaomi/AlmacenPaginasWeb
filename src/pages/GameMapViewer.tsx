@@ -88,17 +88,22 @@ export default function GameMapViewer() {
 
   // Scroll automático hacia el nivel actual
   useEffect(() => {
-    if (containerRef.current) {
-      const currentPos = levelPositions.find(p => p.level.number === progress.unlockedLevel);
-      if (currentPos) {
-        setTimeout(() => {
-          containerRef.current?.scrollTo({
+    const scrollToLevel = () => {
+      if (containerRef.current && levelPositions.length > 0) {
+        const currentPos = levelPositions.find(p => p.level.number === progress.unlockedLevel);
+        if (currentPos) {
+          containerRef.current.scrollTo({
             top: currentPos.y - window.innerHeight / 2,
-            behavior: 'smooth'
+            behavior: 'auto' // Instantáneo al cargar para no ver los niveles superiores
           });
-        }, 100);
+        }
       }
-    }
+    };
+    
+    // Ejecutar inmediatamente y con un pequeño delay por si la UI se re-dibuja
+    scrollToLevel();
+    const timeout = setTimeout(scrollToLevel, 300);
+    return () => clearTimeout(timeout);
   }, [progress.unlockedLevel, levelPositions]);
 
   return (
