@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { defaultGameLevels, getGameProgress, GameProgress, GameLevel, completeLevel } from '../lib/gameMap';
-import { Lock, Star, Play, X, Trophy } from 'lucide-react';
+import { Lock, Star, Play, X, Trophy, Skull } from 'lucide-react';
 import { CustomAppRenderer } from '../components/apps/AppRegistry';
 
 export default function GameMapViewer() {
@@ -15,22 +15,28 @@ export default function GameMapViewer() {
 
   // Configuraciones del mapa
   const levels = defaultGameLevels;
-  const LEVEL_SPACING_Y = 120;
-  const AMPLITUDE_X = 100;
-  const START_OFFSET_Y = 100;
-  const MAP_HEIGHT = levels.length * LEVEL_SPACING_Y + START_OFFSET_Y * 2;
+  const LEVEL_SPACING_Y = 140;
+  const AMPLITUDE_X = 120;
+  
+  // Agrupamos por mundo (20 niveles por mundo)
+  const WORLDS_COUNT = 10;
+  const LEVELS_PER_WORLD = 20;
+  const WORLD_HEIGHT = LEVELS_PER_WORLD * LEVEL_SPACING_Y;
+  const START_OFFSET_Y = 150;
+  const MAP_HEIGHT = WORLDS_COUNT * WORLD_HEIGHT + START_OFFSET_Y * 2;
 
-  // Calculamos las posiciones
-  const levelPositions = levels.map((lvl, index) => {
-    // ZigZag usando Math.sin
-    const xOffset = Math.sin(index * Math.PI * 0.4) * AMPLITUDE_X;
-    return {
-      level: lvl,
-      // Empezamos desde abajo hacia arriba
-      y: MAP_HEIGHT - (index * LEVEL_SPACING_Y + START_OFFSET_Y),
-      xOffset // Lo usaremos con calc(50% + xOffset)
-    };
-  });
+  // Calculamos las posiciones (Nivel 1 abajo, Nivel 200 arriba)
+  const levelPositions = useMemo(() => {
+    return levels.map((lvl, index) => {
+      // ZigZag más orgánico
+      const xOffset = Math.sin(index * Math.PI * 0.35) * AMPLITUDE_X + Math.cos(index * Math.PI * 0.1) * 30;
+      return {
+        level: lvl,
+        y: MAP_HEIGHT - (index * LEVEL_SPACING_Y + START_OFFSET_Y),
+        xOffset
+      };
+    });
+  }, [levels]);
 
   // Generar SVG Path para la línea de conexión
   const generatePath = () => {
@@ -40,7 +46,6 @@ export default function GameMapViewer() {
     for (let i = 1; i < levelPositions.length; i++) {
       const prev = levelPositions[i-1];
       const curr = levelPositions[i];
-      // Puntos de control para suavizar la curva (Bezier)
       const midY = (prev.y + curr.y) / 2;
       d += ` C calc(50% + ${prev.xOffset}px) ${midY}, calc(50% + ${curr.xOffset}px) ${midY}, calc(50% + ${curr.xOffset}px) ${curr.y}`;
     }
@@ -66,40 +71,64 @@ export default function GameMapViewer() {
     if (containerRef.current) {
       const currentPos = levelPositions.find(p => p.level.number === progress.unlockedLevel);
       if (currentPos) {
-        // Hacemos scroll suave para que el nivel actual quede visible
-        containerRef.current.scrollTo({
-          top: currentPos.y - window.innerHeight / 2,
-          behavior: 'smooth'
-        });
+        // Delay slight to let images load
+        setTimeout(() => {
+          containerRef.current?.scrollTo({
+            top: currentPos.y - window.innerHeight / 2,
+            behavior: 'smooth'
+          });
+        }, 100);
       }
     }
   }, [progress.unlockedLevel, levelPositions]);
 
   return (
     <div className="flex-1 bg-[#020617] h-full overflow-hidden flex flex-col relative font-sans">
-      {/* Fondo espacial decorativo */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 via-[#020617] to-black opacity-80 pointer-events-none"></div>
       
-      {/* Estrellas decorativas de fondo */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-
       {/* Contenedor escroleable del mapa */}
       <div 
         ref={containerRef}
-        className="flex-1 overflow-y-auto relative scroll-smooth no-scrollbar"
+        className="flex-1 overflow-y-auto overflow-x-hidden relative scroll-smooth no-scrollbar"
       >
         <div 
-          className="relative w-full max-w-3xl mx-auto"
+          className="relative w-full max-w-3xl mx-auto shadow-2xl"
           style={{ height: `${MAP_HEIGHT}px` }}
         >
+          {/* Fondos de los Mundos (Renderizados de arriba hacia abajo, por lo que el Mundo 10 está arriba y Mundo 1 abajo) */}
+          <div className="absolute inset-0 flex flex-col w-full h-full pointer-events-none rounded-3xl overflow-hidden">
+             {Array.from({ length: WORLDS_COUNT }).map((_, i) => {
+               const worldId = WORLDS_COUNT - i; // Para que el mundo 10 esté arriba y el 1 abajo
+               return (
+                 <div 
+                   key={worldId}
+                   className="w-full relative bg-cover bg-center bg-no-repeat"
+                   style={{ 
+                     height: `${worldId === 1 || worldId === WORLDS_COUNT ? WORLD_HEIGHT + START_OFFSET_Y : WORLD_HEIGHT}px`,
+                     backgroundImage: `url(/worlds/world_${worldId}.png)`
+                   }}
+                 >
+                   {/* Gradient overlay for smooth transitions between worlds */}
+                   <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/40 via-transparent to-[#020617]/40"></div>
+                 </div>
+               );
+             })}
+          </div>
+
           {/* Línea SVG conectora */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ filter: 'drop-shadow(0 0 8px rgba(34, 211, 238, 0.3))' }}>
-            {/* Camino de fondo oscuro */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' }}>
             <path 
               d={generatePath()} 
               fill="none" 
-              stroke="#1e293b" 
-              strokeWidth="20" 
+              stroke="rgba(0,0,0,0.5)" 
+              strokeWidth="24" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+            />
+            <path 
+              d={generatePath()} 
+              fill="none" 
+              stroke="#ffffff" 
+              strokeWidth="16" 
               strokeLinecap="round" 
               strokeLinejoin="round" 
             />
@@ -143,19 +172,21 @@ export default function GameMapViewer() {
             const isCompleted = progress.completedLevels.includes(level.number);
             const isCurrent = level.number === progress.unlockedLevel;
             const stars = progress.stars[level.number] || 0;
+            const isBoss = level.isBoss;
 
-            let bgColor = 'bg-slate-800 border-slate-700'; // Bloqueado
-            let iconColor = 'text-slate-500';
-            let shadow = '';
+            let bgColor = 'bg-slate-800 border-slate-600'; // Bloqueado
+            let iconColor = 'text-slate-400';
+            let shadow = 'shadow-md';
+            let sizeClass = isBoss ? 'w-24 h-24 border-8' : 'w-16 h-16 border-4';
 
             if (isCompleted) {
-              bgColor = 'bg-gradient-to-br from-emerald-400 to-cyan-500 border-white/20';
+              bgColor = isBoss ? 'bg-gradient-to-br from-amber-400 to-orange-500 border-white' : 'bg-gradient-to-br from-emerald-400 to-cyan-500 border-white';
               iconColor = 'text-white';
-              shadow = 'shadow-lg shadow-emerald-500/30';
+              shadow = isBoss ? 'shadow-[0_0_40px_rgba(245,158,11,0.6)]' : 'shadow-lg shadow-emerald-500/50';
             } else if (isCurrent) {
-              bgColor = 'bg-gradient-to-br from-cyan-400 to-blue-500 border-white text-white animate-pulse-slow';
+              bgColor = isBoss ? 'bg-gradient-to-br from-red-500 to-rose-600 border-white animate-pulse-slow' : 'bg-gradient-to-br from-cyan-400 to-blue-500 border-white animate-pulse-slow';
               iconColor = 'text-white';
-              shadow = 'shadow-[0_0_30px_rgba(34,211,238,0.5)]';
+              shadow = isBoss ? 'shadow-[0_0_50px_rgba(239,68,68,0.8)]' : 'shadow-[0_0_30px_rgba(34,211,238,0.6)]';
             }
 
             return (
@@ -165,12 +196,18 @@ export default function GameMapViewer() {
                 style={{ top: `${y}px`, left: `calc(50% + ${xOffset}px)` }}
               >
                 {/* Estrellas (si está completado) */}
-                {isCompleted && (
+                {isCompleted && !isBoss && (
                   <div className="flex gap-1 mb-2">
                     {[1, 2, 3].map(star => (
                       <Star key={star} className={`w-4 h-4 ${star <= stars ? 'fill-yellow-400 text-yellow-400' : 'fill-slate-800 text-slate-700'}`} />
                     ))}
                   </div>
+                )}
+                
+                {isBoss && isCompleted && (
+                   <div className="mb-2 bg-amber-400 text-amber-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                     MUNDO {level.worldId} COMPLETADO
+                   </div>
                 )}
 
                 {/* Avatar flotante si es el actual */}
@@ -179,7 +216,7 @@ export default function GameMapViewer() {
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: -10, opacity: 1 }}
                     transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
-                    className="absolute -top-16 bg-white p-1 rounded-full shadow-xl shadow-cyan-500/50 z-20"
+                    className={`absolute ${isBoss ? '-top-20' : '-top-16'} bg-white p-1 rounded-full shadow-xl shadow-cyan-500/50 z-20`}
                   >
                     <div className="w-10 h-10 bg-gradient-to-tr from-cyan-500 to-blue-500 rounded-full flex items-center justify-center font-bold text-white border-2 border-slate-900">
                       Tú
@@ -191,10 +228,14 @@ export default function GameMapViewer() {
                 <button
                   onClick={() => handleLevelClick(level)}
                   disabled={!isUnlocked}
-                  className={`w-16 h-16 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${bgColor} ${shadow} ${isUnlocked ? 'hover:scale-110 active:scale-95 cursor-pointer' : 'opacity-70 cursor-not-allowed'}`}
+                  className={`${sizeClass} rounded-full flex items-center justify-center transition-all duration-300 ${bgColor} ${shadow} ${isUnlocked ? 'hover:scale-110 active:scale-95 cursor-pointer' : 'opacity-80 cursor-not-allowed filter grayscale'}`}
                 >
-                  {isCompleted ? (
-                    <span className="text-xl font-bold font-display">{level.number}</span>
+                  {isBoss && !isCompleted && isUnlocked ? (
+                     <Skull className={`w-10 h-10 ${iconColor} animate-bounce`} />
+                  ) : isBoss && isCompleted ? (
+                     <Trophy className={`w-10 h-10 ${iconColor}`} />
+                  ) : isCompleted ? (
+                    <span className="text-2xl font-bold font-display">{level.number}</span>
                   ) : isCurrent ? (
                     <Play className={`w-6 h-6 ${iconColor} fill-current`} />
                   ) : (
@@ -202,13 +243,22 @@ export default function GameMapViewer() {
                   )}
                 </button>
 
-                {/* Tooltip con título del nivel */}
-                <div className="absolute top-full mt-2 w-max max-w-[150px] text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  <div className="bg-slate-900 border border-slate-700 text-xs font-bold text-white px-3 py-1.5 rounded-lg shadow-xl">
-                    Nivel {level.number}
-                    <div className="text-slate-400 font-normal truncate mt-0.5">{level.title}</div>
+                {/* Etiqueta siempre visible para jefes */}
+                {isBoss && (
+                  <div className="mt-3 bg-slate-900/90 border border-slate-700 text-white font-bold px-4 py-2 rounded-xl shadow-xl text-center backdrop-blur-sm">
+                    {level.title}
                   </div>
-                </div>
+                )}
+
+                {/* Tooltip con título del nivel para niveles normales */}
+                {!isBoss && (
+                  <div className="absolute top-full mt-2 w-max max-w-[180px] text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-30">
+                    <div className="bg-slate-900/95 border border-slate-700 text-xs font-bold text-white px-3 py-2 rounded-xl shadow-xl backdrop-blur-sm">
+                      Nivel {level.number}
+                      <div className="text-cyan-400 font-normal truncate mt-0.5">{level.title}</div>
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -228,14 +278,20 @@ export default function GameMapViewer() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl"
+              className={`bg-slate-900 border ${selectedLevel.isBoss ? 'border-red-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)]' : 'border-slate-800'} rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl relative`}
             >
+              
+              {/* Boss Decorator */}
+              {selectedLevel.isBoss && (
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-orange-500 to-red-500"></div>
+              )}
+
               {/* Header Modal */}
-              <div className="flex items-center justify-between p-6 border-b border-slate-800 bg-slate-900/50">
+              <div className="flex items-center justify-between p-6 border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm z-10">
                 <div>
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">
-                      Desafío {selectedLevel.number}
+                    <span className={`${selectedLevel.isBoss ? 'bg-red-500/20 text-red-400' : 'bg-cyan-500/20 text-cyan-400'} text-xs font-bold px-2 py-1 rounded uppercase tracking-wider`}>
+                      {selectedLevel.isBoss ? '¡JEFE DE MUNDO!' : `Desafío ${selectedLevel.number}`}
                     </span>
                     {progress.completedLevels.includes(selectedLevel.number) && (
                       <span className="flex items-center gap-1 text-yellow-400 text-xs font-bold uppercase tracking-wider bg-yellow-400/10 px-2 py-1 rounded">
@@ -255,43 +311,50 @@ export default function GameMapViewer() {
               </div>
 
               {/* Contenido del Desafío */}
-              <div className="flex-1 overflow-y-auto p-6 bg-slate-950 flex flex-col">
+              <div className="flex-1 overflow-y-auto p-6 bg-slate-950 flex flex-col relative">
+                {/* Background watermark for boss */}
+                {selectedLevel.isBoss && (
+                   <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                     <Skull className="w-96 h-96 text-red-500" />
+                   </div>
+                )}
+
                 {selectedLevel.type === 'app' && selectedLevel.appComponentName ? (
                    // Cargamos la aplicación dinámica interactiva
                    <CustomAppRenderer name={selectedLevel.appComponentName} />
                 ) : (
                    // Desafío genérico PAES / Quiz
-                   <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 max-w-lg mx-auto">
-                      <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center rotate-3 shadow-xl">
+                   <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 max-w-lg mx-auto z-10">
+                      <div className={`w-24 h-24 ${selectedLevel.isBoss ? 'bg-gradient-to-br from-red-600 to-orange-600 shadow-red-500/50' : 'bg-gradient-to-br from-indigo-500 to-purple-600 shadow-indigo-500/50'} rounded-2xl flex items-center justify-center rotate-3 shadow-xl`}>
                         <span className="text-4xl font-bold text-white">?</span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-2">Pregunta Tipo PAES (Simulada)</h3>
-                        <p className="text-slate-400">Si un triángulo rectángulo tiene catetos de largo 3 y 4, ¿cuál es el largo de la hipotenusa?</p>
+                        <h3 className="text-xl font-bold text-white mb-2">Pregunta de Nivel {selectedLevel.worldId}</h3>
+                        <p className="text-slate-400">Este desafío pondrá a prueba tus conocimientos sobre {selectedLevel.worldId === 1 ? 'Números Naturales' : selectedLevel.worldId === 2 ? 'Geometría Básica' : 'Matemáticas'}.</p>
                       </div>
                       <div className="grid grid-cols-1 w-full gap-3 mt-4">
-                        <button className="bg-slate-800 hover:bg-slate-700 text-left px-6 py-4 rounded-xl border border-slate-700 transition-colors">A) 5</button>
-                        <button className="bg-slate-800 hover:bg-slate-700 text-left px-6 py-4 rounded-xl border border-slate-700 transition-colors">B) 6</button>
-                        <button className="bg-slate-800 hover:bg-slate-700 text-left px-6 py-4 rounded-xl border border-slate-700 transition-colors">C) 7</button>
+                        <button className="bg-slate-800 hover:bg-slate-700 text-left px-6 py-4 rounded-xl border border-slate-700 transition-colors">A) Opción 1</button>
+                        <button className="bg-slate-800 hover:bg-slate-700 text-left px-6 py-4 rounded-xl border border-slate-700 transition-colors">B) Opción 2</button>
+                        <button className="bg-slate-800 hover:bg-slate-700 text-left px-6 py-4 rounded-xl border border-slate-700 transition-colors">C) Opción 3</button>
                       </div>
                    </div>
                 )}
               </div>
 
               {/* Footer / Acción */}
-              <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-between items-center">
+              <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-between items-center z-10">
                 <button 
                   onClick={() => setSelectedLevel(null)}
                   className="px-6 py-3 font-bold text-slate-400 hover:text-white transition-colors"
                 >
-                  Volver al Mapa
+                  Huir cobardemente
                 </button>
                 <button 
                   onClick={handleWin}
-                  className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white font-bold rounded-xl shadow-lg shadow-cyan-500/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                  className={`px-8 py-3 bg-gradient-to-r ${selectedLevel.isBoss ? 'from-red-500 to-orange-500 shadow-red-500/30 hover:from-red-400 hover:to-orange-400' : 'from-emerald-500 to-cyan-500 shadow-cyan-500/30 hover:from-emerald-400 hover:to-cyan-400'} text-white font-bold rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2`}
                 >
                   <Trophy className="w-5 h-5" />
-                  Simular Victoria (Completar Nivel)
+                  Simular Victoria (Ganar Nivel)
                 </button>
               </div>
             </motion.div>

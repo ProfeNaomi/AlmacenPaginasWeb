@@ -6,6 +6,8 @@ export interface GameLevel {
   type: 'app' | 'quiz'; // 'app' uses a Custom React App (like LimitsSimulation), 'quiz' uses standard PAES questions
   appComponentName?: string; // e.g. "PythagorasGame"
   quizQuestionId?: string; // If we hook it up to question bank
+  worldId: number; // Indicates which world this level belongs to
+  isBoss: boolean; // Indicates if this is the final level of the world
 }
 
 export interface GameProgress {
@@ -14,57 +16,44 @@ export interface GameProgress {
   stars: Record<number, number>; // level number -> stars earned (1-3)
 }
 
-// Temporary in-memory level definitions (In the future, this can be fetched from Firebase)
-export const defaultGameLevels: GameLevel[] = [
-  {
-    id: 'lvl-1',
-    number: 1,
-    title: 'El Teorema Perdido',
-    description: 'Ayuda a Pitágoras a encontrar la hipotenusa para cruzar el río.',
-    type: 'app',
-    appComponentName: 'PythagorasGame'
-  },
-  {
-    id: 'lvl-2',
-    number: 2,
-    title: 'Aproximación Numérica',
-    description: 'Acércate al límite para desactivar el escudo.',
-    type: 'app',
-    appComponentName: 'LimitsSimulation'
-  },
-  {
-    id: 'lvl-3',
-    number: 3,
-    title: 'Desafío Aritmético',
-    description: 'Resuelve la ecuación fundamental para abrir la puerta.',
-    type: 'quiz',
-  },
-  {
-    id: 'lvl-4',
-    number: 4,
-    title: 'El Valle de las Funciones',
-    description: 'Identifica el dominio de la función misteriosa.',
-    type: 'quiz',
-  },
-  {
-    id: 'lvl-5',
-    number: 5,
-    title: 'El Laberinto Derivado',
-    description: 'Encuentra la pendiente de la recta tangente.',
-    type: 'quiz',
-  }
+const WORLD_NAMES = [
+  "Bosque de los Naturales",
+  "Ruinas Geométricas",
+  "Océano de las Fracciones",
+  "Desierto Algebraico",
+  "Cavernas de las Ecuaciones",
+  "Volcán Probabilístico",
+  "Cielo de las Funciones",
+  "Templo Trigonométrico",
+  "Ciudad Estadística",
+  "El Vacío Infinito"
 ];
 
-// Generamos algunos niveles extra de relleno para que el mapa se vea más largo
-for (let i = 6; i <= 30; i++) {
+// Temporary in-memory level definitions (In the future, this can be fetched from Firebase)
+export const defaultGameLevels: GameLevel[] = [];
+
+for (let i = 1; i <= 200; i++) {
+  const worldIndex = Math.floor((i - 1) / 20);
+  const worldName = WORLD_NAMES[worldIndex];
+  const isBoss = i % 20 === 0;
+
   defaultGameLevels.push({
     id: `lvl-${i}`,
     number: i,
-    title: `Desafío Matemático ${i}`,
-    description: `Nivel secreto ${i}.`,
-    type: 'quiz'
+    title: isBoss ? `Jefe de ${worldName}` : `Desafío Matemático ${i}`,
+    description: isBoss ? `¡Derrota al jefe final del ${worldName} para avanzar!` : `Resuelve el desafío en ${worldName}.`,
+    type: 'quiz',
+    worldId: worldIndex + 1,
+    isBoss
   });
 }
+
+// Override the first 5 levels with the custom apps for demo purposes
+defaultGameLevels[0] = { ...defaultGameLevels[0], title: 'El Teorema Perdido', description: 'Ayuda a Pitágoras a encontrar la hipotenusa para cruzar el río.', type: 'app', appComponentName: 'PythagorasGame' };
+defaultGameLevels[1] = { ...defaultGameLevels[1], title: 'Aproximación Numérica', description: 'Acércate al límite para desactivar el escudo.', type: 'app', appComponentName: 'LimitsSimulation' };
+defaultGameLevels[2] = { ...defaultGameLevels[2], title: 'Desafío Aritmético', description: 'Resuelve la ecuación fundamental para abrir la puerta.', type: 'quiz' };
+defaultGameLevels[3] = { ...defaultGameLevels[3], title: 'El Valle de las Funciones', description: 'Identifica el dominio de la función misteriosa.', type: 'quiz' };
+defaultGameLevels[4] = { ...defaultGameLevels[4], title: 'El Laberinto Derivado', description: 'Encuentra la pendiente de la recta tangente.', type: 'quiz' };
 
 // Funciones para manejar el progreso temporalmente en LocalStorage
 const PROGRESS_KEY = 'mathema_game_progress';

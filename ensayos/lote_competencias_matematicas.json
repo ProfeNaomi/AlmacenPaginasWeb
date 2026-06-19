@@ -1,0 +1,1172 @@
+[
+  {
+    "text": "<b>Pregunta 1.</b><br>Un número natural recibe el nombre del “primo de Mersenne”, si m es primo y  <br>m = 2 p – 1, para algún número natural p. ¿Cuál de l os siguientes números puede ser <br>calificado como primo de Mersenne?",
+    "options": [
+      "37",
+      "31",
+      "29",
+      "23"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "1"
+  },
+  {
+    "text": "<b>Pregunta 2.</b><br>Recibe el nombre de triploprimo, todo número entero positivo cuyos factores primos <br>son tres números primos diferentes. Según esto, ¿cuántos números triploprimos son <br>menores que 100?",
+    "options": [
+      "7",
+      "6",
+      "5",
+      "4"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "2"
+  },
+  {
+    "text": "<b>Pregunta 3.</b><br>Cristina necesita contratar un operario para que haga ciertos arreglos en su casa, para <br>lo cual puso un aviso en una de las redes sociales. Cuatro personas respondieron <br>informando precios por hora trabajada, gasto diario e n transporte y tiempo necesario <br>para hacer todos los arreglos. En la tabla adjunta se presenta esta información:  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Si Cristina pretende gastar lo menos posible, ¿a cuál operario deberá contratar?",
+    "options": [
+      "Al operario P",
+      "Al operario Q",
+      "Al operario R",
+      "Al operario S        Operario Precio por  hora  Cobro por  transporte  Tiempo en hacer x  trabajo (horas)  P $ 12.000 $ 0 8  Q $ 18.000 $ 0 6  R $ 17.000 $ 2.000 6  S $ 11.000 $ 1.000 9     ---PAGE_BREAK--- 5"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "3"
+  },
+  {
+    "text": "<b>Pregunta 4.</b><br>En los juegos panamericanos 2023, la puntuación de medio tiempo para un partido de <br>balonmano (handball) entre las selecciones de los países A y B fue de 9 a 14, por lo <br>que la selección del país B ganaba por 5 goles. Como consecuencia de las in strucciones <br>recibidas por el entrenador en el entretiempo, la selección del país A, remontó en el <br>segundo tiempo, marcando el doble de goles que su oponente ganando finalmente el <br>partido por un gol. ¿Cuál fue el resultado final del partido?",
+    "options": [
+      "País A 20 País B 19",
+      "País A 21 País B 20",
+      "País A 22 País B 21",
+      "País A 23 País B 22"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "4"
+  },
+  {
+    "text": "<b>Pregunta 5.</b><br>Una persona desea desplazar su automóvil desde el punto A, al punto B, indicados en la <br>figura adjunta, en la cual las líneas verticales y horizontales representan calles. Debido <br>al sentido del tránsito en esas calles, el camino poligonal destacado e s la posibilidad <br>más corta de efectuar ese desplazamiento. Para describirlo se debe especificar cuál es <br>el sentido que se debe tomar en cada cruce de calles, en relación de desplazamiento <br>del automóvil, que se mueve continuamente. Para eso se emplean l as letras I, F y D <br>para indicar: <br> <br>I = vire a la izquierda  (     ) <br>F = continúe al frente (     ) <br>D = vire a la derecha (      ) <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuál es la secuencia de letras que describe el camino poligonal destacado?",
+    "options": [
+      "FDFIFDDIIFFD",
+      "FDDIFDDIIFFD",
+      "FDFIFDDDIFFD",
+      "FDDIFDDDIFFD                                                A  B   ---PAGE_BREAK--- 6"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "5"
+  },
+  {
+    "text": "<b>Pregunta 6.</b><br>En la recta numérica, ¿cuál de los siguientes números se encuentra a igual distancia de <br>1<br>20<br> y <br>1<br>30 ?",
+    "options": [
+      "1 25",
+      "1 24",
+      "2 25",
+      "1 12"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Álgebra y Funciones",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "6"
+  },
+  {
+    "text": "<b>Pregunta 7.</b><br>Sabiendo que N es un número de la forma <br>m<br>n , con m y n, enteros positivos, ¿qué se <br>debe cumplir siempre para asegurar que m es mayor que n?",
+    "options": [
+      "N < 1",
+      "N <  1 2",
+      "N > 1",
+      "N >  1 2"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "7"
+  },
+  {
+    "text": "<b>Pregunta 8.</b><br>Considere la siguiente secuencia de figuras, observe que entre los círculos se forman <br>espacios en blanco <br> <br> <br>Si el patrón de formación se mantiene, ¿cuántos espacios en blanco hay en la <br>decimotercera figura?",
+    "options": [
+      "91",
+      "105",
+      "169",
+      "196     ---PAGE_BREAK--- 7"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "8"
+  },
+  {
+    "text": "<b>Pregunta 9.</b><br>Dos automóviles A y B hacen un mismo trayecto de 572 km. El automóvil A lleva <br>recorrido los <br>5<br>11  del trayecto cuando el B ha recorrido los <br>6<br>13  del mismo. ¿Cuál y <br>cuántos kilómetros lleva recorridos el auto que va primero?",
+    "options": [
+      "El auto A va primero con 250 km recorridos.",
+      "El auto B va primero con 254 km recorridos.",
+      "El auto A va primero con 260 km recorridos.",
+      "El auto B va primero con 264 km recorridos."
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Geometría",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "9"
+  },
+  {
+    "text": "<b>Pregunta 10.</b><br>En la siguiente infografía se presenta el contexto del total de la población indígena en <br>Chile. <br> <br> <br>Adaptado de INE. Encuesta Nacional de Empleo: infografía de Pueblos Indígenas . https://www.ine.gob.cl/docs/default-<br>source/ocupacion-y-desocupacion/publicaciones-y-anuarios/infografias/pueblos-originarios-1.pdf?sfvrsn=a87d84aa_17 <br> <br> <br>¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": [
+      "El 32,1% de la población total chilena pertenece a la región Metropolitana.",
+      "La región de Los Lagos es la con menor concentración de personas pertenecientes a  pueblos indígenas del país.",
+      "Más de la mitad de la pobl ación indígena en Chile se encuentra en las regiones  Metropolitana, La Araucanía y Los Lagos.",
+      "Para determinar la población indígena en Chile no es necesario conocer la población  total.         ---PAGE_BREAK--- 8"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "10"
+  },
+  {
+    "text": "<b>Pregunta 11.</b><br>Se aplica una encuesta para saber las preferencias de sabores de  helado a 50 personas <br>que visitaban un mall. Los resultados de las preferencias se presentan en la tabla <br>adjunta: <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": [
+      "Las personas que prefieren Sueño de Chocolate y Menta Refrescante representan el  50% del total de las personas.",
+      "El doble del 10% de las personas que eligen Caramelo Salado equivalen a los que  prefieren Vainilla Cremosa.",
+      "Las personas que prefieren Fresa Delicia son menos del 10% del total.",
+      "Las personas que prefieren Otro sabor corr esponden exactamente al 25% del total  de personas.      HELADO CANTIDAD DE PERSONAS  Sueño de Chocolate 🍫 14  Fresa Delicia🍓 5  Vainilla Cremosa🍦 2  Menta Refrescante🌿 7  Caramelo Salado🍯 10  Otro sabor 12     ---PAGE_BREAK--- 9"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "11"
+  },
+  {
+    "text": "<b>Pregunta 12.</b><br>Pedro y José compiten en un juego de mesa , cuyo ganador es quien primero controla <br>10 de los 19 casilleros hexagonales que forman el tablero. Si los casilleros controlados <br>por cada uno se representan en la siguiente figura. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Aproximadamente, ¿qué porcentaje del total de casilleros debe agregar Pedro a los que <br>ya controla, para ganar el juego?",
+    "options": [
+      "21%",
+      "26%",
+      "32%",
+      "42%"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "12"
+  },
+  {
+    "text": "<b>Pregunta 13.</b><br>En el aeropuerto, una maleta debe ir en el sector equipaje si pesa hasta 23 kg, y en <br>caso de que pese más, el propietario deberá pagar por “exceso de peso”. Luciano <br>viajará con una sola maleta y como no desea pagar por exceso de peso, el dispone en <br>su casa de una balanza que indica un peso superior al peso real de un 8%. Al  poner <br>Luciano su maleta en la balanza, ¿cuánto s kilógramos debe indicar esta como máximo <br>para evitar pagar por exceso de peso?",
+    "options": [
+      "22,08",
+      "23,92",
+      "24,84",
+      "25,00              ---PAGE_BREAK--- 10"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "13"
+  },
+  {
+    "text": "<b>Pregunta 14.</b><br>La “Tiendita de Dany” es una empresa de una emprendedora chilena que lleva un <br>registro orde nado de sus ganancias y/o pérdidas por año de funcionamiento de su <br>negocio, como se observa en la tabla adjunta. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": [
+      "La utilidad en estos 4 años fue de $ 10.000.000.",
+      "La pérdida en el año 2020 fue equivalente al 30% de las ganancias del año 2019.",
+      "Las ganancias obtenidas el 2022 son equivalentes al  33,3 % respecto del año 2023.",
+      "La diferencia de ganancia entre los años 2023 y 2019 es de $ 2.500.000."
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "14"
+  },
+  {
+    "text": "<b>Pregunta 15.</b><br>En astronomía se utilizan unidades de distancia diferentes al sistema métrico decimal , <br>debido a que dichas distancias son siderales. Entre estas unidades de medición está  <br>1 año luz que es equivalente a 9,46 · 1012 km. <br> <br>La distancia de la Tierra a la estrella más brillante del un iverso, Sirio, es de <br>aproximadamente 8,5 años luz.  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Usando la tabla adjunta, ¿a cuánto es equivalente la distancia de la Tierra a Sirio <br>expresada en el sistema métrico decimal?",
+    "options": [
+      "80,41 Tm",
+      "80,41 Pm",
+      "80410 Gm",
+      "0,8041 Em    TABLA COMPARATIVA DE LAS GANANCIAS ANUALES DE LA EMPRESA  “La Tiendita de Dany”   2019 2020 2022 2023  Ganancias $ 2.500.000  $ 3.000.000 $ 4.500.000  Pérdidas  $ 750.000      Medida Simbología Equivalencia  Metro m 1 m  Kilómetro Km 103 m  Megámetro Mm 106 m  Gigámetro Gm 109 m  Terámetro Tm 1012 m  Petámetro Pm 1015 m  Exámetro Em 1018 m               ---PAGE_BREAK--- 11"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "15"
+  },
+  {
+    "text": "<b>Pregunta 16.</b><br>Si <br>12kk64  = 256 , entonces ¿cuál de las siguientes afirmaciones es verdadera?",
+    "options": [
+      "k2 es el 75% de k1",
+      "k2 es el 25% de k1",
+      "k2 es el 50% de k1",
+      "k2 es el 125% de k1"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "16"
+  },
+  {
+    "text": "<b>Pregunta 17.</b><br>En una prueba de laboratorio, se analiza el crecimiento del número de unidades <br>enzimáticas por m ilígramo de cierta proteína, observándose el comportamiento <br>indicado en la tabla adjunta. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuál de las siguientes expresiones representa el número de unidades enzimáticas por <br>milígramo de proteína que se presenta en la novena hora?",
+    "options": [
+      "211 – 1",
+      "211",
+      "210 – 1",
+      "210"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "17"
+  },
+  {
+    "text": "<b>Pregunta 18.</b><br>En la sucesión 9, 15, 33, 87, …, donde 9 es el primer término, ¿cuál de las siguientes <br>expresiones podría representar el n-ésimo término?",
+    "options": [
+      "n9",
+      "3n + 6",
+      "3n+1 – n",
+      "3n-1 + 6         Horas transcurridas Número de unidades  enzimáticas por mg de  proteína  1 7  2 15  3 31  4 63  .  .  .    .  .  .       ---PAGE_BREAK--- 12"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "18"
+  },
+  {
+    "text": "<b>Pregunta 19.</b><br>Si c = 4,9 · 1049, entonces ¿a cuánto es igual <br>c ?",
+    "options": [
+      "724 · 10",
+      "7 · 1025",
+      "72 · 1024",
+      "7 · 1024"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "19"
+  },
+  {
+    "text": "<b>Pregunta 20.</b><br>Las masas de Júpiter y Europa (sexto satélite de Júpiter), aproximadamente, son  <br>1,89 · 1027 kg y 4,80  · 1022 kg, respectivamente. Con estos valores, ¿cuántas veces <br>está contenido, aproximadamente, la masa del satélite Europa en la masa de Júpiter?",
+    "options": [
+      "3,89 · 10-5",
+      "3,94 · 105",
+      "3,89 · 105",
+      "3,94 · 104"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "20"
+  },
+  {
+    "text": "<b>Pregunta 21.</b><br>El número 2ABCDE de seis dígitos se multiplica por 3, y el resultado que se obtiene es <br>el número de seis dígitos ABCDE2. ¿A cuánto es igual la suma de los dígitos de este <br>número?",
+    "options": [
+      "24",
+      "27",
+      "30",
+      "33"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "21"
+  },
+  {
+    "text": "<b>Pregunta 22.</b><br>Si la hora pedagógica tiene una duración equivalente al 75% de una hora cronológica, <br>entonces ¿cuántas horas pedagógicas necesita un profesor para mostrarle a sus <br>alumnos un video que tiene 3 horas cronológicas de duración?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "8           ---PAGE_BREAK--- 13"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "22"
+  },
+  {
+    "text": "<b>Pregunta 23.</b><br>Si 2 + <br>x  = 4, entonces ¿cuál es el valor de (x + 2)2?",
+    "options": [
+      "12",
+      "18",
+      "24",
+      "36"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "23"
+  },
+  {
+    "text": "<b>Pregunta 24.</b><br>¿Cuál es el valor de (n + 4)2, si se sabe que n + 3 = 6?",
+    "options": [
+      "49",
+      "34",
+      "27",
+      "22"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "24"
+  },
+  {
+    "text": "<b>Pregunta 25.</b><br>En un día de campaña de reciclaje Ana recolectó (x + 12) latas vacías de bebida, María <br>recolectó (2x – 3), es decir, 4 latas menos que Elena, quien recolectó (3x – 6). <br> <br>¿Cuántas latas vacías de bebida recolectó Ana?",
+    "options": [
+      "11",
+      "15",
+      "19",
+      "21"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "25"
+  },
+  {
+    "text": "<b>Pregunta 26.</b><br>¿Cuál de las siguientes expresiones es equivalente a <br>-1 -1 118  +  + xx8<br>  <br>     ?",
+    "options": [
+      "1 8  +  1 4x  +  2 1 x",
+      "1 64  +  1 4x  +  2 1 x",
+      "1 64  +  1 2x  +  2 1 x",
+      "64 + 4x + x2          ---PAGE_BREAK--- 14"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "26"
+  },
+  {
+    "text": "<b>Pregunta 27.</b><br>Por una carretera, se encuentra un vehículo desplazándose con velocidad constante. La <br>tabla adjunta muestra la posición de este vehículo en determinados instantes.  <br> <br> <br> <br> <br> <br> <br>¿Cuál de las siguientes funciones relaciona la posición S con el tiempo t en que el <br>vehículo se mueve?",
+    "options": [
+      "S(t) = 20 + 90t",
+      "S(t) = 20t + 90",
+      "S(t) = 20 + 9t",
+      "S(t) = 20 +  650t 7"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "27"
+  },
+  {
+    "text": "<b>Pregunta 28.</b><br>En la tabla adjunta de valores positivos, F es directamente proporciona l al producto de L <br>por el cuadrado de H. <br> <br> <br> <br> <br> <br> <br> <br>¿Cuál es el valor de x?",
+    "options": [
+      "6",
+      "5",
+      "4",
+      "3"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Álgebra y Funciones",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "28"
+  },
+  {
+    "text": "<b>Pregunta 29.</b><br>Jorge gana en un día, lo que Andrés gana en tres días; Pedro gana en tres días, lo que <br>Luis gana en dos días y Pedro gana en cinco días lo que Jorge gana en dos días.  Según <br>esto, ¿cuál de las siguientes afirmaciones es verdad, respecto a un período de cinco <br>días?",
+    "options": [
+      "Jorge fue el que ganó más y Andrés el que ganó menos.",
+      "Luis fue el que ganó más y Pedro el que ganó menos.",
+      "Pedro fue el que ganó más y Andrés el que ganó menos.",
+      "Luis es el que ganó menos y Pedro el que ganó más.          Tiempo (h) 0 3 5 7  Posición (km) 20 290 470 650    F L H  2.000 3 4  4.500 3 x     ---PAGE_BREAK--- 15"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "29"
+  },
+  {
+    "text": "<b>Pregunta 30.</b><br>El valor de un terreno de 10 hectáreas es $ 20.000.000, el que se divide en parcelas de <br>agrado de 200 m de largo por 50 m de ancho. Si se venden estas parcelas, todas al <br>mismo precio, ¿cuál deb erá ser el valor mínimo de cada una de ellas para no tener <br>pérdidas? (1 hectárea = 10.000 m2)",
+    "options": [
+      "$ 4.000.000",
+      "$ 2.000.000",
+      "$ 1.800.000",
+      "$ 1.000.000"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Geometría",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "30"
+  },
+  {
+    "text": "<b>Pregunta 31.</b><br>Una empresa chilena de calzado cuenta con 20 máquinas que se encargan de prensar <br>las suelas de los zapat os que fabrican. Durante cuatro semanas consecutivas, se <br>estudió la relación entre las máquinas utilizadas y el tiempo que se demoran estas en <br>realizar exactamente el mismo pedido de pre nsado de suelas. Los resultados se <br>muestran en la tabla adjunta. <br> <br> <br> <br> <br> <br> <br> <br>Considerando que la semana siguiente sólo tendrán 2 días y medio para realizar el <br>mismo pedido. ¿Cuántas máquinas más es necesario comprar o arrendar?",
+    "options": [
+      "1",
+      "3",
+      "4",
+      "6"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "31"
+  },
+  {
+    "text": "<b>Pregunta 32.</b><br>Un curso de 30 alumnos, divididos en 3 grupos, gana un premio en dinero al part icipar <br>en un concurso. El profesor a cargo decide repartir el dinero en partes iguales entre los <br>tres grupos participantes y cada grupo decide, también, repartir en partes iguales entre <br>los integrantes. En el grupo 3, compuesto por 12 estudiantes, cada uno  de ellos recibe  <br>$ 12.500, el grupo 2 está compuesto por 8 alumnos, ¿cuánto dinero recibirá cada uno <br>de los integrantes del grupo 1?",
+    "options": [
+      "$ 150.000",
+      "$   18.500",
+      "$   15.000",
+      "$   12.500      Máquinas utilizadas Días de la semana  20 3  10 6  15 4  12 5     ---PAGE_BREAK--- 16"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "32"
+  },
+  {
+    "text": "<b>Pregunta 33.</b><br>En una fábrica de jugos, el sistema de tuberías está diseñado para sopo rtar un caudal <br>máximo de 200 litros por minuto. Dos bombas están conectadas al sistema, pero la <br>diferencia de los caudales de las bombas es de 40 litros por minuto. Debido a una falla <br>del sistema, la bomba de menor capacidad se debe sustituir por dos bomba s, cuyas <br>capacidades están en razón de 1 : 3.  <br> <br> <br>¿Cuál es el caudal máximo que puede tener la menor de las últimas dos bombas?",
+    "options": [
+      "20 litros por minuto",
+      "60 litros por minuto",
+      "80 litros por minuto",
+      "120 litros por minuto"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "33"
+  },
+  {
+    "text": "<b>Pregunta 34.</b><br>Un estudio indica que una pe rsona quema calorías debido al metabolismo basal y <br>debido a la actividad física. Se estima que, debido al metabolismo basal, una persona <br>quema 70 calorías por hora, incluso sin realizar actividad física. En el gráfico adjunto se <br>muestra la relación entre el tiempo (en horas) y las calorías quemadas por una persona <br>que corre a una velocidad constante de 10 km/h. <br> <br> <br>  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>De acuerdo con esto, ¿cuántas calorías quemará en total (metabolismo basal + <br>metabolismo debido a la actividad física) después de correr durante 2 horas?",
+    "options": [
+      "1.140 calorías",
+      "2.000 calorías",
+      "2.140 calorías",
+      "4.000 calorías           ---PAGE_BREAK--- 17"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "34"
+  },
+  {
+    "text": "<b>Pregunta 35.</b><br>Si x > 3, entonces ¿cuál de las siguientes afirmaciones es verdadera, con respecto a un <br>rectángulo de lados (x + 1) y (x – 3)?",
+    "options": [
+      "El área del rectángulo es (x2 + 2x – 3)",
+      "El semiperímetro del rectángulo es (4x + 4)",
+      "Su diagonal mide (2x2 – 4x + 10)",
+      "Su perímetro es igual al de un rombo de lado (x – 1)"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Geometría",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "35"
+  },
+  {
+    "text": "<b>Pregunta 36.</b><br>El gráfico de la figura adjunta muestra que el agua de mar contiene 2,5 gramos de sal <br>por cada 100 gramos de agua.  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Si a = 125 g, ¿es correcto afirmar que b = 5 kg?",
+    "options": [
+      "Incorrecto, porque a y b están expresados en unidades diferentes.",
+      "Correcto, porque a y b son magnitudes directamente proporcionales.",
+      "Incorrecto, porque a y b son magnitudes inversamente proporcionales.",
+      "Correcto, porque las masas de la sal y el agua están en la razón 1 : 50."
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "36"
+  },
+  {
+    "text": "<b>Pregunta 37.</b><br>Tomás cerca un terreno rectangular con cierta cantidad de metros de alambre. Con <br>(12p + 114) metros de él da 3 vueltas completas al terreno. Si p + 3 es u no de los <br>lados del rectángulo, ¿cuál de las siguientes expresiones representa el área de dicho <br>rectángulo?",
+    "options": [
+      "p2 + 48",
+      "p2 + 19p + 19",
+      "p2 + 19p + 48",
+      "p2 – 19p + 48      b  a 2,5  100  g de sal  g de  agua   ---PAGE_BREAK--- 18"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Álgebra y Funciones",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "37"
+  },
+  {
+    "text": "<b>Pregunta 38.</b><br>Dos empresas de telecomunicaciones, A y B han instalado en un centro comercial de la <br>capital, locales que funcionan como centros de llamadas internacionales. <br> <br>La compañía A cobra $ 70 por minuto, más un cargo de $ 2.000 por derecho de <br>conexión y la compañía B cobra $ 3.000 por el uso de conexión y $ 50 por minuto <br>hablado. <br> <br>Si C A y C B representan, respectivamente, el costo total de una llamada en función de <br>los minutos hablados (m) de las compañías A y B, entonces ¿cuál de las siguientes <br>afirmaciones es verdadera?",
+    "options": [
+      "CA = 70m + 2.000  y CB = 50m + 3.000",
+      "CA = 2.000 + 70   y CB = 3.000m + 50",
+      "CA = 70m + 3.000  y CB = 50m + 2.000",
+      "CA = (70 + 2.000)m y CB = (50 + 3.000)m"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Álgebra y Funciones",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "38"
+  },
+  {
+    "text": "<b>Pregunta 39.</b><br>En un partido de fútbol, un defensa rechazó la pelota de fútbol de tal modo que el <br>chute provocó que la pelota describiera una trayectoria parabólica. Se pudo observar <br>que la altura h, en metros, alcanzada por la pelota, variaba de acuerdo con el tiempo t, <br>en segundos, después del chute. Considerando que la pelota fue chuteada desde el <br>suelo en el instante t = 0 s y que la altura máxima alcanzada por ella fue de 4 m,  <br>después d e 2 s del chute, entonces ¿cuál de las siguientes f unciones podría ser <br>representativa de esta situación?",
+    "options": [
+      "h(t) = -t2 + 4t",
+      "h(t) = -t2 – 4t",
+      "h(t) = -4t2 + 4t",
+      "h(t) = -2t2 + 4t               ---PAGE_BREAK--- 19"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Geometría",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "39"
+  },
+  {
+    "text": "<b>Pregunta 40.</b><br>Como lo muestra la figura, la latitud es la distancia angular que hay en tre un punto de <br>la Tierra y la Línea del Ecuador. Esta puede variar desde 0° en el Ecuador, hasta los <br>90° en el Polo Norte y los 90° grados en el Polo Sur.  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Se dice que la latitud determina la inclinación con la que caen los rayos solares y  <br>determina la diferencia de la duración entre el día y la noche; encontrándose las <br>latitudes menores más cerca del Ecuador y las más altas cerca de los polos. Se observa <br>entonces que, en las latitudes más altas, los rayos del Sol son menos directos, por lo  <br>tanto, cuanto más lejos esté un punto de la Línea del Ecuador, menores serán sus <br>temperaturas, y viceversa. <br> <br>Se ha estudiado que la relación entre la Latitud y la temperatura promedio en el Polo <br>Sur, se puede modelar con la siguiente expresión: <br> <br>T = 0,011L2 – 0,126L + 81,45 <br> <br>Dónde: <br>T = Temperatura en grados Fahrenheit (°F) <br>L = Latitud en grados <br> <br>De acuerdo a lo expuesto, ¿qué temperatura promedio, en grados Fahrenheit, <br> tendría <br>una ciudad que se encuentra a 45° de latitud Sur, aproximando su valor a la décima?",
+    "options": [
+      "-64,8 °F",
+      "98,1 °F",
+      "109,4 °F",
+      "121,3 °F           ---PAGE_BREAK--- 20"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "40"
+  },
+  {
+    "text": "<b>Pregunta 41.</b><br>Impulsándose desde una plataforma de 10 metros, los clavadistas realizan una <br>combinación de giros y mortales, causando gran impresión entre el público presente. <br>En esta espectacular disciplina, los clavadistas reciben puntuación de acuerdo a su nivel <br>de ejecución. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Diego es un clavadista chileno, y compitió en los juegos Panamericanos de Santiago <br>2023 en esta disciplina, su clavado se puede describir a través de la siguiente func ión <br>h(s) = 10 + 8s – 2s2, donde h representa la altura en metros que alcanza en función <br>del tiempo s en segundos desde que se lanza al agua. ¿Cuál es la altura máxima <br>alcanzada por Diego en esta competencia?",
+    "options": [
+      "14 m",
+      "18 m",
+      "11,8 m",
+      "2 m"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Álgebra y Funciones",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "41"
+  },
+  {
+    "text": "<b>Pregunta 42.</b><br>Un soporte de alu minio tiene forma rectangular y las dimensiones mostradas en la <br>siguiente figura. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuántos metros lineales de aluminio se necesitan para construir 10 de estos soportes?",
+    "options": [
+      "120",
+      "70",
+      "12",
+      "140       ---PAGE_BREAK--- 21"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Álgebra y Funciones",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "42"
+  },
+  {
+    "text": "<b>Pregunta 43.</b><br>Al realizar envíos internacionales  se debe optimizar el espacio dentro de un contenedor <br>para reducir costos y asegurar una operación logística eficiente.  <br> <br>Una empresa, con giro comercial de electrodomésticos, importará lavadoras-secadoras, <br>cuyas medidas con empaque son : 200 cm, 70 cm y 80 cm de a lto, ancho y fondo , <br>respectivamente. <br> <br>Estos productos serán enviados en contenedores de 40 pies cuyo volumen de carga es <br>de 67,7 metros cúbicos. <br> <br>En la siguiente imagen se muestra el producto. <br> <br> <br> <br> <br>¿Cuántas lavadoras-secadoras caben, como máximo, en el contenedor?",
+    "options": [
+      "6",
+      "16",
+      "60",
+      "61           ---PAGE_BREAK--- 22"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "43"
+  },
+  {
+    "text": "<b>Pregunta 44.</b><br>En la figura adjunta, la región rectangular ABCD representa el plano de cierta casa <br>ubicada en el Valle del Elqui, que se ofrece en arriendo a turistas. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Si el plano está hecho en la escala 1 : 100, ¿cuá l es el perímetro de la casa, sabiendo <br>que el pasadizo rectangular tiene un área en el plano de 48 cm 2?",
+    "options": [
+      "90 metros",
+      "100 metros",
+      "110 metros",
+      "120 metros"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Álgebra y Funciones",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "44"
+  },
+  {
+    "text": "<b>Pregunta 45.</b><br>Agustina tiene en su patio plantas en un macetero con forma de paralelepípedo recto, <br>como se muestra en la figura.  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuál de las siguientes expresiones representa el área de las caras laterales y la base <br>del macetero, en centímetros cuadrados?",
+    "options": [
+      "70 · 20 · k",
+      "70 · 20 + 20 · k + 70 · k",
+      "2 · (70 · 20 + 20 · k + 70 · k)",
+      "2 · (70 · 20 + 20 · k) + 70 · k      Dormitorio Dormitorio  Pasadizo  Living Comedor 8 cm  4 cm  12 cm  Áreas verdes  Piscina  Duchas y  baños  4,5 cm 4,5 cm  A B  D  C  k cm  20 cm  70 cm   ---PAGE_BREAK--- 23"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "45"
+  },
+  {
+    "text": "<b>Pregunta 46.</b><br>Francisco debe enviar por encomienda un objeto delicado, el cual deberá ser embalado <br>en una caja de base cuadrada de 60 cm de lado y 80 cm de altura, pero cinco de las <br>caras de la caja debe estar forrada por bloques de plumavit de 5  cm de ancho,  así <br>como muestra la figura adjunta.  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>De acuerdo a la indicación, ¿cuál es el volumen que queda para contener el objeto?",
+    "options": [
+      "190.500 cm3",
+      "192.500 cm3",
+      "197.500 cm3",
+      "198.750 cm3"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "46"
+  },
+  {
+    "text": "<b>Pregunta 47.</b><br>El perímetro del rectángulo ABCD  de la figura adjunt a es 30 cm y  sus vértices A, B y <br>D son los puntos en que se intersectan las diagonales de tres rectángulos más <br>pequeños, cuyos perímetros suman 20 cm.  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuál es la longitud de la línea gruesa que se observa en el contorno de los <br>rectángulos?",
+    "options": [
+      "40 cm",
+      "43 cm",
+      "45 cm",
+      "47 cm    60 cm  80 cm  5 cm  60 cm 5 cm  D  A B  C   ---PAGE_BREAK--- 24"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Geometría",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "47"
+  },
+  {
+    "text": "<b>Pregunta 48.</b><br>La banda de música KZX quiere realizar carteles para instalar en la carretera y <br>promocionar su nuevo álbum. Para esto, contratan a una empresa que hace carteles <br>con letras de cobre. La empresa actualmente sólo dispone de 350  metros lineales de <br>cobre, y las dimensiones de las letras se muestran a continuación: <br> <br>Si todas las letras tendrán la misma altura de 12  m, y tanto la letra K y X son <br>horizontalmente simétricas, ¿cuántos carteles se pueden construir con las medidas <br>anteriores?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "48"
+  },
+  {
+    "text": "<b>Pregunta 49.</b><br>Marco necesita instalar  cerámicas hexagonales regulares  en una habitación <br>rectangular de su casa, tal como se muestra en la figura adjunta. Los lados de todos los <br>hexágonos miden p cm. <br> <br>¿Cuál es la expresión algebraica que represen ta el  área total  (T) que deberá cubrir <br>Marco con las cerámicas?",
+    "options": [
+      "T = 60 3 p",
+      "T = 120p",
+      "T = 120 3  p2",
+      "T = 60 3  p2   ---PAGE_BREAK--- 25"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "49"
+  },
+  {
+    "text": "<b>Pregunta 50.</b><br>La figura adjunta corresponde a un cubo en el cual se han marcado tre s vértices  <br>(P, Q y R). <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Si mediante trazos se unen estos vértices, ¿qué tipo de triángulo se obtiene?",
+    "options": [
+      "Isósceles obtusángulo",
+      "Isósceles rectángulo",
+      "Equilátero",
+      "Isósceles ocutángulo"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Geometría",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "50"
+  },
+  {
+    "text": "<b>Pregunta 51.</b><br>Si el vector a = (3, 2) anclado en el origen se  trasladó según el vector u <br>transformándose en (5, 3), entonces ¿cuál es el resultado que se obtiene cuando al <br>vector al vector u  se le resta el vector b = (1, -5)?",
+    "options": [
+      "(3, -4)",
+      "(-2, -1)",
+      "(1, -6)",
+      "(1, 6)"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "51"
+  },
+  {
+    "text": "<b>Pregunta 52.</b><br>En el plano cartesiano, A es un punto en el eje x y B es un punto en el eje y, entonces <br>¿a cuánto es igual el producto de las ordenadas de estos puntos?",
+    "options": [
+      "-2",
+      "-1",
+      "0",
+      "1    P  Q  R   ---PAGE_BREAK--- 26"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "52"
+  },
+  {
+    "text": "<b>Pregunta 53.</b><br>El punto A( -4, 3) se refleja con respecto al eje y, obteniéndose el punto A’. Luego, <br>todos los puntos del plano se trasladan segú n el vector u, por lo que el punto A’ toma <br>la posición A’’(-5, -1). Entonces, ¿cuál es el vector traslación u?",
+    "options": [
+      "(-1, -4)",
+      "(-9, 2)",
+      "(1, -4)",
+      "(-9, -4)"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Geometría",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "53"
+  },
+  {
+    "text": "<b>Pregunta 54.</b><br>El gráfico de la figura adjunta muestra las notas obtenidas por todos los alumnos de un <br>curso, en una prueba de Ciencias Sociales. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>De la información entregada en el gráfico, ¿cuál de las siguientes afirmaciones es <br>correcta?",
+    "options": [
+      "La tercera parte del curso obtuvo nota 5",
+      "Cuatro de cada diez alumnos obtuvo nota 6",
+      "El 40% de los alumnos obtuvo menos de un 5",
+      "La nota 2 tiene menor frecuencia que la nota 7      2  4  6  8  10  2 3 4 5 6 7 Notas  N° Alumnos   ---PAGE_BREAK--- 27"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "54"
+  },
+  {
+    "text": "<b>Pregunta 55.</b><br>El ministerio de salud de Chile, realizó una proyección acerca del porcentaje de <br>infectados por el virus de influenza, durante los próximos cinco años, tal como se indica <br>en el siguiente gráfico. <br> <br> <br> <br> <br> <br> <br> <br> <br>Sin embargo, un médico especialista mencionó que, debido a múltiples factores, esta <br>proyección no es exacta. Él recomienda, a partir del tercer año, aumentarla en dos <br>puntos porcentuales.  <br>¿Cuál de los siguientes gráficos, describe mejor la proyección propuesta por este <br>médico especialista?",
+    "options": [
+      "B)",
+      "D)                          Porcentaje de la población  6%  4%  3%  2026 2027 2028 2029 2030  Año  2026 2027 2028 2029 2030  6,02%  4,02%  3,02%  Porcentaje de la población  Año  2026 2027 2028 2029 2030  6,02%  4,02%  3,02%  6%  4%  Porcentaje de la población  Año Año  8%  6%  5%  2026 2027 2028 2029 2030  4%  Porcentaje de la población  2026 2027 2028 2029 2030  Porcentaje de la población  Año  8%  6%  5%   ---PAGE_BREAK--- 28",
+      "",
+      ""
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "55"
+  },
+  {
+    "text": "<b>Pregunta 56.</b><br>En el gráf ico adjunto se representan los resultados de una encuesta aplicada a  <br>70 empleados de dos empresas. Dicha encuesta tenía relación con actividades físicas <br>desarrolladas durante el fin de semana pasado. <br> <br> <br> <br>ACTIVIDADES FÍSICAS REALIZADAS EL FIN DE SEMANA <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Si cada empleado marcó una sola opción en la encuesta, ¿cuál de las siguientes <br>afirmaciones es verdadera?",
+    "options": [
+      "Más de la cuarta parte de los empleados realizaron otras actividades o no realizaron  ninguna actividad.",
+      "Las tres cuartas partes de los empleados trotaron o anduvieron en bicicleta o  jugaron fútbol el fin de semana pasado.",
+      "Más de la mitad de los empleados jugaron fútbol o anduvieron en bicicleta el fin de  semana.",
+      "Tres octavos de los empleados trotaron o hicieron otra actividad física el fin de  semana.            Otras actividades  físicas   10%  Ninguna  15%  Andar en bicicleta  30%  Jugar fútbol  20%  Trotar en el parque  25%   ---PAGE_BREAK--- 29"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "56"
+  },
+  {
+    "text": "<b>Pregunta 57.</b><br>La tabla adjunta indica el número de horas extras trabajadas en la última semana por <br>un grupo de empleados de una fábrica.  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Si la media aritmética de la muestra es 7,2 horas, ¿cuántas personas hacen menos de <br>8 horas extras?",
+    "options": [
+      "25",
+      "15",
+      "10",
+      "5"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "57"
+  },
+  {
+    "text": "<b>Pregunta 58.</b><br>De acuerdo a los 100 datos de la tabla adjunta. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> ¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": [
+      "El percentil 50 es 55.",
+      "El tercer cuartil se ubica en el intervalo [55, 60[.",
+      "La cantidad de datos que se encuentr an en el segundo intervalo corresponde a un  15% del total de datos.",
+      "La cantidad de datos que se encuentran en el tercer intervalo corresponde al 53%  del total de datos.                  Intervalo Frecuencia Acumulada  [40, 45[ 17  [45, 50[ 32  [50, 55[ 53  [55, 60[ 63  [60, 65[ 81  [65, 70] 100    Intervalo  (horas)  Frecuencia  absoluta  [0 – 4[ 15  [4 – 8[ m  [8 – 12[ 20  [12 – 16[ 5     ---PAGE_BREAK--- 30"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "58"
+  },
+  {
+    "text": "<b>Pregunta 59.</b><br>Los salarios que se pagan en una oficina a sus empleados son <br> <br> <br> <br> <br> <br> <br>Si se decidiera igualar los salarios, conservando la misma cantidad  total de dinero que <br>suman los salarios, entonces ¿cuánto ganaría Miguel?",
+    "options": [
+      "4n – 5",
+      "4n – 3",
+      "4n",
+      "4n + 3"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Números",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "59"
+  },
+  {
+    "text": "<b>Pregunta 60.</b><br>Una empresa Sanitaria capta agua de una fuente natural, la procesa y potabiliza par a <br>abastecer a los clientes. En este procedimiento se deben controlar diversos parámetros <br>que verifiquen que el agua cumpla con las normas establecidas, uno de estos es el <br>color cuya categorización debe ir de 1 a 20 unidades. <br> <br>El promedio de mediciones diar ias durante la primera quincena de un mes es el <br>siguiente: 9, 9, 5, 3, 1, 5, 8, 1, 3, 1, 9, 10, 10, 2 y 11. <br> <br> <br>¿Cuáles de los siguientes valores corresponden a los cuartiles 2 y 3?",
+    "options": [
+      "Q2 = 8   Q3 = 10",
+      "Q2 = 1   Q3 = 10",
+      "Q2 = 5   Q3 = 9",
+      "Q2 = 5   Q3 = 11,25      Juan Miguel Carlos Jorge Yolanda  5n + 17 2n – 1 5n 4n – 3 4n + 2     ---PAGE_BREAK--- 31"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "60"
+  },
+  {
+    "text": "<b>Pregunta 61.</b><br>Una encuesta realizada a 25 personas sobre la cantidad de mascotas que tienen en sus <br>hogares muestra los siguientes resultados. <br> <br> <br> <br> <br> <br>¿Cuál de las siguientes opciones representa correctamente los datos?",
+    "options": [
+      "",
+      "",
+      "",
+      "N° de mascotas 0 1 2 3 4 5  Personas 3 8 6 4 3 1    0 1 2 3 4 5  Cantidad de Mascotas  Datos  0 1 2 3 4 5  Cantidad de Mascotas  Datos  0 1 2 3 4 5  Cantidad de Mascotas  Datos  0 1 2 3 4 5  Cantidad de Mascotas  Datos   ---PAGE_BREAK--- 32"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "61"
+  },
+  {
+    "text": "<b>Pregunta 62.</b><br>En las carreras, se dice que un atleta hace un adelantamiento cuando corriendo detrás <br>de otro lo sobrepasa quedando delante de él. El gráfico adjunto muestra la variación de <br>la distancia recorrida por cada uno de cinco atletas que participaron en una carrera de <br>100 metros planos. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>¿Cuántos adelantamientos, después del inicio de la carrera hizo el atleta que llegó en <br>último lugar?",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "62"
+  },
+  {
+    "text": "<b>Pregunta 63.</b><br>En una encuesta se solicitó a 220 personas que respondiesen la siguiente pregunta: <br>¿Usted practica al gún tipo de actividad física? Los resultados de la encuesta se <br>presentan en la tabla adjunta. <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Considerando esta información y escogiendo al azar una persona que practica alguna <br>actividad física, ¿cuál es la probabilidad que sea de sexo masculino?",
+    "options": [
+      "Es inferior al 42%",
+      "Está entre el 42% y el 46%",
+      "Está entre el 47% y el 51%",
+      "Está entre el 52% y el 56%      Sexo SI NO  Femenino 46 82  Masculino 38 54    100  12 tiempo (s)  distancia (m)   ---PAGE_BREAK--- 33"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "63"
+  },
+  {
+    "text": "<b>Pregunta 64.</b><br>Se tienen 3 tómbolas equiprobables que contienen bolitas rojas y blancas con la <br>siguiente distribución: <br> <br>Tómbola 1: 2 rojas y 3 blancas <br>Tómbola 2: 3 rojas y 1 blancas <br>Tómbola 3: 4 rojas y 2 blancas <br> <br>Una tómbola es sorteada y de ella es extraída una bolita al azar , entonces ¿cuál es l a <br>probabilidad que la bolita extraída sea roja?",
+    "options": [
+      "109 180",
+      "1 35",
+      "9 15",
+      "17 45"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "64"
+  },
+  {
+    "text": "<b>Pregunta 65.</b><br>Se realizó una encuesta a 90 estudiantes del colegio Albatros que están cursando tercer <br>año medio, para saber cuántas horas, en una semana, ingresaban a Instagram, (todos <br>tenían esta aplicación). Los resultados fueron los siguientes: <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>Según la Academia Americana de Pediatría (AAP), se recomienda que los  <br>pre-adolescentes y adolescentes ocupen dicha aplicación entre 1 a 2 horas diarias. <br>Dada esta información, ¿cuántos estudiantes hacen un uso adecuado de la aplicación?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12    Horas semanales  en Instagram  Número de  alumnos y  alumnas  [8-10[ 2  [10-12[ 3  [12-14[ 6  [14-16[ 6  [16-18[ 10  [18-20[ 10  [20-22[ 20  [22-24[ 18  24 ó más horas 15     ---PAGE_BREAK---"
+    ],
+    "correctAnswer": 0,
+    "solution": "<i>Solución pendiente de revisión...</i>",
+    "level": "Secundaria",
+    "axis": "Probabilidad y Estadística",
+    "source": "DEMRE",
+    "topic": "Otro",
+    "skill": "Resolver problemas",
+    "examReference": "PAES Competencias Matemáticas",
+    "questionNumber": "65"
+  }
+]

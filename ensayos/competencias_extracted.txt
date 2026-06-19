@@ -1,0 +1,1856 @@
+ 
+JEG-MA1-02-DMVC 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+2 
+ 
+PRUEBA MATEMÁTICA 
+ INSTRUCCIONES  
+ 
+ 
+Esta prueba consta de 65 preguntas, de las cuales 60 serán consideradas para el cálculo de 
+puntaje y 5 será n usadas para experimentación y por lo tanto, no se considerarán en el 
+puntaje final de la prueba. Cada pregunta tiene cuatro (4) opciones, señaladas con las letras 
+A, B, C y D, una sola de las cuales es la respuesta correcta.  
+DISPONE DE 2 HORAS Y 20 MINUTOS PARA RESPONDERLA.  
+ 
+ 
+ 
+INSTRUCCIONES ESPECÍFICAS 
+ 
+1. Las figuras que aparecen en la prueba son solo indicativas. 
+2. Los gráficos que se presentan en esta prueba están dibujados en un sistema de 
+ejes perpendiculares, cuyo origen es el punto (0, 0). 
+3. El intervalo [p, q] es el conjunto de todos los números reales mayores o iguales a p y 
+menores o iguales a q; el intervalo ]p, q] es el conjunto de todos los números reales 
+mayores que p y menores o iguales a q; el intervalo [p, q[ es el conjunto de todos los  
+números reales mayores o iguales a p y menores que q; y el intervalo ]p, q[ es el 
+conjunto de todos los números reales mayores que p y menores que q. 
+4. En esta prueba, se considerará que 
+v
+ (a, b) es un vector que tiene su punto de 
+inicio en el origen del plano cartesiano y su extremo en el punto (a, b), a 
+menos que se indique lo contrario. 
+5. Se entenderá por dado común a aquel que posee 6 caras numeradas del 1 al 6 y 
+en el experimento de  lanzarlo, sus caras son equiprobables de salir. 
+6. En el experimento de lanzar una moneda, sus dos op ciones son equiprobables de 
+salir, a menos que se indique lo contrario. 
+
+---PAGE_BREAK---
+3 
+ 
+SÍMBOLOS MATEMÁTICOS SÍMBOLOS MATEMÁTICOS 
+ 
+ 
+  es menor que   es semejante con 
+ 
+  es mayor que   es perpendicular a 
+ 
+  es menor o igual a   es distinto de 
+    
+  es mayor o igual a   es paralelo a 
+ 
+  ángulo recto   trazo AB 
+ 
+    ángulo   pertenece a 
+ 
+     logaritmo en base 10   valor absoluto de x 
+ 
+    conjunto vacío   factorial de x 
+  
+   es aproximado a                           intersección de conjuntos 
+ 
+    unión de conjuntos            vector u 
+ 
+    complemento del conjunto A  
+              
+     
+ 
+ 
+ 
+ 
+ 
+log 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ // 
+AB
+ 
+x 
+
+ 
+ x! 
+ 
+AC 
+u 
+
+---PAGE_BREAK---
+4 
+ 
+1. Un número natural recibe el nombre del “primo de Mersenne”, si m es primo y  
+m = 2 p – 1, para algún número natural p. ¿Cuál de l os siguientes números puede ser 
+calificado como primo de Mersenne? 
+ 
+ 
+A) 37 
+B) 31 
+C) 29 
+D) 23 
+ 
+ 
+ 
+ 
+ 
+ 
+2. Recibe el nombre de triploprimo, todo número entero positivo cuyos factores primos 
+son tres números primos diferentes. Según esto, ¿cuántos números triploprimos son 
+menores que 100? 
+ 
+ 
+A) 7 
+B) 6 
+C) 5 
+D) 4 
+ 
+ 
+ 
+ 
+ 
+3. Cristina necesita contratar un operario para que haga ciertos arreglos en su casa, para 
+lo cual puso un aviso en una de las redes sociales. Cuatro personas respondieron 
+informando precios por hora trabajada, gasto diario e n transporte y tiempo necesario 
+para hacer todos los arreglos. En la tabla adjunta se presenta esta información:  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Si Cristina pretende gastar lo menos posible, ¿a cuál operario deberá contratar? 
+ 
+A)  Al operario P 
+B)  Al operario Q 
+C)  Al operario R 
+D)  Al operario S 
+ 
+ 
+ 
+Operario Precio por 
+hora 
+Cobro por 
+transporte 
+Tiempo en hacer x 
+trabajo (horas) 
+P $ 12.000 $ 0 8 
+Q $ 18.000 $ 0 6 
+R $ 17.000 $ 2.000 6 
+S $ 11.000 $ 1.000 9 
+ 
+
+---PAGE_BREAK---
+5 
+ 
+4. En los juegos panamericanos 2023, la puntuación de medio tiempo para un partido de 
+balonmano (handball) entre las selecciones de los países A y B fue de 9 a 14, por lo 
+que la selección del país B ganaba por 5 goles. Como consecuencia de las in strucciones 
+recibidas por el entrenador en el entretiempo, la selección del país A, remontó en el 
+segundo tiempo, marcando el doble de goles que su oponente ganando finalmente el 
+partido por un gol. ¿Cuál fue el resultado final del partido? 
+ 
+ 
+A) País A 20 País B 19 
+B) País A 21 País B 20 
+C) País A 22 País B 21 
+D) País A 23 País B 22 
+ 
+ 
+ 
+ 
+5. Una persona desea desplazar su automóvil desde el punto A, al punto B, indicados en la 
+figura adjunta, en la cual las líneas verticales y horizontales representan calles. Debido 
+al sentido del tránsito en esas calles, el camino poligonal destacado e s la posibilidad 
+más corta de efectuar ese desplazamiento. Para describirlo se debe especificar cuál es 
+el sentido que se debe tomar en cada cruce de calles, en relación de desplazamiento 
+del automóvil, que se mueve continuamente. Para eso se emplean l as letras I, F y D 
+para indicar: 
+ 
+I = vire a la izquierda  (     ) 
+F = continúe al frente (     ) 
+D = vire a la derecha (      ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál es la secuencia de letras que describe el camino poligonal destacado? 
+ 
+A) FDFIFDDIIFFD 
+B) FDDIFDDIIFFD 
+C) FDFIFDDDIFFD 
+D) FDDIFDDDIFFD  
+ 
+      
+      
+      
+      
+      
+      
+ A 
+B 
+
+---PAGE_BREAK---
+6 
+ 
+6. En la recta numérica, ¿cuál de los siguientes números se encuentra a igual distancia de 
+1
+20
+ y 
+1
+30 ? 
+ 
+ 
+A) 
+1
+25  
+B) 
+1
+24  
+C) 
+2
+25  
+D) 
+1
+12  
+ 
+ 
+ 
+7. Sabiendo que N es un número de la forma 
+m
+n , con m y n, enteros positivos, ¿qué se 
+debe cumplir siempre para asegurar que m es mayor que n?  
+ 
+ 
+A) N < 1 
+B) N < 
+1
+2  
+C) N > 1 
+D) N > 
+1
+2  
+ 
+ 
+ 
+8. Considere la siguiente secuencia de figuras, observe que entre los círculos se forman 
+espacios en blanco 
+ 
+ 
+Si el patrón de formación se mantiene, ¿cuántos espacios en blanco hay en la 
+decimotercera figura? 
+ 
+A) 91 
+B) 105 
+C) 169 
+D) 196 
+ 
+
+---PAGE_BREAK---
+7 
+ 
+9. Dos automóviles A y B hacen un mismo trayecto de 572 km. El automóvil A lleva 
+recorrido los 
+5
+11  del trayecto cuando el B ha recorrido los 
+6
+13  del mismo. ¿Cuál y 
+cuántos kilómetros lleva recorridos el auto que va primero? 
+ 
+ 
+A) El auto A va primero con 250 km recorridos. 
+B) El auto B va primero con 254 km recorridos. 
+C) El auto A va primero con 260 km recorridos. 
+D) El auto B va primero con 264 km recorridos. 
+ 
+ 
+ 
+ 
+ 
+10. En la siguiente infografía se presenta el contexto del total de la población indígena en 
+Chile. 
+ 
+ 
+Adaptado de INE. Encuesta Nacional de Empleo: infografía de Pueblos Indígenas . https://www.ine.gob.cl/docs/default-
+source/ocupacion-y-desocupacion/publicaciones-y-anuarios/infografias/pueblos-originarios-1.pdf?sfvrsn=a87d84aa_17 
+ 
+ 
+¿Cuál de las siguientes afirmaciones es verdadera? 
+ 
+A) El 32,1% de la población total chilena pertenece a la región Metropolitana. 
+B) La región de Los Lagos es la con menor concentración de personas pertenecientes a 
+pueblos indígenas del país. 
+C) Más de la mitad de la pobl ación indígena en Chile se encuentra en las regiones 
+Metropolitana, La Araucanía y Los Lagos. 
+D) Para determinar la población indígena en Chile no es necesario conocer la población 
+total. 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+8 
+ 
+11. Se aplica una encuesta para saber las preferencias de sabores de  helado a 50 personas 
+que visitaban un mall. Los resultados de las preferencias se presentan en la tabla 
+adjunta: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál de las siguientes afirmaciones es verdadera? 
+ 
+ 
+A) Las personas que prefieren Sueño de Chocolate y Menta Refrescante representan el 
+50% del total de las personas. 
+B) El doble del 10% de las personas que eligen Caramelo Salado equivalen a los que 
+prefieren Vainilla Cremosa.  
+C) Las personas que prefieren Fresa Delicia son menos del 10% del total. 
+D) Las personas que prefieren Otro sabor corr esponden exactamente al 25% del total 
+de personas. 
+ 
+ 
+HELADO CANTIDAD DE PERSONAS 
+Sueño de Chocolate 🍫 14 
+Fresa Delicia🍓 5 
+Vainilla Cremosa🍦 2 
+Menta Refrescante🌿 7 
+Caramelo Salado🍯 10 
+Otro sabor 12 
+ 
+
+---PAGE_BREAK---
+9 
+ 
+12. Pedro y José compiten en un juego de mesa , cuyo ganador es quien primero controla 
+10 de los 19 casilleros hexagonales que forman el tablero. Si los casilleros controlados 
+por cada uno se representan en la siguiente figura. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Aproximadamente, ¿qué porcentaje del total de casilleros debe agregar Pedro a los que 
+ya controla, para ganar el juego? 
+ 
+ 
+A) 21% 
+B) 26% 
+C) 32% 
+D) 42% 
+ 
+ 
+ 
+ 
+13. En el aeropuerto, una maleta debe ir en el sector equipaje si pesa hasta 23 kg, y en 
+caso de que pese más, el propietario deberá pagar por “exceso de peso”. Luciano 
+viajará con una sola maleta y como no desea pagar por exceso de peso, el dispone en 
+su casa de una balanza que indica un peso superior al peso real de un 8%. Al  poner 
+Luciano su maleta en la balanza, ¿cuánto s kilógramos debe indicar esta como máximo 
+para evitar pagar por exceso de peso? 
+ 
+ 
+A) 22,08 
+B) 23,92 
+C) 24,84 
+D) 25,00  
+ 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+10 
+ 
+14. La “Tiendita de Dany” es una empresa de una emprendedora chilena que lleva un 
+registro orde nado de sus ganancias y/o pérdidas por año de funcionamiento de su 
+negocio, como se observa en la tabla adjunta. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál de las siguientes afirmaciones es verdadera? 
+ 
+ 
+A) La utilidad en estos 4 años fue de $ 10.000.000. 
+B) La pérdida en el año 2020 fue equivalente al 30% de las ganancias del año 2019. 
+C) Las ganancias obtenidas el 2022 son equivalentes al 
+33,3 % respecto del año 2023. 
+D) La diferencia de ganancia entre los años 2023 y 2019 es de $ 2.500.000. 
+ 
+ 
+ 
+15. En astronomía se utilizan unidades de distancia diferentes al sistema métrico decimal , 
+debido a que dichas distancias son siderales. Entre estas unidades de medición está  
+1 año luz que es equivalente a 9,46 · 1012 km. 
+ 
+La distancia de la Tierra a la estrella más brillante del un iverso, Sirio, es de 
+aproximadamente 8,5 años luz.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Usando la tabla adjunta, ¿a cuánto es equivalente la distancia de la Tierra a Sirio 
+expresada en el sistema métrico decimal? 
+ 
+ 
+A) 80,41 Tm 
+B) 80,41 Pm 
+C) 80410 Gm 
+D) 0,8041 Em 
+ 
+TABLA COMPARATIVA DE LAS GANANCIAS ANUALES DE LA EMPRESA 
+“La Tiendita de Dany” 
+ 2019 2020 2022 2023 
+Ganancias $ 2.500.000  $ 3.000.000 $ 4.500.000 
+Pérdidas  $ 750.000   
+ 
+Medida Simbología Equivalencia 
+Metro m 1 m 
+Kilómetro Km 103 m 
+Megámetro Mm 106 m 
+Gigámetro Gm 109 m 
+Terámetro Tm 1012 m 
+Petámetro Pm 1015 m 
+Exámetro Em 1018 m 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+11 
+ 
+16. Si 
+12kk64  = 256 , entonces ¿cuál de las siguientes afirmaciones es verdadera? 
+ 
+ 
+A) k2 es el 75% de k1 
+B) k2 es el 25% de k1 
+C) k2 es el 50% de k1 
+D) k2 es el 125% de k1 
+ 
+ 
+ 
+ 
+17. En una prueba de laboratorio, se analiza el crecimiento del número de unidades 
+enzimáticas por m ilígramo de cierta proteína, observándose el comportamiento 
+indicado en la tabla adjunta. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál de las siguientes expresiones representa el número de unidades enzimáticas por 
+milígramo de proteína que se presenta en la novena hora? 
+ 
+ 
+A) 211 – 1  
+B) 211 
+C) 210 – 1  
+D) 210 
+ 
+ 
+ 
+ 
+ 
+18. En la sucesión 9, 15, 33, 87, …, donde 9 es el primer término, ¿cuál de las siguientes 
+expresiones podría representar el n-ésimo término? 
+ 
+ 
+A) n9 
+B) 3n + 6 
+C) 3n+1 – n  
+D) 3n-1 + 6  
+ 
+ 
+ 
+Horas transcurridas Número de unidades 
+enzimáticas por mg de 
+proteína 
+1 7 
+2 15 
+3 31 
+4 63 
+. 
+. 
+. 
+ 
+. 
+. 
+. 
+ 
+ 
+
+---PAGE_BREAK---
+12 
+ 
+19. Si c = 4,9 · 1049, entonces ¿a cuánto es igual 
+c ? 
+ 
+ 
+A)  724 · 10 
+B)  7 · 1025 
+C)  72 · 1024 
+D)  7 · 1024 
+ 
+ 
+ 
+ 
+ 
+20. Las masas de Júpiter y Europa (sexto satélite de Júpiter), aproximadamente, son  
+1,89 · 1027 kg y 4,80  · 1022 kg, respectivamente. Con estos valores, ¿cuántas veces 
+está contenido, aproximadamente, la masa del satélite Europa en la masa de Júpiter?   
+ 
+ 
+A) 3,89 · 10-5 
+B) 3,94 · 105 
+C) 3,89 · 105 
+D) 3,94 · 104 
+ 
+ 
+ 
+ 
+ 
+21. El número 2ABCDE de seis dígitos se multiplica por 3, y el resultado que se obtiene es 
+el número de seis dígitos ABCDE2. ¿A cuánto es igual la suma de los dígitos de este 
+número? 
+ 
+ 
+A) 24 
+B) 27 
+C) 30 
+D) 33 
+ 
+ 
+ 
+ 
+ 
+22. Si la hora pedagógica tiene una duración equivalente al 75% de una hora cronológica, 
+entonces ¿cuántas horas pedagógicas necesita un profesor para mostrarle a sus 
+alumnos un video que tiene 3 horas cronológicas de duración? 
+ 
+ 
+A) 4 
+B) 5 
+C) 6 
+D) 8 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+13 
+ 
+23. Si 2 + 
+x  = 4, entonces ¿cuál es el valor de (x + 2)2? 
+ 
+ 
+A) 12 
+B) 18 
+C) 24 
+D) 36 
+ 
+ 
+ 
+ 
+24. ¿Cuál es el valor de (n + 4)2, si se sabe que n + 3 = 6? 
+ 
+ 
+A) 49 
+B) 34 
+C) 27 
+D) 22 
+ 
+ 
+ 
+ 
+ 
+25. En un día de campaña de reciclaje Ana recolectó (x + 12) latas vacías de bebida, María 
+recolectó (2x – 3), es decir, 4 latas menos que Elena, quien recolectó (3x – 6). 
+ 
+¿Cuántas latas vacías de bebida recolectó Ana? 
+ 
+ 
+A) 11 
+B) 15 
+C) 19 
+D) 21 
+ 
+ 
+ 
+ 
+26. ¿Cuál de las siguientes expresiones es equivalente a 
+-1 -1 118  +  + xx8
+  
+     ? 
+ 
+ 
+A) 
+1
+8  + 
+1
+4x  + 
+2
+1
+x   
+B) 
+1
+64  + 
+1
+4x  + 
+2
+1
+x   
+C) 
+1
+64  + 
+1
+2x  + 
+2
+1
+x   
+D)  64 + 4x + x2  
+ 
+ 
+ 
+
+---PAGE_BREAK---
+14 
+ 
+27. Por una carretera, se encuentra un vehículo desplazándose con velocidad constante. La 
+tabla adjunta muestra la posición de este vehículo en determinados instantes.  
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál de las siguientes funciones relaciona la posición S con el tiempo t en que el 
+vehículo se mueve? 
+ 
+ 
+A) S(t) = 20 + 90t 
+B) S(t) = 20t + 90 
+C) S(t) = 20 + 9t 
+D) S(t) = 20 + 
+650t
+7  
+ 
+ 
+ 
+28. En la tabla adjunta de valores positivos, F es directamente proporciona l al producto de L 
+por el cuadrado de H. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál es el valor de x? 
+ 
+A) 6 
+B) 5 
+C) 4 
+D) 3 
+ 
+ 
+ 
+ 
+29. Jorge gana en un día, lo que Andrés gana en tres días; Pedro gana en tres días, lo que 
+Luis gana en dos días y Pedro gana en cinco días lo que Jorge gana en dos días.  Según 
+esto, ¿cuál de las siguientes afirmaciones es verdad, respecto a un período de cinco 
+días? 
+ 
+ 
+A) Jorge fue el que ganó más y Andrés el que ganó menos. 
+B) Luis fue el que ganó más y Pedro el que ganó menos. 
+C) Pedro fue el que ganó más y Andrés el que ganó menos. 
+D) Luis es el que ganó menos y Pedro el que ganó más. 
+ 
+ 
+ 
+ 
+Tiempo (h) 0 3 5 7 
+Posición (km) 20 290 470 650 
+ 
+F L H 
+2.000 3 4 
+4.500 3 x 
+ 
+
+---PAGE_BREAK---
+15 
+ 
+30. El valor de un terreno de 10 hectáreas es $ 20.000.000, el que se divide en parcelas de 
+agrado de 200 m de largo por 50 m de ancho. Si se venden estas parcelas, todas al 
+mismo precio, ¿cuál deb erá ser el valor mínimo de cada una de ellas para no tener 
+pérdidas? (1 hectárea = 10.000 m2) 
+ 
+ 
+A) $ 4.000.000 
+B) $ 2.000.000 
+C) $ 1.800.000 
+D) $ 1.000.000 
+ 
+ 
+ 
+ 
+31. Una empresa chilena de calzado cuenta con 20 máquinas que se encargan de prensar 
+las suelas de los zapat os que fabrican. Durante cuatro semanas consecutivas, se 
+estudió la relación entre las máquinas utilizadas y el tiempo que se demoran estas en 
+realizar exactamente el mismo pedido de pre nsado de suelas. Los resultados se 
+muestran en la tabla adjunta. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Considerando que la semana siguiente sólo tendrán 2 días y medio para realizar el 
+mismo pedido. ¿Cuántas máquinas más es necesario comprar o arrendar? 
+ 
+ 
+A) 1  
+B) 3  
+C) 4  
+D) 6  
+ 
+ 
+ 
+ 
+ 
+32. Un curso de 30 alumnos, divididos en 3 grupos, gana un premio en dinero al part icipar 
+en un concurso. El profesor a cargo decide repartir el dinero en partes iguales entre los 
+tres grupos participantes y cada grupo decide, también, repartir en partes iguales entre 
+los integrantes. En el grupo 3, compuesto por 12 estudiantes, cada uno  de ellos recibe  
+$ 12.500, el grupo 2 está compuesto por 8 alumnos, ¿cuánto dinero recibirá cada uno 
+de los integrantes del grupo 1? 
+ 
+ 
+A) $ 150.000 
+B) $   18.500 
+C) $   15.000 
+D) $   12.500 
+ 
+ 
+Máquinas utilizadas Días de la semana 
+20 3 
+10 6 
+15 4 
+12 5 
+ 
+
+---PAGE_BREAK---
+16 
+ 
+33. En una fábrica de jugos, el sistema de tuberías está diseñado para sopo rtar un caudal 
+máximo de 200 litros por minuto. Dos bombas están conectadas al sistema, pero la 
+diferencia de los caudales de las bombas es de 40 litros por minuto. Debido a una falla 
+del sistema, la bomba de menor capacidad se debe sustituir por dos bomba s, cuyas 
+capacidades están en razón de 1 : 3.  
+ 
+ 
+¿Cuál es el caudal máximo que puede tener la menor de las últimas dos bombas?  
+ 
+ 
+A)   20 litros por minuto 
+B)   60 litros por minuto 
+C)   80 litros por minuto 
+D) 120 litros por minuto 
+ 
+ 
+ 
+ 
+34. Un estudio indica que una pe rsona quema calorías debido al metabolismo basal y 
+debido a la actividad física. Se estima que, debido al metabolismo basal, una persona 
+quema 70 calorías por hora, incluso sin realizar actividad física. En el gráfico adjunto se 
+muestra la relación entre el tiempo (en horas) y las calorías quemadas por una persona 
+que corre a una velocidad constante de 10 km/h. 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+De acuerdo con esto, ¿cuántas calorías quemará en total (metabolismo basal + 
+metabolismo debido a la actividad física) después de correr durante 2 horas? 
+ 
+ 
+A) 1.140 calorías 
+B) 2.000 calorías 
+C) 2.140 calorías 
+D) 4.000 calorías 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+17 
+ 
+35. Si x > 3, entonces ¿cuál de las siguientes afirmaciones es verdadera, con respecto a un 
+rectángulo de lados (x + 1) y (x – 3)? 
+ 
+ 
+A) El área del rectángulo es (x2 + 2x – 3) 
+B) El semiperímetro del rectángulo es (4x + 4) 
+C) Su diagonal mide (2x2 – 4x + 10) 
+D) Su perímetro es igual al de un rombo de lado (x – 1) 
+ 
+ 
+ 
+ 
+ 
+36. El gráfico de la figura adjunta muestra que el agua de mar contiene 2,5 gramos de sal 
+por cada 100 gramos de agua.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Si a = 125 g, ¿es correcto afirmar que b = 5 kg? 
+ 
+A) Incorrecto, porque a y b están expresados en unidades diferentes. 
+B) Correcto, porque a y b son magnitudes directamente proporcionales. 
+C) Incorrecto, porque a y b son magnitudes inversamente proporcionales. 
+D) Correcto, porque las masas de la sal y el agua están en la razón 1 : 50. 
+ 
+ 
+ 
+37. Tomás cerca un terreno rectangular con cierta cantidad de metros de alambre. Con 
+(12p + 114) metros de él da 3 vueltas completas al terreno. Si p + 3 es u no de los 
+lados del rectángulo, ¿cuál de las siguientes expresiones representa el área de dicho 
+rectángulo? 
+ 
+ 
+A) p2 + 48 
+B) p2 + 19p + 19 
+C) p2 + 19p + 48 
+D) p2 – 19p + 48 
+ 
+ 
+b 
+a 2,5 
+100 
+g de sal 
+g de 
+agua 
+
+---PAGE_BREAK---
+18 
+ 
+38. Dos empresas de telecomunicaciones, A y B han instalado en un centro comercial de la 
+capital, locales que funcionan como centros de llamadas internacionales. 
+ 
+La compañía A cobra $ 70 por minuto, más un cargo de $ 2.000 por derecho de 
+conexión y la compañía B cobra $ 3.000 por el uso de conexión y $ 50 por minuto 
+hablado. 
+ 
+Si C A y C B representan, respectivamente, el costo total de una llamada en función de 
+los minutos hablados (m) de las compañías A y B, entonces ¿cuál de las siguientes 
+afirmaciones es verdadera? 
+ 
+ 
+A) CA = 70m + 2.000  y CB = 50m + 3.000 
+B) CA = 2.000 + 70   y CB = 3.000m + 50 
+C) CA = 70m + 3.000  y CB = 50m + 2.000 
+D) CA = (70 + 2.000)m y CB = (50 + 3.000)m 
+ 
+ 
+ 
+ 
+ 
+ 
+39. En un partido de fútbol, un defensa rechazó la pelota de fútbol de tal modo que el 
+chute provocó que la pelota describiera una trayectoria parabólica. Se pudo observar 
+que la altura h, en metros, alcanzada por la pelota, variaba de acuerdo con el tiempo t, 
+en segundos, después del chute. Considerando que la pelota fue chuteada desde el 
+suelo en el instante t = 0 s y que la altura máxima alcanzada por ella fue de 4 m,  
+después d e 2 s del chute, entonces ¿cuál de las siguientes f unciones podría ser 
+representativa de esta situación? 
+ 
+ 
+A) h(t) = -t2 + 4t 
+B) h(t) = -t2 – 4t 
+C) h(t) = -4t2 + 4t 
+D) h(t) = -2t2 + 4t 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+19 
+ 
+40. Como lo muestra la figura, la latitud es la distancia angular que hay en tre un punto de 
+la Tierra y la Línea del Ecuador. Esta puede variar desde 0° en el Ecuador, hasta los 
+90° en el Polo Norte y los 90° grados en el Polo Sur.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Se dice que la latitud determina la inclinación con la que caen los rayos solares y  
+determina la diferencia de la duración entre el día y la noche; encontrándose las 
+latitudes menores más cerca del Ecuador y las más altas cerca de los polos. Se observa 
+entonces que, en las latitudes más altas, los rayos del Sol son menos directos, por lo  
+tanto, cuanto más lejos esté un punto de la Línea del Ecuador, menores serán sus 
+temperaturas, y viceversa. 
+ 
+Se ha estudiado que la relación entre la Latitud y la temperatura promedio en el Polo 
+Sur, se puede modelar con la siguiente expresión: 
+ 
+T = 0,011L2 – 0,126L + 81,45 
+ 
+Dónde: 
+T = Temperatura en grados Fahrenheit (°F) 
+L = Latitud en grados 
+ 
+De acuerdo a lo expuesto, ¿qué temperatura promedio, en grados Fahrenheit, 
+ tendría 
+una ciudad que se encuentra a 45° de latitud Sur, aproximando su valor a la décima? 
+ 
+ 
+A)  -64,8 °F 
+B)   98,1 °F 
+C) 109,4 °F 
+D) 121,3 °F 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+20 
+ 
+41. Impulsándose desde una plataforma de 10 metros, los clavadistas realizan una 
+combinación de giros y mortales, causando gran impresión entre el público presente. 
+En esta espectacular disciplina, los clavadistas reciben puntuación de acuerdo a su nivel 
+de ejecución. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Diego es un clavadista chileno, y compitió en los juegos Panamericanos de Santiago 
+2023 en esta disciplina, su clavado se puede describir a través de la siguiente func ión 
+h(s) = 10 + 8s – 2s2, donde h representa la altura en metros que alcanza en función 
+del tiempo s en segundos desde que se lanza al agua. ¿Cuál es la altura máxima 
+alcanzada por Diego en esta competencia?  
+ 
+ 
+A) 14 m 
+B) 18 m 
+C) 11,8 m 
+D) 2 m 
+ 
+ 
+ 
+42. Un soporte de alu minio tiene forma rectangular y las dimensiones mostradas en la 
+siguiente figura. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuántos metros lineales de aluminio se necesitan para construir 10 de estos soportes?  
+ 
+A) 120  
+B)   70   
+C)   12   
+D) 140   
+ 
+
+---PAGE_BREAK---
+21 
+ 
+43. Al realizar envíos internacionales  se debe optimizar el espacio dentro de un contenedor 
+para reducir costos y asegurar una operación logística eficiente.  
+ 
+Una empresa, con giro comercial de electrodomésticos, importará lavadoras-secadoras, 
+cuyas medidas con empaque son : 200 cm, 70 cm y 80 cm de a lto, ancho y fondo , 
+respectivamente. 
+ 
+Estos productos serán enviados en contenedores de 40 pies cuyo volumen de carga es 
+de 67,7 metros cúbicos. 
+ 
+En la siguiente imagen se muestra el producto. 
+ 
+ 
+ 
+ 
+¿Cuántas lavadoras-secadoras caben, como máximo, en el contenedor? 
+ 
+ 
+A)   6 
+B) 16 
+C) 60 
+D) 61 
+ 
+ 
+ 
+ 
+
+---PAGE_BREAK---
+22 
+ 
+44. En la figura adjunta, la región rectangular ABCD representa el plano de cierta casa 
+ubicada en el Valle del Elqui, que se ofrece en arriendo a turistas. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Si el plano está hecho en la escala 1 : 100, ¿cuá l es el perímetro de la casa, sabiendo 
+que el pasadizo rectangular tiene un área en el plano de 48 cm 2? 
+ 
+A)   90 metros 
+B) 100 metros 
+C) 110 metros 
+D) 120 metros 
+ 
+ 
+45. Agustina tiene en su patio plantas en un macetero con forma de paralelepípedo recto, 
+como se muestra en la figura.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál de las siguientes expresiones representa el área de las caras laterales y la base 
+del macetero, en centímetros cuadrados? 
+ 
+A) 70 · 20 · k 
+B) 70 · 20 + 20 · k + 70 · k 
+C) 2 · (70 · 20 + 20 · k + 70 · k) 
+D) 2 · (70 · 20 + 20 · k) + 70 · k 
+ 
+ 
+Dormitorio Dormitorio 
+Pasadizo 
+Living Comedor 8 cm 
+4 cm 
+12 cm 
+Áreas verdes 
+Piscina 
+Duchas y 
+baños 
+4,5 cm 4,5 cm 
+A B 
+D 
+C 
+k cm 
+20 cm 
+70 cm 
+
+---PAGE_BREAK---
+23 
+ 
+46. Francisco debe enviar por encomienda un objeto delicado, el cual deberá ser embalado 
+en una caja de base cuadrada de 60 cm de lado y 80 cm de altura, pero cinco de las 
+caras de la caja debe estar forrada por bloques de plumavit de 5  cm de ancho,  así 
+como muestra la figura adjunta.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+De acuerdo a la indicación, ¿cuál es el volumen que queda para contener el objeto?  
+          
+ 
+A) 190.500 cm3 
+B) 192.500 cm3 
+C) 197.500 cm3 
+D) 198.750 cm3 
+ 
+ 
+ 
+ 
+47. El perímetro del rectángulo ABCD  de la figura adjunt a es 30 cm y  sus vértices A, B y 
+D son los puntos en que se intersectan las diagonales de tres rectángulos más 
+pequeños, cuyos perímetros suman 20 cm.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuál es la longitud de la línea gruesa que se observa en el contorno de los 
+rectángulos? 
+ 
+ 
+A) 40 cm 
+B) 43 cm 
+C) 45 cm 
+D) 47 cm 
+ 
+60 cm 
+80 cm 
+5 cm 
+60 cm 5 cm 
+D 
+A B 
+C 
+
+---PAGE_BREAK---
+24 
+ 
+48. La banda de música KZX quiere realizar carteles para instalar en la carretera y 
+promocionar su nuevo álbum. Para esto, contratan a una empresa que hace carteles 
+con letras de cobre. La empresa actualmente sólo dispone de 350  metros lineales de 
+cobre, y las dimensiones de las letras se muestran a continuación: 
+ 
+Si todas las letras tendrán la misma altura de 12  m, y tanto la letra K y X son 
+horizontalmente simétricas, ¿cuántos carteles se pueden construir con las medidas 
+anteriores? 
+ 
+ 
+A) 4 
+B) 5 
+C) 6 
+D) 7 
+ 
+ 
+ 
+49. Marco necesita instalar  cerámicas hexagonales regulares  en una habitación 
+rectangular de su casa, tal como se muestra en la figura adjunta. Los lados de todos los 
+hexágonos miden p cm. 
+ 
+¿Cuál es la expresión algebraica que represen ta el  área total  (T) que deberá cubrir 
+Marco con las cerámicas? 
+A) T = 60
+3 p 
+B) T = 120p 
+C) T = 120
+3  p2 
+D) T = 60
+3  p2 
+
+---PAGE_BREAK---
+25 
+ 
+50. La figura adjunta corresponde a un cubo en el cual se han marcado tre s vértices  
+(P, Q y R). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Si mediante trazos se unen estos vértices, ¿qué tipo de triángulo se obtiene? 
+ 
+ 
+A) Isósceles obtusángulo 
+B) Isósceles rectángulo 
+C) Equilátero 
+D) Isósceles ocutángulo 
+ 
+ 
+ 
+ 
+51. Si el vector a = (3, 2) anclado en el origen se  trasladó según el vector u 
+transformándose en (5, 3), entonces ¿cuál es el resultado que se obtiene cuando al 
+vector al vector u  se le resta el vector b = (1, -5)? 
+ 
+A) (3, -4) 
+B) (-2, -1) 
+C) (1, -6) 
+D) (1, 6)  
+ 
+ 
+ 
+52. En el plano cartesiano, A es un punto en el eje x y B es un punto en el eje y, entonces 
+¿a cuánto es igual el producto de las ordenadas de estos puntos? 
+ 
+ 
+A) -2 
+B) -1 
+C)   0 
+D)   1 
+ 
+P 
+Q 
+R 
+
+---PAGE_BREAK---
+26 
+ 
+53. El punto A( -4, 3) se refleja con respecto al eje y, obteniéndose el punto A’. Luego, 
+todos los puntos del plano se trasladan segú n el vector u, por lo que el punto A’ toma 
+la posición A’’(-5, -1). Entonces, ¿cuál es el vector traslación u? 
+ 
+A) (-1, -4) 
+B) (-9, 2) 
+C) (1, -4) 
+D) (-9, -4) 
+ 
+ 
+ 
+ 
+54. El gráfico de la figura adjunta muestra las notas obtenidas por todos los alumnos de un 
+curso, en una prueba de Ciencias Sociales. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+De la información entregada en el gráfico, ¿cuál de las siguientes afirmaciones es 
+correcta? 
+ 
+ 
+A) La tercera parte del curso obtuvo nota 5 
+B) Cuatro de cada diez alumnos obtuvo nota 6 
+C) El 40% de los alumnos obtuvo menos de un 5 
+D) La nota 2 tiene menor frecuencia que la nota 7 
+ 
+ 
+2 
+4 
+6 
+8 
+10 
+2 3 4 5 6 7 Notas 
+N° Alumnos 
+
+---PAGE_BREAK---
+27 
+ 
+55. El ministerio de salud de Chile, realizó una proyección acerca del porcentaje de 
+infectados por el virus de influenza, durante los próximos cinco años, tal como se indica 
+en el siguiente gráfico. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sin embargo, un médico especialista mencionó que, debido a múltiples factores, esta 
+proyección no es exacta. Él recomienda, a partir del tercer año, aumentarla en dos 
+puntos porcentuales.  
+¿Cuál de los siguientes gráficos, describe mejor la proyección propuesta por este 
+médico especialista? 
+ 
+A)                                                                B) 
+                                  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+C)                                                                D) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Porcentaje de la población 
+6% 
+4% 
+3% 
+2026 2027 2028 2029 2030 
+Año 
+2026 2027 2028 2029 2030 
+6,02% 
+4,02% 
+3,02% 
+Porcentaje de la población 
+Año 
+2026 2027 2028 2029 2030 
+6,02% 
+4,02% 
+3,02% 
+6% 
+4% 
+Porcentaje de la población 
+Año Año 
+8% 
+6% 
+5% 
+2026 2027 2028 2029 2030 
+4% 
+Porcentaje de la población 
+2026 2027 2028 2029 2030 
+Porcentaje de la población 
+Año 
+8% 
+6% 
+5% 
+
+---PAGE_BREAK---
+28 
+ 
+56. En el gráf ico adjunto se representan los resultados de una encuesta aplicada a  
+70 empleados de dos empresas. Dicha encuesta tenía relación con actividades físicas 
+desarrolladas durante el fin de semana pasado. 
+ 
+ 
+ 
+ACTIVIDADES FÍSICAS REALIZADAS EL FIN DE SEMANA 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Si cada empleado marcó una sola opción en la encuesta, ¿cuál de las siguientes 
+afirmaciones es verdadera? 
+ 
+ 
+A) Más de la cuarta parte de los empleados realizaron otras actividades o no realizaron 
+ninguna actividad. 
+B) Las tres cuartas partes de los empleados trotaron o anduvieron en bicicleta o 
+jugaron fútbol el fin de semana pasado.  
+C) Más de la mitad de los empleados jugaron fútbol o anduvieron en bicicleta el fin de 
+semana. 
+D) Tres octavos de los empleados trotaron o hicieron otra actividad física el fin de 
+semana. 
+ 
+ 
+ 
+ 
+ 
+Otras actividades 
+físicas  
+10% 
+Ninguna 
+15% 
+Andar en bicicleta 
+30% 
+Jugar fútbol 
+20% 
+Trotar en el parque 
+25% 
+
+---PAGE_BREAK---
+29 
+ 
+57. La tabla adjunta indica el número de horas extras trabajadas en la última semana por 
+un grupo de empleados de una fábrica.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Si la media aritmética de la muestra es 7,2 horas, ¿cuántas personas hacen menos de 
+8 horas extras? 
+ 
+ 
+A) 25 
+B) 15 
+C) 10 
+D)   5 
+ 
+ 
+ 
+ 
+ 
+58. De acuerdo a los 100 datos de la tabla adjunta. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ¿Cuál de las siguientes afirmaciones es verdadera? 
+ 
+ 
+A) El percentil 50 es 55. 
+B) El tercer cuartil se ubica en el intervalo [55, 60[. 
+C) La cantidad de datos que se encuentr an en el segundo intervalo corresponde a un 
+15% del total de datos. 
+D) La cantidad de datos que se encuentran en el tercer intervalo corresponde al 53% 
+del total de datos. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Intervalo Frecuencia Acumulada 
+[40, 45[ 17 
+[45, 50[ 32 
+[50, 55[ 53 
+[55, 60[ 63 
+[60, 65[ 81 
+[65, 70] 100 
+ 
+Intervalo 
+(horas) 
+Frecuencia 
+absoluta 
+[0 – 4[ 15 
+[4 – 8[ m 
+[8 – 12[ 20 
+[12 – 16[ 5 
+ 
+
+---PAGE_BREAK---
+30 
+ 
+59. Los salarios que se pagan en una oficina a sus empleados son 
+ 
+ 
+ 
+ 
+ 
+ 
+Si se decidiera igualar los salarios, conservando la misma cantidad  total de dinero que 
+suman los salarios, entonces ¿cuánto ganaría Miguel? 
+ 
+ 
+A) 4n – 5  
+B) 4n – 3  
+C) 4n 
+D) 4n + 3  
+ 
+ 
+ 
+ 
+ 
+60.  Una empresa Sanitaria capta agua de una fuente natural, la procesa y potabiliza par a 
+abastecer a los clientes. En este procedimiento se deben controlar diversos parámetros 
+que verifiquen que el agua cumpla con las normas establecidas, uno de estos es el 
+color cuya categorización debe ir de 1 a 20 unidades. 
+ 
+El promedio de mediciones diar ias durante la primera quincena de un mes es el 
+siguiente: 9, 9, 5, 3, 1, 5, 8, 1, 3, 1, 9, 10, 10, 2 y 11. 
+ 
+ 
+¿Cuáles de los siguientes valores corresponden a los cuartiles 2 y 3? 
+ 
+ 
+A) Q2 = 8   Q3 = 10 
+B) Q2 = 1   Q3 = 10 
+C) Q2 = 5   Q3 = 9 
+D) Q2 = 5   Q3 = 11,25 
+ 
+ 
+Juan Miguel Carlos Jorge Yolanda 
+5n + 17 2n – 1 5n 4n – 3 4n + 2 
+ 
+
+---PAGE_BREAK---
+31 
+ 
+61. Una encuesta realizada a 25 personas sobre la cantidad de mascotas que tienen en sus 
+hogares muestra los siguientes resultados. 
+ 
+ 
+ 
+ 
+ 
+¿Cuál de las siguientes opciones representa correctamente los datos? 
+ 
+ 
+ 
+A)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+B)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+C)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+D)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+N° de mascotas 0 1 2 3 4 5 
+Personas 3 8 6 4 3 1 
+ 
+0 1 2 3 4 5 
+Cantidad de Mascotas 
+Datos 
+0 1 2 3 4 5 
+Cantidad de Mascotas 
+Datos 
+0 1 2 3 4 5 
+Cantidad de Mascotas 
+Datos 
+0 1 2 3 4 5 
+Cantidad de Mascotas 
+Datos 
+
+---PAGE_BREAK---
+32 
+ 
+62. En las carreras, se dice que un atleta hace un adelantamiento cuando corriendo detrás 
+de otro lo sobrepasa quedando delante de él. El gráfico adjunto muestra la variación de 
+la distancia recorrida por cada uno de cinco atletas que participaron en una carrera de 
+100 metros planos. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+¿Cuántos adelantamientos, después del inicio de la carrera hizo el atleta que llegó en 
+último lugar? 
+ 
+ 
+A) 0 
+B) 1 
+C) 2 
+D) 3  
+ 
+ 
+ 
+ 
+ 
+63. En una encuesta se solicitó a 220 personas que respondiesen la siguiente pregunta: 
+¿Usted practica al gún tipo de actividad física? Los resultados de la encuesta se 
+presentan en la tabla adjunta. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Considerando esta información y escogiendo al azar una persona que practica alguna 
+actividad física, ¿cuál es la probabilidad que sea de sexo masculino? 
+ 
+ 
+A) Es inferior al 42% 
+B) Está entre el 42% y el 46% 
+C) Está entre el 47% y el 51% 
+D) Está entre el 52% y el 56% 
+ 
+ 
+Sexo SI NO 
+Femenino 46 82 
+Masculino 38 54 
+ 
+100 
+12 tiempo (s) 
+distancia (m) 
+
+---PAGE_BREAK---
+33 
+ 
+64. Se tienen 3 tómbolas equiprobables que contienen bolitas rojas y blancas con la 
+siguiente distribución: 
+ 
+Tómbola 1: 2 rojas y 3 blancas 
+Tómbola 2: 3 rojas y 1 blancas 
+Tómbola 3: 4 rojas y 2 blancas 
+ 
+Una tómbola es sorteada y de ella es extraída una bolita al azar , entonces ¿cuál es l a 
+probabilidad que la bolita extraída sea roja? 
+ 
+ 
+A) 
+109
+180  
+B) 
+1
+35  
+C) 
+9
+15  
+D) 
+17
+45  
+ 
+ 
+ 
+65. Se realizó una encuesta a 90 estudiantes del colegio Albatros que están cursando tercer 
+año medio, para saber cuántas horas, en una semana, ingresaban a Instagram, (todos 
+tenían esta aplicación). Los resultados fueron los siguientes: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Según la Academia Americana de Pediatría (AAP), se recomienda que los  
+pre-adolescentes y adolescentes ocupen dicha aplicación entre 1 a 2 horas diarias. 
+Dada esta información, ¿cuántos estudiantes hacen un uso adecuado de la aplicación? 
+ 
+A)   9 
+B) 10 
+C) 11 
+D) 12 
+ 
+Horas semanales 
+en Instagram 
+Número de 
+alumnos y 
+alumnas 
+[8-10[ 2 
+[10-12[ 3 
+[12-14[ 6 
+[14-16[ 6 
+[16-18[ 10 
+[18-20[ 10 
+[20-22[ 20 
+[22-24[ 18 
+24 ó más horas 15 
+ 
+
+---PAGE_BREAK---
