@@ -7,26 +7,26 @@ interface BinaryClassificationGameProps {
   onClose?: () => void;
 }
 
-// Opciones de frutas temporal (verde vs amarillo)
-const GREEN_FRUITS = ['🍏', '🍐', '🥝'];
-const YELLOW_FRUITS = ['🍌', '🍋', '🍍'];
+// Opciones de frutas (Rojo vs Amarillo)
+const RED_FRUITS = ['🍎'];
+const YELLOW_FRUITS = ['🍌'];
 
 interface Item {
   id: string;
   emoji: string;
-  category: 'green' | 'yellow';
+  category: 'red' | 'yellow';
 }
 
 const generateItems = (count: number): Item[] => {
   const items: Item[] = [];
   for (let i = 0; i < count; i++) {
-    const isGreen = Math.random() > 0.5;
-    const emojiList = isGreen ? GREEN_FRUITS : YELLOW_FRUITS;
+    const isRed = Math.random() > 0.5;
+    const emojiList = isRed ? RED_FRUITS : YELLOW_FRUITS;
     const emoji = emojiList[Math.floor(Math.random() * emojiList.length)];
     items.push({
       id: `item-${Date.now()}-${i}`,
       emoji,
-      category: isGreen ? 'green' : 'yellow'
+      category: isRed ? 'red' : 'yellow'
     });
   }
   return items;
@@ -102,7 +102,7 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
   }, [gameState, timeLeft]);
 
   // Manejo de la lógica de clasificación
-  const handleClassification = useCallback((selectedCategory: 'green' | 'yellow') => {
+  const handleClassification = useCallback((selectedCategory: 'red' | 'yellow') => {
     if (gameState !== 'playing' || itemsQueue.length === 0) return;
 
     const currentItem = itemsQueue[0];
@@ -144,7 +144,7 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
     const handleKeyDown = (e: KeyboardEvent) => {
       if (gameState !== 'playing') return;
       if (e.key === 'ArrowLeft') {
-        handleClassification('green');
+        handleClassification('red');
       } else if (e.key === 'ArrowRight') {
         handleClassification('yellow');
       }
@@ -162,19 +162,19 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
           animate={{ opacity: 1, y: 0 }}
           className="text-center max-w-md relative z-10"
         >
-          <div className="w-24 h-24 mx-auto bg-gradient-to-br from-emerald-500 to-yellow-500 rounded-full flex items-center justify-center text-5xl mb-6 shadow-lg shadow-emerald-500/20">
+          <div className="w-24 h-24 mx-auto bg-gradient-to-br from-rose-500 to-yellow-500 rounded-full flex items-center justify-center text-5xl mb-6 shadow-lg shadow-rose-500/20">
             ⚖️
           </div>
-          <h2 className="text-4xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-yellow-400 font-display">
+          <h2 className="text-4xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-rose-400 to-yellow-400 font-display">
             Clasificación Binaria
           </h2>
           <p className="text-slate-400 mb-8 text-lg">
-            ¡Clasifica rápido! Envía a la <span className="text-emerald-400 font-bold">Izquierda</span> las frutas Verdes y a la <span className="text-yellow-400 font-bold">Derecha</span> las Amarillas.
+            ¡Clasifica rápido! Envía a la <span className="text-rose-400 font-bold">Izquierda</span> las Manzanas Rojas y a la <span className="text-yellow-400 font-bold">Derecha</span> los Plátanos.
           </p>
           <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 mb-8 flex justify-center gap-6">
             <div className="text-center">
               <span className="text-2xl block mb-2">⬅️</span>
-              <span className="text-sm text-emerald-400">Verdes</span>
+              <span className="text-sm text-rose-400">Rojas</span>
             </div>
             <div className="text-center">
               <span className="text-2xl block mb-2">➡️</span>
@@ -250,11 +250,11 @@ export default function BinaryClassificationGame({ onWin, onClose }: BinaryClass
             {/* Canasto Izquierdo */}
             <motion.button 
               whileTap={{ scale: 0.9 }}
-              onClick={() => handleClassification('green')}
-              className="w-32 h-32 md:w-40 md:h-40 bg-emerald-900/50 border-4 border-emerald-500 rounded-2xl flex flex-col items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.3)] backdrop-blur-sm"
+              onClick={() => handleClassification('red')}
+              className="w-32 h-32 md:w-40 md:h-40 bg-rose-900/50 border-4 border-rose-500 rounded-2xl flex flex-col items-center justify-center shadow-[0_0_30px_rgba(244,63,94,0.3)] backdrop-blur-sm"
             >
-              <ArrowLeft size={40} className="text-emerald-400 mb-2" />
-              <span className="font-bold text-emerald-200">VERDE</span>
+              <ArrowLeft size={40} className="text-rose-400 mb-2" />
+              <span className="font-bold text-rose-200">ROJO</span>
             </motion.button>
 
             {/* Cinta Transportadora / Cola en el centro */}
