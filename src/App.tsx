@@ -29,6 +29,7 @@ import OABank from './pages/admin/OABank';
 import EssayCreatorPage from './pages/EssayCreatorPage';
 import DossierCreatorPage from './pages/DossierCreatorPage';
 import MapTestPage from './pages/MapTestPage';
+import NaturalNumbersPage from './pages/NaturalNumbersPage';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -111,6 +112,7 @@ function AppRoutes() {
       <Route path="/creador-ensayos" element={<ProtectedRoute><EssayCreatorPage /></ProtectedRoute>} />
       <Route path="/creador-dosier" element={<ProtectedRoute><DossierCreatorPage /></ProtectedRoute>} />
       <Route path="/mapa" element={<ProtectedRoute><MapTestPage /></ProtectedRoute>} />
+      <Route path="/didactica/numeros-naturales" element={<ProtectedRoute><NaturalNumbersPage /></ProtectedRoute>} />
 
       {/* Catch all */}
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

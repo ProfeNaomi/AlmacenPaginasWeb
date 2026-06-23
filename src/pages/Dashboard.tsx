@@ -139,6 +139,21 @@ export default function Dashboard() {
               <p className="text-sm text-slate-400">Lienzo drag & drop para armar material educativo visual e interactivo de forma modular.</p>
             </div>
           </motion.div>
+
+          {/* Nueva herramienta didáctica */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            onClick={() => navigate('/didactica/numeros-naturales')}
+            className="bg-slate-800 border border-slate-700 hover:border-pink-500/50 rounded-2xl p-6 cursor-pointer flex items-start space-x-4 transition-colors shadow-lg md:col-span-2 lg:col-span-1"
+          >
+            <div className="bg-pink-500/20 p-3 rounded-xl shrink-0">
+              <BookOpen className="w-6 h-6 text-pink-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">Laboratorio: Números Naturales</h3>
+              <p className="text-sm text-slate-400">Construye el concepto de adición de forma visual y kinestésica.</p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
