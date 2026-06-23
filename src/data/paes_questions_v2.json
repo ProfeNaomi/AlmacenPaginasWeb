@@ -1,0 +1,1424 @@
+[
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_1",
+    "text": "1. \nUna persona selecciona un número de dos dígitos, luego resta este número a 200  \ny, finalmente, duplica el resultado. ¿Cuál es el mayor número que puede obtener mediante esta serie de operaciones?",
+    "options": {
+      "A": "220",
+      "B": "301",
+      "C": "380",
+      "D": "398"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_2",
+    "text": "2. \n¿Cuál es el valor de \n\n\n01\n,0 02\n,0\n002\n,0\n?",
+    "options": {
+      "A": "04\n,0",
+      "B": "004\n,0",
+      "C": "0004\n,0",
+      "D": "000004\n,0"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_3",
+    "text": "3. \n¿Cuál es el valor de \n2\n2\n2\n)1,0\n(\n)1\n(\n1\n\n\n\n?",
+    "options": {
+      "A": "01\n,0",
+      "B": "2\n,0",
+      "C": "01\n,2",
+      "D": "1,2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_4",
+    "text": "4. \nSi la suma de 3 números enteros consecutivos es igual a p, ¿cuál de las \nsiguientes afirmaciones es siempre verdadera respecto al valor de p?",
+    "options": {
+      "A": "Es un número impar.",
+      "B": "Es un múltiplo de 3.",
+      "C": "Es un número positivo.",
+      "D": "Es un número distinto de cero."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_5",
+    "text": "5. \nUna aplicación de celular dispone al usuario una rutina de ejercicios distinta cada \ndía. Esta aplicación es gratuita por un mes, pero luego se debe pagar una \nsuscripción. Para esta aplicación existen dos formas de pago:  Suscripción mensual: \n000\n10\n$\n al inicio de cada mes  Suscripción por 12  meses: \n000\n96\n$ Si una persona escogió la suscripción mensual, ¿cuántos meses como máximo \npuede pagar para que esta sea económicamente más conveniente que la \nsuscripción por 12  meses?",
+    "options": {
+      "A": "9  meses",
+      "B": "10  meses",
+      "C": "11 meses",
+      "D": "13  meses"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_6",
+    "text": "6. \nEn la tabla adjunta se presenta la cantidad de metros cuadrados recomendados \npara la crianza de cerdo de acuerdo con su masa. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nSi se quiere hacer un chiquero para 12  cerdos del tipo Göttingen, que llegan a \ntener una masa de entre \nkg\n35\n y \nkg\n45\n en edad adulta, ¿cuál es la cantidad \nmínima de metros cuadrados que debe tener el chiquero para cumplir con la \nrecomendación? Masa del cerdo \nCantidad mínima de metros cuadrados por cerdo Menos de \nkg\n10\n \n15\n,0 Entre \nkg\n10\n y \nkg\n20\n \n2\n,0 Entre \nkg\n20\n y \nkg\n30\n \n3,0 Entre \nkg\n30\n y \nkg\n50\n \n4\n,0 Entre \nkg\n50\n y \nkg\n85\n \n55\n,0 Entre \nkg\n85\n y \nkg\n110\n \n65\n,0 kg\n110\n o más \n1",
+    "options": {
+      "A": "4\n,2",
+      "B": "6\n,3",
+      "C": "8,4",
+      "D": "6,6"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_7",
+    "text": "7. \nUna empresa decide registrar mensualmente la variación de la masa total de los \nmetales almacenados en su bodega. El primer mes aumentó en 2  toneladas la \nmasa almacenada, en el segundo mes disminuyó en 4  toneladas la masa \nalmacenada, el tercer mes aumentó en 3 toneladas la masa almacenada y el \ncuarto mes aumentó en 1 tonelada la masa almacenada. Al finalizar el cuarto mes \nla masa total de los metales en la bodega es de 70 toneladas. \n \n \nDel departamento de ventas de la empresa necesitan saber la cantidad de \ntoneladas de metal que había antes de comenzar los registros para completar el \nregistro. ¿Cuántas toneladas de metal habían almacenadas inicialmente en la bodega?",
+    "options": {
+      "A": "66 toneladas",
+      "B": "68 toneladas",
+      "C": "70 toneladas",
+      "D": "74 toneladas"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_8",
+    "text": "8. \nLa temperatura en una cámara de frigorífico es de \nC\n12 \n. Se necesita variar esta \ntemperatura hasta alcanzar los \nC\n36 \n\n.  \n \n \nSi la temperatura desciende \nC\n3 \n cada cinco minutos, ¿cuánto tiempo se tardará \nen alcanzar dicha temperatura?",
+    "options": {
+      "A": "85  minutos",
+      "B": "80  minutos",
+      "C": "60  minutos",
+      "D": "48 minutos"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_9",
+    "text": "9. \nUna estudiante dedica en total \nh\n6\n a estudiar los primeros cinco días de la semana \ny las distribuye de la siguiente manera: Lunes \nMartes \nMiércoles \nJueves \nViernes Matemática \nFísica \nLenguaje \nFísica \nHistoria 1 h \n1 h \n2 h \n1  h \n1 h El sábado estudiará \nh\n3\n dividiendo ese tiempo en estudiar Matemática, Física y \nLenguaje. Esa división del tiempo la hace de modo que sea proporcional a las \nhoras de estudio de los días lunes, martes y miércoles. ¿Cuánto tiempo estudiará Matemática el día sábado?",
+    "options": {
+      "A": "min\n20",
+      "B": "min\n30",
+      "C": "min\n45",
+      "D": "min\n60"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_10",
+    "text": "10. Una pelota se deja caer desde una altura de \ncm\n100\n. Después de cada rebote la 4  de la altura anterior. altura máxima alcanzada por la pelota es 5 En el tercer rebote, ¿cuál es la altura máxima que alcanzará la pelota,  aproximada \nal entero más cercano?",
+    "options": {
+      "A": "cm\n51",
+      "B": "cm\n64",
+      "C": "cm\n80",
+      "D": "cm\n96"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_11",
+    "text": "11. ¿Cuál es el  %\n1\n del \n%\n200\n de 200 ?",
+    "options": {
+      "A": "4,0",
+      "B": "4",
+      "C": "40",
+      "D": "400"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_12",
+    "text": "12. Considera los números enteros positivos menores o iguales que 50 . \n \n \n¿Cuál es el porcentaje de estos números que son múltiplos de 8?",
+    "options": {
+      "A": "%\n10",
+      "B": "%\n12",
+      "C": "%\n5,\n12",
+      "D": "%\n5,\n16"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_13",
+    "text": "13. Una empresa de bebidas dispone de 2000  litros de agua para la producción de sus productos. Esta agua tiene que ser purificada y en este proceso se pierde un %\n12\n del agua. ¿Cuál es la cantidad de litros de agua que quedan luego de ser purificada?",
+    "options": {
+      "A": "168",
+      "B": "240",
+      "C": "1760",
+      "D": "1988"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_14",
+    "text": "14. Una radio que transmite 24  horas al día clasifica su tiempo al aire de la siguiente \nmanera: Tiempo al aire \nPorcentaje Programas de conversación en vivo \n35 % Comerciales de los auspiciadores \n15 % Música envasada \n50 % Por falta de presupuesto, se aumenta el tiempo de comerciales de los \nauspiciadores en 2  horas. ¿Cuál es el nuevo porcentaje de las 24  horas al día destinado a comerciales de \nlos auspiciadores?",
+    "options": {
+      "A": "%\n3\n8,\n15",
+      "B": "%\n17",
+      "C": "%\n3\n,\n23",
+      "D": "%\n70"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_15",
+    "text": "15. En una tienda de artículos de aseo, un producto tiene un precio de \n500\n1\n$\n. El dueño de la tienda decide aplicarle un \n%\n20\n de descuento. A la semana siguiente, el dueño de la tienda aplica otra rebaja al precio ya rebajado \ndel producto, de un \n%\n30\n. \n \n \n¿Cuál es el precio final del producto?",
+    "options": {
+      "A": "410\n1\n$",
+      "B": "840\n$",
+      "C": "750\n$",
+      "D": "600\n$"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_16",
+    "text": "16. En una panadería, un kilogramo de pan cuesta actualmente 1800\n$\n, pero su precio \nsubirá un \n%\n20\n. Si se compraran x  kilogramos de pan después del aumento del precio, ¿cuál de \nlas siguientes expresiones correspondería al monto total, en pesos, que se \npagaría?",
+    "options": {
+      "A": "x\n20\n800\n1\n\n",
+      "B": "x\n2,0\n800\n1\n\n",
+      "C": "x\n820\n1\n",
+      "D": "x\n160\n2\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_17",
+    "text": "17. En la tabla adjunta se presentan algunas unidades de distancia utilizadas en el \nSistema Internacional y su equivalencia en metros. Unidad \nSímbolo \nEquivalencia en metros Yottametro \nYm \n1 000 000 000 000 000 000 000 000  m Zettametro \nZm \n1 000 000 000 000 000 000 000  m Exámetro \nEm \n1 000 000 000 000 000 000  m Petámetro \nPm \n1 000 000 000 000 000  m Terámetro \nTm \n1 000 000 000 000  m Gigámetro \nGm \n1 000 000 000  m Megámetro \nMm \n1 000 000  m Kilómetro \nKm \n1 000  m Ym\n1\n\n? Em\n1\nZm\n1 ¿Cuál es el resultado de la operación \nPm\n1",
+    "options": {
+      "A": "6\n10\n1 ",
+      "B": "3\n10\n2 ",
+      "C": "9\n10\n1 ",
+      "D": "35\n48\n10\n1   6 2\n?"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_18",
+    "text": "18. ¿Cuál es el resultado de \n8 2 1",
+    "options": {
+      "A": "2\n2",
+      "B": "4\n3",
+      "C": "14\n2",
+      "D": "2\n2 5 \n\n\n 3\n2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_19",
+    "text": "19. Considera la expresión \n3 \n. E \n\n\n 8 15 ¿Cuál de las siguientes expresiones representa un número entero menor que 200 ?",
+    "options": {
+      "A": "E\n288 ",
+      "B": "E\n125 ",
+      "C": "E\n250 ",
+      "D": "E\n144 "
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_20",
+    "text": "20. Camilo le propone a su mamá que cada día ella le deposite en una alcancía el \ndoble de la cantidad depositada el día anterior. La mamá acepta la propuesta, pero \nsolo hasta haberle depositado diez veces. \n \n \nSi la mamá comienza depositándole 20\n$\n, ¿cuánto le depositará al décimo día?",
+    "options": {
+      "A": "180\n$",
+      "B": "200\n$",
+      "C": "240\n10\n$",
+      "D": "480\n20\n$"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_21",
+    "text": "21. El tiempo máximo en microsegundos que tarda un programa de computador en \nordenar alfabéticamente una lista con n  nombres se puede modelar mediante la expresión \nn\nn\n001\n,0\n\n\n. \n \n \nSi una lista tiene \n000\n10\n nombres, ¿cuántos microsegundos tardará como máximo \nel programa en ordenar alfabéticamente los nombres de esta lista?",
+    "options": {
+      "A": "10",
+      "B": "1000",
+      "C": "000\n10",
+      "D": "000\n50"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_22",
+    "text": "22. Una persona diseña un programa computacional que crea una copia de todos los \narchivos del computador cada una hora. \n \n \nLa persona ejecuta el programa en su computador y al cabo de m  horas este posee un total de \nm\n2\nk \n archivos, con m  y k  números enteros positivos. \n \n \nSi la persona durante ese tiempo no elimina ni adiciona archivos, ¿cuál de las \nsiguientes afirmaciones es siempre verdadera?",
+    "options": {
+      "A": "k  es el tiempo que el programa tarda en llenar totalmente el disco duro del \ncomputador.",
+      "B": "m\n2\n representa la cantidad de veces que el programa copia todos los \narchivos.",
+      "C": "1\nm\n2\nk\n\n\n representa el total de archivos nuevos que se crearon con el \nprograma.",
+      "D": "k  corresponde a la cantidad inicial de archivos que posee el computador \nantes de ejecutar el programa."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_23",
+    "text": "23. Una persona compró cierta cantidad de un mismo artículo con \n000\n350\n$\n, sin ningún \ntipo de descuento y no le sobró dinero. \n \n \nSi cada artículo tiene precio A\n$\n, ¿cuántos artículos compró? 000\n350",
+    "options": {
+      "A": "A",
+      "B": "A\n000\n350",
+      "C": "A\n000\n350\n A",
+      "D": "000\n350"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_24",
+    "text": "24. ¿Cuál de las siguientes expresiones representa la tercera parte del sucesor de p ?",
+    "options": {
+      "A": "1\n3\np ",
+      "B": "\n1\np\n3\n",
+      "C": "3\n1\np  1\np ",
+      "D": "3"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_25",
+    "text": "25. Para envasar cierta cantidad de agua mineral se necesitan 80  contenedores de 200  litros de capacidad cada uno. ¿Cuántos contenedores de 50  litros de capacidad se necesitarán para envasar \nla misma cantidad de agua?",
+    "options": {
+      "A": "20",
+      "B": "125",
+      "C": "320",
+      "D": "000\n12"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_26",
+    "text": "26. Una persona gastó \n\n1600\na\n$\n\n en ocho días.  \n \n \nSi todos los días gastó lo mismo, ¿cuál de las siguientes expresiones representa lo \nque gastó la persona en dos días?",
+    "options": {
+      "A": "\n\n\n\n400\na\n4\n1\n$",
+      "B": "\n\n\n\n1600\na\n4\n1\n$",
+      "C": "\n\n400\na\n2\n$\n",
+      "D": "\n\n200\na\n2\n$\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_27",
+    "text": "27. Considera el siguiente gráfico en el que se presenta un modelo para la relación \nentre la cantidad de kilogramos de lentejas que se venden a granel en un almacén \ny su monto total a pagar. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuántos kilogramos de lentejas compró en total una persona que pagó 3300\n$\n?\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p22_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "kg\n2",
+      "B": "kg\n2,2",
+      "C": "kg\n3,2",
+      "D": "kg\n5,2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_28",
+    "text": "28. Bajo ciertas condiciones, la cantidad de kilómetros recorridos por un automóvil es \ndirectamente proporcional a la cantidad de litros de combustible que consume. Si un automóvil que cumple estas condiciones recorre 90  kilómetros con 15  litros \nde bencina, ¿cuántos kilómetros puede recorrer este automóvil con 25 litros de \nbencina?",
+    "options": {
+      "A": "54",
+      "B": "60",
+      "C": "135",
+      "D": "150"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_29",
+    "text": "29. En una carrera se reparte un total de \n000\n12\n dólares a las primeras cuatro \npersonas que lleguen a la meta. Este reparto se realiza a razón de \n1\n:\n2\n:\n3\n:\n6\n de \nmodo que mientras mejor haya sido la posición de llegada, más dinero se gana. \n \n \n¿Cuál es la cantidad que le corresponde a la persona que llegó en segundo lugar?",
+    "options": {
+      "A": "2000  dólares",
+      "B": "3000  dólares",
+      "C": "4000  dólares",
+      "D": "6000  dólares"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_30",
+    "text": "30. ¿Cuál es la solución de la ecuación \n2\n3\nx\n3\n2\n\n\n?",
+    "options": {
+      "A": "0 1",
+      "B": "6 1\n",
+      "C": "",
+      "D": "6\n5"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_31",
+    "text": "31. Al finalizar un trayecto, la cantidad L  de litros de combustible que quedan en el \nestanque de cierto vehículo, está dada por la expresión: x\n1,0\nc\nL\n\n\n\n \n \n \nen la que c  es la cantidad de litros que tenía el estanque de este vehículo al iniciar \nel trayecto, x  es la cantidad de kilómetros que recorrió el vehículo y \n1,0  es una \nconstante medida en litros por kilómetro. \n \n \nEste vehículo, al iniciar el trayecto tenía en el estanque 50  litros y al finalizarlo \ntenía 30  litros. \n \n \n¿Cuántos kilómetros recorrió el vehículo en ese trayecto?",
+    "options": {
+      "A": "800",
+      "B": "250",
+      "C": "200",
+      "D": "2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_32",
+    "text": "32. Una torta está formada por capas alternadas de bizcocho y de manjar, de modo \nque la capa inferior y la capa superior tienen que ser de bizcocho. Si cada capa de bizcocho tiene una masa de \ng\n100\n y cada capa de manjar tiene \nuna masa de \ng\n150\n, ¿cuántas capas de manjar, como máximo, puede tener una \ntorta para que esta no supere los \ng\n700\n de masa?",
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "4",
+      "D": "5"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_33",
+    "text": "33. Al organizar un seminario, una persona recibe dos ofertas de dos centros de \neventos. El primero, cobra  2000\n$\n por invitado, más un cargo fijo de \n000\n520\n$\n. El segundo, cobra 5000\n$\n por invitado, más un cargo fijo de \n000\n310\n$\n. \n \n \n¿Cuántos invitados como mínimo deberían asistir al evento, para que el segundo \ncentro de eventos sea más caro?",
+    "options": {
+      "A": "70",
+      "B": "71",
+      "C": "118",
+      "D": "119"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_34",
+    "text": "34. Se hace una colecta para recaudar fondos, logrando recaudar \n000\n30\n$\n con          \n150  monedas de dos valores distintos. \n \n \nEl siguiente sistema de ecuaciones es un modelo para determinar la cantidad de \nmonedas de cada tipo: 150\ny\nx\n\n\n \n000\n30\ny\n50\nx\n500\n\n ¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": {
+      "A": "x  e y  corresponden a la cantidad de monedas de \n500\n$\n y de \n50\n$\n, \nrespectivamente.",
+      "B": "Hay exactamente 500  monedas del tipo x  y 50  monedas del tipo y .",
+      "C": "Al considerar una moneda de cada tipo el valor total es 150\n$\n.",
+      "D": "Considerando solo las monedas de 500\n$\n se juntan 5000\n$\n."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_35",
+    "text": "35. En una tienda de ropa se necesita incorporar las ventas por Internet con reparto \na domicilio para aumentar sus ventas. Para el reparto se necesita contratar los \nservicios de una empresa de vehículos de transporte y la tienda recibe dos \ncotizaciones:  Cobro empresa A en un mes: \n4000\nt\n3\n4000\n)t(\nC\n\n\n  Cobro empresa B en un mes: \nt\n2000\n)t(\nC\n\n con t  el tiempo de uso del servicio, en horas, y \n)t(\nC\n el costo del servicio, en \npesos. ¿Cuánto tiempo se debe usar el servicio en cada empresa para que el costo sea \nel mismo?",
+    "options": {
+      "A": "2,1\nhoras",
+      "B": "2 horas",
+      "C": "6  horas",
+      "D": "12  horas"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_36",
+    "text": "36. El Índice de Masa Corporal (IMC) de una persona se relaciona con su masa, \nmedida en kilogramos, y su estatura, medida en metros, a través de la expresión: IMC\nestatura\nmasa\n2 \n Si una persona tiene una masa de \nkg\n54\n y tiene un \n24\nIMC \n, ¿cuál es su \nestatura según este modelo?",
+    "options": {
+      "A": "m\n05\n,1",
+      "B": "m\n125\n,1",
+      "C": "m\n5,1",
+      "D": "m\n25\n,2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_37",
+    "text": "37. Una empresa ha desarrollado la fórmula \n\n\n000\n000\n1\n12\nx\n2\n1\n)\nx\n(\nU\n2 \n\n\n\n que le permite conocer la utilidad que tendrá, en pesos, al vender x  unidades de un \nartículo. \n \n \n¿Cuántos artículos se deben vender para que la utilidad de la empresa sea de 000\n000\n1\n$\n?",
+    "options": {
+      "A": "6",
+      "B": "12",
+      "C": "13",
+      "D": "14"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_38",
+    "text": "38. En el siguiente gráfico se representa la rapidez de un automóvil a control remoto a \nmedida que transcurre el tiempo. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuál de las siguientes afirmaciones se puede deducir del gráfico? Tiempo en segundos\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p31_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "Entre los \ns\n3\n y \ns\n7\n el automóvil está detenido.",
+      "B": "El automóvil cambia de dirección cuatro veces.",
+      "C": "La distancia total recorrida por el automóvil es \nkm\n20\n.",
+      "D": "Entre los \ns\n8\n y \ns\n10\n el automóvil disminuye su rapidez."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_39",
+    "text": "39. La relación entre el puntaje que una persona obtiene en cierta prueba y su nota está dada por la siguiente expresión: \n2\n14\npuntaje\nNOTA\n\n\n. ¿Cuál de las siguientes afirmaciones es verdadera respecto a esta prueba?",
+    "options": {
+      "A": "Para una nota 5,3\n se necesita obtener un puntaje de 35  puntos.",
+      "B": "Con 50  puntos se obtiene una nota superior a 6 .",
+      "C": "Cuando el puntaje aumenta en un punto, la nota aumenta en 2 .",
+      "D": "La mínima nota que se puede obtener en la prueba es un 2 ."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_40",
+    "text": "40. En un computador se simula el lanzamiento de un objeto desde una altura de cm cm\n8\n. La altura, en \n, que alcanza dicho objeto se modela por la función f definida por \n8\nt2\nt\n)t(\nf\n2\n\n\n\n\n, tal que t  representa el tiempo transcurrido desde \nel lanzamiento, en s . ¿A qué altura se encontraría el objeto a los \ns\n3\n de ser lanzado?",
+    "options": {
+      "A": "cm\n5",
+      "B": "cm\n8",
+      "C": "cm\n13",
+      "D": "cm\n23"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_41",
+    "text": "41. Una persona necesita medir la altura de un árbol, para lo cual usa un medidor de \ndistancia láser de la siguiente manera:  primero, se aleja del árbol \nm\n12\n en un tramo de camino recto y perfectamente \nhorizontal. \n segundo, utiliza el medidor de distancia láser a ras del suelo apuntando al \nextremo superior del árbol el cual registra una distancia de \nm\n15\n. \n \n \nEn la figura adjunta se representa la situación anterior. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuál es la altura del árbol? 12 m\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p33_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "m\n9",
+      "B": "m\n5,\n13",
+      "C": "m\n15",
+      "D": "m\n369"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_42",
+    "text": "42. La medida d  del diámetro de un círculo inscrito en un triángulo rectángulo se puede \ndeterminar con la fórmula de Poncelet: d\nc\nb\na\n\n\n en la cual  y b son las medidas de los catetos del triángulo y c  es la medida de la \nhipotenusa. a Si las medidas de los catetos de un triángulo rectángulo son \ncm\n8\n y \ncm\n6\n, ¿cuál \nes el perímetro del círculo inscrito en él?",
+    "options": {
+      "A": "cm\nπ",
+      "B": "cm\nπ\n2",
+      "C": "cm\nπ\n4",
+      "D": "cm\nπ\n8"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_43",
+    "text": "43. Una fábrica de espejos recibe un pedido para elaborar varios tamaños de espejos, \ncon la particularidad de que todos deben ser cuadrados y que en las esquinas se \nsobrepongan triángulos rectángulos de madera iguales entre sí, como el que se \nrepresenta en la figura adjunta. Considera m  y n  como las distintas medidas que pueden tener los catetos de los \ntriángulos de madera y p  como las distintas medidas que puede tener el lado del \nespejo. Si todas las medidas están en cm, ¿cuál de las siguientes fórmulas permite determinar el área \nS  que ocupa el vidrio que se ve en cada espejo, en \n2\ncm ?\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p35_1.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "n\nm\n4\np\nS\n2\n\n\n\n",
+      "B": "n\nm\n4\np\nS\n2\n\n\n\n",
+      "C": "n\nm\n2\np\nS\n2\n\n\n\n",
+      "D": "n\nm\n2\np\nS\n2\n\n\n\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_44",
+    "text": "44. Se tiene un paralelepípedo recto de base cuadrada de lado \ncm\n5\n y altura \ncm\n8\n. Si se aumentan al doble las medidas de sus aristas, ¿cuál es el volumen del nuevo \nprisma?",
+    "options": {
+      "A": "3\ncm\n400",
+      "B": "3\ncm\n800",
+      "C": "3\ncm\n1600",
+      "D": "3\ncm\n000\n40"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_45",
+    "text": "45. En la siguiente imagen se presenta un diseño de un módulo formado por bloques \nde vidrio y un bloque de cemento. Los módulos se utilizan para hacer una pared \ndecorativa. Cada bloque de vidrio tiene una cara con forma cuadrada con lado de \ncm\n20\n. \n \nLa durabilidad de este módulo depende de su densidad y, para obtenerla, se \nrequiere conocer el volumen del bloque de vidrio que tiene. \n \n \n¿Cuál es el volumen de los bloques de vidrio en cada módulo? 3\ncm\n400\n38\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p37_1.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "3\ncm\n200\n35",
+      "B": "3\ncm\n000\n32",
+      "C": "3\ncm\n800\n12",
+      "D": "R\n4\n3\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_46",
+    "text": "46. El volumen de una esfera y de un cono están dados por las expresiones \n3 h\nr2\n\n, respectivamente, con R  el radio de la esfera, r  el radio basal del cono y \n3 y h  la altura del cono. Si se designa por M  al volumen de la esfera, ¿cuál de las siguientes \nexpresiones representa al volumen de un cono cuya altura y radio basal tienen \nla misma medida que el radio de la esfera? M",
+    "options": {
+      "A": "4",
+      "B": "4\nM\n3",
+      "C": "M",
+      "D": "M\n4"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_47",
+    "text": "47. El punto \n\n3\n,2 \n es un vértice común de cuatro cuadrados cuyos lados miden         \n2 unidades y son paralelos a los ejes coordenados del plano cartesiano. ¿Cuál de las siguientes coordenadas podría corresponder a un vértice de alguno \nde los cuadrados?",
+    "options": {
+      "A": "\n\n2\n,2 ",
+      "B": "\n\n5\n,4 ",
+      "C": "\n\n3\n,1 \n",
+      "D": "\n1\n,2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_48",
+    "text": "48. Una figura se mueve con las siguientes transformaciones isométricas desde su \nposición inicial hasta su posición final como se presenta en la figura adjunta. 1) La figura en la posición inicial se rota en \n\n90  en sentido horario con centro de \nrotación el centro de la figura. \n2) Luego, se traslada 2 metros hacia el sur y 6  metros al este. \n3) Por último, se vuelve a rotar en \n\n90  en sentido horario con centro de rotación el \ncentro de la figura, resultando la figura en la posición final. ¿Cuál de las siguientes secuencias de transformaciones isométricas permite \nvolver a dejar la figura en la posición inicial?\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p39_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "Rotar en \n\n180  en sentido horario con centro de rotación el centro de la \nfigura y luego trasladar 2 metros al norte y 6  metros al oeste.",
+      "B": "Rotar en \n\n180  en sentido horario con centro de rotación el centro de la \nfigura y luego trasladar 2 metros al sur y 6  metros al este.",
+      "C": "Rotar en \n\n90  en sentido antihorario con centro de rotación el centro de la \nfigura y luego trasladar 2 metros al sur y 6  metros al este.",
+      "D": "Rotar en \n\n90  en sentido antihorario con centro de rotación el centro de la \nfigura y trasladar 2 metros al norte y 6  metros al oeste."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_49",
+    "text": "49. Se quiere obtener el punto \n)1\n,\n12\n(\n a partir del punto \n)\n5\n,3\n(\n mediante cuatro \ntransformaciones isométricas. Para esto se efectuaron los siguientes pasos, \ncometiendo un error en uno de ellos. Paso 1:  al punto \n)\n5\n,3\n(\n se le aplica una reflexión con respecto al \nY\neje\n, obteniendo el punto \n)\n5\n,3\n(\n. Paso 2: al punto \n)\n5\n,3\n(\n se le aplica una traslación según el vector \n)\n7\n,2\n(\n, obteniendo el punto \n)\n12\n,1(\n. Paso 3: al punto \n)\n12\n,1(\n se le aplica una rotación en \n\n90  en sentido antihorario con centro en el origen, obteniendo el punto \n)1\n,\n12\n(\n\n. Paso 4: al punto \n)1\n,\n12\n(\n\n se le aplica una reflexión con respecto al \nX\neje\n, obteniendo el punto \n)1\n,\n12\n(\n. ¿En cuál de los pasos se cometió el error?",
+    "options": {
+      "A": "En el Paso 1",
+      "B": "En el Paso 2",
+      "C": "En el Paso 3",
+      "D": "En el Paso 4"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_50",
+    "text": "50. La siguiente imagen corresponde a un aparato que se usa para copiar dibujos, \npues refleja el dibujo original de modo que el usuario logra realizar el dibujo en otro \npapel, de manera invertida. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuál de las siguientes letras se lee igual al ser copiada en papel con este aparato \nsi se coloca al lado izquierdo del papel?\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p41_1.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "S",
+      "B": "M",
+      "C": "b",
+      "D": "Q"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_51",
+    "text": "51. En un juego se sacan tarjetas al azar de un mazo que incluyen dos movimientos \nque debe realizar una ficha en un tablero cuadriculado. En la figura adjunta se \npresenta un ejemplo de un movimiento realizado con una de las tarjetas. La ficha de un jugador se encuentra en la casilla inicial que se encuentra en el \ncentro del tablero y se mueve según la siguiente secuencia de tarjetas: \n \n \n \n \n \n \n \n \nAl sacar otra tarjeta, y realizar el movimiento correspondiente, la ficha del jugador \nvuelve a la casilla inicial. \n \n \n¿Cuál fue la cuarta tarjeta que sacó?\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p42_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p42_2.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p42_3.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p42_4.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p42_5.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-06-22-paes-invierno-oficial-matematica1-p2024_p42_6.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "B)",
+      "C": "D)"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_52",
+    "text": "52. Ingrid representa las medidas de su casa en un plano a una escala en \n100\n:\n1\n. \n \n \n¿Cuál de las siguientes fórmulas permitió a Ingrid llevar las medidas de su casa a \nlas medidas en el plano? 100\nplano\nel\nen\nMedidas\n",
+    "options": {
+      "A": "realidad\nla\nen\nmedida",
+      "B": "\n100\nrealidad\nla\nen\nmedida\nplano\nel\nen\nMedidas\n\n realidad\nla\nen\nmedida\nplano\nel\nen\nMedidas\n",
+      "C": "2\n100 realidad\nla\nen\nmedida\nplano\nel\nen\nMedidas\n",
+      "D": "100"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_53",
+    "text": "53. En un taller de instrumentos se construirá una guitarra utilizando un plano que está \nen escala \n8\n:\n1\n. En el plano, el largo del mástil de la guitarra es de \nmm\n95\n. ¿Cuál debe ser el largo del mástil de la guitarra que se construirá?",
+    "options": {
+      "A": "cm\n103",
+      "B": "cm\n5,\n85",
+      "C": "cm\n76",
+      "D": "cm\n55\n,8"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_54",
+    "text": "54. Un edificio vertical al suelo da una sombra de 12  metros, mientras que a la misma \nhora un árbol, que está en una posición vertical al suelo, y cuya altura es              \nde 4 metros proyecta una sombra de 3 metros. ¿Cuál de las siguientes igualdades permite determinar la altura x , en metros, del \nedificio?",
+    "options": {
+      "A": "x\n12\n4\n3  x\n4\n3 ",
+      "B": "12",
+      "C": "x\n9\n4\n3 ",
+      "D": "9\nx\n4\n3 "
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_55",
+    "text": "55. Un carpintero construye una estantería triangular con repisas paralelas entre sí y \nde diferentes longitudes, tal como se representa en la figura adjunta. 12 cm 24 cm x 12 cm 28 cm ¿Cuál es la medida x  en la repisa de la estantería que el carpintero debe \nconstruir?",
+    "options": {
+      "A": "cm\n14",
+      "B": "cm\n16",
+      "C": "cm\n21",
+      "D": "cm\n56"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_56",
+    "text": "56. En el taller de literatura de un colegio, se les preguntó a los 25 estudiantes cuántos \ndías tardaron en leer un libro. En base a las respuestas de los estudiantes se armó  \nla siguiente tabla que está incompleta: \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuántos estudiantes se demoraron tres días en leer el libro? Cantidad de días \nFrecuencia \nFrecuencia relativa 1 \n2 \n08\n,0 2 \n4 \n16\n,0 3 4 \n9 \n36\n,0 5 \n12\n,0 Total \n25 \n1",
+    "options": {
+      "A": "5",
+      "B": "7",
+      "C": "8",
+      "D": "10"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_57",
+    "text": "57. En la siguiente tabla se presenta la cantidad de hijos que tienen las familias que \nviven en un edificio: Cantidad de hijos \nFrecuencia 0 \n6 1 \n3 2 \n2 3 \n3 4 \n1 ¿Cuántas familias viven en total en ese edificio?",
+    "options": {
+      "A": "5",
+      "B": "10",
+      "C": "15",
+      "D": "20"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_58",
+    "text": "58. Las calificaciones obtenidas por cinco estudiantes en una evaluación de \nmatemática están registradas en la siguiente tabla: \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nEl profesor ajusta las calificaciones obtenidas por cada estudiante de modo que la Estudiante \nCalificación Isabel \n0\n,5 Gaspar \n0,4 Baltazar \n0,4 Camila \n0\n,3 Claudia \n0,4 calificación máxima sea \n0,6\n, para ello utilizará la relación \np\n5\n6\nN \n, tal que N  es la nueva calificación y p es la calificación actual obtenida por cada estudiante en la \ntabla.  \n \n \n¿Cuál es el nuevo promedio de las calificaciones de estos estudiantes?",
+    "options": {
+      "A": "0,6",
+      "B": "8,4",
+      "C": "0\n,4",
+      "D": "0,2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_59",
+    "text": "59. En el gráfico adjunto se representan los resultados de una encuesta aplicada a los 50  estudiantes de dos cuartos medios de un colegio. Dicha encuesta tenía relación \ncon la creación de un taller literario. 4 % 8 % 30 % Totalmente en desacuerdo En desacuerdo 8 % Ni de acuerdo ni en desacuerdo De acuerdo 50 % Totalmente de acuerdo Si cada estudiante marcó una sola opción en la encuesta, ¿cuál de las siguientes \nafirmaciones es verdadera?",
+    "options": {
+      "A": "Más de la cuarta parte de los estudiantes están “totalmente en desacuerdo” \ncon la creación del taller.",
+      "B": "Más de la mitad de los estudiantes respondieron “en desacuerdo” en la \nencuesta.",
+      "C": "Las tres quintas partes de los estudiantes están “totalmente en desacuerdo” \ncon la creación del taller.",
+      "D": "La octava parte de los estudiantes respondieron “ni de acuerdo ni en \ndesacuerdo” con la creación del taller."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_60",
+    "text": "60. Un grupo de adolescentes se inscribió para recibir un regalo de Navidad. La \nentidad encargada de comprar los regalos necesita saber la cantidad de \nadolescentes que hay por cada una de las edades para hacerles regalos distintos \npor edad. Para ello, les preguntan qué edad tienen, registrando la siguiente lista: 15 , 15 , 14 , 14 , 15 , 15 , 15 , 12 , 12 , 13 , 13 , 13 , 13 , 13 , 13 , 13 , 13 , 13 , 14 , 14 , 14 , 12 , 13 , 14 , 14 , 14 , 14 , 14 , 14 , 14 , 14 , 14 , 14 , 14 , 14 , 14  y 12 . ¿Para qué adolescentes se debe comprar una mayor cantidad de regalos?",
+    "options": {
+      "A": "Para adolescentes de 12  años.",
+      "B": "Para adolescentes de 13  años.",
+      "C": "Para adolescentes de 14  años.",
+      "D": "Para adolescentes de 15  años."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_61",
+    "text": "61.  Una institución proyectó un aumento del porcentaje del Producto Interno Bruto \n(PIB)  en un país, de la forma que indica el siguiente gráfico: \n \n \n \n \n \n \n \n \n \n \n \n \nUn economista considera que la proyección realizada es poco realista, por lo que \nrecomienda modificar la proyección, disminuyendo el porcentaje a partir del \nsegundo año en un punto porcentual menos al propuesto en la proyección. Porcentaje de aumento 3 % 2 % 2024 \n2025 \n2026 \n2027 Años ¿Cuál de los siguientes gráficos es el más adecuado para representar lo propuesto \npor el economista? Porcentaje de aumento \nPorcentaje de aumento",
+    "options": {
+      "A": "B) 2 % 2 % 1 % 1 % 2024 \n2025 \n2026\n2027 2024 \n2025 \n2026\n2027 Años Años Porcentaje de aumento \nPorcentaje de aumento",
+      "C": "D) 3 % 2 % 1 % 1 % 2024 \n2025 \n2026\n2027 2024 \n2025 \n2026\n2027 Años Años"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_62",
+    "text": "62. Durante el año 2023 una fundación focalizará su ayuda al \n%\n25\n de los hogares \ncon menores ingresos de una comuna.  \n \n \n¿Cuál de las siguientes medidas de posición permite determinar el ingreso máximo \nque debe tener un hogar de la comuna para ser beneficiado?",
+    "options": {
+      "A": "El segundo cuartil de los ingresos.",
+      "B": "El percentil 75 de los ingresos.",
+      "C": "El percentil 4 de los ingresos.",
+      "D": "El primer cuartil de los ingresos."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_63",
+    "text": "63. En el curso de Francisca se vende una rifa para financiar la gira de estudios en la \nque el premio es una bicicleta. Francisca quiere ganar la bicicleta y solo pudo \ncomprar 8 números de la lista que ella vendió. Si se vendieron 100  listas completas y cada una con 20  números, ¿cuál es la \nprobabilidad que tiene Francisca de ganarse la bicicleta si solo compró de una \nlista? 8",
+    "options": {
+      "A": "120 8",
+      "B": "800 8",
+      "C": "20 8",
+      "D": "2000"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_64",
+    "text": "64. Se realizó una encuesta sobre las preferencias de un grupo de personas respecto a \nsu pasatiempo favorito, tal que cada persona eligió solo un pasatiempo. En esta \nencuesta 30  personas indicaron que su pasatiempo favorito es leer, 48 personas \nindicaron que es hacer deporte y n  personas indicaron que es ver películas. \n \n \nAl elegir una persona al azar de este grupo, la probabilidad de que su pasatiempo \nfavorito no sea hacer deporte es \n6,0\n. \n \n \n¿Cuál es la cantidad de personas que indicaron ver películas?",
+    "options": {
+      "A": "22",
+      "B": "42",
+      "C": "52",
+      "D": "117"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-06-22-paes-invierno-oficial-matematica1-p2024_65",
+    "text": "65. Un grupo de estudiantes quiere calcular la probabilidad de que al lanzar tres \nmonedas resulten las tres caras o las tres sellos, realizando el siguiente \nprocedimiento en el cual cometen un error. Paso 1: \nanotan todos los resultados posibles, obteniendo \n)c\n,c\n,c(\n, \n)s,c\n,c(\n, \n)c\n,s\n,c(\n,  \n)s\n,s\n,c(\n, \n)c\n,c\n,s(\n, \n)s\n,c\n,s(\n, \n)c\n,s\n,s(\n y \n)s\n,s\n,s(\n. Paso 2: \neligen los resultados favorables, \n)c\n,c\n,c(\n y \n)s\n,s\n,s(\n. \n \nPaso 3: \ncalculan las probabilidades de cada resultado favorable por separado, \n\n8\n3\n)c\n,c\n,c(\nP\n\n y \n\n8\n3\n)s\n,s\n,s(\nP\n\n. Paso 4: \ncalculan \n\n\n\n\n4\n3\n)c\n,c\n,c(\nP\n)s\n,s\n,s(\nP\n)\nsellos\ntres\no\ncaras\ntres\n(\nP\n\n\n\n . ¿En cuál de los pasos se cometió el error?",
+    "options": {
+      "A": "En el Paso 1",
+      "B": "En el Paso 2",
+      "C": "En el Paso 3",
+      "D": "En el Paso 4 - 55 - IMPORTANTE ■ Este folleto está protegido bajo Registro de Propiedad Intelectual de la Universidad de Chile. ■ Está prohibida la reproducción, transmisión total o parcial de este folleto, por cualquier medio o método. ■ Es obligatorio devolver íntegramente el folleto antes de abandonar la sala. ■ Es obligatorio devolver la hoja de respuestas antes de abandonar la sala. PROCESO DE ADMISIÓN 2024"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_1",
+    "text": "1. \n¿Cuál es el resultado de \n\n\n\n5\n1\n1\n3\n\n\n\n\n?",
+    "options": {
+      "A": "1\n",
+      "B": "3\n",
+      "C": "12\n",
+      "D": "24\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_2",
+    "text": "2. \nUn diario tiene una colilla recortable para un concurso, la que se presenta a \n \ncontinuación: CUADRADO MÁGICO \nManda el resultado correcto de  \n♥ + ☻ + ♪ \n a la casilla postal de este 1 ♥ ♪ 3 2 diario para entrar al \nconcurso de una bicicleta 3 ☻ 1 Resultado Cada fila, cada columna y cada diagonal \ndeben contener los números 1, 2, 3 y 4  \nsin que se repitan. Nombre \n \nNúmero contacto ¿Cuál es el resultado que permite entrar al concurso? 6\n7\n8\n9",
+    "options": {
+      "A": "",
+      "B": "",
+      "C": "",
+      "D": ""
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_3",
+    "text": "3. \nSi al quíntuplo de 10\n\n se le resta el triple de 12\n\n, ¿qué número se obtiene?",
+    "options": {
+      "A": "86\n",
+      "B": "14\n",
+      "C": "2",
+      "D": "34"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_4",
+    "text": "4. \n¿En cuál de las siguientes opciones se representa la frase “el doble de la tercera \nparte de la diferencia entre 8 y 6 ”?",
+    "options": {
+      "A": "6\n8\n3\n1\n2\n\n\n",
+      "B": "\n\n6\n8\n3\n1\n2\n\n\n",
+      "C": "6\n8\n3\n2\n\n\n",
+      "D": "\n\n6\n8\n3\n2\n\n\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_5",
+    "text": "5. \nEn la siguiente tabla se presentan las fechas de algunos hechos históricos: Hecho histórico \nAño Construcción de la Gran Pirámide de Guiza \n2570 a.C. Nacimiento de Cleopatra \n    69 a.C. ¿Cuántos años pasaron desde el año de la construcción de la Gran Pirámide de \nGuiza hasta el año del nacimiento de Cleopatra?",
+    "options": {
+      "A": "2640",
+      "B": "2639",
+      "C": "2501",
+      "D": "2499"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_6",
+    "text": "6. \nUn juego consiste en lanzar un dardo a un tablero como el de la figura adjunta.  \n \n \n \n \n \n \n \n \n \n \n \n \nSe obtienen 10  puntos si el dardo cae en el sector A, 5  puntos si cae en el sector \nB y ningún punto si cae en el sector C. \n \n \nEn la tabla adjunta se presenta la cantidad de aciertos en cada sector de tres \ntiradores en los 10  lanzamientos que cada uno realizó. \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuál tirador obtuvo el mayor puntaje y cuál obtuvo el menor puntaje, \nrespectivamente? C B A Sectores A \nB \nC Pedro \n4 \n2 \n4 Sandra \n3 \n5 \n2 Roberta \n2 \n8 \n0",
+    "options": {
+      "A": "Roberta y Sandra",
+      "B": "Roberta y Pedro",
+      "C": "Sandra y Roberta",
+      "D": "Pedro y Sandra"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_7",
+    "text": "7. \nUna persona realiza un viaje al exterior y lleva consigo su tarjeta de débito, la que \nfunciona fuera del país. En su tarjeta tiene un saldo inicial de \n000\n300\n$\n y decide \nhacer algunas actividades turísticas, por lo que realizó los siguientes movimientos \nen su tarjeta:  Un pago de \n000\n15\n$\n  para pagar la entrada a una obra de teatro.  Un pago de \n000\n35\n$\n para pagar el ingreso al parque de diversiones y algo de \ncomida dentro del parque. Si por cada pago que realiza con su tarjeta el banco le cobra una comisión de 2000\n$\n independientemente del monto, ¿cuál es su saldo final luego de realizados \nlos pagos de ese día?",
+    "options": {
+      "A": "000\n254\n$",
+      "B": "000\n244\n$",
+      "C": "000\n248\n$",
+      "D": "000\n246\n$"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_8",
+    "text": "8. \nUn colegio de enseñanza media tiene 180  estudiantes en total y un sexto de ellos \npertenece al segundo medio B. \n \n \nEl día en que el segundo medio B realizó la elección de su directiva, faltó la décima \nparte de los estudiantes de dicho curso. Quienes asistieron votaron entre Fernando \ny Josefina para la presidencia. 1  de los estudiantes votaron por Josefina y no hubo votos nulos ni blancos, Si 3 ¿cuántos estudiantes votaron por Fernando?",
+    "options": {
+      "A": "20",
+      "B": "18",
+      "C": "2",
+      "D": "1"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_9",
+    "text": "9. \nEn la figura se presenta un cartel con los precios de las impresiones en blanco y \nnegro de un centro de impresión. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nUn curso de Química Orgánica requiere de un libro de tres capítulos de 150 , 130  y 85  hojas, en ese orden. Una persona imprimió primero solo el primer capítulo, \nluego solo el segundo y por último solo el tercero, a medida que avanzaba en el \ncurso. \n \n \n¿Cuánto dinero gastó la persona en imprimir el libro?\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p9_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "7300\n$",
+      "B": "8150\n$",
+      "C": "8800\n$",
+      "D": "9450\n$"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_10",
+    "text": "10. Considera la siguiente secuencia de figuras, formadas por cuadrados y triángulos, que se va formando con palitos de fósforo. ¿Cuál es la cantidad de palitos que se utilizan en la figura 25?\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p10_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "25\n7 ",
+      "B": "2\n25\n5\n\n",
+      "C": "4\n25\n3\n\n",
+      "D": "25\n2 "
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_11",
+    "text": "11. ¿Cuál de las siguientes expresiones representa el \n%\n20\n del \n%\n20\n del \n%\n20\n de un \nnúmero P?",
+    "options": {
+      "A": "%\n8,0\n de P",
+      "B": "%\n000\n8\n de P",
+      "C": "%\n6,0\n de P",
+      "D": "%\n60\n de P"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_12",
+    "text": "12. ¿A qué porcentaje corresponde 25  de 125 ?",
+    "options": {
+      "A": "A un \n%\n5",
+      "B": "A un \n%\n20",
+      "C": "A un \n%\n25",
+      "D": "A un \n%\n500"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_13",
+    "text": "13. Helena va en segundo básico de un colegio de 1000  estudiantes, de los cuales \nel \n%\n10\n participa en el taller de patinaje. De este taller, el \n%\n10\n compite en un \ntorneo y Helena es una de las competidoras. ¿Cuál de los siguientes argumentos es válido?",
+    "options": {
+      "A": "90  estudiantes del taller no compiten, porque solo 10  estudiantes son del \ncurso de Helena.",
+      "B": "Helena es parte del %\n1\n del colegio que compite, porque el \n%\n99\n restante \nno practica patinaje.",
+      "C": "10  estudiantes compiten en el torneo, porque son el \n%\n10\n del total de     \n100  estudiantes que participan en el taller de patinaje.",
+      "D": "El \n%\n90\n del estudiantado del colegio no practica patinaje, porque no son \nparte del \n%\n10\n que compite en el torneo."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_14",
+    "text": "14. Una persona recibirá un bono del \n%\n20\n de su sueldo mensual por los próximos 6 meses por ser parte de un equipo que cumplió las metas de productividad. La persona calcula que su sueldo mensual normal equivale a recibir \n000\n28\n$\n por \ncada jornada de trabajo. ¿Cuánto dinero tendría que recibir por jornada de trabajo para que este \nequivalga al nuevo sueldo con bono?",
+    "options": {
+      "A": "600\n33\n$",
+      "B": "400\n29\n$",
+      "C": "560\n28\n$",
+      "D": "020\n28\n$"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_15",
+    "text": "15. Un comerciante compra planchas de volcanita a 6000\n$\n cada una y las vende \npara obtener un \n%\n75\n de ganancia. Luego de un tiempo, decide rebajar el precio \nde venta de cada plancha de volcanita en un \n%\n25\n, obteniendo un nuevo precio \nde venta. ¿Cuál es el nuevo precio de venta de cada plancha de volcanita?",
+    "options": {
+      "A": "7125\n$",
+      "B": "7875\n$",
+      "C": "9000\n$",
+      "D": "9375\n$"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_16",
+    "text": "16. Un hotel tiene 200  habitaciones y para un fin de semana largo tiene reservadas 140  habitaciones. ¿Cuál es el porcentaje de habitaciones que aún están disponibles ese fin de \nsemana?",
+    "options": {
+      "A": "%\n30",
+      "B": "%\n43",
+      "C": "%\n60",
+      "D": "%\n70"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_17",
+    "text": "17. ¿Cuál es el valor de \n2\n2 1\n14\n\n\n? 5 25\n195",
+    "options": {
+      "A": "25\n4899",
+      "B": "",
+      "C": "221",
+      "D": "171"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_18",
+    "text": "18. ¿Cuál de las siguientes opciones representa al número \n2\n888\n?",
+    "options": {
+      "A": "2\n6\n111\n2\n",
+      "B": "111\n26 ",
+      "C": "2\n5\n111\n2 ",
+      "D": "111\n25 "
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_19",
+    "text": "19. Considera el número mtp  de tres dígitos, tal que m  es el de la centena, t  es el \nde la decena y  es el de la unidad. p ¿Cuál de las siguientes expresiones representa a este número?",
+    "options": {
+      "A": "0\n1\n2\n10\np\n10\nt\n10\nm\n\n\n\n\n",
+      "B": "1\n2\n3\n10\np\n10\nt\n10\nm\n\n\n\n\n",
+      "C": "1\n2\n3\n10\np\n10\nt\n10\nm\n\n\n\n\n",
+      "D": "0\n1\n2\n10\np\n10\nt\n10\nm\n\n\n\n\n  2\n2\n6\n\n?"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_20",
+    "text": "20. ¿Cuál es el valor de \n2",
+    "options": {
+      "A": "6\n1\n2 ",
+      "B": "2\n9\n2",
+      "C": "2\n5\n2",
+      "D": "1\n2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_21",
+    "text": "21. ¿Cuál es el valor de \n\n1\n5\n1\n5\n\n\n?",
+    "options": {
+      "A": "2",
+      "B": "4",
+      "C": "6",
+      "D": "5\n2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_22",
+    "text": "22. La cantidad de bacterias de cierto cultivo aumenta en un \n%\n20\n cada               \n40  minutos. Si la cantidad inicial era 250  bacterias, ¿en cuánto aumentó la cantidad de \nbacterias transcurridas dos horas?",
+    "options": {
+      "A": "6",
+      "B": "60",
+      "C": "182",
+      "D": "250"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_23",
+    "text": "23. Los antiguos dispositivos de almacenamiento de datos tenían una capacidad \nmáxima de 1 megabyte y, actualmente, existen dispositivos que almacenan           \n1 terabyte. Si un terabyte equivale a \n12\n10\n bytes y un megabyte equivale a \n000\n000\n1\n bytes, \n¿cuántas veces cabe el almacenamiento de un dispositivo antiguo en un \ndispositivo actual?",
+    "options": {
+      "A": "2\n10",
+      "B": "5\n10",
+      "C": "6\n10",
+      "D": "12\n10"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_24",
+    "text": "24. ¿Cuál de las siguientes expresiones es igual a \n2\n3\nx\n2\n\n?",
+    "options": {
+      "A": "9\nx\n12\nx\n2 2\n\n",
+      "B": "9\nx\n6\nx\n4 2\n\n",
+      "C": "9\nx\n12\nx\n4 2\n\n",
+      "D": "9\nx\n4 2 "
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_25",
+    "text": "25. A continuación se realiza la multiplicación \n\n\n5\nx\n6\nx\n4\nx\n3\n2\n\n\n\n\n, en la cual se \ncomete un error. Paso 1: se aplica distributividad, obteniéndose: \n\n\n\n5\nx\n6\nx\n4\n5\nx\n6\nx\nx\n3\n2\n2\n\n\n\n\n\n\n Paso 2: se desarrollan las multiplicaciones, obteniéndose: \n\n\n20\nx\n24\nx\n4\n15\nx\n18\nx\n3\n2\n2\n\n\n\n\n Paso 3: se ordena la expresión por términos semejantes, obteniéndose: 20\n15\nx\n24\nx\n18\nx\n4\nx\n3\n2\n2\n\n\n\n\n Paso 4: se suman los términos semejantes, obteniéndose: 35\nx\n42\nx\n7\n2\n\n ¿En cuál de los pasos se cometió el error?",
+    "options": {
+      "A": "En el Paso 1",
+      "B": "En el Paso 2",
+      "C": "En el Paso 3",
+      "D": "En el Paso 4"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_26",
+    "text": "26. ¿Cuál de las siguientes expresiones representa a “el doble del cubo de un     \nnúmero x , disminuido en un tercio del mismo número”?",
+    "options": {
+      "A": "\n\n3\nx\nx\n2\n3 ",
+      "B": "3\n1\nx\n2 3 ",
+      "C": "\n\n\n\n\n\n 3\n1\nx\n2\n3",
+      "D": "3\nx\nx\n2 3 "
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_27",
+    "text": "27. ¿Cuál de las siguientes expresiones es igual a \n\n2\n2\ny\n2\ny\n\n\n\n?",
+    "options": {
+      "A": "4\ny\n3\n\n",
+      "B": "4\ny\ny\n2 2\n\n\n",
+      "C": "8\ny\ny\n2 2\n\n\n",
+      "D": "8\ny\n7\ny\n2 2\n\n\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_28",
+    "text": "28. Una receta indica usar 325  gramos de harina, entre otros ingredientes, para hacer 20  galletas. \n \n \nSi se sigue esa receta, ¿cuál de las siguientes fórmulas permite determinar la \ncantidad de gramos de harina que se necesitan para hacer n  galletas?",
+    "options": {
+      "A": "n\n20\n325 ",
+      "B": "n\n325 ",
+      "C": "n\n325  20 ",
+      "D": "n\n325"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_29",
+    "text": "29. En una tienda de perfumería empacan jabones en cajas. En la figura adjunta se \nrepresenta la relación entre la cantidad de jabones y la cantidad de cajas que se \nnecesitan para empacar dicha cantidad de jabones. Si esta relación se puede modelar mediante la función f  definida por x\n20\n)\nx\n(f\n\n\n, ¿qué representa el número 20 ?\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p22_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "La constante de proporcionalidad directa.",
+      "B": "La constante de proporcionalidad inversa.",
+      "C": "La cantidad total de jabones.",
+      "D": "La cantidad total de cajas."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_30",
+    "text": "30. Carmen tiene 13  lápices más que Ariel y entre las dos tienen a lo más 49  lápices.  \n \n \n¿Cuál es la máxima cantidad de lápices que puede tener Ariel?",
+    "options": {
+      "A": "17",
+      "B": "18",
+      "C": "30",
+      "D": "31"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_31",
+    "text": "31. En una frutería se llenan cajas de dos tipos. Un tipo de caja, cuando está llena de \nfruta, pesa \nkg\nM\n y el otro tipo de caja, cuando está llena de fruta, pesa \nkg\nP\n. La \ncapacidad del camión donde se llevarán las cajas no puede superar los \nkg\n100\n2\n. \n \n \nSe sabe que la cantidad de cajas de los dos tipos que se colocarán en el camión es \nla misma. \n \n \n¿Cuál de las siguientes inecuaciones permite determinar la cantidad máxima de \ncajas x  de cada tipo que se pueden colocar en el camión?",
+    "options": {
+      "A": "\n\n100\n2\nx\nP\nM\n\n\n",
+      "B": "100\n2\nx\nP\nM\n\n\n",
+      "C": "\n\n100\n2\nx\nP\nM\n\n\n",
+      "D": "\n\n100\n2\nx\n2\nP\nM\n\n\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_32",
+    "text": "32. En una oficina de encomiendas se desea enviar cinco regalos idénticos y un frasco de medio kilogramo de miel. Para determinar la masa de estos regalos se colocan en una balanza dos regalos y \nel frasco de miel y en la otra balanza se colocan tres regalos, como se representa \nen la figura adjunta. \n \n \n \n \n \n \n \n \n \n \nLa balanza de la izquierda marca menos que la balanza de la derecha.  \n \n \n¿Cuál de las siguientes afirmaciones es verdadera?\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p25_1.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "Cada regalo tiene una masa de  100  gramos.",
+      "B": "Cada regalo tiene una masa de 500  gramos.",
+      "C": "Cada regalo tiene una masa mayor que 500 gramos.",
+      "D": "Cada regalo tiene una masa menor que 500 gramos."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_33",
+    "text": "33. En la tabla adjunta se indica la temperatura que alcanza cierto líquido en \ndeterminado tiempo, a partir de los \nC\n0 \n. Temperatura ( C\n\n) \nTiempo (min ) 100 \n8 50 \n4 Si la temperatura alcanzada por el líquido es directamente proporcional al \ntiempo que ha sido calentado, en ese orden, ¿cuál es la constante de \nproporcionalidad? 2",
+    "options": {
+      "A": "25",
+      "B": "2\n25",
+      "C": "50 400",
+      "D": ""
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_34",
+    "text": "34. Raúl y Teresa arman bolsas de dulces distribuyendo en total 1000  dulces en 300  bolsas y cada uno arma bolsas distintas. Raúl pone tres dulces en cada una \ny Teresa pone cinco dulces en cada una. Si no sobra ningún dulce, ¿cuántas bolsas armó Raúl?",
+    "options": {
+      "A": "250",
+      "B": "180",
+      "C": "125",
+      "D": "50"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_35",
+    "text": "35. La fábrica de bicicletas “MTB” utiliza aluminio y titanio en la elaboración de dos de \nsus modelos llamados Sport y Cross Country. La cantidad de estos metales en kg , \nusados en cada modelo se presenta en la tabla adjunta. Modelo Sport \nModelo Cross Country Aluminio (kg) \n1 \n2 Titanio (kg) \n3 \n1 Si la fábrica disponía de \nkg\n100\n de aluminio y \nkg\n80\n de titanio, y utilizó todo el \nmaterial, ¿cuántas bicicletas del modelo Cross Country fabricó? 12",
+    "options": {
+      "A": "",
+      "B": "24",
+      "C": "28",
+      "D": "44"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_36",
+    "text": "36. En la figura adjunta se presentan las medidas de tres segmentos con los que, \npara algún valor de x , se puede construir un triángulo rectángulo. x cm \n(2x + 15) cm (2x + 10) cm ¿Cuál de las siguientes ecuaciones permite calcular el valor de x ?",
+    "options": {
+      "A": "0\n125\nx\n20\nx2\n\n\n 0\n325\nx\n100\nx\n7\n2\n\n\n\n \nB) 0\n325\nx\n100\nx\n9 2\n\n\n\n \nC) 0\n125\nx\n20\nx2\n\n\n",
+      "D": ""
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_37",
+    "text": "37. Una compañía de teatro desea aumentar la cantidad de público en sus obras y \npara esto ofrece un plan mensual en el que hay que pagar un monto fijo de 9000\n$\n \ncada mes, más 1000\n$\n por cada entrada, valor que corresponde al \n%\n20\n del precio \nde una entrada sin contratar el plan. Si una persona contrató el plan mensual por 6  meses, ¿cuánto dinero ahorró si \ncompró 18  entradas en esos 6  meses?",
+    "options": {
+      "A": "000\n60\n$",
+      "B": "000\n45\n$",
+      "C": "000\n18\n$",
+      "D": "000\n15\n$"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_38",
+    "text": "38. Una psicóloga considera la función f  definida por \nx\n000\n30\nx\nf\n\n como su modelo \nde cobro por paciente, tal que x  es la cantidad de sesiones que tuvo en un mes y \nx\nf\n es el total mensual que cobra por ellas, en pesos. \n \n \nLa psicóloga quiere hacer un ajuste a su modelo de cobro, considerando una tarifa \nfija inicial y una tarifa por sesión de manera que la primera sesión del mes tenga el \nmismo valor que en el modelo anterior, pero que el resto de las sesiones del mes \ntengan un valor de un \n%\n20\n más económico que en el modelo anterior. \n \n \n¿Cuál de las siguientes funciones es el nuevo modelo de cobro de la psicóloga?",
+    "options": {
+      "A": "\nx\n000\n24\nx\ng\n",
+      "B": "\n6000\nx\n000\n24\nx\nh\n\n",
+      "C": "\n000\n12\nx\n000\n18\nx\np\n\n",
+      "D": "\n000\n18\nx\n000\n12\nx\nr\n\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_39",
+    "text": "39. En una empresa lechera, el costo, en pesos, de procesar x  litros de leche se \nmodela mediante la función f  definida por \n500\nx\n300\n)\nx\n(f\n\n\n. La empresa encontró una forma de reducir ese costo un \n%\n25\n. \n \n \n¿Cuál de las siguientes funciones modela el nuevo costo, en pesos?",
+    "options": {
+      "A": "475\nx\n300\n)\nx\n(\nm\n\n",
+      "B": "500\nx\n225\n)\nx\n(\ng\n\n",
+      "C": "375\nx\n225\n)\nx\n(\nh\n\n",
+      "D": "475\nx\n75\n)\nx\n(p\n\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_40",
+    "text": "40. Considera la función \n definida por \n2\nn\n5\nn\n25\n10\nn\nf\n\n\n\n, tal que \n es un \nnúmero real. \n \n \n¿Cuál es el valor de \n\n\n\n4\nf\n3\nf\n2\nf\n1\nf\n\n\n\n? f\nn",
+    "options": {
+      "A": "120",
+      "B": "140",
+      "C": "195",
+      "D": "440"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_41",
+    "text": "41. Una empresa está estudiando los efectos de cambiar su forma de producción a \nuna nueva. Con ambas formas de producción, el costo por unidad de producir x  unidades se modela a través de una función cuadrática. En el siguiente gráfico se representa el costo de producción por unidad de \nambas formas de producción: Costo por unidad Forma de producción \nantigua Forma de producción \nnueva 100 Cantidad producida ¿Cuál de las siguientes afirmaciones es verdadera al comparar ambas formas \nde producción?",
+    "options": {
+      "A": "Siempre es más conveniente cambiar a la forma de producción nueva.",
+      "B": "El costo de producir cero productos es igual en ambas formas de \nproducción.",
+      "C": "Cuando se producen más de cien unidades, la forma de producción antigua \ngenera un menor costo por unidad.",
+      "D": "El menor costo por unidad posible de la forma de producción antigua es \nmenor que el menor costo por unidad posible de la forma de producción \nnueva."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_42",
+    "text": "42. La altura que alcanza el salto de un tipo de grillo puede representarse por medio \nde la siguiente parábola: \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuál de las siguientes afirmaciones se puede deducir del gráfico? Altura (cm) 40 30 20 10 2 \n0,5 \n1 \n1,5 Tiempo (s) cm\n30",
+    "options": {
+      "A": "En \ns\n75\n,0\n, el grillo está a \n de altura.",
+      "B": "En \ns\n1\n, el grillo alcanza su mayor altura.",
+      "C": "Solo a los \ns\n5,1\n, el grillo alcanza una altura de \ncm\n30\n.",
+      "D": "A los \ns\n3\n, el grillo está bajo tierra."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_43",
+    "text": "43. Una empresa necesita realizar un logo compuesto por una letra N y una letra X, \ncon 50  metros lineales de acero. Las dimensiones de las letras se presentan a \ncontinuación: ¿Cuántos logos se pueden construir con las medidas anteriores?\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p34_1.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "4\n8",
+      "B": "2",
+      "C": "1",
+      "D": ""
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_44",
+    "text": "44. Una fábrica hace sillas de escritorio de distinto tamaño, las cuales se pueden reclinar hasta en un ángulo de \n\n135\n, tal como se representa en la figura adjunta. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nPara cualquier tamaño de silla, ¿cuál de las siguientes fórmulas permite determinar \nla distancia entre A y B \n\nAB\nD\n de manera que el respaldo quede perpendicular al \nasiento? A B \nO",
+    "options": {
+      "A": "BO\nAO\nDAB\n\n",
+      "B": "2\n2\nAB\nBO\nAO\nD\n\n",
+      "C": "2\nAB\nAO\n2\nD\n",
+      "D": "BO\nAO\n2\nD\n2\nAB\n\n"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_45",
+    "text": "45. En una tienda tienen distintos tamaños de cajas de regalo de forma cúbica, las que \ntienen en la cara superior una cinta pegada en su diagonal (de vértice a vértice). \nAlgunas de estas cajas se representan en la figura adjunta. Si la altura de cada caja se representa por \ncm\nh\n, ¿cuál de las siguientes \nexpresiones permite determinar el largo, en cm , de la cinta a usar en cada \ncaja?\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p36_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p36_2.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p36_3.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p36_4.jpeg' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "2\nh",
+      "B": "h\n2",
+      "C": "h\n2",
+      "D": "2\nh\n2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_46",
+    "text": "46. Se tiene una circunferencia P  de radio \ncm\n3\n. Si el área de una circunferencia Q  \nes un cuarto del área de P , ¿cuál es el radio de Q ?",
+    "options": {
+      "A": "cm\n4\n3",
+      "B": "cm\n6",
+      "C": "cm\n2\n3",
+      "D": "cm\n12"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_47",
+    "text": "47. Una profesora dejó como tarea hacer un vaso milimetrado de capacidad máxima 3\ncm\n600\n, sellando cualquier tubo con forma cilíndrica en su parte inferior, no \nimportando la medida del radio, como se representa en la siguiente figura: Si la profesora dijo que consideren  aproximado a 3 y Axel realizará el trabajo con \nun tubo con forma cilíndrica de \ncm\n4\n de radio, ¿cuánto debe medir de altura el \nvaso milimetrado de Axel?",
+    "options": {
+      "A": "cm\n5",
+      "B": "cm\n5,\n12",
+      "C": "cm\n25",
+      "D": "cm\n5,\n37"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_48",
+    "text": "48. En la siguiente figura se presentan las medidas, en metros, de las aristas de un \nedificio con forma de paralelepípedo recto, en términos de x , sin considerar \nsubterráneo ni balcones. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n¿Cuál es el área del edificio, considerando solo las superficies laterales y el techo, \nen metros cuadrados? x\n2  \nx\n2 x\n23\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p39_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "2\nx\n32",
+      "B": "2\nx\n36",
+      "C": "2\nx\n68",
+      "D": "2\nx\n512"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_49",
+    "text": "49.  Considera los vectores en el plano cartesiano \n\n1\n,2\nF1\n\n\n, \n\n\n2\n,3\nF2\n\n\n, \n\nb\n,a\nF3 \n y \n\n3\n,4\nF 4 \n. Si \n\n\n5\n,6\nF\nF\nF\nF\n4\n3\n2\n1\n\n\n\n\n, ¿cuál es el valor de  y  respectivamente? a\nb",
+    "options": {
+      "A": "3  y  4",
+      "B": "3  y  9",
+      "C": "3  y  1",
+      "D": "4  y  4"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_50",
+    "text": "50. En la figura adjunta se presentan los puntos \n\n\n1\n,1\nA\n, \n\n\n2\n,4\nB\n y \n\n\n1\n,5\nC\n\n, y los vectores u, v y w. Y B u A v \nw X C ABC ¿Cuál de las siguientes condiciones permite asegurar que el  triángulo           es \nrectángulo?",
+    "options": {
+      "A": "Que el vector w es la suma de los vectores u y v.",
+      "B": "Que el perímetro del triángulo ABC  es igual a \n10\n2\n20 \n.",
+      "C": "Que los módulos de los vectores u y v son iguales. BC\nAB\n. ABC",
+      "D": "Que el área del triángulo \n es igual a \n2"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_51",
+    "text": "51. Considera un punto A , tal que este es cualquier punto que se ubica en el primer o \ntercer cuadrante, de tal manera que al reflejarlo respecto al \nY\neje\n se obtiene el \npunto B. \n \n \nSi x  es la distancia del punto A  al \n, ¿cuál de las siguientes expresiones \npermite determinar la distancia entre los puntos A y B? Y\neje",
+    "options": {
+      "A": "2\nx\n2",
+      "B": "x",
+      "C": "x\n2",
+      "D": "x\n3"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_52",
+    "text": "52. Una persona lleva a cabo los siguientes pasos para realizar cuatro \ntransformaciones isométricas consecutivas al punto \n\n5\n,5\n\n, cometiendo un error. Paso 1: el punto \n\n5\n,5\n\n se traslada según el vector \n\n2\n,5 \n, obteniendo el punto \n\n\n7\n,0\n. \n \nPaso 2: el punto \n\n7\n,0\n se rota en \n\n90  con centro en el origen del plano cartesiano y en sentido horario, obteniendo el punto \n0\n,7\n.  \n \nPaso 3: el punto \n0\n,7\n se refleja con respecto al \n, obteniendo el punto \n\n\n0\n,7\n\n. \n \nPaso 4: el punto \n\n0\n,7\n\n se refleja con respecto al \nX\neje\n, obteniendo el punto \n\n\n0\n,7\n\n. \n \n¿En cuál de los pasos se cometió el error? Y\neje",
+    "options": {
+      "A": "En el Paso 1",
+      "B": "En el Paso 2",
+      "C": "En el Paso 3",
+      "D": "En el Paso 4"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_53",
+    "text": "53. Para llegar a la casa de Diego, Juan desde su casa debe caminar 2 cuadras hacia \nel este y 5  cuadras hacia el sur. Luego, para llegar a la casa de Pedro, desde la \ncasa de Diego, Juan debe caminar una cuadra hacia el este y una cuadra hacia el \nsur. Considera que todas las cuadras son del mismo tamaño.  \n \n \nSe grafica en un plano cartesiano el recorrido realizado, considerando la casa de \nJuan en el punto de origen del plano cartesiano, como el que se representa en la \nfigura adjunta. \n \n \n \n \n \n \n \n \n \n \nEn el gráfico realizado en el plano cartesiano, ¿cuál de los siguientes es el vector \nde traslación que permite trasladarse de la casa de Juan a la casa de Pedro? (eje Y) Norte Este \nOeste \n(eje X) Sur",
+    "options": {
+      "A": "\n\n6\n,3 \n",
+      "B": "\n\n6\n,3\n",
+      "C": "\n\n6\n,3 ",
+      "D": "\n\n6\n,3"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_54",
+    "text": "54. En la oficina administrativa de una empresa se les preguntó, a las personas que allí \ntrabajan, cuántas horas extraordinarias de trabajo habían realizado en el mes \nanterior, registrándose las respuestas en la tabla adjunta. \n \n \n \n \n \n \n \n \n \n \n¿Cuál de los siguientes gráficos representa correctamente la información entregada \nen la tabla? Horas extraordinarias \nFrecuencia 1 \n5 2 \n3 3 \n2",
+    "options": {
+      "A": "B) Frecuencia Frecuencia 5 3 2 2 \n3 1 1 \n2 \n3 \n0 2 \n3 \n5 \n0 Horas extraordinarias Horas extraordinarias",
+      "C": "D) Frecuencia Frecuencia 5 6 \n5 2 \n3 1 \n2 \n3 \n0 1 \n2 \n3 \n0 Horas extraordinarias Horas extraordinarias"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_55",
+    "text": "55. Una empresa realiza una investigación sobre los sueldos de las personas de las \ndistintas áreas que esta empresa tiene, y agrupa la información en el siguiente \nhistograma, en el que los sueldos están en millones de pesos. Frecuencia 7 5 1 \n2 \n\n2\n,1\n \n3\n,2\n \n\n4\n,3\n \n\n5\n,4 Sueldo de las personas de distintas áreas ¿Cuál de las siguientes tablas representa los sueldos de las personas de la \nempresa, en millones de pesos?",
+    "options": {
+      "A": "Sueldos \nFrecuencia",
+      "B": "Sueldos \nFrecuencia [1, 2[ \n  7 1,5 \n  7 [2, 3[ \n12 2,5 \n12 [3, 4[ \n14 3,5 \n14 [4, 5[ \n15 4,5 \n15",
+      "D": "",
+      "C": "Sueldos \nFrecuencia Sueldos \nFrecuencia [1, 2[ \n7 1,5 \n7 [2, 3[ \n5 2,5 \n5 [3, 4[ \n2 3,5 \n2 [4, 5[ \n1 4,5 \n1"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_56",
+    "text": "56. Considera el siguiente grupo de datos 12 , , 14 , 12  y 16 . 6 ¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": {
+      "A": "El rango del grupo de datos es 4.",
+      "B": "El promedio de los datos es 12 .",
+      "C": "La mediana de los datos es 14 .",
+      "D": "La moda de los datos es 16 ."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_57",
+    "text": "57. En la siguiente tabla se presenta información sobre el total de unidades vendidas, \npor una persona, durante un periodo de cinco semanas, de cuatro productos \ndistintos. Producto \nCantidad de unidades vendidas 1 \n120 2 \n 200 3 \n200 4 \n250 Una semana después, los productos 1 y 2 registraron ventas de 80  unidades cada \nuno, el producto 3 registró ventas de 100  unidades y el producto 4 registró ventas \nde 40  unidades. En consideración de estas seis semanas, ¿cuál producto registró un mayor \npromedio de ventas semanal?",
+    "options": {
+      "A": "El producto 1",
+      "B": "El producto 2",
+      "C": "El producto 3",
+      "D": "El producto 4"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_58",
+    "text": "58. En las tablas adjuntas se presentan las distribuciones de la edad, en años, de dos \ngrupos de personas, A y B: Grupo A \nGrupo B Edad en años Frecuencia Edad en años \nFrecuencia 10 \n5 8 \n3 14 \n2 13 \n1 17 \n1 17 \n2 25 \n4 25 \n4 ¿Cuál de las siguientes afirmaciones es verdadera?",
+    "options": {
+      "A": "El rango de la edad en el grupo A es mayor que el rango de la edad en el \ngrupo B.",
+      "B": "La moda de la edad del grupo A es 15  años menor que la del grupo B.",
+      "C": "La mediana de la edad del grupo A es mayor que la mediana de la edad del \ngrupo B.",
+      "D": "El rango de la edad de ambos grupos es 25 años."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_59",
+    "text": "59. Se encuestó a doce familias respecto a la cantidad de familiares que tienen en el \nextranjero. En la tabla adjunta se registran los resultados obtenidos. Cantidad de familiares en el extranjero \n4 \n1 \n1 \n0 \n3 \n2 \n2 \n3 \n0 \n1 \n1 \n6 ¿Cuál es el promedio de la cantidad de familiares en el extranjero que tienen estas \nfamilias?",
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "4,2",
+      "D": "3"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_60",
+    "text": "60. Una municipalidad ofrece un subsidio para mejoramiento de infraestructura del \nhogar a todos los habitantes de la comuna que pertenecen al \n%\n60\n de menores \ningresos de la población del país. \n \n \n¿Cuál de las siguientes afirmaciones respecto del ingreso de una vecina de la \ncomuna asegura que puede optar a este subsidio?",
+    "options": {
+      "A": "Que sea mayor que el percentil 20 de los ingresos de la población del país.",
+      "B": "Que sea menor que el percentil 40 de los ingresos de la población del país.",
+      "C": "Que sea igual que el percentil 50 de los ingresos de la población de la \ncomuna.",
+      "D": "Que sea igual que el percentil 60 de los ingresos de la población de la \ncomuna."
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_61",
+    "text": "61.  En la figura adjunta se resumen las temperaturas del aire cerca de la superficie de cinco ciudades en cierto año. Adaptado de Plot temperature distribution as box plots for a defined set of cities, por Climate Change Service, 2020, (https://cds.climate.copernicus.eu/toolbox/doc/gallery/54_box_plots.html). ¿Cuál es la ciudad que tuvo la menor diferencia entre la temperatura máxima y \nmínima registrada, según la figura?\n<img src='/ensayos_images/2024-23-11-29-paes-regular-oficial-matematica1-p2024_p51_1.png' alt='Figura' className='w-full max-w-md my-4 rounded-lg shadow-sm' />",
+    "options": {
+      "A": "Tombuctú",
+      "B": "Reikiavik",
+      "C": "Calama",
+      "D": "La Habana"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_62",
+    "text": "62. Los siguientes datos corresponden a la masa de los tomates cosechados en un \nhuerto de una escuela: \ng\n75\n, \ng\n77\n, \ng\n84\n, \ng\n98\n, \ng\n101\n, \ng\n116\n, \ng\n129\n, \ng\n132\n, \ng\n145\n, \ng\n152\n, \ng\n163\n y \ng\n176\n. ¿Cuál de los siguientes percentiles supera los \ng\n100\n?",
+    "options": {
+      "A": "10",
+      "B": "20",
+      "C": "30",
+      "D": "40"
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_63",
+    "text": "63. Una caja contiene en total 5  fichas del mismo tipo numeradas correlativamente del 1 al 5  y otra caja contiene en total 5  fichas del mismo tipo numeradas \ncorrelativamente del 6  al  10 . Si se selecciona una ficha al azar de cada caja, ¿cuál es la probabilidad de que la \nsuma de los números de las fichas sea un número par? 1",
+    "options": {
+      "A": "12 4\n1",
+      "B": "25\n12",
+      "C": "25\n4",
+      "D": ""
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_64",
+    "text": "64. A una reunión internacional asistirán personas que hablan francés, inglés y \nespañol. Se sabe que, del total de ellas, seis solo hablan francés, diez solo hablan \ninglés, tres personas hablan los tres idiomas y se encargarán de ser los \ntraductores. x Si se considera a \n como la cantidad de personas que solo hablan español y no \nhay personas que hablen dos idiomas, ¿cuál de las siguientes expresiones permite \ncalcular la probabilidad de que al elegir a una persona al azar esta hable español? x",
+    "options": {
+      "A": "x\n19  1",
+      "B": "3\nx  3\nx ",
+      "C": "19  3\nx",
+      "D": "19\nx "
+    },
+    "subject": "Matemática 1"
+  },
+  {
+    "id": "2024-23-11-29-paes-regular-oficial-matematica1-p2024_65",
+    "text": "65. Un curso vende una rifa para juntar dinero para un paseo. La rifa tiene 250  números distintos, todos con la misma probabilidad de ser sorteados.              \nEl profesor le dice a un estudiante, que compró números de la rifa, que tiene una 1  de ganarla. probabilidad de 50 ¿Cuántos números de la rifa compró ese estudiante?",
+    "options": {
+      "A": "1",
+      "B": "5",
+      "C": "50",
+      "D": "51 - 55 - IMPORTANTE ■ Este folleto está protegido bajo Registro de Propiedad Intelectual de la Universidad de Chile. ■ Está prohibida la reproducción, transmisión total o parcial de este folleto, por cualquier medio o método. ■ Es obligatorio devolver íntegramente el folleto antes de abandonar la sala. ■ Es obligatorio devolver la hoja de respuestas antes de abandonar la sala. PROCESO DE ADMISIÓN 2024"
+    },
+    "subject": "Matemática 1"
+  }
+]
