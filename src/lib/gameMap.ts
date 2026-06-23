@@ -14,6 +14,8 @@ export interface GameProgress {
   unlockedLevel: number; // Highest level unlocked
   completedLevels: number[]; // Array of completed level numbers
   stars: Record<number, number>; // level number -> stars earned (1-3)
+  comodines?: number; // Daily rewards
+  lastLoginDate?: string; // ISO string to check 24h
 }
 
 export const WORLD_NAMES = [
@@ -58,18 +60,29 @@ for (let i = 1; i <= 200; i++) {
   });
 }
 
-// Override the first 5 levels con los mini-juegos base
-defaultGameLevels[0] = { 
-  ...defaultGameLevels[0], 
-  title: 'Contra Reloj', 
-  description: 'Números Naturales', 
-  type: 'app', 
-  appComponentName: 'ContraRelojGame' 
-};
-defaultGameLevels[1] = { ...defaultGameLevels[1], title: 'Clasificación Binaria', description: 'Ordena las frutas rápidamente usando las flechas.', type: 'app', appComponentName: 'BinaryClassificationGame' };
-defaultGameLevels[2] = { ...defaultGameLevels[2], title: 'Desafío Aritmético', description: 'Resuelve la ecuación fundamental para abrir la puerta.', type: 'quiz' };
-defaultGameLevels[3] = { ...defaultGameLevels[3], title: 'El Valle de las Funciones', description: 'Identifica el dominio de la función misteriosa.', type: 'quiz' };
-defaultGameLevels[4] = { ...defaultGameLevels[4], title: 'El Laberinto Derivado', description: 'Encuentra la pendiente de la recta tangente.', type: 'quiz' };
+// --- MUNDO 1: BOSQUE DE LOS NATURALES ---
+defaultGameLevels[0] = { ...defaultGameLevels[0], title: 'Contra Reloj: Sumas', description: 'Suma de números naturales en tiempo récord.', type: 'app', appComponentName: 'ContraRelojGame' };
+defaultGameLevels[1] = { ...defaultGameLevels[1], title: 'Clasificación Binaria: Paridad', description: 'Distingue entre números pares e impares.', type: 'app', appComponentName: 'ClasificacionBinariaGame' };
+defaultGameLevels[2] = { ...defaultGameLevels[2], title: 'El Intruso', description: 'Encuentra el número que no es múltiplo.', type: 'app', appComponentName: 'ElIntrusoGame' };
+defaultGameLevels[3] = { ...defaultGameLevels[3], title: 'La Secuencia', description: 'Ordena los múltiplos de menor a mayor.', type: 'app', appComponentName: 'LaSecuenciaGame' };
+defaultGameLevels[4] = { ...defaultGameLevels[4], title: 'Las Parejas', description: 'Une la operación con su resultado.', type: 'app', appComponentName: 'ParejasGame' };
+defaultGameLevels[5] = { ...defaultGameLevels[5], title: 'La Balanza', description: 'Encuentra la equivalencia de sumas.', type: 'app', appComponentName: 'LaBalanzaGame' };
+defaultGameLevels[6] = { ...defaultGameLevels[6], title: 'Matriz de Memoria', description: 'Memoriza la posición de las sumas.', type: 'app', appComponentName: 'MemoryMatrixGame' };
+defaultGameLevels[7] = { ...defaultGameLevels[7], title: 'Ecuaciones en Caída', description: 'Velocidad de procesamiento de ecuaciones.', type: 'app', appComponentName: 'FallingEquationsGame' };
+defaultGameLevels[8] = { ...defaultGameLevels[8], title: 'Cambia Formas', description: 'Identifica fracciones y geometría.', type: 'app', appComponentName: 'ShapeShifterGame' };
+defaultGameLevels[9] = { ...defaultGameLevels[9], title: 'Jefe: El Guardián Natural', description: 'Multitarea: Matemáticas y Esquivar.', type: 'app', appComponentName: 'DualTaskGame' };
+
+// --- MUNDO 2: PRADERA DE LOS ENTEROS ---
+defaultGameLevels[10] = { ...defaultGameLevels[10], title: 'Camino Lógico', description: 'Construye la ecuación correcta.', type: 'app', appComponentName: 'LogicalPathGame' };
+defaultGameLevels[11] = { ...defaultGameLevels[11], title: 'Simón Dice Matemático', description: 'Memoriza la secuencia de operaciones.', type: 'app', appComponentName: 'SimonSaysMathGame' };
+defaultGameLevels[12] = { ...defaultGameLevels[12], title: 'Retorno 2 (N-Back)', description: 'Recuerda el número de 2 turnos atrás.', type: 'app', appComponentName: 'NBackMathGame' };
+defaultGameLevels[13] = { ...defaultGameLevels[13], title: 'Efecto Stroop Matemático', description: 'No te dejes engañar por el tamaño visual.', type: 'app', appComponentName: 'StroopMathGame' };
+defaultGameLevels[14] = { ...defaultGameLevels[14], title: 'Burbujas Ascendentes', description: 'Estalla las burbujas de menor a mayor.', type: 'app', appComponentName: 'AscendingBubblesGame' };
+defaultGameLevels[15] = { ...defaultGameLevels[15], title: 'Reflejo Simétrico', description: 'Espejo de patrones simétricos.', type: 'app', appComponentName: 'SymmetricalReflexGame' };
+defaultGameLevels[16] = { ...defaultGameLevels[16], title: 'Cajas Fuertes', description: 'Suma mental múltiple y memoria.', type: 'app', appComponentName: 'SafeCrackersGame' };
+defaultGameLevels[17] = { ...defaultGameLevels[17], title: 'La Pieza Faltante', description: 'Álgebra intuitiva básica.', type: 'app', appComponentName: 'MissingPieceGame' };
+defaultGameLevels[18] = { ...defaultGameLevels[18], title: 'Radar de Objetivos', description: 'Encuentra los múltiplos correctos.', type: 'app', appComponentName: 'TargetRadarGame' };
+defaultGameLevels[19] = { ...defaultGameLevels[19], title: 'Jefe: El Titán del Cero', description: 'Rotación mental de cuadrículas.', type: 'app', appComponentName: 'GridRotationGame' };
 
 // Funciones para manejar el progreso temporalmente en LocalStorage
 const PROGRESS_KEY = 'mathema_game_progress';
@@ -88,7 +101,9 @@ export const getGameProgress = (): GameProgress => {
   return {
     unlockedLevel: 1,
     completedLevels: [],
-    stars: {}
+    stars: {},
+    comodines: 0,
+    lastLoginDate: undefined
   };
 };
 

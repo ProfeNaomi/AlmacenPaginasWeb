@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { AudioProvider } from './context/AudioContext';
 import { Loader2 } from 'lucide-react';
 
 // Layouts & Pages
@@ -123,9 +124,11 @@ function AppRoutes() {
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <AudioProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AudioProvider>
     </AuthProvider>
   );
 }

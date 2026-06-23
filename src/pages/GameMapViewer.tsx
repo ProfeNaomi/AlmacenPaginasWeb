@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { defaultGameLevels, getGameProgress, GameProgress, GameLevel, completeLevel, getWorldBackgrounds, getDirectImageUrl } from '../lib/gameMap';
-import { Lock, Star, Play, X, Trophy, Skull } from 'lucide-react';
+import { defaultGameLevels, GameLevel, getWorldBackgrounds, getDirectImageUrl } from '../lib/gameMap';
+import { Lock, Star, Play, X, Trophy, Skull, Volume2, VolumeX } from 'lucide-react';
+import { useAudio } from '../context/AudioContext';
 import { CustomAppRenderer } from '../components/apps/AppRegistry';
+import { useGameProgress } from '../hooks/useGameProgress';
 
 export default function GameMapViewer() {
-  const [progress, setProgress] = useState<GameProgress>({ unlockedLevel: 1, completedLevels: [], stars: {} });
+  const { progress, loading, completeLevel } = useGameProgress();
   const [selectedLevel, setSelectedLevel] = useState<GameLevel | null>(null);
   const [customBackgrounds, setCustomBackgrounds] = useState<Record<number, string>>({});
+  const [isAdminMode, setIsAdminMode] = useState(false);
+  const [hasStartedGame, setHasStartedGame] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Para hacer la curva adaptativa según el tamaño de la pantalla
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
-    setProgress(getGameProgress());
     setCustomBackgrounds(getWorldBackgrounds());
 
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -73,15 +76,15 @@ export default function GameMapViewer() {
   };
 
   const handleLevelClick = (lvl: GameLevel) => {
-    if (lvl.number <= progress.unlockedLevel) {
+    if (isAdminMode || lvl.number <= progress.unlockedLevel) {
       setSelectedLevel(lvl);
+      setHasStartedGame(false);
     }
   };
 
   const handleWin = () => {
     if (selectedLevel) {
-      const newProgress = completeLevel(selectedLevel.number, 3);
-      setProgress(newProgress);
+      completeLevel(selectedLevel.number, 3);
       setSelectedLevel(null);
     }
   };
@@ -106,8 +109,33 @@ export default function GameMapViewer() {
     return () => clearTimeout(timeout);
   }, [progress.unlockedLevel, levelPositions]);
 
+  const { isMuted, toggleMute } = useAudio();
+
   return (
     <div className="flex-1 bg-[#020617] h-full overflow-hidden flex flex-col relative font-sans">
+      {/* Cabecera Flotante */}
+      <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
+        {/* Admin Mode Toggle */}
+        <button
+          onClick={() => setIsAdminMode(!isAdminMode)}
+          className={`px-4 py-2 rounded-full font-bold shadow-lg transition-all border ${isAdminMode ? 'bg-red-500/80 border-red-400 text-white' : 'bg-slate-800/80 border-slate-600 text-slate-400'}`}
+          title="Activa para saltar el bloqueo de niveles"
+        >
+          Admin
+        </button>
+        {/* Comodines */}
+        <div className="bg-slate-800/80 border border-slate-600 px-4 py-2 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-2" title="Comodines Diarios">
+          <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+          <span className="text-white font-bold">{progress.comodines || 0}</span>
+        </div>
+        {/* Botón flotante para Mutear */}
+        <button
+          onClick={toggleMute}
+          className="bg-slate-800/80 hover:bg-slate-700/80 border border-slate-600 text-white p-3 rounded-full shadow-lg backdrop-blur-sm transition-all"
+        >
+          {isMuted ? <VolumeX className="w-6 h-6 text-red-400" /> : <Volume2 className="w-6 h-6 text-cyan-400" />}
+        </button>
+      </div>
       
       {/* Contenedor escroleable del mapa */}
       <div 
@@ -216,7 +244,7 @@ export default function GameMapViewer() {
 
           {/* Nodos de los niveles */}
           {levelPositions.map(({ level, y, xOffset }) => {
-            const isUnlocked = level.number <= progress.unlockedLevel;
+            const isUnlocked = isAdminMode || level.number <= progress.unlockedLevel;
             const isCompleted = progress.completedLevels.includes(level.number);
             const isCurrent = level.number === progress.unlockedLevel;
             const stars = progress.stars[level.number] || 0;
@@ -370,12 +398,27 @@ export default function GameMapViewer() {
                 )}
 
                 {selectedLevel.type === 'app' && selectedLevel.appComponentName ? (
-                   // Cargamos la aplicación dinámica interactiva
-                   <CustomAppRenderer 
-                     name={selectedLevel.appComponentName} 
-                     onWin={handleWin}
-                     onClose={() => setSelectedLevel(null)}
-                   />
+                   !hasStartedGame ? (
+                     <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-slate-900 rounded-b-3xl">
+                        <div className="w-32 h-32 bg-cyan-500/20 rounded-full flex items-center justify-center mb-8 border-4 border-cyan-500 shadow-[0_0_50px_rgba(6,182,212,0.3)]">
+                           <Play className="w-16 h-16 text-cyan-400 ml-2" />
+                        </div>
+                        <h1 className="text-4xl font-black text-white mb-4 uppercase tracking-wider">{selectedLevel.title}</h1>
+                        <p className="text-xl text-slate-300 mb-12 max-w-2xl">{selectedLevel.description}</p>
+                        <button 
+                          onClick={() => setHasStartedGame(true)}
+                          className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white font-black text-2xl px-12 py-5 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.5)] transform hover:scale-105 active:scale-95 transition-all"
+                        >
+                          ¡JUGAR AHORA!
+                        </button>
+                     </div>
+                   ) : (
+                     <CustomAppRenderer 
+                       name={selectedLevel.appComponentName} 
+                       onWin={handleWin}
+                       onClose={() => setSelectedLevel(null)}
+                     />
+                   )
                 ) : (
                    // Desafío genérico PAES / Quiz
                    <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 max-w-lg mx-auto z-10 p-6">

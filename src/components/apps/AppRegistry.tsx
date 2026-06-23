@@ -4,8 +4,26 @@ import React, { Suspense, lazy } from 'react';
 // Para agregar una nueva app, añádela a este registro usando lazy loading.
 const appRegistry: Record<string, React.LazyExoticComponent<any>> = {
   'LimitsSimulation': lazy(() => import('./LimitsSimulation')),
-  'ContraRelojGame': lazy(() => import('./ContraRelojGame')),
-  'BinaryClassificationGame': lazy(() => import('./BinaryClassificationGame')),
+  'ContraRelojGame': lazy(() => import('../Games/ContraRelojGame')),
+  'ClasificacionBinariaGame': lazy(() => import('../Games/ClasificacionBinariaGame')),
+  'ElIntrusoGame': lazy(() => import('../Games/ElIntrusoGame')),
+  'LaSecuenciaGame': lazy(() => import('../Games/LaSecuenciaGame')),
+  'ParejasGame': lazy(() => import('../Games/ParejasGame')),
+  'LaBalanzaGame': lazy(() => import('../Games/LaBalanzaGame')),
+  'MemoryMatrixGame': lazy(() => import('../Games/MemoryMatrixGame')),
+  'FallingEquationsGame': lazy(() => import('../Games/FallingEquationsGame')),
+  'ShapeShifterGame': lazy(() => import('../Games/ShapeShifterGame')),
+  'DualTaskGame': lazy(() => import('../Games/DualTaskGame')),
+  'LogicalPathGame': lazy(() => import('../Games/LogicalPathGame')),
+  'SimonSaysMathGame': lazy(() => import('../Games/SimonSaysMathGame')),
+  'NBackMathGame': lazy(() => import('../Games/NBackMathGame')),
+  'StroopMathGame': lazy(() => import('../Games/StroopMathGame')),
+  'AscendingBubblesGame': lazy(() => import('../Games/AscendingBubblesGame')),
+  'SymmetricalReflexGame': lazy(() => import('../Games/SymmetricalReflexGame')),
+  'SafeCrackersGame': lazy(() => import('../Games/SafeCrackersGame')),
+  'MissingPieceGame': lazy(() => import('../Games/MissingPieceGame')),
+  'TargetRadarGame': lazy(() => import('../Games/TargetRadarGame')),
+  'GridRotationGame': lazy(() => import('../Games/GridRotationGame')),
 };
 
 interface CustomAppRendererProps {
