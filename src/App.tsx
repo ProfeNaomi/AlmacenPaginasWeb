@@ -26,6 +26,8 @@ import DossierTemplateBuilder from './pages/admin/DossierTemplateBuilder';
 import DossierViewer from './pages/DossierViewer';
 import PlannerBuilder from './pages/admin/PlannerBuilder';
 import OABank from './pages/admin/OABank';
+import EssayCreatorPage from './pages/EssayCreatorPage';
+import DossierCreatorPage from './pages/DossierCreatorPage';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -103,6 +105,10 @@ function AppRoutes() {
         {/* Rutas para ver Dossier */}
         <Route path="/dossiers/:dossierId" element={<DossierViewer />} />
       </Route>
+
+      {/* Rutas standalone (sin MainLayout) */}
+      <Route path="/creador-ensayos" element={<ProtectedRoute><EssayCreatorPage /></ProtectedRoute>} />
+      <Route path="/creador-dosier" element={<ProtectedRoute><DossierCreatorPage /></ProtectedRoute>} />
 
       {/* Catch all */}
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

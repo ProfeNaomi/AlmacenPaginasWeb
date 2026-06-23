@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { BookOpen, GraduationCap } from 'lucide-react';
+import { BookOpen, GraduationCap, FileEdit, LayoutTemplate } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 
@@ -106,6 +106,40 @@ export default function Dashboard() {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Herramientas Interactivas */}
+      <div className="mt-12">
+        <h2 className="text-2xl font-display font-bold text-white mb-6">Herramientas Interactivas</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            onClick={() => navigate('/creador-ensayos')}
+            className="bg-slate-800 border border-slate-700 hover:border-sky-500/50 rounded-2xl p-6 cursor-pointer flex items-start space-x-4 transition-colors shadow-lg"
+          >
+            <div className="bg-sky-500/20 p-3 rounded-xl shrink-0">
+              <FileEdit className="w-6 h-6 text-sky-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">Creador de Ensayos</h3>
+              <p className="text-sm text-slate-400">Entorno distraction-free para redactar documentos con notas y bibliografía integrada.</p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            onClick={() => navigate('/creador-dosier')}
+            className="bg-slate-800 border border-slate-700 hover:border-emerald-500/50 rounded-2xl p-6 cursor-pointer flex items-start space-x-4 transition-colors shadow-lg"
+          >
+            <div className="bg-emerald-500/20 p-3 rounded-xl shrink-0">
+              <LayoutTemplate className="w-6 h-6 text-emerald-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">Creador de Dosier</h3>
+              <p className="text-sm text-slate-400">Lienzo drag & drop para armar material educativo visual e interactivo de forma modular.</p>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
