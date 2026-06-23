@@ -28,6 +28,7 @@ import PlannerBuilder from './pages/admin/PlannerBuilder';
 import OABank from './pages/admin/OABank';
 import EssayCreatorPage from './pages/EssayCreatorPage';
 import DossierCreatorPage from './pages/DossierCreatorPage';
+import MapTestPage from './pages/MapTestPage';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -109,6 +110,7 @@ function AppRoutes() {
       {/* Rutas standalone (sin MainLayout) */}
       <Route path="/creador-ensayos" element={<ProtectedRoute><EssayCreatorPage /></ProtectedRoute>} />
       <Route path="/creador-dosier" element={<ProtectedRoute><DossierCreatorPage /></ProtectedRoute>} />
+      <Route path="/mapa" element={<ProtectedRoute><MapTestPage /></ProtectedRoute>} />
 
       {/* Catch all */}
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
